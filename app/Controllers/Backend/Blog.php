@@ -163,7 +163,10 @@ class Blog extends BaseController
 
         return view(PANEL_FOLDER . '/pages/blog/edit', [
             'categories' => $this->categoryModel->where('module', $this->module->blog)->findAll(),
-            'blogs' => $this->contentModel->where('module', $this->module->blog)->findAll(),
+            'blogs' => $this->contentModel->where([
+                'module'=> $this->module->blog,
+                'id !=' => $blog->id
+            ])->findAll(),
             'blog' => $blog
         ]);
     }

@@ -21,7 +21,11 @@ function cve_lang_data($data, $lang = null)
     }
 
     $locale = !is_null($lang) ? $lang : service('request')->getLocale();
-    return $data->$locale;
+
+    if(isset($data->$locale)){
+        return $data->$locale;
+    }
+    return null;
 }
 
 function cve_admin_lang_path($file, $text = null){
@@ -108,12 +112,21 @@ function cve_cache($key, $callback)
     return call_user_func($callback);
 }
 
+function cve_cache_name($name, $params = null)
+{
+    if (is_null($params)){
+        return md5($name);
+    }
+
+    return md5($name . '-' . serialize($params));
+}
+
 function cve_single_image_picker(string $src, string $inputName, string $inputID, array $option = [])
 {
     $required = isset($option['required']) ? 'required' : '';
-    $width = isset($option['width']) ? $option['width'] : '180px';
-    $image = isset($option['image']) ? $option['image'] : base_url(DEFAULT_IMAGE_SELECT_ICON);
-    $value = isset($option['value']) ? $option['value'] : '';
+    $width = $option['width'] ?? '180px';
+    $image = $option['image'] ?? base_url(DEFAULT_IMAGE_SELECT_ICON);
+    $value = $option['value'] ?? '';
 
     return '<input type="hidden" value="'.$value.'" name="'.$inputName.'" id="'.$inputID.'" '.$required.'>
     <a class="btn single-image-picker" href="" 

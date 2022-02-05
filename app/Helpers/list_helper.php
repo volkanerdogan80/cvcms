@@ -41,7 +41,7 @@ function cve_random_content(int $limit = 10, $module = null, $category = null, b
  * @param string $sort_by
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed
  */
-function cve_recent_content(int $limit = 10, $module = null, $category = null, bool $pager = false)
+function cve_recent_content($limit = 10, $module = null, $category = null, bool $pager = false)
 {
     $model = new \App\Models\ContentModel();
     $params = func_get_args();
@@ -73,7 +73,7 @@ function cve_recent_content(int $limit = 10, $module = null, $category = null, b
  * @param false $pager Paging system active/inactive
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed
  */
-function cve_week_top_view(int $limit = 10, $module = null, $category = null, bool $pager = false)
+function cve_week_top_view($limit = 10, $module = null, $category = null, bool $pager = false)
 {
     $params = func_get_args();
     $model = new \App\Models\ContentModel();
@@ -106,7 +106,7 @@ function cve_week_top_view(int $limit = 10, $module = null, $category = null, bo
  * @param false $pager Paging system active/inactive
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed
  */
-function cve_month_top_view(int $limit = 10, $module = null, $category = null, bool $pager = false)
+function cve_month_top_view($limit = 10, $module = null, $category = null, bool $pager = false)
 {
     $model = new \App\Models\ContentModel();
     $params = func_get_args();
@@ -139,7 +139,7 @@ function cve_month_top_view(int $limit = 10, $module = null, $category = null, b
  * @param false $pager Paging system active/inactive
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed
  */
-function cve_most_read_view(int $limit = 10, $module = null, $category = null, bool $pager = false)
+function cve_most_read_view($limit = 10, $module = null, $category = null, bool $pager = false)
 {
     $model = new \App\Models\ContentModel();
     $params = func_get_args();
@@ -172,7 +172,7 @@ function cve_most_read_view(int $limit = 10, $module = null, $category = null, b
  * @param false $pager Paging system active/inactive
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed
  */
-function cve_most_commented_view(int $limit = 10, $module = null, $category = null, bool $pager = false)
+function cve_most_commented_view($limit = 10, $module = null, $category = null, bool $pager = false)
 {
     $model = new \App\Models\ContentModel();
     $params = func_get_args();
