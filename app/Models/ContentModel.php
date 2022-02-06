@@ -293,4 +293,24 @@ class ContentModel extends Model
         ];
     }
 
+    public function getCategoryContent($category, $limit = 10): array
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('contents.*');
+
+        $builder = $builder->where('contents.status', STATUS_ACTIVE);
+
+        if (!is_null($category)){
+            $category = explode(',', $category);
+            $builder = $builder->whereIn('content_categories.category_id', $category);
+            $builder = $builder->join('content_categories', 'content_categories.content_id = contents.id');
+        }
+
+        $builder = $builder->orderBy('contents.id', 'DESC');
+
+        return [
+            'contents' => $builder->paginate($limit),
+            'pager' => $builder->pager
+        ];
+    }
 }

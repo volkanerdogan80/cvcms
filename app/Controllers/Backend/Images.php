@@ -154,7 +154,7 @@ class Images extends BaseController
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Errors', 'image_database_failure')
+                'message' => cve_admin_lang_path('Success', 'delete_success')
             ]);
         }
 

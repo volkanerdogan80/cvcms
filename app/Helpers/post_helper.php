@@ -106,7 +106,7 @@ function cve_post_content($content = null)
  * @param null $content | slug, id or object state of content
  * @return mixed
  */
-function cve_post_thumbnail_id($content = null, $size = null)
+function cve_post_thumbnail_id($content = null)
 {
     if (is_null($content)){
         return cve_post()->getThumbnail();
@@ -117,7 +117,7 @@ function cve_post_thumbnail_id($content = null, $size = null)
 /**
  * Returns Content Thumbnail link
  * @param null $content | slug, id or object state of content
- * @param null $size | resim'e ait en-boy oranları
+ * @param null $size | aspect ratio of image | If there is no image in the public/image folder with received size value, it will be created and saved.
  * @return mixed
  */
 function cve_post_thumbnail($content = null, $size = null)
@@ -142,12 +142,26 @@ function cve_post_gallery($content = null)
 }
 
 /**
+ * Returns a category information of the content
+ * @param int $index | Determines which index among the categories it is in
+ * @param null $content | slug, id or object state of content
+ * @return mixed
+ */
+function sdc_post_category(int $index = 0, $content = null)
+{
+    if (is_null($content)){
+        return cve_post()->withCategories()[$index];
+    }
+    return cve_post($content)->withCategories()[$index];
+}
+
+/**
  * Returns content Tags(Keywords)
  * @param null $content| slug, id or object state of content
  * @param false $is_array | for array type  set to TRUE
  * @return mixed
  */
-function cve_post_keywords($content = null, $is_array = false)
+function cve_post_keywords($content = null, bool $is_array = false)
 {
     if (is_null($content)){
         return cve_post()->getKeywords(null,$is_array);
