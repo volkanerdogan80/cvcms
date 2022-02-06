@@ -125,7 +125,7 @@ function cve_post_thumbnail($content = null, $size = null)
     if (is_null($content)){
         return cve_post()->withThumbnail()->getUrl($size);
     }
-    return cve_post($content)->withThumbnail()->getUrl($size);
+    return !is_null($size) ? cve_post($content)->withThumbnail()->getUrl($size) : null;
 }
 
 /**
@@ -147,12 +147,24 @@ function cve_post_gallery($content = null)
  * @param null $content | slug, id or object state of content
  * @return mixed
  */
-function sdc_post_category(int $index = 0, $content = null)
+function cve_post_category($index = 0, $content = null)
 {
     if (is_null($content)){
         return cve_post()->withCategories()[$index];
     }
     return cve_post($content)->withCategories()[$index];
+}
+
+/**
+ * @param null $content | slug, id or object state of content
+ * @return mixed
+ */
+function cve_post_categories($content = null)
+{
+    if (is_null($content)){
+        return cve_post()->withCategories();
+    }
+    return cve_post($content)->withCategories();
 }
 
 /**
@@ -179,7 +191,7 @@ function cve_post_status($content = null)
     if (is_null($content)){
         return cve_post()->getStatus();
     }
-    return cve_post($content)->getStatus();
+    return cve_post($content)->getStatus(); //TODO: status pending ya da passive gelince hata veriyor. Çünkü get_post metodunda active kayıtları getiriyoruz.
 }
 
 /**
@@ -190,7 +202,8 @@ function cve_post_status($content = null)
 function cve_post_view($content = null)
 {
     if (is_null($content)){
-        return cve_post()->getViews();
+        //TODO: Görüntülenme sayısı 0 ise boş dönüyor. Buraya belki '0' yapması için bir kontrol eklenebilir. Ya da view da yaparız. Duruma göre bak
+        return cve_post($content)->getViews();
     }
     return cve_post($content)->getViews();
 }
@@ -249,7 +262,7 @@ function cve_post_author_id($content = null)
  * @param null $content | slug, id or object state of content
  * @return mixed
  */
-function cve_post_author($key = null, $content = null)
+function cve_post_author($content = null, $key = null)
 {
     if (is_null($content)){
         $user = cve_post()->withUser();
@@ -272,6 +285,7 @@ function cve_post_author($key = null, $content = null)
  */
 function cve_post_field($key, $content = null)
 {
+    //TODO: $key null gelirse hata veriyor. Buna bir kontrol eklenmeli.
     if (is_null($content)){
         return cve_post()->getField($key);
     }
