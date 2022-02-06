@@ -37,7 +37,7 @@ function cve_user($user = null)
     }elseif(is_numeric($user) || is_integer($user)){
         return get_user(['id' => $user]);
     }else{
-        return null;
+        return null; // TODO: Duruma göre aktif kullanıcının session bilgisi de döndürülebilir.
     }
 }
 

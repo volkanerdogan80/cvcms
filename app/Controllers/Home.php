@@ -27,10 +27,7 @@ class Home extends BaseController
 
         //cve_lang_data('CVE Blog Başlık', service('request')->getLocale());
         //echo service('request')->getLocale();
-        print_r(cve_cat_selectbox([
-            'add' => '*',
-            'class' => 'sss'
-        ]));
+        print_r(cve_user_created_at('volkanerdogan80@gmail.com', true));
 
     }
 }
