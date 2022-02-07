@@ -15,14 +15,16 @@ function get_post($params)
 
 /**
  * Returns content info
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
 function cve_post($content = null)
 {
     if (is_null($content)){
         $render = \Config\Services::renderer();
-        return $render->getData()['content'];
+        if (isset($render->getData()['content'])){
+            return $render->getData()['content'];
+        }
     }
 
     if (is_object($content)){
@@ -38,206 +40,205 @@ function cve_post($content = null)
 
 /**
  * Returns Content ID
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_id($content = null)
 {
-    if (is_null($content)){
-        return cve_post()->id;
+    if ($data = cve_post($content)){
+        return $data->id;
     }
-    return cve_post($content)->id;
+    return null;
 }
 
 /**
  * Returns Content Slug
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_slug($content = null)
 {
-    if (is_null($content)){
-        return cve_post()->getSlug();
+    if ($data = cve_post($content)){
+        return $data->getSlug();
     }
-    return cve_post($content)->getSlug();
+    return null;
 }
 
 /**
  * Returns Content Title
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_title($content = null)
 {
-    if (is_null($content)){
-        return cve_post()->getTitle();
+    if ($data = cve_post($content)){
+        return $data->getTitle();
     }
-    return cve_post($content)->getTitle();
+    return null;
 }
 
 /**
  * Returns Content Summary
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_description($content = null)
 {
-    if (is_null($content)){
-        return cve_post()->getDescription();
+    if ($data = cve_post($content)){
+        return $data->getDescription();
     }
-    return cve_post($content)->getDescription();
+    return null;
 }
 
 /**
  * Returns Content content
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_content($content = null)
 {
-    if (is_null($content)){
-        return cve_post()->getContent();
+    if ($data = cve_post($content)){
+        return $data->getContent();
     }
-    return cve_post($content)->getContent();
+    return null;
 }
 
 /**
  * Returns Content Thumbnail ID
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_thumbnail_id($content = null)
 {
-    if (is_null($content)){
-        return cve_post()->getThumbnail();
+    if ($data = cve_post($content)){
+        return $data->getThumbnail();
     }
-    return cve_post($content)->getThumbnail();
+    return null;
 }
 
 /**
  * Returns Content Thumbnail link
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @param null $size | aspect ratio of image | If there is no image in the public/image folder with received size value, it will be created and saved.
  * @return mixed
  */
 function cve_post_thumbnail($content = null, $size = null)
 {
-    if (is_null($content)){
-        return cve_post()->withThumbnail()->getUrl($size);
+    if ($data = cve_post($content)){
+        return $data->withThumbnail()->getUrl($size);
     }
-    return !is_null($size) ? cve_post($content)->withThumbnail()->getUrl($size) : null;
+    return null;
 }
 
 /**
  * Returns aspect ratio of Gallery Images
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_gallery($content = null)
 {
-    if (is_null($content)){
-        return cve_post()->withGallery();
+    if ($data = cve_post($content)){
+        return $data->withGallery();
     }
-    return cve_post($content)->withGallery();
+    return null;
 }
 
 /**
  * Returns a category information of the content
  * @param int $index | Determines which index among the categories it is in
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
-function cve_post_category($index = 0, $content = null)
+function cve_post_category(int $index = 0, $content = null)
 {
-    if (is_null($content)){
-        return cve_post()->withCategories()[$index];
+    if ($data = cve_post($content)){
+        return $data->withCategories()[$index];
     }
-    return cve_post($content)->withCategories()[$index];
+    return null;
 }
 
 /**
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_categories($content = null)
 {
-    if (is_null($content)){
-        return cve_post()->withCategories();
+    if ($data = cve_post($content)){
+        return $data->withCategories();
     }
-    return cve_post($content)->withCategories();
+    return null;
 }
 
 /**
  * Returns content Tags(Keywords)
- * @param null $content| slug, id or object state of content
+ * @param null $content| Slug and id (related to content) or object state of the content
  * @param false $is_array | for array type  set to TRUE
  * @return mixed
  */
 function cve_post_keywords($content = null, bool $is_array = false)
 {
-    if (is_null($content)){
-        return cve_post()->getKeywords(null,$is_array);
+    if ($data = cve_post($content)){
+        return $data->getKeywords(null,$is_array);
     }
-    return cve_post($content)->getKeywords(null,$is_array);
+    return null;
 }
 
 /**
  * Returns content Status
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_status($content = null)
 {
-    if (is_null($content)){
-        return cve_post()->getStatus();
+    if ($data = cve_post($content)){
+        return $data->getStatus();
     }
-    return cve_post($content)->getStatus(); //TODO: status pending ya da passive gelince hata veriyor. Çünkü get_post metodunda active kayıtları getiriyoruz.
+    return null;
 }
 
 /**
  * Returns Content Views
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_view($content = null)
 {
-    if (is_null($content)){
-        //TODO: Görüntülenme sayısı 0 ise boş dönüyor. Buraya belki '0' yapması için bir kontrol eklenebilir. Ya da view da yaparız. Duruma göre bak
-        return cve_post($content)->getViews();
+    if ($data = cve_post($content)){
+        return $data->getViews();
     }
-    return cve_post($content)->getViews();
+    return null;
 }
 
 /**
  * Returns page template if exist
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_template($content = null)
 {
-    if (is_null($content)){
-        return cve_post()->getPageType();
+    if ($data = cve_post($content)){
+        return $data->getPageType();
     }
-    return cve_post($content)->getPageType();
+    return null;
 }
 
 /**
  * Returns content module
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_module($content = null)
 {
-    if (is_null($content)){
-        return cve_post()->getModule();
+    if ($data = cve_post($content)){
+        return $data->getModule();
     }
-    return cve_post($content)->getModule();
+    return null;
 }
 
 /**
  * Creates a link for content and returns
- * @param null $content | slug, id or object state of content
- * @return mixed
+ * @param null $content | Slug and id (related to content) or object state of the content
+ * @return string
  */
 function cve_post_link($content = null)
 {
@@ -246,115 +247,124 @@ function cve_post_link($content = null)
 
 /**
  * Returns author's id of content
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_author_id($content = null)
 {
-    if (is_null($content)){
-        return cve_post()->getUserId();
+    if ($data = cve_post($content)){
+        return $data->getUserId();
     }
-    return cve_post($content)->getUserId();
+    return null;
 }
 
 /**
  * Returns author of content
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_author($content = null, $key = null)
 {
-    if (is_null($content)){
-        $user = cve_post()->withUser();
+    if ($data = cve_post($content)){
+        if (!is_null($key)){
+            return $data->withUser()->$key;
+        }
+        return $data->withUser();
     }else{
-        $user = cve_post($content)->withUser();
+        return null;
     }
-
-    if (!is_null($key)){
-        return $user->$key;
-    }
-
-    return $user;
 }
 
 /**
  * Returns specific extra field values of content
  * @param $key | key for extra field
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_field($key, $content = null)
 {
-    //TODO: $key null gelirse hata veriyor. Buna bir kontrol eklenmeli.
-    if (is_null($content)){
-        return cve_post()->getField($key);
+    if ($data = cve_post($content)){
+        return $data->getField($key);
     }
-    return cve_post($content)->getField($key);
+    return null;
 }
 
 /**
  * Returns all extra field values of content
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_all_field($content = null)
 {
-    if (is_null($content)){
-        return cve_post()->getAllField();
+    if ($data = cve_post($content)){
+        return $data->getAllField();
     }
-    return cve_post($content)->getAllField();
+    return null;
 }
 
 /**
  * Returns ids of related posts of content
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_similar_id($content = null)
 {
-    if (is_null($content)){
-        return cve_post()->getSimilar();
+    if ($data = cve_post($content)){
+        return $data->getSimilar();
     }
-    return cve_post($content)->getSimilar();
+    return null;
 }
 
 /**
  *  Returns related posts of content
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
 function cve_post_similar($content = null)
 {
-    if (is_null($content)){
-        return cve_post()->withSimilar();
+    if ($data = cve_post($content)){
+        return $data->withSimilar();
     }
-    return cve_post($content)->withSimilar();
+    return null;
+}
+
+/**
+ * Returns comments for content
+ * @param null $content | Slug and id (related to content) or object state of the content
+ * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
+ */
+function cve_post_comments($content = null)
+{
+    if (cve_post_id($content)){
+        return cve_comments_level($content);
+    }
+    return null;
 }
 
 /**
  * Returns created time of content
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @param false $humanize | TRUE => for human readable type, FALSE => for formatted DATETIME
  * @return mixed
  */
 function cve_post_created_at($content = null, bool $humanize = false)
 {
-    if (is_null($content)){
-        return cve_post()->getCreatedAt($humanize);
+    if ($data = cve_post($content)){
+        return $data->getCreatedAt($humanize);
     }
-    return cve_post($content)->getCreatedAt($humanize);
+    return null;
 }
 
 /**
  * Returns last updated time of content
- * @param null $content | slug, id or object state of content
+ * @param null $content | Slug and id (related to content) or object state of the content
  * @param false $humanize | TRUE => for human readable type, FALSE => for formatted DATETIME
  * @return mixed
  */
 function cve_post_updated_at($content = null, bool $humanize = false)
 {
-    if (is_null($content)){
-        return cve_post()->getUpdatedAt($humanize);
+    if ($data = cve_post($content)){
+        return $data->getUpdatedAt($humanize);
     }
-    return cve_post($content)->getUpdatedAt($humanize);
+    return null;
 }

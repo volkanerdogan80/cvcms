@@ -70,10 +70,10 @@ function cve_categories($module)
  */
 function cve_cat_id($category = null)
 {
-    if (is_null($category)){
-        return cve_category()->id;
+    if ($data = cve_category($category)){
+        return $data->id;
     }
-    return cve_category($category)->id;
+    return null;
 }
 
 /**
@@ -83,10 +83,10 @@ function cve_cat_id($category = null)
  */
 function cve_cat_parent_id($category = null)
 {
-    if (is_null($category)){
-        return cve_category()->getParentId();
+    if ($data = cve_category($category)){
+        return $data->getParentId();
     }
-    return cve_category($category)->getParentId();
+    return null;
 }
 
 /**
@@ -96,16 +96,14 @@ function cve_cat_parent_id($category = null)
  */
 function cve_cat_parent($category = null, $key = null)
 {
-    if (is_null($category)){
-        $category = cve_category()->withParent();
+    if ($data = cve_category($category)){
+        if (!is_null($key)){
+            return $data->withParent()->$key;
+        }
+        return $data->withParent();
     }else{
-        $category = cve_category($category)->withParent();
+        return null;
     }
-
-    if (!is_null($key)){
-        return $category->$key;
-    }
-    return $category;
 }
 
 /**
@@ -125,10 +123,10 @@ function cve_cat_child($category = null)
  */
 function cve_cat_slug($category = null)
 {
-    if (is_null($category)){
-        return cve_category()->getSlug();
+    if ($data = cve_category($category)){
+        return $data->getSlug();
     }
-    return cve_category($category)->getSlug();
+    return null;
 }
 
 /**
@@ -138,10 +136,10 @@ function cve_cat_slug($category = null)
  */
 function cve_cat_title($category = null)
 {
-    if (is_null($category)){
-        return cve_category()->getTitle();
+    if ($data = cve_category($category)){
+        return $data->getTitle();
     }
-    return cve_category($category)->getTitle();
+    return null;
 }
 
 /**
@@ -151,10 +149,10 @@ function cve_cat_title($category = null)
  */
 function cve_cat_description($category = null)
 {
-    if (is_null($category)){
-        return cve_category()->getDescription();
+    if ($data = cve_category($category)){
+        return $data->getDescription();
     }
-    return cve_category($category)->getDescription();
+    return null;
 }
 
 /**
@@ -164,10 +162,10 @@ function cve_cat_description($category = null)
  */
 function cve_cat_keywords($category = null)
 {
-    if (is_null($category)){
-        return cve_category()->getKeywords();
+    if ($data = cve_category($category)){
+        return $data->getKeywords();
     }
-    return cve_category($category)->getKeywords();
+    return null;
 }
 
 /**
@@ -177,10 +175,10 @@ function cve_cat_keywords($category = null)
  */
 function cve_cat_image_id($category = null)
 {
-    if (is_null($category)){
-        return cve_category()->getImage();
+    if ($data = cve_category($category)){
+        return $data->getImage();
     }
-    return cve_category($category)->getImage();
+    return null;
 }
 
 /**
@@ -191,10 +189,10 @@ function cve_cat_image_id($category = null)
  */
 function cve_cat_image($category = null, $size = null)
 {
-    if (is_null($category)){
-        return cve_category()->withImage()->getUrl($size);
+    if ($data = cve_category($category)){
+        return $data->withImage()->getUrl($size);
     }
-    return cve_category($category)->withImage()->getUrl($size);
+    return null;
 }
 
 /**
@@ -214,10 +212,10 @@ function cve_cat_link($category = null)
  */
 function cve_cat_module($category = null)
 {
-    if (is_null($category)){
-        return cve_category()->getModule();
+    if ($data = cve_category($category)){
+        return $data->getModule();
     }
-    return cve_category($category)->getModule();
+    return null;
 }
 
 /**
@@ -227,10 +225,10 @@ function cve_cat_module($category = null)
  */
 function cve_cat_user_id($category = null)
 {
-    if (is_null($category)){
-        return cve_category()->getUserId();
+    if ($data = cve_category($category)){
+        return $data->getUserId();
     }
-    return cve_category($category)->getUserId();
+    return null;
 }
 
 /**
@@ -241,17 +239,14 @@ function cve_cat_user_id($category = null)
  */
 function cve_cat_user($category = null, $key = null)
 {
-    if (is_null($category)){
-        $user = cve_category()->withUser();
+    if ($data = cve_category($category)){
+        if (!is_null($key)){
+            return $data->withUser()->$key;
+        }
+        return $data->withUser();
     }else{
-        $user = cve_category($category)->withUser();
+        return null;
     }
-
-    if (!is_null($key)){
-        return $user->$key;
-    }
-
-    return $user;
 }
 
 /**
@@ -261,10 +256,10 @@ function cve_cat_user($category = null, $key = null)
  */
 function cve_cat_created_at($category = null, $humanize = false)
 {
-    if (is_null($category)){
-        return cve_category()->getCreatedAt($humanize);
+    if ($data = cve_category($category)){
+        return $data->getCreatedAt($humanize);
     }
-    return cve_category($category)->getCreatedAt($humanize);
+    return null;
 }
 
 /**
@@ -274,10 +269,10 @@ function cve_cat_created_at($category = null, $humanize = false)
  */
 function cve_cat_updated_at($category = null, $humanize = false)
 {
-    if (is_null($category)){
-        return cve_category()->getUpdatedAt($humanize);
+    if ($data = cve_category($category)){
+        return $data->getUpdatedAt($humanize);
     }
-    return cve_category($category)->getUpdatedAt($humanize);
+    return null;
 }
 
 /**

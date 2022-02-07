@@ -115,7 +115,7 @@
                     </div>
                     <div class="card">
                         <div class="card-footer text-right">
-                            <button type="submit" class="btn btn-success btn-block btn-lg"><?= lang('General.text.save'); ?></button>
+                            <button type="submit" class="btn btn-success btn-block btn-lg"><?= cve_admin_lang_path('Buttons', 'save') ?></button>
                         </div>
                     </div>
                 </form>

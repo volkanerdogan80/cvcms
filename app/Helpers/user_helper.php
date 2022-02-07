@@ -48,10 +48,10 @@ function cve_user($user = null)
  */
 function cve_user_group_id($user = null)
 {
-    if (is_null($user)){
-        return cve_user()->getGroupID();
+    if ($data = cve_user($user)){
+        return $data->getGroupID();
     }
-    return cve_user($user)->getGroupID();
+    return null;
 }
 
 /**
@@ -62,16 +62,14 @@ function cve_user_group_id($user = null)
  */
 function cve_user_group($user = null, $key = null)
 {
-    if (is_null($user)){
-        $group = cve_user()->withGroup();
+    if ($data = cve_user($user)){
+        if (!is_null($key)){
+            return $data->withGroup()->$key;
+        }
+        return $data->withGroup();
+    }else{
+        return null;
     }
-    $group =  cve_user($user)->withGroup();
-
-    if (!is_null($key)){
-        return $group->$key;
-    }
-
-    return $group;
 }
 
 /**
@@ -81,10 +79,10 @@ function cve_user_group($user = null, $key = null)
  */
 function cve_user_firstname($user = null)
 {
-    if (is_null($user)){
-        return cve_user()->getFirstName();
+    if ($data = cve_user($user)){
+        return $data->getFirstName();
     }
-    return cve_user($user)->getFirstName();
+    return null;
 }
 
 /**
@@ -94,10 +92,10 @@ function cve_user_firstname($user = null)
  */
 function cve_user_surname($user = null)
 {
-    if (is_null($user)){
-        return cve_user()->getSurName();
+    if ($data = cve_user($user)){
+        return $data->getSurName();
     }
-    return cve_user($user)->getSurName();
+    return null;
 }
 
 /**
@@ -107,10 +105,10 @@ function cve_user_surname($user = null)
  */
 function cve_user_name($user = null)
 {
-    if (is_null($user)){
-        return cve_user()->getFullName();
+    if ($data = cve_user($user)){
+        return $data->getFullName();
     }
-    return cve_user($user)->getFullName();
+    return null;
 }
 
 /**
@@ -120,10 +118,10 @@ function cve_user_name($user = null)
  */
 function cve_user_email($user = null)
 {
-    if (is_null($user)){
-        return cve_user()->getEmail();
+    if ($data = cve_user($user)){
+        return $data->getEmail();
     }
-    return cve_user($user)->getEmail();
+    return null;
 }
 
 /**
@@ -133,10 +131,10 @@ function cve_user_email($user = null)
  */
 function cve_user_bio($user = null)
 {
-    if (is_null($user)){
-        return cve_user()->getBio();
+    if ($data = cve_user($user)){
+        return $data->getBio();
     }
-    return cve_user($user)->getBio();
+    return null;
 }
 
 /**
@@ -146,10 +144,10 @@ function cve_user_bio($user = null)
  */
 function cve_user_status($user = null)
 {
-    if (is_null($user)){
-        return cve_user()->getStatus();
+    if ($data = cve_user($user)){
+        return $data->getStatus();
     }
-    return cve_user($user)->getStatus();
+    return null;
 }
 
 /**
@@ -159,8 +157,8 @@ function cve_user_status($user = null)
  */
 function cve_user_created_at($user = null, $humanize = false)
 {
-    if (is_null($user)){
-        return cve_user()->getCreatedAt($humanize);
+    if ($data = cve_user($user)){
+        return $data->getCreatedAt($humanize);
     }
-    return cve_user($user)->getCreatedAt($humanize);
+    return null;
 }

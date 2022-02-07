@@ -57,7 +57,7 @@ class ImageEntity extends Entity
         return $this->attributes['slug'];
     }
 
-    public function getUrl($size = null)
+    public function getUrl($size = null): string
     {
         if (!is_null($size)){
             $image = UPLOAD_FOLDER_PATH . $this->attributes['slug'] . '-' . $size . '.' . $this->attributes['type'];

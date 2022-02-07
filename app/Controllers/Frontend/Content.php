@@ -11,8 +11,11 @@ class Content extends BaseController
 
     public function index($slug)
     {
-        print_r($slug);
-        echo 'Content';
+        $model = new ContentModel();
+
+        return view('themes/default/single/blog', [
+            'content' => $model->where('slug', $slug)->first()
+        ]);
     }
 
 }
