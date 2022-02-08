@@ -24,9 +24,11 @@ class ContentEntity extends Entity
     protected $thumbnail;
     protected $gallery;
     protected $views;
-    protected $field;
-    protected $similar;
     protected $comment_status;
+    protected $field;
+    protected $page_type;
+    protected $post_format;
+    protected $similar;
     protected $status;
 
     public function setId(int $id): void
@@ -34,9 +36,8 @@ class ContentEntity extends Entity
         $this->attributes['id'] = $id;
     }
 
-    public function setModule(?string $module = null): void
+    public function setModule(string $module): void
     {
-        $module = is_null($module) ? config('system')->blog : $module;
         $this->attributes['module'] = $module;
     }
 
@@ -117,6 +118,12 @@ class ContentEntity extends Entity
         $this->attributes['page_type'] = $type;
     }
 
+    public function setPostFormat($format = null): void
+    {
+        $format = is_null($format) ? 'standard' : $format;
+        $this->attributes['post_format'] = $format;
+    }
+
     public function setSimilar($similar = null): void
     {
         if (is_null($similar)){
@@ -126,13 +133,15 @@ class ContentEntity extends Entity
         }
     }
 
-    public function setCommentStatus(string $comment_status = STATUS_PASSIVE)
+    public function setCommentStatus($comment_status = null)
     {
+        $comment_status = is_null($comment_status) ? STATUS_PASSIVE : $comment_status;
         $this->attributes['comment_status'] = $comment_status;
     }
 
-    public function setStatus(string $status = STATUS_PENDING)
+    public function setStatus($status = null)
     {
+        $status = is_null($status) ? STATUS_PENDING : $status;
         $this->attributes['status'] = $status;
     }
 
@@ -240,6 +249,11 @@ class ContentEntity extends Entity
     public function getPageType()
     {
         return $this->attributes['page_type'];
+    }
+
+    public function getPostFormat()
+    {
+        return $this->attributes['post_format'];
     }
 
     public function getSimilar()

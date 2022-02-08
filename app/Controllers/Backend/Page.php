@@ -24,46 +24,29 @@ class Page extends BaseController
         $this->listing_all_permit = 'admin_page_listing_all';
     }
 
-    public function create()
-    {
-        if ($this->request->getMethod() == 'post'){
-            $field = [];
-            $getField = $this->request->getPost('field');
-            if (isset($getField)){
-                foreach ($this->request->getPost('field') as $key => $value){
-                    $field[$value['key']] = $value['value'];
-                }
-            }
-            $field = count($field) > 0 ? $field : null;
-
-            $this->contentEntity->setModule($this->module);
-            $this->contentEntity->setUserId();
-            $this->contentEntity->setTitle($this->request->getPost('title'));
-            $this->contentEntity->setSlug();
-            $this->contentEntity->setDescription($this->request->getPost('description'));
-            $this->contentEntity->setContent($this->request->getPost('content'));
-            $this->contentEntity->setKeywords($this->request->getPost('keywords'));
-            $this->contentEntity->setThumbnail($this->request->getPost('thumbnail'));
-            $this->contentEntity->setGallery($this->request->getPost('gallery'));
-            $this->contentEntity->setViews();
-            $this->contentEntity->setField($field);
-            $this->contentEntity->setStatus($this->request->getPost('status'));
-            $this->contentEntity->setPageType($this->request->getPost('page_type'));
-            $this->contentEntity->setSimilar();
-            $this->contentEntity->setCommentStatus();
-
-            $insertID = $this->contentModel->insert($this->contentEntity);
-
-            if($this->contentModel->errors()){
-                return redirect()->back()->with('error', $this->contentModel->errors());
-            }
-
-            return redirect()->back()->with('success', cve_admin_lang_path('Success', 'create_success'));
-
-        }
-        return view(PANEL_FOLDER . '/pages/page/create', [
+    protected function createViewData(){
+        return [
             'template_list' => $this->getPageTemplate()
-        ]);
+        ];
+    }
+
+    protected function getPageTemplate()
+    {
+        helper('filesystem');
+        $themeModel = new ThemeModel();
+        $active_theme = $themeModel->where('status', STATUS_ACTIVE)->first();
+
+        $find_folder = directory_map(APPPATH . 'Views/themes/'.$active_theme->getFolder().'/page');
+        $template_list = [];
+        foreach ($find_folder as $key => $value){
+            $get_file = file_get_contents(APPPATH. 'Views/themes/'.$active_theme->getFolder().'/page/' . $value);
+            preg_match_all('#<!-- (.*?) -->#', $get_file, $find);
+            $file_name = str_replace('.php', '', $value);
+            $template_name = $find[1][0];
+            $template_list[$file_name] = $template_name;
+        }
+
+        return $template_list;
     }
 
     public function edit($id)
@@ -280,24 +263,5 @@ class Page extends BaseController
             'status' => false,
             'message' => cve_admin_lang_path('Errors','invalid_request_type')
         ]);
-    }
-
-    private function getPageTemplate()
-    {
-        helper('filesystem');
-        $themeModel = new ThemeModel();
-        $active_theme = $themeModel->where('status', STATUS_ACTIVE)->first();
-
-        $find_folder = directory_map(APPPATH . 'Views/themes/'.$active_theme->getFolder().'/page');
-        $template_list = [];
-        foreach ($find_folder as $key => $value){
-            $get_file = file_get_contents(APPPATH. 'Views/themes/'.$active_theme->getFolder().'/page/' . $value);
-            preg_match_all('#<!-- (.*?) -->#', $get_file, $find);
-            $file_name = str_replace('.php', '', $value);
-            $template_name = $find[1][0];
-            $template_list[$file_name] = $template_name;
-        }
-
-        return $template_list;
     }
 }

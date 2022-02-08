@@ -22,50 +22,11 @@ class Blog extends BaseController
         $this->listing_all_permit = 'admin_blog_listing_all';
     }
 
-
-    public function create()
-    {
-        if ($this->request->getMethod() == 'post'){
-            $field = [];
-            $getField = $this->request->getPost('field');
-            if (isset($getField)){
-                foreach ($this->request->getPost('field') as $key => $value){
-                    $field[$value['key']] = $value['value'];
-                }
-            }
-            $field = count($field) > 0 ? $field : null;
-
-            $this->contentEntity->setModule($this->module->blog);
-            $this->contentEntity->setUserId();
-            $this->contentEntity->setTitle($this->request->getPost('title'));
-            $this->contentEntity->setSlug();
-            $this->contentEntity->setDescription($this->request->getPost('description'));
-            $this->contentEntity->setContent($this->request->getPost('content'));
-            $this->contentEntity->setKeywords($this->request->getPost('keywords'));
-            $this->contentEntity->setThumbnail($this->request->getPost('thumbnail'));
-            $this->contentEntity->setGallery($this->request->getPost('gallery'));
-            $this->contentEntity->setViews();
-            $this->contentEntity->setField($field);
-            $this->contentEntity->setStatus($this->request->getPost('status'));
-            $this->contentEntity->setCommentStatus($this->request->getPost('comment_status'));
-            $this->contentEntity->setSimilar($this->request->getPost('similar'));
-
-            $insertID = $this->contentModel->insert($this->contentEntity);
-
-            if($this->contentModel->errors()){
-                return redirect()->back()->with('error', $this->contentModel->errors());
-            }
-            cve_autoshare($insertID);
-
-            $this->contentModel->category('insert', $insertID, $this->request->getPost('categories'));
-
-            return redirect()->route('admin_blog_edit', [$insertID])->with('success', cve_admin_lang_path('Success', 'create_success'));
-
-        }
-        return view(PANEL_FOLDER . '/pages/blog/create', [
-            'categories' => $this->categoryModel->where('module', $this->module->blog)->findAll(),
-            'blogs' => $this->contentModel->where('module', $this->module->blog)->findAll()
-        ]);
+    protected function createViewData(){
+        return [
+            'categories' => $this->categoryModel->where('module', $this->module)->findAll(),
+            'blogs' => $this->contentModel->where('module', $this->module)->findAll(),
+        ];
     }
 
     public function edit($id)
@@ -120,9 +81,9 @@ class Blog extends BaseController
 
 
         return view(PANEL_FOLDER . '/pages/blog/edit', [
-            'categories' => $this->categoryModel->where('module', $this->module->blog)->findAll(),
+            'categories' => $this->categoryModel->where('module', $this->module)->findAll(),
             'blogs' => $this->contentModel->where([
-                'module'=> $this->module->blog,
+                'module'=> $this->module,
                 'id !=' => $blog->id
             ])->findAll(),
             'blog' => $blog
@@ -299,5 +260,4 @@ class Blog extends BaseController
             'message' => cve_admin_lang_path('Errors', 'purge_delete_failure')
         ]);
     }
-
 }

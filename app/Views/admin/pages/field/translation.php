@@ -18,7 +18,7 @@
     <div class="row mb-4">
         <div class="col-md-3">
             <div class="form-group mt-3">
-                <input name="field[<?= $random ?>][key]" value="" placeholder="<?= cve_admin_lang_path('Inputs', 'extra_field_key') ?>" type="text" class="form-control">
+                <input name="field[<?= $random ?>][key]" value="<?= @$key ?>" placeholder="<?= cve_admin_lang_path('Inputs', 'extra_field_key') ?>" type="text" class="form-control">
             </div>
         </div>
         <div class="col-md-8">
@@ -31,7 +31,7 @@
                          style="padding: 0px"
                     >
                         <div class="form-group mt-3">
-                            <input name="field[<?= $random ?>][value][<?= $lang->getCode(); ?>]" value="" placeholder="<?= cve_admin_lang_path('Inputs', 'extra_field_value') ?>" type="text" class="form-control">
+                            <input name="field[<?= $random ?>][value][<?= $lang->getCode(); ?>]" value="<?= @$value ?>" placeholder="<?= cve_admin_lang_path('Inputs', 'extra_field_value') ?>" type="text" class="form-control">
                         </div>
                     </div>
                 <?php endforeach; ?>

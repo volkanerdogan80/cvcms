@@ -31,9 +31,9 @@ function cve_lang_data($data, $lang = null)
 function cve_admin_lang_path($file, $text = null){
 
     if(!is_null($text)){
-        return lang('Admin/' . $file . '.text.' . $text);
+        return lang('Admin/' . ucfirst($file) . '.text.' . $text);
     }
-    return lang('Admin/' . $file . '.text');
+    return lang('Admin/' . ucfirst($file)  . '.text');
 }
 
 function cve_autoshare($content_id)

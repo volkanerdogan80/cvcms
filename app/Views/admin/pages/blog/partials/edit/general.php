@@ -31,10 +31,6 @@
                     </label>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-body">
             <div class="form-group">
                 <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'categories') ?></label>
                 <select name="categories[]" class="form-control select2" multiple="" required>
@@ -43,8 +39,25 @@
                     <?php endforeach; ?>
                 </select>
             </div>
+            <div class="form-group">
+                <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'related_content') ?></label>
+                <select name="similar[]" class="form-control select2" multiple="">
+                    <?php foreach ($blogs as $s_blog): ?>
+                        <option <?= in_array($s_blog->id, $blog->getSimilar()) ? 'selected': ''; ?> value="<?= $s_blog->id; ?>"><?= $s_blog->getTitle(); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label">Post Format</label>
+                <select data-url="<?= base_url(route_to('admin_post_format_add')) ?>" name="post_format" class="form-control select2 post_format">
+                    <?php foreach (post_format() as $key => $format): ?>
+                        <option <?= $blog->getPostFormat() == $key ? 'selected' : '' ?> value="<?= $key ?>"><?= $format['name'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
         </div>
     </div>
+
     <div class="card">
         <div class="card-body">
             <div class="form-group">
@@ -58,18 +71,6 @@
                         'value' => $blog->getThumbnail()
                     ]); ?>
                 <?php } ?>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <div class="form-group">
-                <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'related_content') ?></label>
-                <select name="similar[]" class="form-control select2" multiple="">
-                    <?php foreach ($blogs as $s_blog): ?>
-                        <option <?= in_array($s_blog->id, $blog->getSimilar()) ? 'selected': ''; ?> value="<?= $s_blog->id; ?>"><?= $s_blog->getTitle(); ?></option>
-                    <?php endforeach; ?>
-                </select>
             </div>
         </div>
         <div class="card-footer text-right">

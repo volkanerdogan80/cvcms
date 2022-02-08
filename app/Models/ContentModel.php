@@ -28,6 +28,7 @@ class ContentModel extends Model
         'comment_status',
         'field',
         'page_type',
+        'post_format',
         'similar',
         'status',
         'deleted_at'
@@ -51,6 +52,7 @@ class ContentModel extends Model
         'comment_status' => 'required|string',
         'field'          => 'permit_empty|string',
         'page_type'      => 'permit_empty|string',
+        'post_format'    => 'permit_empty|string',
         'similar'        => 'permit_empty|string',
         'status'         => 'required|string',
     ];
@@ -65,19 +67,16 @@ class ContentModel extends Model
         $builder = $filter['status'] == strtolower(STATUS_PASSIVE) ? $builder->where('contents.status', STATUS_PASSIVE) : $builder;
         $builder = $filter['status'] == strtolower(STATUS_PENDING) ? $builder->where('contents.status', STATUS_PENDING) : $builder;
 
-        if(isset($filter['user']) && !is_null($filter['user']))
-        {
+        if(isset($filter['user']) && !is_null($filter['user'])){
             $builder->where('contents.user_id', $filter['user']);
         }
 
-        if (isset($filter['category']) && !is_null($filter['category']))
-        {
+        if (isset($filter['category']) && !is_null($filter['category'])){
             $builder = $builder->where('content_categories.category_id', $filter['category']);
             $builder = $builder->join('content_categories', 'content_categories.content_id = contents.id');
         }
 
-        if (isset($filter['search']) && !is_null($filter['search']))
-        {
+        if (isset($filter['search']) && !is_null($filter['search'])) {
             $builder = $builder->groupStart();
             $builder = $builder->like('contents.title', $filter['search']);
             $builder = $builder->orLike('contents.description', $filter['search']);
@@ -85,8 +84,7 @@ class ContentModel extends Model
             $builder = $builder->groupEnd();
         }
 
-        if (isset($filter['dateFilter']) && !is_null($filter['dateFilter']))
-        {
+        if (isset($filter['dateFilter']) && !is_null($filter['dateFilter'])){
             $parseDate = explode(' - ', $filter['dateFilter']);
             $parseDate = count($parseDate) > 1 ? $parseDate : null;
 

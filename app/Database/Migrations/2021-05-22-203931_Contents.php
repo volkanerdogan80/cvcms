@@ -74,6 +74,11 @@ class Contents extends Migration
                 'constraint' => 100,
                 'null' => true,
             ],
+            'post_format' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+                'default' => 'standard',
+            ],
             'similar' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100,

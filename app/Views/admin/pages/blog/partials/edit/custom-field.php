@@ -98,5 +98,9 @@
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
+        <div class="card-body" id="format-custom-field">
+
+        </div>
+
     </div>
 </div>

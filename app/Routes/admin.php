@@ -81,6 +81,7 @@ $routes->group(PANEL_FOLDER, function ($routes){
 
     $routes->group('field', function ($routes){
         $routes->get('add', 'Backend\CustomField::add', ['as' => 'admin_field_add']);
+        $routes->get('post/format', 'Backend\CustomField::postFormat', ['as' => 'admin_post_format_add']);
     });
 
     $routes->group('blog', function ($routes){

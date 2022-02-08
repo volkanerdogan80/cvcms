@@ -10,3 +10,12 @@ $('.new-field').click(function (){
         $('#custom-field').append(response.view)
     });
 })
+
+$(document).on('change', '.post_format', function (){
+    let format = $(this).children('option:selected').val();
+    let url = $(this).data('url');
+    cve_request.get(url, {format: format}, function (response){
+        $('#format-custom-field').html('');
+        $('#format-custom-field').append(response.view)
+    }, false);
+})

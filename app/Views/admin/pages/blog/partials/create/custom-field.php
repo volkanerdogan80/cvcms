@@ -19,6 +19,10 @@
             </div>
         </div>
         <div class="card-body" id="custom-field">
+
+        </div>
+        <div class="card-body" id="format-custom-field">
+
         </div>
     </div>
 </div>
