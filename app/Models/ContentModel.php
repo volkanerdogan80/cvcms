@@ -79,7 +79,8 @@ class ContentModel extends Model
         $builder = !is_null($user) ? $builder->where('contents.user_id', $user) : $builder;
 
         if (!is_null($category)){
-            $builder = $builder->where('content_categories.category_id', $category)->join('content_categories', 'content_categories.content_id = contents.id');
+            $builder = $builder->where('content_categories.category_id', $category);
+            $builder = $builder->join('content_categories', 'content_categories.content_id = contents.id');
         }
 
         if(!is_null($search)){
@@ -196,6 +197,7 @@ class ContentModel extends Model
             $category = explode(',', $category);
             $builder = $builder->whereIn('content_categories.category_id', $category);
             $builder = $builder->join('content_categories', 'content_categories.content_id = contents.id');
+            $builder = $builder->distinct();
         }
 
         return $builder;
@@ -215,16 +217,16 @@ class ContentModel extends Model
         ];
     }
 
-    public function getRecent($module, $limit, $category)
+    public function getRecent($module, $limit, $offset, $category)
     {
         $builder = $this->prepareBuilder($module, $category);
 
         $builder = $builder->orderBy('contents.id', 'DESC');
 
-        return [
-            'contents' => $builder->paginate($limit),
-            'pager' => $builder->pager
-        ];
+            return [
+                'contents' => !is_null($offset) ? $builder->findAll($limit, $offset) : $builder->paginate($limit),
+                'pager' => !is_null($offset) ? null : $builder->pager
+            ];
     }
 
     public function getWeekTop($module, $limit, $category)

@@ -72,7 +72,7 @@ class Contents extends Migration
             'page_type' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100,
-                'default' => 'default'
+                'null' => true,
             ],
             'similar' => [
                 'type' => 'VARCHAR',

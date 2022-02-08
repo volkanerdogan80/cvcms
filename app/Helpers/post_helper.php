@@ -125,6 +125,7 @@ function cve_post_thumbnail_id($content = null)
 function cve_post_thumbnail($content = null, $size = null)
 {
     if ($data = cve_post($content)){
+        //TODO: Content tablosunda thumbnail boş işe hata veriyor. Kontrol konulmalı. Ya da içerik eklenirken imaj zorunlu tutulmalı.
         return $data->withThumbnail()->getUrl($size);
     }
     return null;
@@ -145,13 +146,24 @@ function cve_post_gallery($content = null)
 
 /**
  * Returns a category information of the content
- * @param int $index | Determines which index among the categories it is in
+ * @param int|null $index | Determines which index among the categories it is in
  * @param null $content | Slug and id (related to content) or object state of the content
  * @return mixed
  */
-function cve_post_category(int $index = 0, $content = null)
+function cve_post_category($content = null, int $index = null)
 {
     if ($data = cve_post($content)){
+        //TODO: Tek koşula indirebiliyor muyuz bakılacak
+        if (is_null($index)){
+            $categories = $data->withCategories();
+            return end($categories);
+        }
+
+        if (!isset($data->withCategories()[$index])){
+            $categories = $data->withCategories();
+            return end($categories); // end array son elemanı
+        }
+
         return $data->withCategories()[$index];
     }
     return null;

@@ -1,8 +1,8 @@
-<?php print_r(cve_title()); ?><hr>
-<?php print_r(cve_description()); ?><hr>
-<?php print_r(cve_keywords()); ?><hr>
-<?php print_r(cve_link()); ?><hr>
-<?php print_r(cve_thumbnail(1)); ?><hr>
+<?php //print_r(cve_title()); ?><hr>
+<?php //print_r(cve_description()); ?><hr>
+<?php //print_r(cve_keywords()); ?><hr>
+<?php //print_r(cve_link()); ?><hr>
+<?php //print_r(cve_thumbnail(1)); ?><hr>
 
 <?php //print_r(cve_cat_id());  ?><!--<hr>-->
 <?php //print_r(cve_cat_parent_id());  ?><!--<hr>-->
@@ -22,3 +22,9 @@
 <?php //print_r(cve_cat_posts(5));  ?><!--<hr>-->
 <?php //print_r(cve_cat_tree());  ?><!--<hr>-->
 <?php //cve_cat_selectbox();  ?><!--<hr>-->
+
+<?php $this->extend('themes/default/layout/main'); ?>
+
+<?php $this->section('content'); ?>
+
+<?php $this->endSection(); ?>

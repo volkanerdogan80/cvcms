@@ -66,10 +66,19 @@ function cve_theme_author()
 }
 
 /**
+ * @param null $path | The file url to be used in the public folder.
+ * @return string
+ */
+function cve_theme_public($path = null): string
+{
+    return base_url('public/' . cve_theme_folder() . '/' . $path);
+}
+
+/**
  * @param null $path | The file path to be used in the public folder.
  * @return string
  */
-function cve_theme_public($path = null)
+function cve_theme_public_path($path = null): string
 {
     return APPPATH . 'public/' . cve_theme_folder() . '/' . $path;
 }

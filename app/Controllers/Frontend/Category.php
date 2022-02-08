@@ -10,10 +10,10 @@ class Category extends BaseController
 {
     public function index($slug)
     {
-        $model = new CategoryModel();
+        $category = cve_category($slug);
 
-        return view('themes/default/category/blog', [
-            'category' => $model->where('slug', $slug)->first()
+        return view('themes/' . cve_theme_folder() . '/category/' . cve_cat_module($category), [
+            'category' => $category
         ]);
     }
 }

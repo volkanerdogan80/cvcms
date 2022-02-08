@@ -10,11 +10,8 @@ class Home extends BaseController
 
     public function index()
     {
-        $model = new ContentModel();
-
-        return view('themes/default/single/blog', [
-            'content' => $model->first()
-        ]);
+        return view('themes/' . cve_theme_folder() . '/index');
     }
+
 
 }

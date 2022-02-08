@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controllers\Frontend;
 
 use App\Controllers\BaseController;
@@ -11,10 +10,16 @@ class Content extends BaseController
 
     public function index($slug)
     {
-        $model = new ContentModel();
+        $content = cve_post($slug);
 
-        return view('themes/default/single/blog', [
-            'content' => $model->where('slug', $slug)->first()
+        if (cve_post_template($content)){
+            return view('themes/' . cve_theme_folder() . '/page/' . cve_post_template($content),[
+                'content' => $content
+            ]);
+        }
+
+        return view('themes/' . cve_theme_folder() . '/single/' . cve_post_module($content),[
+            'content' => $content
         ]);
     }
 

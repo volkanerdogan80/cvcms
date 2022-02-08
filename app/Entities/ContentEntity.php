@@ -112,7 +112,7 @@ class ContentEntity extends Entity
         }
     }
 
-    public function setPageType(string $type = 'default'): void
+    public function setPageType($type = null): void
     {
         $this->attributes['page_type'] = $type;
     }
