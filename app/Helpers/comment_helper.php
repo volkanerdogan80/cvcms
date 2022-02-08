@@ -175,6 +175,16 @@ function cve_comment_comment($comment = null)
 }
 
 /**
+ * Generates url to be able to comment on content
+ * @param null $content | Slug, id related to content or Object state of content
+ * @return string
+ */
+function cve_comment_reply_link($content = null): string
+{
+    return base_url(route_to('comment_reply', cve_post_id($content)));
+}
+
+/**
  * Returns a comment status for a comment
  * @param null $comment | ID or Comment Entity Object
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
@@ -192,14 +202,16 @@ function cve_comment_status($comment = null)
  * @param null $comment | ID or Comment Entity Object
  * @return null
  */
-function cve_comment_level($comment = null)
+function cve_comment_level($comment = null, $margin = null)
 {
     if ($data = cve_comment($comment)){
+        if (!is_null($margin)){
+            return $data->level*$margin;
+        }
         return $data->level;
     }
     return null;
 }
-
 /**
  * Returns comment list  and adds levels to the comments
  * @param null $content | ContentID or Content Entity Object
@@ -215,7 +227,7 @@ function cve_comments_level($content = null, $comment = null, int $level = 0, ar
     $comments = get_comments(['content_id' => $content_id, 'comment_id' => $comment_id]);
     $level++;
     foreach ($comments as $comment) {
-        $comment->level = $level;
+        $comment->level = $level-1;
         $data[] = $comment;
         $data = cve_comments_level($content, $comment, $level, $data);
     }

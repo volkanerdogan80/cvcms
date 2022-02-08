@@ -238,7 +238,7 @@
                                 <select name="user" class="form-control select2">
                                     <option value=""><?= cve_admin_lang_path('Inputs', 'user_select') ?></option>
                                     <?php foreach ($users as $value): ?>
-                                        <option <?= $user == $value->id ? 'selected': '' ?> value="<?= $value->id ?>"><?= $value->getFullName(); ?></option>
+                                        <option <?= @$user == $value->id ? 'selected': '' ?> value="<?= $value->id ?>"><?= $value->getFullName(); ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -248,7 +248,7 @@
                                 <select name="category" class="form-control select2">
                                     <option value=""><?= cve_admin_lang_path('Inputs', 'category_select') ?></option>
                                     <?php foreach ($categories as $value): ?>
-                                        <option <?= $category == $value->id ? 'selected': '' ?> value="<?= $value->id ?>"><?= $value->getTitle(); ?></option>
+                                        <option <?= @$category == $value->id ? 'selected': '' ?> value="<?= $value->id ?>"><?= $value->getTitle(); ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -271,7 +271,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input value="<?= $search; ?>" name="search" type="text" class="form-control" placeholder="<?= cve_admin_lang_path('Inputs', 'search') ?>...">
+                                    <input value="<?= @$search; ?>" name="search" type="text" class="form-control" placeholder="<?= cve_admin_lang_path('Inputs', 'search') ?>...">
                                 </div>
                             </div>
                         </div>
@@ -300,7 +300,7 @@
 
 <?php $this->section('script'); ?>
 <script>
-    $("input[name=dateFilter]").val('<?= $dateFilter?>');
-    $("select[name=perPage]").val('<?= $perPage?>');
+    $("input[name=dateFilter]").val('<?= @$dateFilter?>');
+    $("select[name=perPage]").val('<?= @$perPage?>');
 </script>
 <?php $this->endSection(); ?>

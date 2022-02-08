@@ -87,6 +87,25 @@ class Config extends BaseController
         }
     }
 
+    public static function Social()
+    {
+        try {
+            $model = new SettingModel();
+
+            helper('cve');
+            $setting = cve_cache('social_setting', function () use($model){
+                return $model->where('skey', 'social')->first();
+            });
+
+            if($setting){
+                return $setting->getValue(null,true);
+            }
+            return [];
+        }catch (\Exception $exception){
+            return [];
+        }
+    }
+
     public static function Email()
     {
         try {

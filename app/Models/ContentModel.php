@@ -55,49 +55,50 @@ class ContentModel extends Model
         'status'         => 'required|string',
     ];
 
-    public function getListing(
-        ?string $module     = null,
-        ?string $status     = null,
-        ?string $user       = null,
-        ?int $category      = null,
-        ?string $search     = null,
-        ?array $dateFilter  = null,
-        ?int $perPage       = 20
-    )
+    public function getListing(array $filter = [])
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('contents.*');
+        $builder = $builder->where('module', $filter['module']);
+        $builder = $filter['status'] == 'deleted' ? $builder->onlyDeleted() : $builder;
+        $builder = $filter['status'] == strtolower(STATUS_ACTIVE) ? $builder->where('contents.status', STATUS_ACTIVE) : $builder;
+        $builder = $filter['status'] == strtolower(STATUS_PASSIVE) ? $builder->where('contents.status', STATUS_PASSIVE) : $builder;
+        $builder = $filter['status'] == strtolower(STATUS_PENDING) ? $builder->where('contents.status', STATUS_PENDING) : $builder;
 
-        $module = is_null($module) ? config('system')->blog : $module;
+        if(isset($filter['user']) && !is_null($filter['user']))
+        {
+            $builder->where('contents.user_id', $filter['user']);
+        }
 
-        $builder = $builder->where('module', $module);
-        $builder = $status == 'deleted' ? $builder->onlyDeleted() : $builder;
-        $builder = $status == strtolower(STATUS_ACTIVE) ? $builder->where('contents.status', STATUS_ACTIVE) : $builder;
-        $builder = $status == strtolower(STATUS_PASSIVE) ? $builder->where('contents.status', STATUS_PASSIVE) : $builder;
-        $builder = $status == strtolower(STATUS_PENDING) ? $builder->where('contents.status', STATUS_PENDING) : $builder;
-
-        $builder = !is_null($user) ? $builder->where('contents.user_id', $user) : $builder;
-
-        if (!is_null($category)){
-            $builder = $builder->where('content_categories.category_id', $category);
+        if (isset($filter['category']) && !is_null($filter['category']))
+        {
+            $builder = $builder->where('content_categories.category_id', $filter['category']);
             $builder = $builder->join('content_categories', 'content_categories.content_id = contents.id');
         }
 
-        if(!is_null($search)){
+        if (isset($filter['search']) && !is_null($filter['search']))
+        {
             $builder = $builder->groupStart();
-            $builder = $builder->like('contents.title', $search);
-            $builder = $builder->orLike('contents.description', $search);
-            $builder = $builder->orLike('contents.keywords', $search);
+            $builder = $builder->like('contents.title', $filter['search']);
+            $builder = $builder->orLike('contents.description', $filter['search']);
+            $builder = $builder->orLike('contents.keywords', $filter['search']);
             $builder = $builder->groupEnd();
         }
 
-        if (!is_null($dateFilter)){
-            $builder = $builder->where('contents.created_at >', $dateFilter[0]);
-            $builder = $builder->where('contents.created_at <', $dateFilter[1]);
+        if (isset($filter['dateFilter']) && !is_null($filter['dateFilter']))
+        {
+            $parseDate = explode(' - ', $filter['dateFilter']);
+            $parseDate = count($parseDate) > 1 ? $parseDate : null;
+
+            if(!is_null($parseDate)){
+                $builder = $builder->where('contents.created_at >', $parseDate[0]);
+                $builder = $builder->where('contents.created_at <', $parseDate[1]);
+            }
         }
 
         $builder = $builder->orderBy('contents.created_at', 'DESC');
 
+        $perPage = isset($filter['perPage']) && !is_null($filter['perPage']) ? $filter['perPage'] : 20;
         return [
             'contents' => $builder->paginate($perPage),
             'pager' => $builder->pager

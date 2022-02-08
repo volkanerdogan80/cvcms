@@ -14,9 +14,14 @@
                             </div>
                             <div class="header-info-right">
                                 <ul class="header-social">
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    <li> <a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                                    <?php foreach (config('social') as $key => $social): ?>
+                                        <?php if($social) : ?>
+                                            <li>
+                                                <a href="<?= $social ?>" target="_blank">
+                                                    <img width="15" src="<?= base_url(PUBLIC_ADMIN_IMAGE_PATH . 'social/' . $key . '.svg'); ?>" alt="<?= ucfirst($key); ?>">
+                                                </a>                                            </li>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
                                 </ul>
                             </div>
                         </div>
@@ -29,7 +34,9 @@
                         <!-- Logo -->
                         <div class="col-xl-3 col-lg-3 col-md-3">
                             <div class="logo">
-                                <a href="index.html"><img src="<?= cve_theme_public() ?>/img/logo/logo.png" alt=""></a>
+                                <a href="<?= base_url(route_to('homepage')) ?>">
+                                    <img style="width: 100px; height: 100px" src="<?= base_url(config('site')->headerLogo) ?>" alt="<?= cve_title() ?>">
+                                </a>
                             </div>
                         </div>
                         <div class="col-xl-9 col-lg-9 col-md-9">
@@ -46,7 +53,9 @@
                         <div class="col-xl-10 col-lg-10 col-md-12 header-flex">
                             <!-- sticky -->
                             <div class="sticky-logo">
-                                <a href="index.html"><img src="<?= cve_theme_public() ?>/img/logo/logo.png" alt=""></a>
+                                <a href="<?= base_url(route_to('homepage')) ?>">
+                                    <img style="width: 100px; height: 100px"  src="<?= base_url(config('site')->headerLogo) ?>" alt="<?= cve_title() ?>">
+                                </a>
                             </div>
                             <!-- Main-menu -->
                             <div class="main-menu d-none d-md-block">

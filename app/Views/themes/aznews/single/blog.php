@@ -8,46 +8,36 @@
             <div class="col-lg-8 posts-list">
                 <div class="single-post">
                     <div class="feature-img">
-                        <img class="img-fluid" src="<?= cve_theme_public() ?>/img/blog/single_blog_1.png" alt="">
+                        <img class="img-fluid" src="<?= cve_post_thumbnail(['size' => '750x375']); ?>" alt="<?= cve_post_title(); ?>">
                     </div>
                     <div class="blog_details">
-                        <h2>Second divided from form fish beast made every of seas
-                            all gathered us saying he our
-                        </h2>
+                        <h2><?= cve_post_title(); ?></h2>
                         <ul class="blog-info-link mt-3 mb-4">
-                            <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                            <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                            <li>
+                                <i class="fa fa-list"></i>
+                                <?php foreach (cve_post_categories() as $category): ?>
+                                    <a href="<?= cve_cat_link($category); ?>"><?= cve_cat_title($category); ?> | </a>
+                                <?php endforeach; ?>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-eye"></i>
+                                    <?= cve_post_view(); ?>
+                                    Görüntülenme
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-comments"></i>
+                                    <?= cve_post_comment_count(); ?>
+                                    Yorum
+                                </a>
+                            </li>
                         </ul>
                         <p class="excert">
-                            MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                            should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                            fraction of the camp price. However, who has the willpower
+                            <?= cve_post_description(); ?>
                         </p>
-                        <p>
-                            MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                            should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                            fraction of the camp price. However, who has the willpower to actually sit through a
-                            self-imposed MCSE training. who has the willpower to actually
-                        </p>
-                        <div class="quote-wrapper">
-                            <div class="quotes">
-                                MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                                should have to spend money on boot camp when you can get the MCSE study materials yourself at
-                                a fraction of the camp price. However, who has the willpower to actually sit through a
-                                self-imposed MCSE training.
-                            </div>
-                        </div>
-                        <p>
-                            MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                            should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                            fraction of the camp price. However, who has the willpower
-                        </p>
-                        <p>
-                            MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                            should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                            fraction of the camp price. However, who has the willpower to actually sit through a
-                            self-imposed MCSE training. who has the willpower to actually
-                        </p>
+                        <?= cve_post_content(); ?>
                     </div>
                 </div>
                 <div class="navigation-top">
@@ -67,7 +57,7 @@
                     <div class="navigation-area">
                         <div class="row">
                             <div
-                                class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                                    class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
                                 <div class="thumb">
                                     <a href="#">
                                         <img class="img-fluid" src="<?= cve_theme_public() ?>/img/post/preview.png" alt="">
@@ -86,7 +76,7 @@
                                 </div>
                             </div>
                             <div
-                                class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                                    class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
                                 <div class="detials">
                                     <p>Next Post</p>
                                     <a href="#">
@@ -109,305 +99,94 @@
                 </div>
                 <div class="blog-author">
                     <div class="media align-items-center">
-                        <img src="<?= cve_theme_public() ?>/img/blog/author.png" alt="">
+                        <img src="<?= cve_theme_public('img/blog/author.png') ?>" alt="<?= cve_post_author(['key' => 'fullname']); ?>">
                         <div class="media-body">
                             <a href="#">
-                                <h4>Harvard milan</h4>
+                                <h4><?= cve_post_author(['key' => 'fullname']); ?></h4>
                             </a>
-                            <p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he
-                                our dominion twon Second divided from</p>
+                            <p><?= cve_post_author(['key' => 'bio']); ?></p>
                         </div>
                     </div>
                 </div>
                 <div class="comments-area">
-                    <h4>05 Comments</h4>
-                    <div class="comment-list">
-                        <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img src="<?= cve_theme_public() ?>/img/comment/comment_1.png" alt="">
-                                </div>
-                                <div class="desc">
-                                    <p class="comment">
-                                        Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                        Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                                    </p>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <h5>
-                                                <a href="#">Emilly Blunt</a>
-                                            </h5>
-                                            <p class="date">December 4, 2017 at 3:12 pm </p>
-                                        </div>
-                                        <div class="reply-btn">
-                                            <a href="#" class="btn-reply text-uppercase">reply</a>
+                    <h4><?= cve_post_comment_count(); ?> Yorumlar</h4>
+                    <?php foreach (cve_post_comments() as $comment): ?>
+                        <div data-id="<?= cve_comment_id($comment); ?>" class="comment-list" style="margin-left: <?= cve_comment_level($comment,50); ?>px">
+                            <div class="single-comment justify-content-between d-flex">
+                                <div class="user justify-content-between d-flex">
+                                    <div class="thumb">
+                                        <img src="<?= cve_theme_public('img/comment/comment_1.png') ?>" alt="">
+                                    </div>
+                                    <div class="desc">
+                                        <p class="comment">
+                                            <?= cve_comment_comment($comment); ?>
+                                        </p>
+                                        <div class="d-flex justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <h5>
+                                                    <a href="#"><?= cve_comment_name($comment); ?></a>
+                                                </h5>
+                                                <p class="date"><?= cve_comment_created_at($comment, true); ?></p>
+                                            </div>
+                                            <div class="reply-btn">
+                                                <a href="javascript:void(0)" class="btn-reply text-uppercase">Cevapla</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="comment-list">
-                        <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img src="<?= cve_theme_public() ?>/img/comment/comment_2.png" alt="">
-                                </div>
-                                <div class="desc">
-                                    <p class="comment">
-                                        Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                        Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                                    </p>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <h5>
-                                                <a href="#">Emilly Blunt</a>
-                                            </h5>
-                                            <p class="date">December 4, 2017 at 3:12 pm </p>
-                                        </div>
-                                        <div class="reply-btn">
-                                            <a href="#" class="btn-reply text-uppercase">reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-list">
-                        <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img src="<?= cve_theme_public() ?>/img/comment/comment_3.png" alt="">
-                                </div>
-                                <div class="desc">
-                                    <p class="comment">
-                                        Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                        Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                                    </p>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <h5>
-                                                <a href="#">Emilly Blunt</a>
-                                            </h5>
-                                            <p class="date">December 4, 2017 at 3:12 pm </p>
-                                        </div>
-                                        <div class="reply-btn">
-                                            <a href="#" class="btn-reply text-uppercase">reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
                 <div class="comment-form">
-                    <h4>Leave a Reply</h4>
-                    <form class="form-contact comment_form" action="#" id="commentForm">
+                    <h4>Yorum Yap</h4>
+                    <form class="form-contact comment_form" method="post" action="<?= cve_comment_reply_link(); ?>" id="commentForm">
+                        <?= csrf_field(); ?>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
                               <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
-                                        placeholder="Write Comment"></textarea>
+                                        placeholder="Yorumunuzu Yazın"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" name="name" id="name" type="text" placeholder="Name">
+                                    <input class="form-control" name="name" id="name" type="text" placeholder="İsim Soyisim">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" name="email" id="email" type="email" placeholder="Email">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <input class="form-control" name="website" id="website" type="text" placeholder="Website">
+                                    <input class="form-control" name="email" id="email" type="email" placeholder="Eposta Adresi">
                                 </div>
                             </div>
                         </div>
+                        <input class="form-control" name="comment_id" id="comment_id" type="hidden">
                         <div class="form-group">
-                            <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
+                            <button type="submit" class="button button-contactForm btn_1 boxed-btn">Yorumu Gönder</button>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="blog_right_sidebar">
-                    <aside class="single_sidebar_widget search_widget">
-                        <form action="#">
-                            <div class="form-group">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder='Search Keyword'
-                                           onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
-                                    <div class="input-group-append">
-                                        <button class="btns" type="button"><i class="ti-search"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                                    type="submit">Search</button>
-                        </form>
-                    </aside>
-                    <aside class="single_sidebar_widget post_category_widget">
-                        <h4 class="widget_title">Category</h4>
-                        <ul class="list cat-list">
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Resaurant food</p>
-                                    <p>(37)</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Travel news</p>
-                                    <p>(10)</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Modern technology</p>
-                                    <p>(03)</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Product</p>
-                                    <p>(11)</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Inspiration</p>
-                                    <p>(21)</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Health Care</p>
-                                    <p>(21)</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </aside>
-                    <aside class="single_sidebar_widget popular_post_widget">
-                        <h3 class="widget_title">Recent Post</h3>
-                        <div class="media post_item">
-                            <img src="<?= cve_theme_public() ?>/img/post/post_1.png" alt="post">
-                            <div class="media-body">
-                                <a href="single-blog.html">
-                                    <h3>From life was you fish...</h3>
-                                </a>
-                                <p>January 12, 2019</p>
-                            </div>
-                        </div>
-                        <div class="media post_item">
-                            <img src="<?= cve_theme_public() ?>/img/post/post_2.png" alt="post">
-                            <div class="media-body">
-                                <a href="single-blog.html">
-                                    <h3>The Amazing Hubble</h3>
-                                </a>
-                                <p>02 Hours ago</p>
-                            </div>
-                        </div>
-                        <div class="media post_item">
-                            <img src="<?= cve_theme_public() ?>/img/post/post_3.png" alt="post">
-                            <div class="media-body">
-                                <a href="single-blog.html">
-                                    <h3>Astronomy Or Astrology</h3>
-                                </a>
-                                <p>03 Hours ago</p>
-                            </div>
-                        </div>
-                        <div class="media post_item">
-                            <img src="<?= cve_theme_public() ?>/img/post/post_4.png" alt="post">
-                            <div class="media-body">
-                                <a href="single-blog.html">
-                                    <h3>Asteroids telescope</h3>
-                                </a>
-                                <p>01 Hours ago</p>
-                            </div>
-                        </div>
-                    </aside>
-                    <aside class="single_sidebar_widget tag_cloud_widget">
-                        <h4 class="widget_title">Tag Clouds</h4>
-                        <ul class="list">
-                            <li>
-                                <a href="#">project</a>
-                            </li>
-                            <li>
-                                <a href="#">love</a>
-                            </li>
-                            <li>
-                                <a href="#">technology</a>
-                            </li>
-                            <li>
-                                <a href="#">travel</a>
-                            </li>
-                            <li>
-                                <a href="#">restaurant</a>
-                            </li>
-                            <li>
-                                <a href="#">life style</a>
-                            </li>
-                            <li>
-                                <a href="#">design</a>
-                            </li>
-                            <li>
-                                <a href="#">illustration</a>
-                            </li>
-                        </ul>
-                    </aside>
-                    <aside class="single_sidebar_widget instagram_feeds">
-                        <h4 class="widget_title">Instagram Feeds</h4>
-                        <ul class="instagram_row flex-wrap">
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="<?= cve_theme_public() ?>/img/post/post_5.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="<?= cve_theme_public() ?>/img/post/post_6.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="<?= cve_theme_public() ?>/img/post/post_7.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="<?= cve_theme_public() ?>/img/post/post_8.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="<?= cve_theme_public() ?>/img/post/post_9.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="<?= cve_theme_public() ?>/img/post/post_10.png" alt="">
-                                </a>
-                            </li>
-                        </ul>
-                    </aside>
-                    <aside class="single_sidebar_widget newsletter_widget">
-                        <h4 class="widget_title">Newsletter</h4>
-                        <form action="#">
-                            <div class="form-group">
-                                <input type="email" class="form-control" onfocus="this.placeholder = ''"
-                                       onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
-                            </div>
-                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                                    type="submit">Subscribe</button>
-                        </form>
-                    </aside>
+                    <?= $this->include('themes/aznews/widget/search'); ?>
+                    <?= $this->include('themes/aznews/widget/blog_categories'); ?>
+                    <?= $this->include('themes/aznews/widget/popular_post'); ?>
+                    <?= $this->include('themes/aznews/widget/tag_cloud'); ?>
+                    <?= $this->include('themes/aznews/widget/newsletter'); ?>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<?php $this->endSection(); ?>
+
+<?php $this->section('script'); ?>
+<script>
+    $('.btn-reply').click(function (){
+        let comment_id = $(this).closest('.comment-list').data('id');
+        $('#comment_id').val(comment_id);
+    });
+</script>
 <?php $this->endSection(); ?>

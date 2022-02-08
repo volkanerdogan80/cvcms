@@ -4,66 +4,24 @@
 namespace App\Controllers\Backend;
 
 use \App\Controllers\BaseController;
-use App\Entities\ContentEntity;
-use App\Models\CategoryModel;
-use App\Models\ContentModel;
-use App\Models\UserModel;
+use App\Controllers\Traits\ContentTrait;
 
 class Blog extends BaseController
 {
-    protected $userModel;
-    protected $categoryModel;
-    protected $contentModel;
-    protected $contentEntity;
+    use ContentTrait{
+        ContentTrait::__construct as private __traitConstruct;
+    }
     protected $module;
+    protected $listing_all_permit;
 
     public function __construct()
     {
-        $this->userModel = new UserModel();
-        $this->categoryModel = new CategoryModel();
-        $this->contentModel = new ContentModel();
-        $this->contentEntity = new ContentEntity();
-        $this->module = config('system');
+        $this->__traitConstruct();
+
+        $this->module = config('system')->blog;
+        $this->listing_all_permit = 'admin_blog_listing_all';
     }
 
-    public function listing(string $status = null)
-    {
-        $getDateFilter = $this->request->getGet('dateFilter');
-        $dateFilter = explode(' - ', $getDateFilter);
-        $dateFilter = count($dateFilter) > 1 ? $dateFilter : null;
-
-        $perPage = $this->request->getGet('perpage');
-        $perPage = !empty($perPage) ? $perPage : 20;
-
-        $search = $this->request->getGet('search');
-        $search = !empty($search) ? $search : null;
-
-        $user = $this->request->getGet('user');
-        $user = !empty($user) ? $user : null;
-        if (!cve_permit_control('admin_blog_listing_all')){
-            $user = session('userData.id');
-        }
-
-        $category = $this->request->getGet('category');
-        $category = !empty($category) ? $category : null;
-
-        $data = [
-            'categories' => $this->categoryModel->findAll(),
-            'category' => $category,
-            'users' => $this->userModel->findAll(),
-            'user' => $user,
-            'perPage' => $perPage,
-            'dateFilter' => $getDateFilter,
-            'search' => $search,
-        ];
-
-        $getModel = $this->contentModel->getListing($this->module->blog, $status, $user, $category, $search, $dateFilter, $perPage);
-
-        $data = array_merge($data, $getModel);
-
-        return view(PANEL_FOLDER . '/pages/blog/listing', $data);
-
-    }
 
     public function create()
     {

@@ -289,51 +289,6 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <!-- Section Tittle -->
-                <div class="section-tittle mb-40">
-                    <h3>Follow Us</h3>
-                </div>
-                <!-- Flow Socail -->
-                <div class="single-follow mb-45">
-                    <div class="single-box">
-                        <div class="follow-us d-flex align-items-center">
-                            <div class="follow-social">
-                                <a href="#"><img src="<?= cve_theme_public() ?>/img/news/icon-fb.png" alt=""></a>
-                            </div>
-                            <div class="follow-count">
-                                <span>8,045</span>
-                                <p>Fans</p>
-                            </div>
-                        </div>
-                        <div class="follow-us d-flex align-items-center">
-                            <div class="follow-social">
-                                <a href="#"><img src="<?= cve_theme_public() ?>/img/news/icon-tw.png" alt=""></a>
-                            </div>
-                            <div class="follow-count">
-                                <span>8,045</span>
-                                <p>Fans</p>
-                            </div>
-                        </div>
-                        <div class="follow-us d-flex align-items-center">
-                            <div class="follow-social">
-                                <a href="#"><img src="<?= cve_theme_public() ?>/img/news/icon-ins.png" alt=""></a>
-                            </div>
-                            <div class="follow-count">
-                                <span>8,045</span>
-                                <p>Fans</p>
-                            </div>
-                        </div>
-                        <div class="follow-us d-flex align-items-center">
-                            <div class="follow-social">
-                                <a href="#"><img src="<?= cve_theme_public() ?>/img/news/icon-yo.png" alt=""></a>
-                            </div>
-                            <div class="follow-count">
-                                <span>8,045</span>
-                                <p>Fans</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- New Poster -->
                 <div class="news-poster d-none d-lg-block">
                     <img src="<?= cve_theme_public() ?>/img/news/news_card.jpg" alt="">
@@ -388,13 +343,13 @@
             <div class="col-12">
                 <div class="video-items-active">
                     <div class="video-items text-center">
-                        <iframe src="https://www.youtube.com/embed/RdQYEb4WuX0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/DR96WhvrDY4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="video-items text-center">
                         <iframe  src="https://www.youtube.com/embed/V-4uvdOaszM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="video-items text-center">
-                        <iframe src="https://www.youtube.com/embed/DR96WhvrDY4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/RdQYEb4WuX0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                     </div>
                     <div class="video-items text-center">
@@ -424,9 +379,9 @@
                 <div class="col-lg-6">
                     <div class="testmonial-nav text-center">
                         <div class="single-video">
-                            <iframe  src="https://www.youtube.com/embed/RdQYEb4WuX0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe  src="https://www.youtube.com/embed/DR96WhvrDY4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             <div class="video-intro">
-                                <h4>TIMARHANEDE BU HAFTA 38 - SOYGUN VAR!</h4>
+                                <h4>Joey & Phoebe being an ICONIC duo</h4>
                             </div>
                         </div>
                         <div class="single-video">
@@ -436,9 +391,9 @@
                             </div>
                         </div>
                         <div class="single-video">
-                            <iframe src="https://www.youtube.com/embed/DR96WhvrDY4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/RdQYEb4WuX0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             <div class="video-intro">
-                                <h4>Joey & Phoebe being an ICONIC duo</h4>
+                                <h4>TIMARHANEDE BU HAFTA 38 - SOYGUN VAR!</h4>
                             </div>
                         </div>
                         <div class="single-video">
@@ -483,7 +438,7 @@
                                 <div class="what-cap">
                                     <span class="color1"><?= cve_cat_title(cve_post_category($value)) ?></span>
                                     <h4>
-                                        <a href="#">
+                                        <a href="<?= cve_post_link($value) ?>">
                                             <?= cve_post_title($value) ?>
                                         </a>
                                     </h4>

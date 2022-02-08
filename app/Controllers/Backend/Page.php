@@ -4,59 +4,24 @@
 namespace App\Controllers\Backend;
 
 use App\Controllers\BaseController;
-use App\Entities\ContentEntity;
-use App\Models\CategoryModel;
-use App\Models\ContentModel;
+use App\Controllers\Traits\ContentTrait;
 use App\Models\ThemeModel;
-use App\Models\UserModel;
 
 class Page extends BaseController
 {
 
-    protected $userModel;
-    protected $contentModel;
-    protected $contentEntity;
+    use ContentTrait{
+        ContentTrait::__construct as private __traitConstruct;
+    }
     protected $module;
+    protected $listing_all_permit;
 
     public function __construct()
     {
-        $this->userModel = new UserModel();
-        $this->contentModel = new ContentModel();
-        $this->contentEntity = new ContentEntity();
-        $this->module = config('system');
-    }
+        $this->__traitConstruct();
 
-    public function listing(string $status = null)
-    {
-        $getDateFilter = $this->request->getGet('dateFilter');
-        $dateFilter = explode(' - ', $getDateFilter);
-        $dateFilter = count($dateFilter) > 1 ? $dateFilter : null;
-
-        $perPage = $this->request->getGet('perpage');
-        $perPage = !empty($perPage) ? $perPage : 20;
-
-        $search = $this->request->getGet('search');
-        $search = !empty($search) ? $search : null;
-
-        $user = $this->request->getGet('user');
-        $user = !empty($user) ? $user : null;
-        if (!cve_permit_control('admin_page_listing_all')){
-            $user = session('userData.id');
-        }
-
-        $data = [
-            'users' => $this->userModel->findAll(),
-            'user' => $user,
-            'perPage' => $perPage,
-            'dateFilter' => $getDateFilter,
-            'search' => $search,
-        ];
-
-        $getModel = $this->contentModel->getListing($this->module->page, $status, $user, null, $search, $dateFilter, $perPage);
-
-        $data = array_merge($data, $getModel);
-
-        return view(PANEL_FOLDER . '/pages/page/listing', $data);
+        $this->module = config('system')->page;
+        $this->listing_all_permit = 'admin_page_listing_all';
     }
 
     public function create()
@@ -71,7 +36,7 @@ class Page extends BaseController
             }
             $field = count($field) > 0 ? $field : null;
 
-            $this->contentEntity->setModule($this->module->page);
+            $this->contentEntity->setModule($this->module);
             $this->contentEntity->setUserId();
             $this->contentEntity->setTitle($this->request->getPost('title'));
             $this->contentEntity->setSlug();
@@ -121,7 +86,7 @@ class Page extends BaseController
             $field = count($field) > 0 ? $field : null;
 
             $this->contentEntity->setId($id);
-            $this->contentEntity->setModule($this->module->page);
+            $this->contentEntity->setModule($this->module);
             $this->contentEntity->setUserId();
             $this->contentEntity->setTitle($this->request->getPost('title'));
             $this->contentEntity->setSlug();

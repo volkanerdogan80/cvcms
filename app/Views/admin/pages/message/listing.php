@@ -7,9 +7,9 @@
             <h1>Mesajlar</h1>
             <div class="section-header-breadcrumb">
                 <?php if(service('request')->uri->getSegment(5) != 'deleted'): ?>
-                    <a href="<?= base_url(route_to('admin_message_listing', '/deleted')); ?>" class="btn btn-danger">Siliniş Mesajlar</a>
+                    <a href="<?= base_url(route_to('admin_message_listing', '/deleted')); ?>" class="btn btn-danger"><?= cve_admin_lang_path('Buttons', 'trash_box') ?></a>
                 <?php else: ?>
-                    <a href="<?= base_url(route_to('admin_message_listing', null)); ?>" class="btn btn-success">Gelen Mesajlar</a>
+                    <a href="<?= base_url(route_to('admin_message_listing', null)); ?>" class="btn btn-success"><?= cve_admin_lang_path('Buttons', 'inbox') ?></a>
                 <?php endif; ?>
             </div>
         </div>

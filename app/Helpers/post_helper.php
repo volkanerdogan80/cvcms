@@ -124,6 +124,11 @@ function cve_post_thumbnail_id($content = null)
  */
 function cve_post_thumbnail($content = null, $size = null)
 {
+    if (is_array($content)){
+        $size = $content['size'] ?? null;
+        $content = $content['content'] ?? null;
+    }
+
     if ($data = cve_post($content)){
         //TODO: Content tablosunda thumbnail boş işe hata veriyor. Kontrol konulmalı. Ya da içerik eklenirken imaj zorunlu tutulmalı.
         return $data->withThumbnail()->getUrl($size);
@@ -153,17 +158,10 @@ function cve_post_gallery($content = null)
 function cve_post_category($content = null, int $index = null)
 {
     if ($data = cve_post($content)){
-        //TODO: Tek koşula indirebiliyor muyuz bakılacak
-        if (is_null($index)){
-            $categories = $data->withCategories();
-            return end($categories);
-        }
-
-        if (!isset($data->withCategories()[$index])){
+        if (is_null($index) || !isset($data->withCategories()[$index])){
             $categories = $data->withCategories();
             return end($categories); // end array son elemanı
         }
-
         return $data->withCategories()[$index];
     }
     return null;
@@ -252,7 +250,7 @@ function cve_post_module($content = null)
  * @param null $content | Slug and id (related to content) or object state of the content
  * @return string
  */
-function cve_post_link($content = null)
+function cve_post_link($content = null): string
 {
     return base_url(route_to('content', cve_post_slug($content)));
 }
@@ -277,14 +275,18 @@ function cve_post_author_id($content = null)
  */
 function cve_post_author($content = null, $key = null)
 {
+    if (is_array($content)){
+        $key = $content['key'] ?? null;
+        $content = $content['content'] ?? null;
+    }
+
     if ($data = cve_post($content)){
         if (!is_null($key)){
             return $data->withUser()->$key;
         }
         return $data->withUser();
-    }else{
-        return null;
     }
+    return null;
 }
 
 /**
@@ -351,6 +353,11 @@ function cve_post_comments($content = null)
         return cve_comments_level($content);
     }
     return null;
+}
+
+function cve_post_comment_count(): int
+{
+    return count(cve_post_comments());
 }
 
 /**

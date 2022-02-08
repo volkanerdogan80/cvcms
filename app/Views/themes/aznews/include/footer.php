@@ -8,7 +8,11 @@
                         <div class="single-footer-caption">
                             <!-- logo -->
                             <div class="footer-logo">
-                                <a href="index.html"><img src="<?= cve_theme_public() ?>/img/logo/logo2_footer.png" alt=""></a>
+                                <a href="<?= base_url(route_to('homepage')) ?>">
+                                    <img style="width: 200px; height: 200px"
+                                         src="<?= base_url(config('site')->headerLogo) ?>"
+                                         alt="<?= cve_title() ?>">
+                                </a>
                             </div>
                             <div class="footer-tittle">
                                 <div class="footer-pera">

@@ -34,6 +34,7 @@ return [
         'send'              => "Send",
         'all_records'       => "All Records",
         'trash_box'         => "Trash Box",
+        'inbox'             => "Inbox",
         'settings'          => "Settings",
 
         'add_extra_fields'   => 'Add New Extra Field',

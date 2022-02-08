@@ -34,6 +34,7 @@ return [
         'send'              => "Gönder",
         'all_records'       => "Tüm Kayıtlar",
         'trash_box'         => "Çöp Kutusu",
+        'inbox'             => "Gelen Kutusu",
         'settings'          => "Ayarlar",
 
         'add_extra_fields'      => 'Yeni Özel Alan Ekle',
