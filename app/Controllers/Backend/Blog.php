@@ -17,6 +17,9 @@ class Blog extends BaseController
     protected $status_all_permit;
     protected $delete_all_permit;
     protected $undo_delete_all_permit;
+    protected $purge_delete_all_permit;
+    protected $share_status;
+    protected $add_category;
 
     public function __construct()
     {
@@ -28,6 +31,9 @@ class Blog extends BaseController
         $this->status_all_permit = 'admin_blog_status_all';
         $this->delete_all_permit = 'admin_blog_delete_all';
         $this->undo_delete_all_permit = 'admin_blog_undo_delete_all';
+        $this->purge_delete_all_permit = 'admin_blog_purge_delete_all';
+        $this->share_status = true;
+        $this->add_category = true;
     }
 
     protected function createViewData()
@@ -50,46 +56,4 @@ class Blog extends BaseController
         ];
     }
 
-    public function purgeDelete()
-    {
-        if($this->request->isAJAX()){
-            $data = $this->request->getPost('id');
-            if (!$data){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'purge_delete_empty_fields')
-                ]);
-            }
-            $blog = $this->contentModel->where('user_id !=', session('userData.id'))->find($data);
-            if ($blog){
-                if(!cve_permit_control('admin_blog_purge-delete_all')){
-                    return $this->response->setJSON([
-                        'status' => false,
-                        'message' => cve_admin_lang_path('Errors', 'blog_purge_delete_failure')
-                    ]);
-                }
-            }
-
-            $purgeDelete = $this->contentModel->delete($data, true);
-            if(!$purgeDelete){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'purge_delete_failure')
-                ]);
-            }
-
-            $this->contentModel->category('delete', $data);
-            $this->contentModel->share('delete', $data);
-
-            return $this->response->setJSON([
-                'status' => true,
-                'message' => cve_admin_lang_path('Success', 'purge_delete_success')
-            ]);
-        }
-
-        return $this->response->setJSON([
-            'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'purge_delete_failure')
-        ]);
-    }
 }

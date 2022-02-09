@@ -19,6 +19,9 @@ class Page extends BaseController
     protected $status_all_permit;
     protected $delete_all_permit;
     protected $undo_delete_all_permit;
+    protected $purge_delete_all_permit;
+    protected $share_status;
+    protected $add_category;
 
     public function __construct()
     {
@@ -30,6 +33,9 @@ class Page extends BaseController
         $this->status_all_permit = 'admin_page_status_all';
         $this->delete_all_permit = 'admin_page_delete_all';
         $this->undo_delete_all_permit = 'admin_page_undo_delete_all';
+        $this->purge_delete_all_permit = 'admin_page_purge_delete_all';
+        $this->share_status = false;
+        $this->add_category = false;
     }
 
     protected function createViewData()

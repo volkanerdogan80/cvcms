@@ -54,8 +54,11 @@ trait ContentTrait
                 return redirect()->back()->with('error', $this->contentModel->errors());
             }
 
-            if($this->module != 'page'){
+            if($this->share_status){
                 cve_autoshare($insertID);
+            }
+
+            if($this->add_category){
                 $this->contentModel->category('insert', $insertID, $this->request->getPost('categories'));
             }
 
@@ -86,11 +89,13 @@ trait ContentTrait
                 return redirect()->back()->with('error', $this->contentModel->errors());
             }
 
-            if($this->module != 'page'){
+            if($this->share_status){
                 cve_autoshare($id);
-                $this->contentModel->category('update', $id, $this->request->getPost('categories'));
             }
 
+            if($this->add_category){
+                $this->contentModel->category('update', $id, $this->request->getPost('categories'));
+            }
 
             return redirect()->back()->with('success', cve_admin_lang_path('Success', 'update_success'));
         }
@@ -183,6 +188,52 @@ trait ContentTrait
 
     }
 
+    public function purgeDelete()
+    {
+        if($this->request->isAJAX()){
+            $id = $this->request->getPost('id');
+            if (!$id){
+                return $this->response->setJSON([
+                    'status' => false,
+                    'message' => cve_admin_lang_path('Errors', 'purge_delete_empty_fields')
+                ]);
+            }
+            $content = $this->contentModel->where('user_id !=', session('userData.id'))->find($id);
+            if ($content){
+                if(!cve_permit_control($this->purge_delete_all_permit)){
+                    return $this->response->setJSON([
+                        'status' => false,
+                        'message' => cve_admin_lang_path('Errors', 'blog_purge_delete_failure')
+                    ]);
+                }
+            }
+
+            $purgeDelete = $this->contentModel->delete($id, true);
+            if(!$purgeDelete){
+                return $this->response->setJSON([
+                    'status' => false,
+                    'message' => cve_admin_lang_path('Errors', 'purge_delete_failure')
+                ]);
+            }
+
+
+            if($this->module != 'page'){
+                $this->contentModel->category('delete', $id);
+                $this->contentModel->share('delete', $id);
+            }
+
+            return $this->response->setJSON([
+                'status' => true,
+                'message' => cve_admin_lang_path('Success', 'purge_delete_success')
+            ]);
+        }
+
+        return $this->response->setJSON([
+            'status' => false,
+            'message' => cve_admin_lang_path('Errors', 'purge_delete_failure')
+        ]);
+    }
+
     public function status()
     {
         if($this->request->isAJAX()){
@@ -213,7 +264,7 @@ trait ContentTrait
                 ]);
             }
 
-            if($this->module != 'page'){
+            if($this->share_status){
                 cve_autoshare($id);
             }
 
@@ -231,7 +282,6 @@ trait ContentTrait
 
     protected function setEntity($id = null)
     {
-
         $data = $this->postData();
 
         if(!is_null($id))
@@ -253,7 +303,6 @@ trait ContentTrait
         $this->contentEntity->setStatus($data['status']);
         $this->contentEntity->setCommentStatus($data['comment_status']);
         $this->contentEntity->setSimilar($data['similar']);
-
     }
 
     protected function postData()
@@ -299,7 +348,6 @@ trait ContentTrait
 
     protected function dataFilter($item)
     {
-
         if(is_null($item) || $item == '' || $item == false)
         {
             $item = null;
