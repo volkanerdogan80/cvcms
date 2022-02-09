@@ -1,8 +1,10 @@
-<?php namespace App\Database\Migrations;
+<?php
+
+namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class ContentShare extends Migration
+class ContentLikes extends Migration
 {
     public function up()
     {
@@ -18,22 +20,17 @@ class ContentShare extends Migration
                 'constraint' => 11,
                 'null' => false,
             ],
-            'social' => [
+            'remote_addr' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100,
-                'default' => 'twitter',
-            ],
-            'status' => [
-                'type' => 'TINYINT',
-                'constraint' => 1,
-                'default' => 0,
+                'unique' => true,
+                'null' => false,
             ],
             'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
-            'updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->createTable('content_share');
+        $this->forge->createTable('content_likes');
     }
 
     public function down()

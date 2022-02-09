@@ -53,6 +53,11 @@ if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php'))
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
 
+if (file_exists(APPPATH . 'Routes/install.php'))
+{
+    require APPPATH . 'Routes/install.php';
+}
+
 $routes->group('{locale}', function ($routes){
 
     if (file_exists(APPPATH . 'Routes/admin.php'))
@@ -72,7 +77,3 @@ $routes->group('{locale}', function ($routes){
 
 });
 
-if (file_exists(APPPATH . 'Routes/install.php'))
-{
-    require APPPATH . 'Routes/install.php';
-}

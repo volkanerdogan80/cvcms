@@ -1,17 +1,23 @@
 <?php namespace App\Controllers;
 
-
-
-use App\Entities\CommentEntity;
-use App\Models\CommentModel;
+use App\Models\FavoriteModel;
+use App\Models\LikeModel;
+use App\Models\RatingModel;
 
 class Home extends BaseController
 {
     public function index()
     {
-        /*$model = new CommentModel();
-        $entity = new CommentEntity();
+        /*$model = new FavoriteModel();
+        $model->insert([
+            'content_id' => 1,
+            'user_id' => 1
+        ]);
 
+        print_r($model->errors());*/
+
+
+        /*$entity = new CommentEntity();
         $entity->setContentId(1);
         $entity->setCommentId(5);
         $entity->setName('Sakine Gürler');
@@ -27,7 +33,7 @@ class Home extends BaseController
 
         //cve_lang_data('CVE Blog Başlık', service('request')->getLocale());
         //echo service('request')->getLocale();
-        print_r(cve_link());
+
 
     }
 }
