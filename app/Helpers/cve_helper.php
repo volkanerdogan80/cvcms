@@ -28,7 +28,8 @@ function cve_lang_data($data, $lang = null)
     return null;
 }
 
-function cve_admin_lang_path($file, $text = null){
+function cve_admin_lang_path($file, $text = null)
+{
 
     if(!is_null($text)){
         return lang('Admin/' . ucfirst($file) . '.text.' . $text);
@@ -38,26 +39,29 @@ function cve_admin_lang_path($file, $text = null){
 
 function cve_autoshare($content_id)
 {
-    if(!is_array($content_id))
-    {
+
+    $model = new \App\Models\ContentModel();
+
+    if (!is_array($content_id)){
         $settings = config('autoshare');
 
-        if($settings->twitter['status'])
-        {
-            $twitter = new \App\Libraries\Twitter();
-            $twitter->config($content_id)->publish();
-        }
-        if($settings->facebook['status'])
-        {
+        $facebook_shared_status = $model->share('shared', $content_id, 'Facebook');
+        if ($settings->facebook['status'] && !$facebook_shared_status){
             $facebook = new \App\Libraries\Facebook();
             $facebook->config($content_id)->publish();
         }
-        if($settings->linkedin['status'])
-        {
-            $linkedin = new \App\Libraries\LinkedIn();
-            $linkedin->config($content_id)->publish();
+
+        $twitter_shared_status = $model->share('shared', $content_id, 'Twitter');
+        if ($settings->twitter['status'] && !$twitter_shared_status){
+            $twitter = new \App\Libraries\Twitter();
+            $twitter->config($content_id)->publish();
         }
 
+        $linkedin_shared_status = $model->share('shared', $content_id, 'Linkedin');
+        if ($settings->linkedin['status'] && !$linkedin_shared_status){
+            $linkedIn = new \App\Libraries\LinkedIn();
+            $linkedIn->config($content_id)->publish();
+        }
     }
 }
 
@@ -264,7 +268,8 @@ function cve_slug_creator($str, $options = array())
     return $options['lowercase'] ? mb_strtolower($str, 'UTF-8') : $str;
 }
 
-function recurse_copy($src,$dst) {
+function recurse_copy($src,$dst)
+{
     $dir = opendir($src);
     @mkdir($dst);
     while(false !== ( $file = readdir($dir)) ) {
@@ -280,7 +285,8 @@ function recurse_copy($src,$dst) {
     closedir($dir);
 }
 
-function delete_directory($dirname) {
+function delete_directory($dirname)
+{
     if (is_dir($dirname))
         $dir_handle = opendir($dirname);
     if (!$dir_handle)

@@ -47,25 +47,7 @@ trait ContentTrait
     {
         if ($this->request->getMethod() == 'post'){
 
-            $data = $this->postData();
-
-            $this->contentEntity->setModule($this->module);
-            $this->contentEntity->setUserId();
-            $this->contentEntity->setTitle($data['title']);
-            $this->contentEntity->setSlug();
-            $this->contentEntity->setDescription($data['description']);
-            $this->contentEntity->setContent($data['content']);
-            $this->contentEntity->setKeywords($data['keywords']);
-            $this->contentEntity->setThumbnail($data['thumbnail']);
-            $this->contentEntity->setGallery($data['gallery']);
-            $this->contentEntity->setViews();
-            $this->contentEntity->setField($this->customField());
-            $this->contentEntity->setPageType($data['page_type']);
-            $this->contentEntity->setPostFormat($data['post_format']);
-            $this->contentEntity->setStatus($data['status']);
-            $this->contentEntity->setCommentStatus($data['comment_status']);
-            $this->contentEntity->setSimilar($data['similar']);
-
+            $this->setEntity();
             $insertID = $this->contentModel->insert($this->contentEntity);
 
             if($this->contentModel->errors()){
@@ -82,6 +64,196 @@ trait ContentTrait
 
         }
         return view(PANEL_FOLDER . '/pages/' . $this->module . '/create', $this->createViewData());
+    }
+
+    public function edit($id)
+    {
+
+        $content = $this->contentModel->find($id);
+        if ($content->getUserId() != session('userData.id')){
+            if(!cve_permit_control($this->edit_all_permit)){
+                return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'blog_edit_auth_failure'));
+            }
+        }
+
+        if ($this->request->getMethod() == 'post') {
+
+            $this->setEntity($id);
+
+            $this->contentModel->update($id, $this->contentEntity);
+
+            if($this->contentModel->errors()){
+                return redirect()->back()->with('error', $this->contentModel->errors());
+            }
+
+            if($this->module != 'page'){
+                cve_autoshare($id);
+                $this->contentModel->category('update', $id, $this->request->getPost('categories'));
+            }
+
+
+            return redirect()->back()->with('success', cve_admin_lang_path('Success', 'update_success'));
+        }
+
+
+        return view(PANEL_FOLDER . '/pages/'. $this->module . '/edit', $this->editViewData($content));
+    }
+
+    public function delete()
+    {
+        if($this->request->isAJAX()){
+            $id = $this->request->getPost('id');
+            if (!$id){
+                return $this->response->setJSON([
+                    'status' => false,
+                    'message' => cve_admin_lang_path('Errors', 'delete_empty_fields')
+                ]);
+            }
+            //$data = !is_array($data) ? [$data] : $data;
+
+            $content = $this->contentModel->where('user_id !=', session('userData.id'))->find($id);
+            if ($content){
+                if(!cve_permit_control($this->delete_all_permit)){
+                    return $this->response->setJSON([
+                        'status' => false,
+                        'message' => cve_admin_lang_path('Errors', 'blog_delete_failure')
+                    ]);
+                }
+            }
+
+            $delete = $this->contentModel->delete($id);
+            if (!$delete){
+                return $this->response->setJSON([
+                    'status' => false,
+                    'message' => cve_admin_lang_path('Errors', 'delete_failure')
+                ]);
+            }
+
+            return $this->response->setJSON([
+                'status' => true,
+                'message' => cve_admin_lang_path('Success', 'delete_success')
+            ]);
+        }
+
+        return $this->response->setJSON([
+            'status' => false,
+            'message' => cve_admin_lang_path('Errors', 'delete_failure')
+        ]);
+    }
+
+    public function undoDelete()
+    {
+        if($this->request->isAJAX()){
+            $id = $this->request->getPost('id');
+            if (!$id){
+                return $this->response->setJSON([
+                    'status' => false,
+                    'message' => cve_admin_lang_path('Errors', 'restore_empty_fields')
+                ]);
+            }
+            $content = $this->contentModel->where('user_id !=', session('userData.id'))->find($id);
+            if ($content){
+                if(!cve_permit_control($this->undo_delete_all_permit)){
+                    return $this->response->setJSON([
+                        'status' => false,
+                        'message' => cve_admin_lang_path('Errors', 'blog_undo_delete_failure')
+                    ]);
+                }
+            }
+
+            $update = $this->contentModel->update($id, ['deleted_at' => null]);
+            if(!$update){
+                return $this->response->setJSON([
+                    'status' => false,
+                    'message' => cve_admin_lang_path('Errors', 'undo_delete_failure')
+                ]);
+            }
+
+            return $this->response->setJSON([
+                'status' => true,
+                'message' => cve_admin_lang_path('Success', 'undo_delete_success')
+            ]);
+
+        }
+
+        return $this->response->setJSON([
+            'status' => false,
+            'message' => cve_admin_lang_path('Errors', 'undo_delete_failure')
+        ]);
+
+    }
+
+    public function status()
+    {
+        if($this->request->isAJAX()){
+            $id = $this->request->getPost('id');
+            if (!$id){
+                return $this->response->setJSON([
+                    'status' => false,
+                    'message' => cve_admin_lang_path('Errors', 'change_status_empty_fields')
+                ]);
+            }
+            $status = $this->request->getPost('status');
+
+            $content = $this->contentModel->where('user_id !=', session('userData.id'))->find($id);
+            if ($content){
+                if(!cve_permit_control($this->status_all_permit)){
+                    return $this->response->setJSON([
+                        'status' => false,
+                        'message' => cve_admin_lang_path('Errors', 'blog_edit_failure')
+                    ]);
+                }
+            }
+
+            $update = $this->contentModel->update($id, ['status' => $status]);
+            if(!$update){
+                return $this->response->setJSON([
+                    'status' => false,
+                    'message' => cve_admin_lang_path('Errors', 'update_failure')
+                ]);
+            }
+
+            if($this->module != 'page'){
+                cve_autoshare($id);
+            }
+
+            return $this->response->setJSON([
+                'status' => true,
+                'message' => cve_admin_lang_path('Success', 'update_success')
+            ]);
+        }
+
+        return $this->response->setJSON([
+            'status' => false,
+            'message' => cve_admin_lang_path('Errors', 'update_failure')
+        ]);
+    }
+
+    protected function setEntity($id = null)
+    {
+
+        $data = $this->postData();
+
+        if(!is_null($id))
+            $this->contentEntity->setId($id);
+
+        $this->contentEntity->setModule($this->module);
+        $this->contentEntity->setUserId();
+        $this->contentEntity->setTitle($data['title']);
+        $this->contentEntity->setSlug();
+        $this->contentEntity->setDescription($data['description']);
+        $this->contentEntity->setContent($data['content']);
+        $this->contentEntity->setKeywords($data['keywords']);
+        $this->contentEntity->setThumbnail($data['thumbnail']);
+        $this->contentEntity->setGallery($data['gallery']);
+        $this->contentEntity->setViews();
+        $this->contentEntity->setField($this->customField());
+        $this->contentEntity->setPageType($data['page_type']);
+        $this->contentEntity->setPostFormat($data['post_format']);
+        $this->contentEntity->setStatus($data['status']);
+        $this->contentEntity->setCommentStatus($data['comment_status']);
+        $this->contentEntity->setSimilar($data['similar']);
+
     }
 
     protected function postData()
@@ -113,7 +285,8 @@ trait ContentTrait
         return $data;
     }
 
-    protected function customField(){
+    protected function customField()
+    {
         $field = [];
         $getField = $this->request->getPost('field');
         if (isset($getField)){
@@ -124,7 +297,8 @@ trait ContentTrait
         return  count($field) > 0 ? $field : null;
     }
 
-    protected function dataFilter($item){
+    protected function dataFilter($item)
+    {
 
         if(is_null($item) || $item == '' || $item == false)
         {

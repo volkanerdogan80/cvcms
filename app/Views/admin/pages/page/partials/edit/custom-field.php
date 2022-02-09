@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="col-md-1  mt-3">
                                     <button class="btn btn-danger btn-lg field-remove">
-                                        <?= cve_admin_lang_path('Button', 'delete'); ?>
+                                        <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="col-md-1">
                                     <button class="btn btn-danger btn-lg field-remove">
-                                        <?= cve_admin_lang_path('Button', 'delete'); ?>
+                                        <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
                             </div>
