@@ -16,6 +16,7 @@ class Register extends BaseController
     protected $groupModel;
     protected $system;
     protected $validation;
+    protected $emailTo;
 
     public function __construct()
     {
@@ -24,6 +25,7 @@ class Register extends BaseController
         $this->groupModel = new UserRoleModel();
         $this->system = config('system');
         $this->validation = \Config\Services::validation();
+        $this->emailTo = new EmailTo();
     }
         //TODO: Register olurken şifre en az 8 karakter olmalıdır, ve strong pass alert özellikleri.
     public function index()
@@ -62,11 +64,10 @@ class Register extends BaseController
                 return redirect()->back()->with('error', $this->userModel->errors());
             }
 
-            $email = new EmailTo();
             $user = $this->userModel->find($insert);
 
             if ($this->system->emailVerify){
-                $to = $email->setUser($user)->accountVerify()->send();
+                $to = $this->emailTo->setUser($user)->accountVerify()->send();
                 if($to){
                     return redirect()->back()->with('success', cve_admin_lang_path('Success', 'register_success'));
                 }

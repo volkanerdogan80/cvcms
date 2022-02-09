@@ -6,7 +6,7 @@ return [
     'text' => [
         'greeting'       => 'Merhaba',
         'thanks'         => 'Teşekkür Ederiz.',
-        'alt_content'    => 'Bu işlemi siz yapmadıysanız lütfen dikkate almayın.',
+        'alt_content'    => 'Bu işlemi siz yapmadıysanız lütfen dikkate almayınız.',
 
         'account_verify_content'        => 'Sitemize kayıt olduğunuz için teşekkür ederiz. Hesabınızı onaylamak için lütfen aşağıdaki butona tıklayın.',
         'account_verify_button'         => 'Hesabımı Onayla',
@@ -17,6 +17,13 @@ return [
 
         'password_change_content'       => 'Şifreniz başarılı bir şekilde değiştirildi. Artık yeni şifreniz ile sisteme giriş yapabilirsiniz.',
 
-        'pre_header' => 'Bu bir ön başlık metnidir. Bazı istemciler bu metni önizleme olarak gösterecektir.'
+        'pre_header' => 'Bu bir ön başlık metnidir. Bazı istemciler bu metni önizleme olarak gösterecektir.',
+
+        'newsletter_subscribe_success_hello' => 'Merhaba',
+        'newsletter_subscribe_success_content' => 'Başarılı bir şekilde eposta abonesi olduğunuz. Sizleri kampanya veya yayınlanan içerikler hakkında bilgi vermekten mutluluk duyacağız.',
+        'newsletter_subscribe_success_alt_content' => 'Bu işlemi siz yapmadıysanız. Aşağıdaki linke tıklayarak abonelikten çıkabilirsiniz.',
+        'newsletter_subscribe_success_thanks' => 'Teşekkür Ederiz.',
+
+        'newsletter_unsubscribe_button' => 'Abonelikten çık',
     ]
 ];

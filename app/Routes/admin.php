@@ -161,6 +161,10 @@ $routes->group(PANEL_FOLDER, function ($routes){
         $routes->post('undo-delete', 'Backend\Page::undoDelete', ['as' => 'admin_page_undo_delete']);
         $routes->post('purge-delete', 'Backend\Page::purgeDelete', ['as' => 'admin_page_purge_delete']);
     });
+
+    $routes->group('newsletter', function ($routes){
+        $routes->post('unsubscribe/(:any)', 'Backend\Newsletter::unsubscribe/$1', ['as' => 'admin_newsletter_unsubscribe']);
+    });
 });
 
 

@@ -2,16 +2,18 @@
 
 use App\Models\FavoriteModel;
 use App\Models\LikeModel;
+use App\Models\NewsletterModel;
 use App\Models\RatingModel;
 
 class Home extends BaseController
 {
     public function index()
     {
-        /*$model = new FavoriteModel();
+        /*$model = new NewsletterModel();
         $model->insert([
-            'content_id' => 1,
-            'user_id' => 1
+            'name' => 'Volkan Erdoğan',
+            'email' => 'volkanerdogan80@gmail.com',
+            'token' => random_string('alpha',64)
         ]);
 
         print_r($model->errors());*/

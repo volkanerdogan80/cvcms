@@ -194,7 +194,7 @@ class Messages extends BaseController
 
             $email = new EmailTo();
 
-            $to = $email->setCustomUser($message->getEmail())->customMessage($message->getSubject(), $reply)->send();
+            $to = $email->setUser($message->getEmail())->customMessage($message->getSubject(), $reply)->send();
             if(!$to){
                 return $this->response->setJSON([
                     'status' => false,
