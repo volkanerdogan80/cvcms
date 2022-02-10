@@ -4,7 +4,7 @@
 namespace App\Controllers\Traits;
 
 
-trait RequestResponseTrait
+trait ResponseTrait
 {
     public function response($params)
     {

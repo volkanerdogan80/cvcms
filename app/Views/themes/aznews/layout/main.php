@@ -78,7 +78,8 @@
 <?php if($id = cve_post_id()): ?>
     <script>
         let routes = {
-            content_like: '<?= base_url(route_to('content_like', $id))?>'
+            content_like: '<?= base_url(route_to('content_like', $id))?>',
+            content_favorite: '<?= base_url(route_to('content_favorite', $id)); ?>',
         }
     </script>
 <?php endif; ?>

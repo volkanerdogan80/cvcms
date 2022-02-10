@@ -6,6 +6,15 @@ $(document).on('click', '.cve-liked', function (){
     });
 });
 
+$(document).on('click', '.cve-favorite', function (){
+    cveThemeRequest(routes.content_favorite,{}, function (response) {
+        if (response.status){
+            $('.cve-favorite-count').text(response.data.favoriteCount)
+        }
+    });
+});
+
+
 function cveThemeRequest(url, data, callback)
 {
     $.ajax(url, {

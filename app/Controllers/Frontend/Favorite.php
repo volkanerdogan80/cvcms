@@ -4,10 +4,13 @@
 namespace App\Controllers\Frontend;
 
 use App\Controllers\BaseController;
+use App\Controllers\Traits\ResponseTrait;
 use App\Models\FavoriteModel;
 
 class Favorite extends BaseController
 {
+    use ResponseTrait;
+
     protected $favoriteModel;
 
     public function __construct()
@@ -17,15 +20,21 @@ class Favorite extends BaseController
 
     public function favorite($content_id)
     {
-        if ($this->request->getMethod() == 'get'){
-            $fav_content = $this->favoriteModel
+        if ($this->request->getMethod() == 'post'){
+            $favorite = $this->favoriteModel
                 ->where('user_id',session('userData.id'))
                 ->where('content_id', $content_id)
                 ->first();
 
-            if ($fav_content){
-                $this->favoriteModel->delete($fav_content->id);
-                return redirect()->back()->with('success', 'Favorilerden başarılı bir şekilde kaldırıldı.');
+            if ($favorite){
+                $this->favoriteModel->delete($favorite->id);
+                return $this->response([
+                    'status' => true,
+                    'message' => 'Favorilerden başarılı bir şekilde kaldırıldı.',
+                    'data' => [
+                        'favoriteCount' => $this->favoriteModel->where('content_id', $content_id)->countAllResults()
+                    ]
+                ]);
             }
 
             $this->favoriteModel->insert([
@@ -34,11 +43,22 @@ class Favorite extends BaseController
             ]);
 
             if ($this->favoriteModel->errors()){
-                return redirect()->back()->with('error', $this->favoriteModel->errors());
+                return $this->response([
+                    'status' => false,
+                    'message' => $this->favoriteModel->errors()
+                ]);
             }
 
-            return redirect()->back()->with('success', 'İçerik Başarılı bir şekilde favorilere eklendi.');
+            return $this->response([
+                'status' => true,
+                'message' => 'İçerik Başarılı bir şekilde favorilere eklendi.',
+                'data' => [
+                    'favoriteCount' => $this->favoriteModel->where('content_id', $content_id)->countAllResults()
+                ]
+            ]);
 
         }
+
+        return $this->response(['status' => false, 'message' => 'Geçersiz istek türü']);
     }
 }

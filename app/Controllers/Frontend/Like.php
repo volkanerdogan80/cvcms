@@ -4,13 +4,12 @@
 namespace App\Controllers\Frontend;
 
 use App\Controllers\BaseController;
-use App\Controllers\Traits\RequestResponseTrait;
+use App\Controllers\Traits\ResponseTrait;
 use App\Models\LikeModel;
 
 class Like extends BaseController
 {
-
-    use RequestResponseTrait;
+    use ResponseTrait;
 
     protected $likeModel;
 
