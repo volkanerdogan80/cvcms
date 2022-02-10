@@ -6,11 +6,13 @@ namespace App\Controllers\Backend;
 use \App\Controllers\BaseController;
 use App\Entities\UserEntity;
 use App\Libraries\EmailTo;
+use App\Models\NewsletterModel;
 use App\Models\UserRoleModel;
 use App\Models\UserModel;
 
 class Register extends BaseController
 {
+    protected $newsletterModel;
     protected $userEntity;
     protected $userModel;
     protected $groupModel;
@@ -20,6 +22,7 @@ class Register extends BaseController
 
     public function __construct()
     {
+        $this->newsletterModel = new NewsletterModel();
         $this->userEntity = new UserEntity();
         $this->userModel = new UserModel();
         $this->groupModel = new UserRoleModel();
@@ -27,7 +30,7 @@ class Register extends BaseController
         $this->validation = \Config\Services::validation();
         $this->emailTo = new EmailTo();
     }
-        //TODO: Register olurken şifre en az 8 karakter olmalıdır, ve strong pass alert özellikleri.
+    //TODO: Register olurken şifre en az 8 karakter olmalıdır, ve strong pass alert özellikleri.
     public function index()
     {
         if($this->request->getMethod() == 'post'){
@@ -57,6 +60,14 @@ class Register extends BaseController
             $this->userEntity->setVerifyCode();
             $this->userEntity->setStatus($status);
             $this->userEntity->setPassword($data['password']);
+
+            if($this->request->getPost('newsletter') == 'on'){
+                $this->newsletterModel->insert([
+                    'name' => $this->userEntity->getFullName(),
+                    'email' => $this->userEntity->getEmail(),
+                    'token' => random_string('alpha', 64)
+                ]);
+            }
 
             $insert = $this->userModel->insert($this->userEntity);
 

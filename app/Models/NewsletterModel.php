@@ -28,4 +28,29 @@ class NewsletterModel extends Model
         'email' => 'required|valid_email|is_unique[newsletters.email]',
         'token' => 'required|alpha',
     ];
+
+    public function getListing(?string $search = null, ?array $dateFilter = null, ?int $perPage = 20)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('newsletters.*');
+
+        if(!is_null($search)){
+            $builder = $builder->groupStart();
+            $builder = $builder->like('name', $search);
+            $builder = $builder->orLike('email', $search);
+            $builder = $builder->groupEnd();
+        }
+
+        if (!is_null($dateFilter)){
+            $builder = $builder->where('created_at >', $dateFilter[0]);
+            $builder = $builder->where('created_at <', $dateFilter[1]);
+        }
+
+        $builder = $builder->orderBy('created_at', 'DESC');
+
+        return [
+            'subscribers' => $builder->paginate($perPage),
+            'pager' => $builder->pager
+        ];
+    }
 }

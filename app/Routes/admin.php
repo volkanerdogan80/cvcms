@@ -163,6 +163,7 @@ $routes->group(PANEL_FOLDER, function ($routes){
     });
 
     $routes->group('newsletter', function ($routes){
+        $routes->get('listing', 'Backend\Newsletter::listing', ['as' => 'admin_newsletter_listing']);
         $routes->post('unsubscribe/(:any)', 'Backend\Newsletter::unsubscribe/$1', ['as' => 'admin_newsletter_unsubscribe']);
     });
 });

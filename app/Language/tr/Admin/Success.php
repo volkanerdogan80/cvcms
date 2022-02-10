@@ -39,6 +39,8 @@ return [
         'message_mark_read_success' => 'Mesajlarınız okundu olarak işaretlendi.',
 
         'theme_setting_updated'     => 'Tema ayarları başarılı bir şekilde kayıt edildi.',
-        'theme_activated_success'   => 'Seçtiğiniz tema başarılı bir şekilde aktif edildi.'
+        'theme_activated_success'   => 'Seçtiğiniz tema başarılı bir şekilde aktif edildi.',
+
+        'unsubscribe_success'   => 'Eposta aboneliği başarıyla sonlandırıldı.'
     ]
 ];

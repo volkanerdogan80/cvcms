@@ -39,6 +39,8 @@ return [
         'message_mark_read_success' => 'Messages have been marked as read.',
 
         'theme_setting_updated'     => 'Theme settings saved successfully.',
-        'theme_activated_success'   => 'The theme you have just selected has been successfully activated.'
+        'theme_activated_success'   => 'The theme you have just selected has been successfully activated.',
+
+        'unsubscribe_success' => 'Email subscription has been terminated successfully.'
     ]
 ];

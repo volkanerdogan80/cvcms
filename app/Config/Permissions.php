@@ -125,5 +125,8 @@ class Permissions extends BaseConfig
         'admin_page_delete_all' => 'Admin/Permissions.text.admin_page_delete_all',
         'admin_page_undo_delete_all' => 'Admin/Permissions.text.admin_page_undo_delete_all',
         'admin_page_purge_delete_all' => 'Admin/Permissions.text.admin_page_purge_delete_all',
+
+        'newsletter_listing' => 'Admin/Permissions.text.newsletter_listing',
+        'newsletter_unsubscribe' => 'Admin/Permissions.text.newsletter_unsubscribe',
     ];
 }

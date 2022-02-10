@@ -113,6 +113,9 @@ return [
         'theme_listing' => 'Temaları listeleme yetkisi',
         'theme_delete'  => 'Temaları silme yetkisi',
         'theme_setting' => 'Tema ayarlarını görüntüleme yetkisi',
-        'admin_theme_setting_update' => 'Tema ayarları güncelleme yetkisi'
+        'admin_theme_setting_update' => 'Tema ayarları güncelleme yetkisi',
+
+        'newsletter_listing' => 'Eposta abonelerini görüntüleme yetkisi',
+        'newsletter_unsubscribe' => 'Üyeleri eposta aboneliğinden çıkartma yetkisi',
     ]
 ];

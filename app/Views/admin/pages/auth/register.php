@@ -63,6 +63,12 @@
                                             <label class="custom-control-label" for="agree"><?= cve_admin_lang_path('Inputs', 'contract') ?></label>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" checked name="newsletter" class="custom-control-input" id="newsletter">
+                                            <label class="custom-control-label" for="newsletter"><?= cve_admin_lang_path('Inputs', 'newsletter') ?></label>
+                                        </div>
+                                    </div>
 
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-lg btn-block">

@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Başarılı</h1>
+                <h1><?= cve_admin_lang_path('Newsletter', 'success'); ?></h1>
             </div>
 
             <div class="section-body">
@@ -14,8 +14,8 @@
                             <div class="empty-state-icon bg-success">
                                 <i class="fas fa-check"></i>
                             </div>
-                            <h2>Abonelikten Çıkıldı</h2>
-                            <p>Eposta aboneliği başarılı bir şekilde iptal edildi. Gittiğin için çok üzgünüz :( Umarız kısa sürede yeniden aramıza katılırsın.</p>
+                            <h2><?= cve_admin_lang_path('Newsletter', 'unsubscribe_success'); ?></h2>
+                            <p><?= cve_admin_lang_path('Newsletter', 'unsubscribe_success_message'); ?></p>
                         </div>
                     </div>
                 </div>

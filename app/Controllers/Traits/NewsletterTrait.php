@@ -19,16 +19,23 @@ trait NewsletterTrait
 
     public function unsubscribe($token)
     {
-        $this->newsletterModel->where('token', $token)->delete();
-
         if ($this->request->getMethod() == 'get'){
+            $this->newsletterModel->where('token', $token)->delete();
             return view('admin/pages/verify/unsubscribe-success');
         }
 
         if ($this->request->getMethod() == 'post'){
+            $id = $this->request->getPost('id');
+            if (!$id){
+                return $this->response->setJSON([
+                    'status' => false,
+                    'message' => cve_admin_lang_path('Errors', 'delete_empty_fields')
+                ]);
+            }
+            $this->newsletterModel->delete($id);
             return $this->response->setJSON([
                 'status' => true,
-                'message' => 'Başarılı bir şekilde abonelikten çıkartırıldı.'
+                'message' => cve_admin_lang_path('Success', 'unsubscribe_success')
             ]);
         }
     }

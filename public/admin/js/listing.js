@@ -133,6 +133,30 @@ $('.default-change').click(function (){
     })
 });
 
+$('.unsubscribe').click(function (){
+    let id = $(this).closest('tr').data('id');
+    let url = $(this).data('url');
+
+    cve_request.post(url, {id: id}, function (response){
+        if(response.status){
+            $('tr[data-id='+id+']').remove();
+        }
+    })
+});
+
+$('.all-unsubscribe').click(function (){
+    let url = $(this).data('url');
+    let list = $('.custom-table input:checkbox:checked').map(function (){
+        return $(this).data('id');
+    }).get();
+
+    cve_request.post(url, {id: list}, function (response){
+        if(response.status){
+            location.reload();
+        }
+    });
+})
+
 $('.daterange-cus').daterangepicker({
     locale: {
         format: 'YYYY/MM/DD HH:mm:ss',

@@ -111,7 +111,10 @@ return [
         'theme_listing' => 'Authorization to list themes',
         'theme_delete'  => 'Authorization to delete themes',
         'theme_active'  => 'Authorization to change theme',
-        'theme_setting' => 'Tema ayarlarını görüntüleme yetkisi',
+        'theme_setting' => 'Authorization to displat theme settings',
         'admin_theme_setting_update' => 'Authorization to update theme settings',
+
+        'newsletter_listing' => 'Authorization to display email subscribers',
+        'newsletter_unsubscribe' => ' Authorization to unsubscribe members from e-mail',
     ]
 ];

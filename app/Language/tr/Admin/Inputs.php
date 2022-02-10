@@ -51,5 +51,7 @@ return [
         'extra_field_value'     => 'Özel Alan Değer',
         'image' => 'Görsel',
         'search' => 'Ara',
+        'contract' => 'Şartları ve Koşulları kabul ediyorum',
+        'newsletter' => 'Kampanyalardan ve indirimlerden haberdar olmak istiyorum',
     ]
 ];

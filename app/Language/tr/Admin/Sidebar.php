@@ -10,6 +10,7 @@ return [
         'group_listing' => 'Gruplar Listesi',
         'group_create' => 'Yeni Grup Oluştur',
         'users' => 'Kullanıcılar',
+        'email_subscribers' => 'Eposta Aboneleri',
         'user_listing' => 'Kullanıcılar Listesi',
         'user_create' => 'Yeni Kullanıcı Oluştur',
         'blog' => 'Blog',

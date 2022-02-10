@@ -51,5 +51,7 @@ return [
         'extra_field_value'  => 'Extra Field Value',
         'image' => 'Image',
         'search' => 'Search',
+        'contract' => 'I agree terms and conditions',
+        'newsletter' => 'I would like to be informed about the campaigns and discounts',
     ]
 ];

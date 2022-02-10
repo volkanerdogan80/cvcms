@@ -40,6 +40,11 @@
                         </a>
                     </li>
                     <li>
+                        <a class="nav-link" href="<?= base_url(route_to('admin_newsletter_listing')) ?>">
+                            <?= cve_admin_lang_path('Sidebar', 'email_subscribers') ?>
+                        </a>
+                    </li>
+                    <li>
                         <a class="nav-link" href="<?= base_url(route_to('admin_user_create')); ?>">
                             <?= cve_admin_lang_path('Sidebar', 'user_create') ?>
                         </a>

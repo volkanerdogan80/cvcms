@@ -10,6 +10,7 @@ return [
         'group_listing' => 'Group List',
         'group_create' => 'Create New Group',
         'users' => 'Users',
+        'email_subscribers' => 'Email Subscribers',
         'user_listing' => 'User List',
         'user_create' => 'Create New User',
         'blog' => 'Blog',
