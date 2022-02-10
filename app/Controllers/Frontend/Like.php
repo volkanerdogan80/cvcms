@@ -4,10 +4,13 @@
 namespace App\Controllers\Frontend;
 
 use App\Controllers\BaseController;
+use App\Controllers\Traits\RequestResponseTrait;
 use App\Models\LikeModel;
 
 class Like extends BaseController
 {
+
+    use RequestResponseTrait;
 
     protected $likeModel;
 
@@ -16,22 +19,38 @@ class Like extends BaseController
         $this->likeModel = new LikeModel();
     }
 
-    public function create($content_id)
+    public function liked($content_id)
     {
         if ($this->request->getMethod() == 'post'){
-            $this->likeModel->create([
+
+            $control = $this->likeModel->where([
+                'content_id' => $content_id,
+                'remote_addr' => $this->request->getIPAddress()
+            ])->first();
+
+            if ($control){
+                return $this->response(['status' => false, 'message' => 'Daha önce bu içeriği beğenmişsiniz.']);
+            }
+
+            $this->likeModel->insert([
                 'content_id' => $content_id,
                 'remote_addr' => $this->request->getIPAddress()
             ]);
 
             if ($this->likeModel->errors()){
-                return redirect()->back()->with('error', $this->likeModel->errors());
+                return $this->response(['status' => false, 'message' => $this->likeModel->errors(),]);
             }
 
-            return redirect()->back()->with('success', 'İçerik başarılı bir şekilde beğenildi.');
+            return $this->response([
+                'status' => true,
+                'message' => 'İçerik başarılı bir şekilde beğenildi.',
+                'data' => [
+                    'likeCount' => $this->likeModel->where('content_id', $content_id)->countAllResults()
+                ]
+            ]);
         }
 
-        return redirect()->back()->with('error', 'Geçersiz istek türü');
+        return $this->response(['status' => false, 'message' => 'Geçersiz istek türü']);
     }
 
 }

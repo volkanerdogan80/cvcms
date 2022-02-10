@@ -24,6 +24,6 @@ class LikeModel extends Model
 
     protected $validationRules = [
         'content_id' => 'required|numeric',
-        'remote_addr' => 'required|valid_ip|is_unique[content_likes.remote_addr]'
+        'remote_addr' => 'required|valid_ip'
     ];
 }

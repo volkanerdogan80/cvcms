@@ -42,8 +42,11 @@
                 </div>
                 <div class="navigation-top">
                     <div class="d-sm-flex justify-content-between text-center">
-                        <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4
-                            people like this</p>
+                        <button type="button" class="btn btn-primary cve-liked">Beğen</button>
+                        <p class="like-info">
+                            <span class="align-middle"><i class="fa fa-heart"></i></span>
+                            Lily and <span class="cve-like-count"></span> people like this
+                        </p>
                         <div class="col-sm-4 text-center my-2 my-sm-0">
                             <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
                         </div>
