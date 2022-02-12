@@ -34,18 +34,14 @@
                             <h4>Newsletter</h4>
                             <p>Heaven fruitful doesn't over les idays appear creeping</p>
                             <!-- Form -->
-                            <div class="footer-form" >
+                            <div class="">
                                 <div id="mc_embed_signup">
-                                    <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                          method="get" class="subscribe_form relative mail_part">
-                                        <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
-                                               class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                                               onblur="this.placeholder = ' Email Address '">
+                                    <form target="_blank" action="#" method="post">
+                                        <input type="text" name="name" placeholder="Eposta Adresi" class="form-control cve-newsletter-email">
+                                        <input type="email" name="email" placeholder="Adınız Soyadınız" class="form-control cve-newsletter-name">
                                         <div class="form-icon">
-                                            <button type="submit" name="submit" id="newsletter-submit"
-                                                    class="email_icon newsletter-submit button-contactForm"><img src="<?= cve_theme_public() ?>/img/logo/form-iocn.png" alt=""></button>
+                                            <button type="submit" name="submit" class="email_icon cve-newsletter btn-danger btn-block">Abone Ol</button>
                                         </div>
-                                        <div class="mt-10 info"></div>
                                     </form>
                                 </div>
                             </div>

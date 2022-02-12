@@ -37,9 +37,26 @@
                 <div class="navigation-top">
                     <div class="d-sm-flex justify-content-between text-center">
                         <button type="button" class="btn btn-primary cve-liked">Beğen ( <span class="cve-like-count">0</span> )</button>
-                        <button type="button" class="btn btn-primary cve-favorite">Favoriye Al ( <span class="cve-favorite-count">0</span> )</button>
-                        <button type="button" class="btn btn-primary cve-liked">Beğen</button>
+                        <button type="button" class="btn btn-primary cve-favorite">Favorilere Ekle ( <span class="cve-favorite-count">0</span> )</button>
                     </div>
+                    <hr>
+                    <div class="d-sm-flex justify-content-between text-center">
+                        <button type="button" class="btn-primary cve-voted" data-vote="1">1 Puan ( <span class="cve-1-vote">0</span> )</button>
+                        <button type="button" class="btn-primary cve-voted" data-vote="2">2 Puan ( <span class="cve-2-vote">0</span> )</button>
+                        <button type="button" class="btn-primary cve-voted" data-vote="3">3 Puan ( <span class="cve-3-vote">0</span> )</button>
+                        <button type="button" class="btn-primary cve-voted" data-vote="4">4 Puan ( <span class="cve-4-vote">0</span> )</button>
+                        <button type="button" class="btn-primary cve-voted" data-vote="5">5 Puan ( <span class="cve-5-vote">0</span> )</button>
+                    </div>
+                    <hr>
+                    <div class="d-sm-flex justify-content-between text-center">
+                        <button type="button" class="btn-primary cve-voted" data-vote="6">6 Puan ( <span class="cve-6-vote">0</span> )</button>
+                        <button type="button" class="btn-primary cve-voted" data-vote="7">7 Puan ( <span class="cve-7-vote">0</span> )</button>
+                        <button type="button" class="btn-primary cve-voted" data-vote="8">8 Puan ( <span class="cve-8-vote">0</span> )</button>
+                        <button type="button" class="btn-primary cve-voted" data-vote="9">9 Puan ( <span class="cve-9-vote">0</span> )</button>
+                        <button type="button" class="btn-primary cve-voted" data-vote="10">10 Puan ( <span class="cve-10-vote">0</span> )</button>
+                    </div>
+                    <hr>
+                    <h4>Ortalama: <span class="cve-vote-avg">4</span></h4>
                     <div class="navigation-area">
                         <div class="row">
                             <div
@@ -119,7 +136,11 @@
                                             </div>
                                             <div class="reply-btn">
                                                 <a href="javascript:void(0)"
-                                                   class="btn-reply text-uppercase">Cevapla</a>
+                                                   class="btn-reply text-uppercase cve-comment-reply"
+                                                   data-id="<?= cve_comment_id($comment) ?>"
+                                                   data-name="<?= cve_comment_name($comment); ?>">
+                                                    Cevapla
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -130,8 +151,7 @@
                 </div>
                 <div class="comment-form">
                     <h4>Yorum Yap</h4>
-                    <form class="form-contact comment_form" method="post" action="<?= cve_comment_reply_link(); ?>"
-                          id="commentForm">
+                    <form class="cve-comment-form" method="post" action="<?= cve_comment_form_action(); ?>">
                         <?= csrf_field(); ?>
                         <div class="row">
                             <div class="col-12">
@@ -153,7 +173,6 @@
                                 </div>
                             </div>
                         </div>
-                        <input class="form-control" name="comment_id" id="comment_id" type="hidden">
                         <div class="form-group">
                             <button type="submit" class="button button-contactForm btn_1 boxed-btn">Yorumu Gönder
                             </button>

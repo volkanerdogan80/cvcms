@@ -1,0 +1,76 @@
+.cve-success{
+    background-color: #4CAF50;
+}
+
+.cve-danger{
+    background-color: #f44336;
+}
+
+.cve-warning{
+    background-color: #ff9800;
+}
+
+.cve-primary{
+    background-color: #2196F3;
+}
+
+.cve-alert {
+    padding: 20px;
+    color: white;
+}
+
+.cve-alert-close-btn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cve-alert-close-btn:hover {
+    color: black;
+}
+
+#cve-snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+#cve-snackbar.cve-snackbar-show {
+    visibility: visible;
+    -webkit-animation: cve-fadein 0.5s, cve-fadeout 0.5s 2.5s;
+    animation: cve-fadein 0.5s, cve-fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes cve-fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes cve-fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes cve-fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes cve-fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}

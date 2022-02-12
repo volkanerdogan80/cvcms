@@ -21,18 +21,14 @@ class Favorite extends BaseController
     public function favorite($content_id)
     {
         if ($this->request->getMethod() == 'post'){
-            $favorite = $this->favoriteModel
-                ->where('user_id',session('userData.id'))
-                ->where('content_id', $content_id)
-                ->first();
 
-            if ($favorite){
+            if ($favorite = $this->favoriteModel->getUserFavoriteControl($content_id)){
                 $this->favoriteModel->delete($favorite->id);
                 return $this->response([
                     'status' => true,
                     'message' => 'Favorilerden başarılı bir şekilde kaldırıldı.',
                     'data' => [
-                        'favoriteCount' => $this->favoriteModel->where('content_id', $content_id)->countAllResults()
+                        'favoriteCount' => $this->favoriteModel->getFavoriteCount($content_id)
                     ]
                 ]);
             }
@@ -53,7 +49,7 @@ class Favorite extends BaseController
                 'status' => true,
                 'message' => 'İçerik Başarılı bir şekilde favorilere eklendi.',
                 'data' => [
-                    'favoriteCount' => $this->favoriteModel->where('content_id', $content_id)->countAllResults()
+                    'favoriteCount' => $this->favoriteModel->getFavoriteCount($content_id)
                 ]
             ]);
 

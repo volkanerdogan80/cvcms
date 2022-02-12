@@ -130,8 +130,9 @@ function cve_post_thumbnail($content = null, $size = null)
     }
 
     if ($data = cve_post($content)){
-        //TODO: Content tablosunda thumbnail boş işe hata veriyor. Kontrol konulmalı. Ya da içerik eklenirken imaj zorunlu tutulmalı.
-        return $data->withThumbnail()->getUrl($size);
+        //TODO: null yerine default image dönsün.
+        //return $data->withThumbnail()->getUrl($size);
+        return $data->withThumbnail() ? $data->withThumbnail()->getUrl($size) : 'public/admin/img/default/default-image.png';
     }
     return null;
 }

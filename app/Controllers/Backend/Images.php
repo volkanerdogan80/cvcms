@@ -29,7 +29,7 @@ class Images extends BaseController
         $dateFilter = count($dateFilter) > 1 ? $dateFilter : null;
 
         $perPage = $this->request->getGet('per_page');
-        $perPage = !empty($perPage) ? $perPage : 20;
+        $perPage = !empty($perPage) ? $perPage : 24;
 
         $search = $this->request->getGet('search');
         $search = !empty($search) ? $search : null;

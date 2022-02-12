@@ -179,9 +179,9 @@ function cve_comment_comment($comment = null)
  * @param null $content | Slug, id related to content or Object state of content
  * @return string
  */
-function cve_comment_reply_link($content = null): string
+function cve_comment_form_action($content = null): string
 {
-    return base_url(route_to('comment_reply', cve_post_id($content)));
+    return base_url(route_to('content_comment', cve_post_id($content)));
 }
 
 /**

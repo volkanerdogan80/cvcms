@@ -75,16 +75,8 @@
 <script src="<?= cve_theme_public('js/plugins.js'); ?>"></script>
 <script src="<?= cve_theme_public('js/main.js'); ?>"></script>
 
-<?php if($id = cve_post_id()): ?>
-    <script>
-        let routes = {
-            content_like: '<?= base_url(route_to('content_like', $id))?>',
-            content_favorite: '<?= base_url(route_to('content_favorite', $id)); ?>',
-        }
-    </script>
-<?php endif; ?>
-<script src="<?= base_url(PUBLIC_ADMIN_JS_PATH . 'theme.js') ?>"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
 <?php $this->renderSection('script') ?>
 

@@ -3,12 +3,12 @@
 use App\Models\FavoriteModel;
 use App\Models\LikeModel;
 use App\Models\NewsletterModel;
-use App\Models\RatingModel;
 
 class Home extends BaseController
 {
     public function index()
     {
+
         /*$model = new NewsletterModel();
         $model->insert([
             'name' => 'Volkan Erdoğan',
@@ -35,7 +35,7 @@ class Home extends BaseController
 
         //cve_lang_data('CVE Blog Başlık', service('request')->getLocale());
         //echo service('request')->getLocale();
-
-
+        print_r(cve_post(1));
     }
+
 }

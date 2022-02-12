@@ -107,8 +107,8 @@ function cve_cache($key, $callback)
             cache()->save(cve_slug_creator($key), $result, $cache->raw_time);
         }
 
-        session()->set('cache_conf', $cache);
-        session()->markAsTempdata('cache_conf', 300);
+        //session()->set('cache_conf', $cache);   //TODO: session oluşturup sonrasında yeniden işlem yapıldığında aynı session açık olduğu sürece timeout oluyor.
+        //session()->markAsTempdata('cache_conf', 300);
 
         return $result;
     }

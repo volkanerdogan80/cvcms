@@ -12,7 +12,9 @@ class Filters extends BaseConfig
 		'honeypot' => \CodeIgniter\Filters\Honeypot::class,
         'IsLoggedIn' => \App\Filters\IsLoggedIn::class,
         'IsPermission' => \App\Filters\IsPermission::class,
-        'ReCaptcha' => \App\Filters\ReCaptcha::class
+        'ReCaptcha' => \App\Filters\ReCaptcha::class,
+        'ThemeJavascript' => \App\Filters\ThemeJavascript::class,
+        'ThemeStyle' => \App\Filters\ThemeStyle::class
 	];
 
 	// Always applied before every request
@@ -30,8 +32,18 @@ class Filters extends BaseConfig
             ]
 		],
 		'after'  => [
-            //'toolbar',
+            'toolbar',
             'honeypot' => [
+                'except' => [
+                    '*/' . PANEL_FOLDER . '/*'
+                ]
+            ],
+            'ThemeJavascript' => [
+                'except' => [
+                    '*/' . PANEL_FOLDER . '/*'
+                ]
+            ],
+            'ThemeStyle' => [
                 'except' => [
                     '*/' . PANEL_FOLDER . '/*'
                 ]

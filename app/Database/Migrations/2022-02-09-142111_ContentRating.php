@@ -28,7 +28,6 @@ class ContentRating extends Migration
             'remote_addr' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100,
-                'unique' => true,
                 'null' => false,
             ],
             'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',

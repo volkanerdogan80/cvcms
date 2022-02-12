@@ -17,7 +17,7 @@
                 <h2 class="contact-title">Get in Touch</h2>
             </div>
             <div class="col-lg-8">
-                <form class="form-contact contact_form" action="<?= base_url(route_to('message_send')); ?>" method="post">
+                <form class="form-contact contact_form cve-contact-form" action="<?= base_url(route_to('message_send')); ?>" method="post">
                     <?= csrf_field(); ?>
                     <div class="row">
                         <div class="col-12">

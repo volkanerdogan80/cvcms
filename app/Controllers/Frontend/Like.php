@@ -22,12 +22,9 @@ class Like extends BaseController
     {
         if ($this->request->getMethod() == 'post'){
 
-            $control = $this->likeModel->where([
-                'content_id' => $content_id,
-                'remote_addr' => $this->request->getIPAddress()
-            ])->first();
+            $remote_addr = $this->request->getIPAddress();
 
-            if ($control){
+            if ($this->likeModel->getUserLikeControl($content_id, $remote_addr)){
                 return $this->response(['status' => false, 'message' => 'Daha önce bu içeriği beğenmişsiniz.']);
             }
 
@@ -44,7 +41,7 @@ class Like extends BaseController
                 'status' => true,
                 'message' => 'İçerik başarılı bir şekilde beğenildi.',
                 'data' => [
-                    'likeCount' => $this->likeModel->where('content_id', $content_id)->countAllResults()
+                    'likeCount' => $this->likeModel->getContentLikeControl($content_id)
                 ]
             ]);
         }

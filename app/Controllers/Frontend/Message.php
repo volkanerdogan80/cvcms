@@ -4,11 +4,14 @@
 namespace App\Controllers\Frontend;
 
 use App\Controllers\BaseController;
+use App\Controllers\Traits\ResponseTrait;
 use App\Entities\MessageEntity;
 use App\Models\MessageModel;
 
 class Message extends BaseController
 {
+    use ResponseTrait;
+
     protected $messageModel;
     protected $messageEntity;
 
@@ -34,11 +37,12 @@ class Message extends BaseController
             $this->messageModel->insert($this->messageEntity);
 
             if ($this->messageModel->errors()){
-                return redirect()->back()->with('error', $this->messageModel->errors());
+                return $this->response(['status' => false, 'message' => $this->messageModel->errors()]);
             }
 
-            return redirect()->back()->with('success', 'Mesaj başarılı bir şekilde iletildi.');
-
+            return $this->response(['status' => true, 'message' => 'Mesaj başarılı bir şekilde iletildi.']);
         }
+
+        return $this->response(['status' => false, 'message' => 'Geçersiz istek türü']);
     }
 }

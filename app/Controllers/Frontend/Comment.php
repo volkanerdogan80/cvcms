@@ -4,11 +4,14 @@
 namespace App\Controllers\Frontend;
 
 use App\Controllers\BaseController;
+use App\Controllers\Traits\ResponseTrait;
 use App\Entities\CommentEntity;
 use App\Models\CommentModel;
 
 class Comment extends BaseController
 {
+
+    use ResponseTrait;
 
     protected $commentModel;
     protected $commentEntity;
@@ -19,7 +22,7 @@ class Comment extends BaseController
         $this->commentEntity = new CommentEntity();
     }
 
-    public function reply($content_id)
+    public function send($content_id)
     {
         if ($this->request->getMethod() == 'post'){
 
@@ -38,12 +41,18 @@ class Comment extends BaseController
             $this->commentModel->insert($this->commentEntity);
 
             if($this->commentModel->errors()){
-                return redirect()->back()->with('error', $this->commentModel->errors());
-            }
+                return $this->response([
+                    'status' => false,
+                    'message' => $this->commentModel->errors()
+                ]);            }
 
-            return redirect()->back()->with('success', 'Yorum başarılı bir şekilde gönderildi.');
 
+            return $this->response([
+                'status' => true,
+                'message' => 'Yorum başarılı bir şekilde gönderildi.'
+            ]);
         }
+        return $this->response(['status' => false, 'message' => 'Geçersiz istek türü']);
     }
 
 }

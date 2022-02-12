@@ -102,9 +102,10 @@
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('Buttons', 'image') ?></label>
                                 <div class="col-sm-12 col-md-8">
+                                    <!-- TODO: Kategori imajı galeriden silinirse $category->getImage() koşulu true dönüyor. withImage() metoduna boş değer gittiği için hata dönüyor.-->
                                     <?= cve_single_image_picker(
                                             'category-image', 'image', 'category-image-id', [
-                                                'image' => $category->getImage() ? $category->withImage()->getUrl() : null,
+                                                'image' => $category->withImage() ? $category->withImage()->getUrl() : null,
                                                 'value' => $category->getImage()
                                             ]
                                     ); ?>
