@@ -219,6 +219,7 @@ class Settings extends BaseController
                 'googleAnalytics' => $this->request->getPost('googleAnalytics'),
                 'yandexVerify' => $this->request->getPost('yandexVerify'),
                 'yandexMetrika' => $this->request->getPost('yandexMetrika'),
+                'code' => $this->request->getPost('code'),
             ];
 
             $this->settingEntity->setKey('webmaster');

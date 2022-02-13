@@ -49,8 +49,21 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Özel Kod</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2">Kod</label>
+                                <div class="col-sm-12 col-md-10">
+                                    <textarea name="code" class="codeeditor"><?= $setting->getValue('code'); ?></textarea>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-footer text-right">
-                            <button type="submit" class="btn btn-success btn-block btn-lg"><?= cve_admin_lang_path('Buttons', 'update') ?></button>
+                            <button type="submit" class="btn btn-success btn-block btn-lg"><?= cve_admin_lang_path('Buttons', 'save'); ?></button>
                         </div>
                     </div>
                 </form>

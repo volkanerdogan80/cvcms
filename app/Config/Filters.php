@@ -14,7 +14,8 @@ class Filters extends BaseConfig
         'IsPermission' => \App\Filters\IsPermission::class,
         'ReCaptcha' => \App\Filters\ReCaptcha::class,
         'ThemeJavascript' => \App\Filters\ThemeJavascript::class,
-        'ThemeStyle' => \App\Filters\ThemeStyle::class
+        'ThemeStyle' => \App\Filters\ThemeStyle::class,
+        'ThemeWebmaster' => \App\Filters\ThemeWebmaster::class
 	];
 
 	// Always applied before every request
@@ -44,6 +45,11 @@ class Filters extends BaseConfig
                 ]
             ],
             'ThemeStyle' => [
+                'except' => [
+                    '*/' . PANEL_FOLDER . '/*'
+                ]
+            ],
+            'ThemeWebmaster' => [
                 'except' => [
                     '*/' . PANEL_FOLDER . '/*'
                 ]

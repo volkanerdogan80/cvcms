@@ -23,6 +23,7 @@ class WebmasterSeeder extends Seeder
             'googleAnalytics' => $default->googleAnalytics,
             'yandexVerify' => $default->yandexVerify,
             'yandexMetrika' => $default->yandexMetrika,
+            'code' => $default->code,
         ];
 
         $entity->setKey('webmaster');

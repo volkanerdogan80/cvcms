@@ -20,6 +20,7 @@
 
     <?= link_tag('public/admin/css/dropzone-basic.css'); ?>
     <?= link_tag('public/admin/css/dropzone.css'); ?>
+    <?= link_tag('public/admin/css/codemirror.css'); ?>
 
     <?= link_tag('public/admin/css/chocolat.css'); ?>
 
@@ -102,6 +103,7 @@
 <?= script_tag('public/admin/js/jquery-ui.min.js'); ?>
 
 <?= script_tag('public/admin/ckeditor/ckeditor.js'); ?>
+<?= script_tag('public/admin/js/codemirror.js'); ?>
 
 <?= script_tag('public/admin/js/request.js'); ?>
 <?= script_tag('public/admin/js/scripts.js'); ?>
