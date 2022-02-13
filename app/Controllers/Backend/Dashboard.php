@@ -22,11 +22,11 @@ class Dashboard extends BaseController
     public function index()
     {
         return view(PANEL_FOLDER . '/pages/dashboard',[
-            'blogs' => $this->contentModel->where('module', config('system')->blog)->findAll(6),
+            'blogs' => $this->contentModel->where('module', 'blog')->findAll(6),
             'users' => $this->userModel->findAll(12),
             'count' => [
                 'user' => $this->userModel->countAllResults(),
-                'blog' => $this->contentModel->where('module', config('system')->blog)->countAllResults(),
+                'blog' => $this->contentModel->where('module', 'blog')->countAllResults(),
                 'comment' => $this->commentModel->countAllResults()
             ]
         ]);

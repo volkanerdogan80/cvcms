@@ -43,10 +43,10 @@
                                         <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'module_select') ?></label>
                                         <select data-url="<?= base_url(route_to('admin_menu_select')); ?>" name="module" class="form-control selectric menu-module">
                                             <option value="module"><?= cve_admin_lang_path('Inputs', 'module_select') ?></option>
-                                            <?php foreach (config('system')->modules as $key => $module): ?>
-                                                <?php if ($module): ?>
-                                                    <option value="<?= $key; ?>"><?= cve_admin_lang_path('Modules', $key) ?></option>
-                                                <?php endif; ?>
+                                            <?php foreach (cve_module_list() as $module): ?>
+                                                <option value="<?= $module; ?>">
+                                                    <?= cve_admin_lang_path('Modules', strtolower($module)) ?>
+                                                </option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>

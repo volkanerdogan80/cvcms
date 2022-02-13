@@ -9,5 +9,6 @@ return [
         'services'  => 'Hizmetler',
         'projects'  => 'Projeler',
         'ecommerce' => 'E-Ticaret',
+        'sample'    => 'Örnek Modül',
     ]
 ];

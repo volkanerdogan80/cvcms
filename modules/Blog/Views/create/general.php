@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body">
             <div class="form-group">
-                <label class="col-form-label"><?= cve_admin_lang_path('Blogs', 'publication_status') ?></label>
+                <label class="col-form-label"><?= cve_admin_lang_path('Blog', 'publication_status') ?></label>
                 <div class="selectgroup w-100">
                     <label class="selectgroup-item">
                         <input type="radio" name="status" value="<?= STATUS_ACTIVE ?>" class="selectgroup-input" required>
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-form-label"><?= cve_admin_lang_path('Blogs', 'comment_status') ?></label>
+                <label class="col-form-label"><?= cve_admin_lang_path('Blog', 'comment_status') ?></label>
                 <div class="selectgroup w-100">
                     <label class="selectgroup-item">
                         <input type="radio" name="comment_status" value="<?= STATUS_ACTIVE ?>" class="selectgroup-input" required>

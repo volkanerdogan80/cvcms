@@ -73,10 +73,8 @@
                                 <div class="col-sm-12 col-md-8">
                                     <select name="module" class="form-control select2" required>
                                         <option value=""><?= cve_admin_lang_path('Inputs', 'module_select') ?></option>
-                                        <?php foreach (config('system')->modules as $key => $value): ?>
-                                            <?php if($value): ?>
-                                                <option value="<?= $key ?>"><?= cve_admin_lang_path('Modules', $key) ?></option>
-                                            <?php endif; ?>
+                                        <?php foreach (cve_module_list() as $module): ?>
+                                            <option value="<?= $module ?>"><?= cve_admin_lang_path('Modules', strtolower($module)) ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>

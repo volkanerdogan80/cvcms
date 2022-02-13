@@ -9,5 +9,6 @@ return [
         'services'  => 'Services',
         'projects'  => 'Projects',
         'ecommerce' => 'E-Commerce',
+        'sample'    => 'Sample Module',
     ]
 ];

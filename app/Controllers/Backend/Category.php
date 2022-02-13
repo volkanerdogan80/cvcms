@@ -13,14 +13,12 @@ class Category extends BaseController
     protected $categoryModel;
     protected $categoryEntity;
     protected $userModel;
-    protected $module;
 
     public function __construct()
     {
         $this->categoryModel = new CategoryModel();
         $this->categoryEntity = new CategoryEntity();
         $this->userModel = new UserModel();
-        $this->module = config('system');
     }
 
     public function listing(string $status = null)
@@ -110,7 +108,7 @@ class Category extends BaseController
         }
 
         return view(PANEL_FOLDER . '/pages/category/edit', [
-            'categories' => $this->categoryModel->where('module', $this->module->blog)->findAll(),
+            'categories' => $this->categoryModel->findAll(),
             'category' => $this->categoryModel->find($id)
         ]);
     }

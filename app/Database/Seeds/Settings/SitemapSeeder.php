@@ -18,9 +18,9 @@ class SitemapSeeder extends Seeder
 
         $data = [];
 
-        foreach (config('system')->modules as $key => $module){
+        foreach (cve_module_list() as $module){
             $data = array_merge($data, [
-                $key => [
+                $module => [
                     'status' => 0,
                     'priority' => 0,
                     'changefreq' => 'never'

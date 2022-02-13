@@ -268,6 +268,26 @@ function cve_slug_creator($str, $options = array())
     return $options['lowercase'] ? mb_strtolower($str, 'UTF-8') : $str;
 }
 
+function cve_module_view($module, $path): string
+{
+    return '\Modules/'. ucfirst($module) . '/Views/' . $path;
+}
+
+function cve_module_list()
+{
+    $module_list = [];
+    if (file_exists(ROOTPATH.'modules')) {
+        $modulesPath = ROOTPATH.'modules/';
+        $modules = scandir($modulesPath);
+
+        foreach ($modules as $module) {
+            if ($module === '.' || $module === '..') continue;
+            $module_list[] = $module;
+        }
+        return $module_list;
+    }
+}
+
 function recurse_copy($src,$dst)
 {
     $dir = opendir($src);
@@ -285,7 +305,7 @@ function recurse_copy($src,$dst)
     closedir($dir);
 }
 
-function delete_directory($dirname)
+function delete_directory($dirname): bool
 {
     if (is_dir($dirname))
         $dir_handle = opendir($dirname);

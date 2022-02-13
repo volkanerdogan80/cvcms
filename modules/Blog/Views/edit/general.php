@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body">
             <div class="form-group">
-                <label class="col-form-label"><?= cve_admin_lang_path('Blogs', 'publication_status') ?></label>
+                <label class="col-form-label"><?= cve_admin_lang_path('Blog', 'publication_status') ?></label>
                 <div class="selectgroup w-100">
                     <label class="selectgroup-item">
                         <input <?= $blog->getStatus() == STATUS_ACTIVE ? 'checked': '' ?> type="radio" name="status" value="<?= STATUS_ACTIVE ?>" class="selectgroup-input" required>
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-form-label"><?= cve_admin_lang_path('Blogs', 'comment_status') ?></label>
+                <label class="col-form-label"><?= cve_admin_lang_path('Blog', 'comment_status') ?></label>
                 <div class="selectgroup w-100">
                     <label class="selectgroup-item">
                         <input <?= $blog->getCommentStatus() == STATUS_ACTIVE ? 'checked': '' ?> type="radio" name="comment_status" value="<?= STATUS_ACTIVE ?>" class="selectgroup-input" required>
@@ -79,7 +79,7 @@
     </div>
     <div class="card">
         <div class="card-header d-flex">
-            <h4><?= cve_admin_lang_path('Blogs', 'social_media_posts') ?></h4>
+            <h4><?= cve_admin_lang_path('Blog', 'social_media_posts') ?></h4>
         </div>
         <div class="card-body">
             <?php foreach($blog->withShare() as $social): ?>
@@ -102,7 +102,7 @@
             <hr>
             <ul class="list-group">
                 <li class=" d-flex justify-content-between align-items-center">
-                    <?= cve_admin_lang_path('Blogs', 'total_shares') ?>
+                    <?= cve_admin_lang_path('Blog', 'total_shares') ?>
                     <span class="badge badge-primary badge-pill"><?= $blog->withCount() != null ? $blog->withCount() : 0 ?></span>
                 </li>
             </ul>

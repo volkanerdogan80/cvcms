@@ -187,21 +187,10 @@ class Settings extends BaseController
 
             $settings = [];
 
-            foreach (config('system')->modules as $key => $module){
-                if ($module){
-                    $settings = array_merge($settings, [
-                        $key => $this->request->getPost($key)
-                    ]);
-                }else{
-                    $settings = array_merge($settings, [
-                        $key => [
-                            'status' => 0,
-                            'priority' => 0,
-                            'changefreq' => 'never'
-                        ]
-                    ]);
-
-                }
+            foreach (cve_module_list() as $module){
+                $settings = array_merge($settings, [
+                    $module => $this->request->getPost($module)
+                ]);
             }
 
             $this->settingEntity->setKey('sitemap');

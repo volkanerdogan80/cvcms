@@ -210,12 +210,10 @@ class Config extends BaseController
 
             $settings = [];
 
-            foreach (config('system')->modules as $key => $module){
-                if ($module){
-                    $settings = array_merge($settings, [
-                        $key => !is_null($setting) ? $setting->getValue($key, true) : [],
-                    ]);
-                }
+            foreach (cve_module_list() as $module){
+                $settings = array_merge($settings, [
+                    $module => !is_null($setting) ? $setting->getValue($module, true) : [],
+                ]);
             }
 
             if($setting){

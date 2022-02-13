@@ -27,7 +27,7 @@ class Page extends BaseController
     {
         $this->__traitConstruct();
 
-        $this->module = config('system')->page;
+        $this->module = 'page';
         $this->listing_all_permit = 'admin_page_listing_all';
         $this->edit_all_permit = 'admin_page_edit_all';
         $this->status_all_permit = 'admin_page_status_all';

@@ -1,7 +1,5 @@
 <?php
-
-
-namespace App\Controllers\Backend;
+namespace Modules\Blog\Controllers;
 
 use \App\Controllers\BaseController;
 use App\Controllers\Traits\ContentTrait;
@@ -25,7 +23,7 @@ class Blog extends BaseController
     {
         $this->__traitConstruct();
 
-        $this->module = config('system')->blog;
+        $this->module = 'blog';
         $this->listing_all_permit = 'admin_blog_listing_all';
         $this->edit_all_permit = 'admin_blog_edit_all';
         $this->status_all_permit = 'admin_blog_status_all';

@@ -62,7 +62,27 @@ $routes->group('{locale}', function ($routes){
 
     if (file_exists(APPPATH . 'Routes/admin.php'))
     {
-        require APPPATH . 'Routes/admin.php';
+        $routes->group('admin', function ($routes){
+            require APPPATH . 'Routes/admin.php';
+
+            if (file_exists(ROOTPATH.'modules')) {
+                $modulesPath = ROOTPATH.'modules/';
+                $modules = scandir($modulesPath);
+
+                foreach ($modules as $module) {
+                    if ($module === '.' || $module === '..') continue;
+                    if (is_dir($modulesPath) . '/' . $module) {
+                        $routesPath = $modulesPath . $module . '/Config/Routes.php';
+                        if (file_exists($routesPath)) {
+                            require($routesPath);
+                        } else {
+                            continue;
+                        }
+                    }
+                }
+            }
+
+        });
     }
 
     if (file_exists(APPPATH . 'Routes/web.php'))

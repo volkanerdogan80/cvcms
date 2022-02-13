@@ -39,8 +39,7 @@ trait ContentTrait
         $filter['users'] = $this->userModel->findAll();
         $filter = array_merge($filter, $contents);
 
-        return view(PANEL_FOLDER . '/pages/' . $this->module . '/listing', $filter);
-
+        return view(cve_module_view($this->module, 'listing'), $filter);
     }
 
     public function create()
@@ -66,7 +65,7 @@ trait ContentTrait
                 ->with('success', cve_admin_lang_path('Success', 'create_success'));
 
         }
-        return view(PANEL_FOLDER . '/pages/' . $this->module . '/create', $this->createViewData());
+        return view(cve_module_view($this->module, 'create/index'), $this->createViewData());
     }
 
     public function edit($id)
@@ -101,7 +100,7 @@ trait ContentTrait
         }
 
 
-        return view(PANEL_FOLDER . '/pages/'. $this->module . '/edit', $this->editViewData($content));
+        return view(cve_module_view($this->module, 'edit/index'), $this->editViewData($content));
     }
 
     public function delete()

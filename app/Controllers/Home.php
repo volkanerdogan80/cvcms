@@ -35,7 +35,7 @@ class Home extends BaseController
 
         //cve_lang_data('CVE Blog Başlık', service('request')->getLocale());
         //echo service('request')->getLocale();
-        print_r(cve_post(1));
+        print_r(cve_module_list());
     }
 
 }

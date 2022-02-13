@@ -195,8 +195,8 @@
                             <div class="form-group">
                                 <select name="module" class="form-control">
                                     <option value=""><?= cve_admin_lang_path('Inputs', 'module_select') ?></option>
-                                    <?php foreach (config('system')->modules as $key => $value): ?>
-                                        <option style="display: <?= !$value ? 'none' : ''?>" value="<?= $key ?>"><?= cve_admin_lang_path('Modules', $key) ?></option>
+                                    <?php foreach (cve_module_list() as $module): ?>
+                                        <option style="display: <?= !$module ? 'none' : ''?>" value="<?= $module ?>"><?= cve_admin_lang_path('Modules', strtolower($module)) ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
