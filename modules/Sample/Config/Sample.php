@@ -8,6 +8,6 @@ class Sample extends BaseConfig
 {
 
 
-    public $sidebar = [];
+    public $menu = [];
 
 }

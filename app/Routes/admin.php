@@ -140,16 +140,6 @@ $routes->group('theme', function ($routes){
     $routes->match(['get', 'post'],'setting', 'Backend\Themes::setting', ['as' => 'admin_theme_setting']);
 });
 
-$routes->group('page', function ($routes){
-    $routes->get('listing(:any)', 'Backend\Page::listing$1', ['as' => 'admin_page_listing']);
-    $routes->match(['post', 'get'],'create', 'Backend\Page::create', ['as' => 'admin_page_create']);
-    $routes->match(['get','post'], 'edit/(:num)', 'Backend\Page::edit/$1', ['as' => 'admin_page_edit']);
-    $routes->post('status', 'Backend\Page::status', ['as' => 'admin_page_status']);
-    $routes->post('delete', 'Backend\Page::delete', ['as' => 'admin_page_delete']);
-    $routes->post('undo-delete', 'Backend\Page::undoDelete', ['as' => 'admin_page_undo_delete']);
-    $routes->post('purge-delete', 'Backend\Page::purgeDelete', ['as' => 'admin_page_purge_delete']);
-});
-
 $routes->group('newsletter', function ($routes){
     $routes->get('listing', 'Backend\Newsletter::listing', ['as' => 'admin_newsletter_listing']);
     $routes->post('unsubscribe/(:any)', 'Backend\Newsletter::unsubscribe/$1', ['as' => 'admin_newsletter_unsubscribe']);

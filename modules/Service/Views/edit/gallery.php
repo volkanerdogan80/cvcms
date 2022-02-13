@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="card-body">
-            <?= cve_multi_image_area('page-gallery-list', 'gallery', $page->withGallery()); ?>
+            <?= cve_multi_image_area('page-gallery-list', 'gallery', $content->withGallery()); ?>
         </div>
     </div>
 </div>

@@ -21,22 +21,29 @@
         <div class="card-body">
             <div class="tab-content" id="myTabContent">
                 <?php foreach (cve_language() as $key => $lang): ?>
-                    <div class="tab-pane fade <?= $key == 0 ? 'show active' : ''; ?>" id="<?= $lang->getCode(); ?>" role="tabpanel" aria-labelledby="<?= $lang->getCode(); ?>-tab">
+                    <div class="tab-pane fade <?= $key == 0 ? 'show active' : ''; ?>"
+                         id="<?= $lang->getCode(); ?>"
+                         role="tabpanel"
+                         aria-labelledby="<?= $lang->getCode(); ?>-tab"
+                    >
                         <div class="form-group">
                             <label class="col-form-label"><?= $lang->getTitle(); ?> <?= cve_admin_lang_path('Inputs', 'title'); ?></label>
-                            <input name="title[<?= $lang->getCode(); ?>]" value="<?= $page->getTitle($lang->getCode()); ?>" type="text" class="form-control" required>
+                            <input name="title[<?= $lang->getCode(); ?>]" type="text" class="form-control" required>
                         </div>
+
                         <div class="form-group">
                             <label class="col-form-label"><?= $lang->getTitle(); ?> <?= cve_admin_lang_path('Inputs', 'content'); ?></label>
-                            <textarea name="content[<?= $lang->getCode(); ?>]" class="form-control ckedtor" id="content-<?= $lang->getCode(); ?>" style="height: 150px"><?= $page->getContent($lang->getCode()); ?></textarea>
+                            <textarea name="content[<?= $lang->getCode(); ?>]" class="form-control ckedtor" id="content-<?= $lang->getCode(); ?>" style="height: 150px"></textarea>
                         </div>
+
                         <div class="form-group">
                             <label class="col-form-label"><?= $lang->getTitle(); ?> <?= cve_admin_lang_path('Inputs', 'description'); ?></label>
-                            <textarea name="description[<?= $lang->getCode(); ?>]" class="form-control" style="height: 100px"><?= $page->getDescription($lang->getCode()); ?></textarea>
+                            <textarea name="description[<?= $lang->getCode(); ?>]" class="form-control" style="height: 100px"></textarea>
                         </div>
+
                         <div class="form-group">
                             <label class="col-form-label"><?= $lang->getTitle(); ?> <?= cve_admin_lang_path('Inputs', 'keywords'); ?></label>
-                            <input name="keywords[<?= $lang->getCode(); ?>]" value="<?= $page->getKeywords($lang->getCode()); ?>" type="text" class="form-control inputtags">
+                            <input name="keywords[<?= $lang->getCode(); ?>]" value="" type="text" class="form-control inputtags">
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -44,3 +51,4 @@
         </div>
     </div>
 </div>
+

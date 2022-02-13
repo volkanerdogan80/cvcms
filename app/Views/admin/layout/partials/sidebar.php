@@ -56,7 +56,7 @@
                 $moduleConfig = '\Modules\\'. $module . '\Config\\'. $module;
                 $config = new $moduleConfig();
             ?>
-            <?php if(isset($config->sidebar) && !is_null($config->sidebar) && count($config->sidebar) > 0): ?>
+            <?php if(isset($config->menu) && !is_null($config->menu) && count($config->menu) > 0): ?>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link has-dropdown">
                         <i class="fas fa-fire"></i>
@@ -65,7 +65,7 @@
                     </span>
                     </a>
                     <ul class="dropdown-menu">
-                        <?php foreach ($config->sidebar as $item): ?>
+                        <?php foreach ($config->menu as $item): ?>
                             <li>
                                 <a class="nav-link" href="<?= base_url(route_to($item['router'], null)) ?>">
                                     <?= cve_admin_lang_path($module, $item['title']) ?>
@@ -76,27 +76,6 @@
                 </li>
             <?php endif; ?>
             <?php endforeach; ?>
-
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown">
-                    <i class="fas fa-copy"></i>
-                    <span>
-                        <?= cve_admin_lang_path('Sidebar', 'pages'); ?>
-                    </span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="nav-link" href="<?= base_url(route_to('admin_page_listing', null)); ?>">
-                            <?= cve_admin_lang_path('Sidebar', 'page_listing'); ?>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="<?= base_url(route_to('admin_page_create')) ?>">
-                            <?= cve_admin_lang_path('Sidebar', 'page_create'); ?>
-                        </a>
-                    </li>
-                </ul>
-            </li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown">
                     <i class="fas fa-fire"></i>

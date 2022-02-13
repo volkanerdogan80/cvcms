@@ -4,7 +4,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1><?= cve_admin_lang_path('Blog', 'create') ?></h1>
+            <h1><?= cve_admin_lang_path('Service', 'create'); ?></h1>
         </div>
 
         <?= $this->include(PANEL_FOLDER . '/layout/partials/errors'); ?>
@@ -13,11 +13,10 @@
             <form action="<?= current_url(); ?>" method="post">
                 <?= csrf_field();  ?>
                 <div class="row">
-                    <?= $this->include(cve_module_view('Blog','create/content')); ?>
-                    <?= $this->include(cve_module_view('Blog','create/general')); ?>
-                    <?= $this->include(cve_module_view('Blog','create/custom-field')); ?>
-                    <?= $this->include(cve_module_view('Blog','create/gallery')); ?>
-                </div>
+                    <?= $this->include(cve_module_view('Service','create/content')); ?>
+                    <?= $this->include(cve_module_view('Service','create/general')); ?>
+                    <?= $this->include(cve_module_view('Service','create/custom-field')); ?>
+                    <?= $this->include(cve_module_view('Service','create/gallery')); ?>                </div>
             </form>
         </div>
     </section>

@@ -6,11 +6,11 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1><?= cve_admin_lang_path('Sidebar', 'blog_listing') ?></h1>
+            <h1><?= cve_admin_lang_path('Blog', 'listing') ?></h1>
 
             <div class="section-header-breadcrumb">
                 <a href="<?= base_url(route_to('admin_blog_create')); ?>" class="btn btn-primary">
-                    <i class="fas fa-plus"></i> <?= cve_admin_lang_path('Sidebar', 'blog_create') ?>
+                    <i class="fas fa-plus"></i> <?= cve_admin_lang_path('Blog', 'create') ?>
                 </a>
             </div>
         </div>

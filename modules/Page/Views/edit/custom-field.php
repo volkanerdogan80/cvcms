@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="card-body" id="custom-field">
-            <?php foreach ($page->getAllField() as $fKey => $fValue): ?>
+            <?php foreach ($content->getAllField() as $fKey => $fValue): ?>
 
                 <?php $random = random_string('alpha', 4); ?>
                 <div class="custom-field">
@@ -65,7 +65,7 @@
                                                  style="padding: 0px"
                                             >
                                                 <div class="form-group mt-3">
-                                                    <input name="field[<?= $random ?>][value][<?= $lang->getCode(); ?>]" value="<?= $page->getField($fKey, $lang->getCode()); ?>" type="text" class="form-control">
+                                                    <input name="field[<?= $random ?>][value][<?= $lang->getCode(); ?>]" value="<?= $content->getField($fKey, $lang->getCode()); ?>" type="text" class="form-control">
                                                 </div>
                                             </div>
                                         <?php endforeach; ?>

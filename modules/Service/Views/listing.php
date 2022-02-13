@@ -6,11 +6,11 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1><?= cve_admin_lang_path('Sidebar', 'pages'); ?></h1>
+            <h1><?= cve_admin_lang_path('Service', 'listing'); ?></h1>
 
             <div class="section-header-breadcrumb">
-                <a href="<?= base_url(route_to('admin_page_create')); ?>" class="btn btn-primary">
-                    <?= cve_admin_lang_path('Sidebar', 'page_create'); ?>
+                <a href="<?= base_url(route_to('admin_service_create')); ?>" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> <?= cve_admin_lang_path('Service', 'create'); ?>
                 </a>
             </div>
         </div>
@@ -23,32 +23,32 @@
                     <ul class="nav nav-pills">
                         <li class="nav-item">
                             <a class="nav-link <?= empty($segment) ? 'active' : '' ?>"
-                               href="<?= base_url(route_to('admin_page_listing', null)) ?>">
+                               href="<?= base_url(route_to('admin_service_listing', null)) ?>">
                                 <?= cve_admin_lang_path('Buttons', 'all'); ?>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link <?= $segment == strtolower(STATUS_ACTIVE) ? 'active' : '' ?>"
-                               href="<?= base_url(route_to('admin_page_listing', '/active')) ?>">
+                               href="<?= base_url(route_to('admin_service_listing', '/active')) ?>">
                                 <?= cve_admin_lang_path('Buttons', 'active'); ?>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link <?= $segment == strtolower(STATUS_PASSIVE) ? 'active' : '' ?>"
-                               href="<?= base_url(route_to('admin_page_listing', '/passive')) ?>">
+                               href="<?= base_url(route_to('admin_service_listing', '/passive')) ?>">
                                 <?= cve_admin_lang_path('Buttons', 'passive'); ?>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link <?= $segment == strtolower(STATUS_PENDING) ? 'active' : '' ?>"
-                               href="<?= base_url(route_to('admin_page_listing', '/pending')) ?>">
+                               href="<?= base_url(route_to('admin_service_listing', '/pending')) ?>">
                                 <?= cve_admin_lang_path('Buttons', 'pending'); ?>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link <?= $segment == 'deleted' ? 'active' : '' ?>"
-                               href="<?= base_url(route_to('admin_page_listing', '/deleted')) ?>">
+                               href="<?= base_url(route_to('admin_service_listing', '/deleted')) ?>">
                                 <?= cve_admin_lang_path('Buttons', 'trash_box'); ?>
                             </a>
                         </li>
@@ -72,38 +72,38 @@
                                     <?php if ($segment != 'deleted'): ?>
                                         <a class="dropdown-item all-delete"
                                            href="javascript:void(0)"
-                                           data-url="<?= base_url(route_to('admin_page_delete')); ?>">
+                                           data-url="<?= base_url(route_to('admin_service_delete')); ?>">
                                             <?= cve_admin_lang_path('Buttons', 'delete'); ?>
                                         </a>
 
                                         <a class="dropdown-item all-status-change"
                                            data-status="<?= STATUS_ACTIVE ?>"
-                                           data-url="<?= base_url(route_to('admin_page_status')); ?>"
+                                           data-url="<?= base_url(route_to('admin_service_status')); ?>"
                                            href="javascript:void(0)">
                                             <?= cve_admin_lang_path('Buttons', 'active'); ?>
                                         </a>
 
                                         <a class="dropdown-item all-status-change"
                                            data-status="<?= STATUS_PASSIVE ?>"
-                                           data-url="<?= base_url(route_to('admin_page_status')); ?>"
+                                           data-url="<?= base_url(route_to('admin_service_status')); ?>"
                                            href="javascript:void(0)">
                                             <?= cve_admin_lang_path('Buttons', 'passive'); ?>
                                         </a>
 
                                         <a class="dropdown-item all-status-change"
                                            data-status="<?= STATUS_PENDING ?>"
-                                           data-url="<?= base_url(route_to('admin_page_status')); ?>"
+                                           data-url="<?= base_url(route_to('admin_service_status')); ?>"
                                            href="javascript:void(0)">
                                             <?= cve_admin_lang_path('Buttons', 'pending'); ?>
                                         </a>
                                     <?php else: ?>
                                         <a class="dropdown-item all-undo-delete"
-                                           data-url="<?= base_url(route_to('admin_page_undo_delete')); ?>"
+                                           data-url="<?= base_url(route_to('admin_service_undo_delete')); ?>"
                                            href="javascript:void(0)">
                                             <?= cve_admin_lang_path('Buttons', 'undo_delete'); ?>
                                         </a>
                                         <a class="dropdown-item all-purge-delete"
-                                           data-url="<?= base_url(route_to('admin_page_purge_delete')); ?>"
+                                           data-url="<?= base_url(route_to('admin_service_purge_delete')); ?>"
                                            href="javascript:void(0)">
                                             <?= cve_admin_lang_path('Buttons', 'purge_delete'); ?>
                                         </a>
@@ -134,35 +134,36 @@
                                 </th>
                                 <th><?= cve_admin_lang_path('TableHeaders', 'title'); ?></th>
                                 <th><?= cve_admin_lang_path('TableHeaders', 'author'); ?></th>
+                                <th><?= cve_admin_lang_path('TableHeaders', 'category') ?></th>
                                 <th><?= cve_admin_lang_path('TableHeaders', 'view'); ?></th>
                                 <th><?= cve_admin_lang_path('General', 'created_at'); ?></th>
                                 <th><?= cve_admin_lang_path('General', 'status'); ?></th>
                             </tr>
-                            <?php foreach ($contents as $page): ?>
-                                <tr data-id="<?= $page->id; ?>">
+                            <?php foreach ($contents as $content): ?>
+                                <tr data-id="<?= $content->id; ?>">
                                     <td>
                                         <div class="custom-checkbox custom-control">
-                                            <input data-id="<?= $page->id; ?>" type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-<?= $page->id; ?>">
-                                            <label for="checkbox-<?= $page->id; ?>" class="custom-control-label">&nbsp;</label>
+                                            <input data-id="<?= $content->id; ?>" type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-<?= $content->id; ?>">
+                                            <label for="checkbox-<?= $content->id; ?>" class="custom-control-label">&nbsp;</label>
                                         </div>
                                     </td>
                                     <td>
-                                        <?= $page->getTitle(); ?>
+                                        <?= $content->getTitle(); ?>
                                         <?php if ($segment == 'deleted'): ?>
                                             <div class="table-links">
                                                 <div class="bullet"></div>
-                                                <a data-url="<?= base_url(route_to('admin_page_undo_delete')); ?>" class="text-success undo-delete" href="javascript:void(0)">
+                                                <a data-url="<?= base_url(route_to('admin_service_undo_delete')); ?>" class="text-success undo-delete" href="javascript:void(0)">
                                                     <?= cve_admin_lang_path('Buttons', 'undo_delete'); ?>
                                                 </a>
                                                 <div class="bullet"></div>
-                                                <a class="text-danger purge-delete" data-url="<?= base_url(route_to('admin_page_purge_delete')); ?>" href="javascript:void(0)">
+                                                <a class="text-danger purge-delete" data-url="<?= base_url(route_to('admin_service_purge_delete')); ?>" href="javascript:void(0)">
                                                     <?= cve_admin_lang_path('Buttons', 'purge_delete'); ?>
                                                 </a>
                                             </div>
                                         <?php else: ?>
                                             <div class="table-links">
                                                 <div class="bullet"></div>
-                                                <a href="<?= base_url(route_to('admin_page_edit', $page->id)); ?>">
+                                                <a href="<?= base_url(route_to('admin_service_edit', $content->id)); ?>">
                                                     <?= cve_admin_lang_path('Buttons', 'edit'); ?>
                                                 </a>
                                                 <div class="bullet"></div>
@@ -173,26 +174,26 @@
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item status-change"
                                                            data-status="<?= STATUS_ACTIVE ?>"
-                                                           data-url="<?= base_url(route_to('admin_page_status')); ?>"
+                                                           data-url="<?= base_url(route_to('admin_service_status')); ?>"
                                                            href="javascript:void(0)">
                                                             <?= cve_admin_lang_path('Buttons', 'active'); ?>
                                                         </a>
                                                         <a class="dropdown-item status-change"
                                                            data-status="<?= STATUS_PASSIVE ?>"
-                                                           data-url="<?= base_url(route_to('admin_page_status')); ?>"
+                                                           data-url="<?= base_url(route_to('admin_service_status')); ?>"
                                                            href="javascript:void(0)">
                                                             <?= cve_admin_lang_path('Buttons', 'passive'); ?>
                                                         </a>
                                                         <a class="dropdown-item status-change"
                                                            data-status="<?= STATUS_PENDING ?>"
-                                                           data-url="<?= base_url(route_to('admin_page_status')); ?>"
+                                                           data-url="<?= base_url(route_to('admin_service_status')); ?>"
                                                            href="javascript:void(0)">
                                                             <?= cve_admin_lang_path('Buttons', 'pending'); ?>
                                                         </a>
                                                     </div>
                                                 </div>
                                                 <div class="bullet"></div>
-                                                <a data-url="<?= base_url(route_to('admin_page_delete')); ?>"
+                                                <a data-url="<?= base_url(route_to('admin_service_delete')); ?>"
                                                    href="javascript:void(0)"
                                                    class="text-danger delete">
                                                     <?= cve_admin_lang_path('Buttons', 'delete'); ?>
@@ -200,13 +201,22 @@
                                             </div>
                                         <?php endif; ?>
                                     </td>
-                                    <td><?= $page->withUser()->getFullName(); ?></td>
-                                    <td><?= $page->getViews(); ?></td>
-                                    <td><?= $page->getCreatedAt(); ?></td>
+                                    <td><?= $content->withUser()->getFullName(); ?></td>
                                     <td>
-                                        <div style="<?= $page->getStatus() != STATUS_ACTIVE ? 'display: none' : '' ?>" class="badge badge-status badge-status-active badge-success"><?= cve_admin_lang_path('General', 'active'); ?></div>
-                                        <div style="<?= $page->getStatus() != STATUS_PASSIVE ? 'display: none' : '' ?>" class="badge badge-status badge-status-passive badge-danger"><?= cve_admin_lang_path('General', 'passive'); ?></div>
-                                        <div style="<?= $page->getStatus() != STATUS_PENDING ? 'display: none' : '' ?>" class="badge badge-status badge-status-pending badge-warning"><?= cve_admin_lang_path('General', 'pending'); ?></div>
+                                        <a href="javascript:;"
+                                           data-toggle="popover"
+                                           title="Yazı Kategorileri"
+                                           data-content="<?php foreach ($content->withCategories() as $blog_category): ?><?= $blog_category->getTitle(); ?> -<?php endforeach; ?>"
+                                           data-trigger="focus">
+                                            <?= cve_admin_lang_path('Buttons', 'view'); ?>
+                                        </a>
+                                    </td>
+                                    <td><?= $content->getViews(); ?></td>
+                                    <td><?= $content->getCreatedAt(); ?></td>
+                                    <td>
+                                        <div style="<?= $content->getStatus() != STATUS_ACTIVE ? 'display: none' : '' ?>" class="badge badge-status badge-status-active badge-success"><?= cve_admin_lang_path('General', 'active'); ?></div>
+                                        <div style="<?= $content->getStatus() != STATUS_PASSIVE ? 'display: none' : '' ?>" class="badge badge-status badge-status-passive badge-danger"><?= cve_admin_lang_path('General', 'passive'); ?></div>
+                                        <div style="<?= $content->getStatus() != STATUS_PENDING ? 'display: none' : '' ?>" class="badge badge-status badge-status-pending badge-warning"><?= cve_admin_lang_path('General', 'pending'); ?></div>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

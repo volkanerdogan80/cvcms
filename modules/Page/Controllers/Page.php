@@ -1,7 +1,5 @@
 <?php
-
-
-namespace App\Controllers\Backend;
+namespace Modules\Page\Controllers;
 
 use App\Controllers\BaseController;
 use App\Controllers\Traits\ContentTrait;

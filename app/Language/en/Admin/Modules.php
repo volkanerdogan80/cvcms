@@ -6,7 +6,7 @@ return [
     'text' => [
         'blog'      => 'Blog',
         'page'      => 'Pages',
-        'services'  => 'Services',
+        'service'   => 'Services',
         'projects'  => 'Projects',
         'ecommerce' => 'E-Commerce',
         'sample'    => 'Sample Module',

@@ -6,7 +6,7 @@ return [
     'text' => [
         'blog'      => 'Blog',
         'page'      => 'Sayfalar',
-        'services'  => 'Hizmetler',
+        'service'   => 'Hizmetler',
         'projects'  => 'Projeler',
         'ecommerce' => 'E-Ticaret',
         'sample'    => 'Örnek Modül',

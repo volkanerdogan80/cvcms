@@ -1,19 +1,21 @@
 <?php
 
-namespace Modules\Services\Config;
+namespace Modules\Service\Config;
 
 use CodeIgniter\Config\BaseConfig;
 
-class Services extends BaseConfig
+class Service extends BaseConfig
 {
-    public $sidebar = [
+
+    public $menu = [
         [
             'title' => 'listing',
-            'router' => 'admin_service_listing',
+            'router' => 'admin_service_listing'
         ],
         [
             'title' => 'create',
             'router' => 'admin_service_create'
         ],
     ];
+
 }

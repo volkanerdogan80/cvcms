@@ -149,7 +149,7 @@
                                                 </div>
                                             <?php endif; ?>
                                         </td>
-                                        <td><?= cve_admin_lang_path('Modules',  $category->getModule()) ?></td>
+                                        <td><?= cve_admin_lang_path($category->getModule(), 'module' ) ?></td>
                                         <td><?= $category->getParentId() ? $category->withParent()->getTitle() : cve_admin_lang_path('General', 'none') ?></td>
                                         <td><?= $category->withUser()->getFullName() ?></td>
                                         <td><?= $category->getCreatedAt(); ?></td>
@@ -196,7 +196,7 @@
                                 <select name="module" class="form-control">
                                     <option value=""><?= cve_admin_lang_path('Inputs', 'module_select') ?></option>
                                     <?php foreach (cve_module_list() as $module): ?>
-                                        <option style="display: <?= !$module ? 'none' : ''?>" value="<?= $module ?>"><?= cve_admin_lang_path('Modules', strtolower($module)) ?></option>
+                                        <option style="display: <?= !$module ? 'none' : ''?>" value="<?= $module ?>"><?= cve_admin_lang_path($module, 'module') ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
