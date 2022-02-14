@@ -1,4 +1,6 @@
 <?php
+
+
 namespace Modules\Page\Controllers;
 
 use App\Controllers\BaseController;
@@ -7,32 +9,29 @@ use App\Models\ThemeModel;
 
 class Page extends BaseController
 {
-
     use ContentTrait{
         ContentTrait::__construct as private __traitConstruct;
     }
+
     protected $module;
     protected $listing_all_permit;
     protected $edit_all_permit;
     protected $status_all_permit;
     protected $delete_all_permit;
-    protected $undo_delete_all_permit;
-    protected $purge_delete_all_permit;
-    protected $share_status;
+    protected $undo_delete_all;
+    protected $purge_delete_all;
     protected $add_category;
 
     public function __construct()
     {
         $this->__traitConstruct();
-
         $this->module = 'page';
         $this->listing_all_permit = 'admin_page_listing_all';
         $this->edit_all_permit = 'admin_page_edit_all';
         $this->status_all_permit = 'admin_page_status_all';
         $this->delete_all_permit = 'admin_page_delete_all';
-        $this->undo_delete_all_permit = 'admin_page_undo_delete_all';
-        $this->purge_delete_all_permit = 'admin_page_purge_delete_all';
-        $this->share_status = false;
+        $this->undo_delete_all = 'admin_page_undo-delete_all';
+        $this->purge_delete_all = 'admin_blog_purge-delete_all';
         $this->add_category = false;
     }
 
@@ -43,10 +42,10 @@ class Page extends BaseController
         ];
     }
 
-    protected function editViewData($page)
+    protected function editViewData($content)
     {
-        return[
-            'page' => $page,
+        return [
+            'content' => $content,
             'template_list' => $this->getPageTemplate()
         ];
     }
@@ -68,45 +67,5 @@ class Page extends BaseController
         }
 
         return $template_list;
-    }
-
-    public function purgeDelete()
-    {
-        if($this->request->isAJAX()){
-            $data = $this->request->getPost('id');
-            if (!$data){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'purge_delete_empty_fields')
-                ]);
-            }
-            $page = $this->contentModel->where('user_id !=', session('userData.id'))->find($data);
-            if ($page){
-                if(!cve_permit_control('admin_page_purge-delete_all')){
-                    return $this->response->setJSON([
-                        'status' => false,
-                        'message' => cve_admin_lang_path('Errors', 'page_purge_delete_failure')
-                    ]);
-                }
-            }
-
-            $purgeDelete = $this->contentModel->delete($data, true);
-            if(!$purgeDelete){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'purge_delete_failure')
-                ]);
-            }
-
-            return $this->response->setJSON([
-                'status' => true,
-                'message' => cve_admin_lang_path('Success', 'purge_delete_success')
-            ]);
-        }
-
-        return $this->response->setJSON([
-            'status' => false,
-            'message' => cve_admin_lang_path('Errors','invalid_request_type')
-        ]);
     }
 }

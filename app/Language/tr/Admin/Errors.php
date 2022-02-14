@@ -85,5 +85,6 @@ return [
         'page_undo_delete_failure'     => 'Kendinize ait olmayan silinmiş bir sayfayı geri getiremezsiniz.',
         'page_purge_delete_failure'    => 'Kendinize ait olmayan silinmiş bir sayfayı kalıcı olarak silemezsiniz.',
 
+        'notification_send_failure'   => 'Bildirim gönderimi esnasında bir hata meydana geldi. Lütfen tekrar deneyiniz.',
     ]
 ];

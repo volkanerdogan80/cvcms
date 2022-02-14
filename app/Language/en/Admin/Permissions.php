@@ -76,7 +76,7 @@ return [
         'language_purge_delete'  => 'Authorization to delete languages permanently',
 
         'comment_listing'       => 'Authorization to list comments on own posts ',
-        'comment_status'        => 'Authority to change the comment status of own posts',
+        'comment_status'        => 'Authorization to change the comment status of own posts',
         'comment_delete'        => 'Authorization to delete comments on own posts',
         'comment_reply'         => 'Authorization to reply to comments on own posts',
         'comment_edit'          => 'Authorization to edit comments on own posts',
@@ -114,7 +114,37 @@ return [
         'theme_setting' => 'Authorization to displat theme settings',
         'admin_theme_setting_update' => 'Authorization to update theme settings',
 
+        'page_listing' => 'Authorization to list own page posts',
+        'page_create' => 'Authorization to add new page post',
+        'page_edit' => 'Authorization to edit own page posts',
+        'page_status' => 'Authorization to change the status of own page posts',
+        'page_delete' => 'Authorization to delete own page posts',
+        'page_undo-delete' => 'Authorization to restore own deleted page posts',
+        'page_purge-delete' => 'Permission to permanently delete own page posts',
+        'admin_page_listing_all' => 'Authorization to list all page posts',
+        'admin_page_edit_all' => 'Authorization to edit all page posts',
+        'admin_page_status_all' => 'Authorization to change the state of all page posts',
+        'admin_page_delete_all' => 'Authorization to delete all page posts',
+        'admin_page_undo_delete_all' => 'Authorization to delete all deleted page posts',
+        'admin_page_purge_delete_all' => 'Permission to permanently delete all page posts',
+
         'newsletter_listing' => 'Authorization to display email subscribers',
         'newsletter_unsubscribe' => ' Authorization to unsubscribe members from e-mail',
+
+        'service_listing' => 'Authorization to list own service posts',
+        'service_create' => 'Authorization to add new service post',
+        'service_edit' => 'Authorization to edit own service posts',
+        'service_status' => 'Authorization to change the status of own service posts',
+        'service_delete' => 'Authorization to delete own service posts',
+        'service_undo-delete' => 'Authorization to retrieve its own deleted service posts',
+        'service_purge-delete' => 'Authorization to permanently delete own service posts',
+        'admin_service_listing_all' => 'Authorization to list all service posts',
+        'admin_service_edit_all' => 'Authorization to edit all service posts',
+        'admin_service_status_all' => 'Authorization to change the state of all service posts',
+        'admin_service_delete_all' => 'Authorization to delete all service posts',
+        'admin_service_undo_delete_all' => 'Authorization to delete all deleted service posts',
+        'admin_service_purge_delete_all' => 'Permission to delete all service posts permanently',
+
+        'admin_firebase_notification_send' => 'Authorization to send custom notifications',
     ]
 ];

@@ -1,7 +1,8 @@
 <script>
     let routes = {
         newsletter_subscribe: '<?= base_url(route_to('newsletter_subscribe')); ?>',
-        message_send: '<?= base_url(route_to('message_send')); ?>'
+        message_send: '<?= base_url(route_to('message_send')); ?>',
+        firebase_token: '<?= base_url(route_to('firebase_token_create')); ?>'
     }
     let message = {
         comment_reply: 'isimli kişiye cevap veriyorsunuz.',

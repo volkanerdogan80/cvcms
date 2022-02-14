@@ -33,6 +33,8 @@ $routes->setAutoRoute(true);
 $routes->get('sitemap.xml', 'Sitemap::listing', ['as' => 'sitemap.listing']);
 $routes->get('sitemap-(:any)-(:num).xml', 'Sitemap::generate/$1/$2', ['as' => 'sitemap.generate']);
 
+$routes->get('firebase-messaging-sw.js', 'Firebase::index');
+$routes->post('firebase/token/create', 'Firebase::create', ['as' => 'firebase_token_create']);
 $routes->get('{locale}/test', 'Home::index');
 
 /**

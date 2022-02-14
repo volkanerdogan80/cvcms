@@ -32,6 +32,32 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'social_media_share') ?></label>
+                <div class="selectgroup w-100">
+                    <label class="selectgroup-item">
+                        <input type="radio" name="social" value="<?= STATUS_ACTIVE ?>" class="selectgroup-input" required>
+                        <span class="selectgroup-button"><?= cve_admin_lang_path('General', 'yes') ?></span>
+                    </label>
+                    <label class="selectgroup-item">
+                        <input checked type="radio" name="social" value="<?= STATUS_PASSIVE ?>" class="selectgroup-input" required>
+                        <span class="selectgroup-button"><?= cve_admin_lang_path('General', 'no') ?></span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'send_notification') ?></label>
+                <div class="selectgroup w-100">
+                    <label class="selectgroup-item">
+                        <input type="radio" name="notification" value="<?= STATUS_ACTIVE ?>" class="selectgroup-input" required>
+                        <span class="selectgroup-button"><?= cve_admin_lang_path('General', 'yes') ?></span>
+                    </label>
+                    <label class="selectgroup-item">
+                        <input checked type="radio" name="notification" value="<?= STATUS_PASSIVE ?>" class="selectgroup-input" required>
+                        <span class="selectgroup-button"><?= cve_admin_lang_path('General', 'no') ?></span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'categories'); ?></label>
                 <select name="categories[]" class="form-control select2" multiple="">
                     <?php foreach ($categories as $category): ?>
@@ -42,8 +68,8 @@
             <div class="form-group">
                 <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'related_content'); ?></label>
                 <select name="similar[]" class="form-control select2" multiple="">
-                    <?php foreach ($blogs as $s_blog): ?>
-                        <option <?= in_array($s_blog->id, $content->getSimilar()) ? 'selected': ''; ?> value="<?= $s_blog->id; ?>"><?= $s_blog->getTitle(); ?></option>
+                    <?php foreach ($similar as $related): ?>
+                        <option <?= in_array($related->id, $content->getSimilar()) ? 'selected': ''; ?> value="<?= $related->id; ?>"><?= $related->getTitle(); ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -62,12 +88,9 @@
     </div>
     <div class="card">
         <div class="card-header d-flex">
-            <h4><?= cve_admin_lang_path('Service', 'social_media_posts') ?></h4>
+            <h4><?= cve_admin_lang_path('Inputs', 'social_media_posts') ?></h4>
         </div>
         <div class="card">
-            <card class="card-header">
-                <h4><?= cve_admin_lang_path('Blog', 'social_media_sharing'); ?></h4>
-            </card>
             <div class="card-body">
                 <ul class="list-group">
                     <?php foreach ($content->withShare() as $social): ?>

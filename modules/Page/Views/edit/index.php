@@ -1,22 +1,22 @@
-<?php $this->extend(PANEL_FOLDER . '/layout/main'); ?>
+<?php $this->extend('admin/layout/main'); ?>
 
 <?php $this->section('content'); ?>
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1><?= cve_admin_lang_path('General', 'now_editing'); ?> " <?= $content->getTitle(); ?> " </h1>
+            <h1>" <?= $content->getTitle(); ?> " <?= cve_admin_lang_path('Page', 'module'); ?></h1>
         </div>
 
-        <?= $this->include(PANEL_FOLDER . '/layout/partials/errors'); ?>
+        <?= $this->include('admin/layout/partials/errors'); ?>
 
         <div class="section-body">
             <form action="<?= current_url(); ?>" method="post">
                 <?= csrf_field();  ?>
                 <div class="row">
-                    <?= $this->include(cve_module_view('Service','edit/content')); ?>
-                    <?= $this->include(cve_module_view('Service','edit/general')); ?>
-                    <?= $this->include(cve_module_view('Service','edit/custom-field')); ?>
-                    <?= $this->include(cve_module_view('Service','edit/gallery')); ?>
+                    <?= $this->include(cve_module_view('Page', 'edit/content')); ?>
+                    <?= $this->include(cve_module_view('Page', 'edit/general')); ?>
+                    <?= $this->include(cve_module_view('Page', 'edit/custom-field')); ?>
+                    <?= $this->include(cve_module_view('Page', 'edit/gallery')); ?>
                 </div>
             </form>
         </div>

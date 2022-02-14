@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-form-label"><?= cve_admin_lang_path('Blog', 'comment_status') ?></label>
+                <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'comment_status') ?></label>
                 <div class="selectgroup w-100">
                     <label class="selectgroup-item">
                         <input type="radio" name="comment_status" value="<?= STATUS_ACTIVE ?>" class="selectgroup-input" required>
@@ -28,6 +28,32 @@
                     <label class="selectgroup-item">
                         <input checked type="radio" name="comment_status" value="<?= STATUS_PASSIVE ?>" class="selectgroup-input" required>
                         <span class="selectgroup-button"><?= cve_admin_lang_path('Buttons', 'passive') ?></span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'social_media_share') ?></label>
+                <div class="selectgroup w-100">
+                    <label class="selectgroup-item">
+                        <input type="radio" name="social" value="<?= STATUS_ACTIVE ?>" class="selectgroup-input" required>
+                        <span class="selectgroup-button"><?= cve_admin_lang_path('General', 'yes') ?></span>
+                    </label>
+                    <label class="selectgroup-item">
+                        <input checked type="radio" name="social" value="<?= STATUS_PASSIVE ?>" class="selectgroup-input" required>
+                        <span class="selectgroup-button"><?= cve_admin_lang_path('General', 'no') ?></span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'send_notification') ?></label>
+                <div class="selectgroup w-100">
+                    <label class="selectgroup-item">
+                        <input type="radio" name="notification" value="<?= STATUS_ACTIVE ?>" class="selectgroup-input" required>
+                        <span class="selectgroup-button"><?= cve_admin_lang_path('General', 'yes') ?></span>
+                    </label>
+                    <label class="selectgroup-item">
+                        <input checked type="radio" name="notification" value="<?= STATUS_PASSIVE ?>" class="selectgroup-input" required>
+                        <span class="selectgroup-button"><?= cve_admin_lang_path('General', 'no') ?></span>
                     </label>
                 </div>
             </div>
@@ -42,8 +68,8 @@
             <div class="form-group">
                 <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'related_content'); ?></label>
                 <select name="similar[]" class="form-control select2" multiple="">
-                    <?php foreach ($blogs as $blog): ?>
-                        <option value="<?= $blog->id; ?>"><?= $blog->getTitle(); ?></option>
+                    <?php foreach ($similar as $related): ?>
+                        <option value="<?= $related->id; ?>"><?= $related->getTitle(); ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>

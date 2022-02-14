@@ -19,5 +19,8 @@ return [
 
         'extra_fields' => 'Özel Alanlar',
         'image_gallery'  => 'Görsel Galerisi',
+
+        'yes' => 'Evet',
+        'no' => 'Hayır'
     ]
 ];

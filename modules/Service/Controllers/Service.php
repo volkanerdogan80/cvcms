@@ -19,7 +19,6 @@ class Service extends BaseController
     protected $delete_all_permit;
     protected $undo_delete_all;
     protected $purge_delete_all;
-    protected $share_status;
     protected $add_category;
 
     public function __construct()
@@ -32,7 +31,6 @@ class Service extends BaseController
         $this->delete_all_permit = 'admin_blog_delete_all';
         $this->undo_delete_all = 'admin_blog_undo-delete_all';
         $this->purge_delete_all = 'admin_blog_purge-delete_all';
-        $this->share_status = false;
         $this->add_category = true;
     }
 
@@ -40,7 +38,7 @@ class Service extends BaseController
     {
         return [
             'categories' => $this->categoryModel->where('module', $this->module)->findAll(),
-            'blogs' => $this->contentModel->where('module', $this->module)->findAll(),
+            'similar' => $this->contentModel->where('module', $this->module)->findAll(),
         ];
     }
 
@@ -48,10 +46,11 @@ class Service extends BaseController
     {
         return [
             'categories' => $this->categoryModel->where('module', $this->module)->findAll(),
-            'blogs' => $this->contentModel->where([
+            'similar' => $this->contentModel->where([
                 'module'=> $this->module,
                 'id !=' => $content->id
-            ])->findAll(),            'content' => $content
+            ])->findAll(),
+            'content' => $content
         ];
     }
 

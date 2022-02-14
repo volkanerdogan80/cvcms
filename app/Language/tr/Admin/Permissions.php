@@ -115,7 +115,37 @@ return [
         'theme_setting' => 'Tema ayarlarını görüntüleme yetkisi',
         'admin_theme_setting_update' => 'Tema ayarları güncelleme yetkisi',
 
+        'page_listing' => 'Kendi sayfa yazılarını listeleme yetkisi',
+        'page_create' => 'Yeni sayfa yazısı ekleme yetkisi',
+        'page_edit' => 'Kendi sayfa yazılarını düzenleme yetkisi',
+        'page_status' => 'Kendi sayfa yazılarının durumunu değiştirme yetkisi',
+        'page_delete' => 'Kendi sayfa yazılarını silme yetkisi',
+        'page_undo-delete' => 'Kendisine ait silinmiş page yazılarını geri getirme yetkisi',
+        'page_purge-delete' => 'Kendisine ait sayfa yazılarını kalıcı olarak silme yetkisi',
+        'admin_page_listing_all' => 'Tüm sayfa yazılarını listeleme yetkisi',
+        'admin_page_edit_all' => 'Tüm sayfa yazılarını düzenleme yetkisi',
+        'admin_page_status_all' => 'Tüm sayfa yazılarının durumunu değiştirme yetkisi',
+        'admin_page_delete_all' => 'Tüm sayfa yazılarını silme yetkisi',
+        'admin_page_undo_delete_all' => 'Silinmiş tüm sayfa yazılarını geri getirme yetkisi',
+        'admin_page_purge_delete_all' => 'Tüm sayfa yazılarını kalıcı olarak silme yetkisi',
+
         'newsletter_listing' => 'Eposta abonelerini görüntüleme yetkisi',
         'newsletter_unsubscribe' => 'Üyeleri eposta aboneliğinden çıkartma yetkisi',
+
+        'service_listing' => 'Kendi hizmet yazılarını listeleme yetkisi',
+        'service_create' => 'Yeni hizmet yazısı ekleme yetkisi',
+        'service_edit' => 'Kendi hizmet yazılarını düzenleme yetkisi',
+        'service_status' => 'Kendi hizmet yazılarının durumunu değiştirme yetkisi',
+        'service_delete' => 'Kendi hizmet yazılarını silme yetkisi',
+        'service_undo-delete' => 'Kendisine ait silinmiş hizmet yazılarını geri getirme yetkisi',
+        'service_purge-delete' => 'Kendisine ait hizmet yazılarını kalıcı olarak silme yetkisi',
+        'admin_service_listing_all' => 'Tüm hizmet yazılarını listeleme yetkisi',
+        'admin_service_edit_all' => 'Tüm hizmet yazılarını düzenleme yetkisi',
+        'admin_service_status_all' => 'Tüm hizmet yazılarını durumunu değiştirme yetkisi',
+        'admin_service_delete_all' => 'Tüm hizmet yazılarını silme yetkisi',
+        'admin_service_undo_delete_all' => 'Silinmiş tüm hizmet yazılarını geri getirme yetkisi',
+        'admin_service_purge_delete_all' => 'Tüm hizmet yazılarını kalıcı olarak silme yetkisi',
+
+        'admin_firebase_notification_send' => 'Özel bildirim gönderme yetkisi',
     ]
 ];

@@ -145,6 +145,10 @@ $routes->group('newsletter', function ($routes){
     $routes->post('unsubscribe/(:any)', 'Backend\Newsletter::unsubscribe/$1', ['as' => 'admin_newsletter_unsubscribe']);
 });
 
+$routes->group('firebase', function ($routes) {
+    $routes->post('notification/send', 'Firebase::send', ['as' => 'admin_firebase_notification_send']);
+});
+
 
 
 

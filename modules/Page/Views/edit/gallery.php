@@ -5,13 +5,13 @@
             <div class="card-header-action">
                 <?= cve_multi_image_picker(
                     cve_admin_lang_path('Buttons', 'single_modal_button_title'),
-                    'gallery', 'service-gallery-list',
+                    'gallery', 'page-gallery-list',
                     'btn-primary'
                 ); ?>
             </div>
         </div>
         <div class="card-body">
-            <?= cve_multi_image_area('service-gallery-list', 'gallery', $content->withGallery()); ?>
+            <?= cve_multi_image_area('page-gallery-list', 'gallery', $content->withGallery()); ?>
         </div>
     </div>
 </div>

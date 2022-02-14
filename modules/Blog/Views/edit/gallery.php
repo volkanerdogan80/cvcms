@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="card-body">
-            <?= cve_multi_image_area('blog-gallery-list', 'gallery', $blog->withGallery()); ?>
+            <?= cve_multi_image_area('blog-gallery-list', 'gallery', $content->withGallery()); ?>
         </div>
     </div>
 </div>

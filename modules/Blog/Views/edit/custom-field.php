@@ -27,8 +27,8 @@
             </div>
         </div>
         <div class="card-body" id="custom-field">
-            <?php if($blog->getAllField()): ?>
-                <?php foreach ($blog->getAllField() as $fKey => $fValue): ?>
+            <?php if($content->getAllField()): ?>
+                <?php foreach ($content->getAllField() as $fKey => $fValue): ?>
                     <?php $random = random_string('alpha', 4); ?>
                     <div class="custom-field">
                         <?php if (is_object($fValue)): ?>

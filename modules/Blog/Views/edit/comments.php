@@ -5,7 +5,7 @@
         </div>
         <div class="card-body">
             <ul class="list-unstyled list-unstyled-border list-unstyled-noborder comment-list">
-                <?php foreach ($blog->withComment() as $comment): ?>
+                <?php foreach ($content->withComment() as $comment): ?>
                     <li class="media comment-<?= $comment->id ?>" data-id="<?= $comment->id ?>">
                         <img alt="image" class="mr-3 rounded-circle" width="70" src="<?= base_url('public/admin/img/avatar/avatar-1.png') ?>">
                         <div class="media-body">

@@ -15,7 +15,8 @@ class Filters extends BaseConfig
         'ReCaptcha' => \App\Filters\ReCaptcha::class,
         'ThemeJavascript' => \App\Filters\ThemeJavascript::class,
         'ThemeStyle' => \App\Filters\ThemeStyle::class,
-        'ThemeWebmaster' => \App\Filters\ThemeWebmaster::class
+        'ThemeWebmaster' => \App\Filters\ThemeWebmaster::class,
+        'ThemeFirebase' => \App\Filters\ThemeFirebase::class
 	];
 
 	// Always applied before every request
@@ -33,7 +34,7 @@ class Filters extends BaseConfig
             ]
 		],
 		'after'  => [
-            'toolbar',
+            //'toolbar',
             'honeypot' => [
                 'except' => [
                     '*/' . PANEL_FOLDER . '/*'
@@ -50,6 +51,11 @@ class Filters extends BaseConfig
                 ]
             ],
             'ThemeWebmaster' => [
+                'except' => [
+                    '*/' . PANEL_FOLDER . '/*'
+                ]
+            ],
+            'ThemeFirebase' => [
                 'except' => [
                     '*/' . PANEL_FOLDER . '/*'
                 ]

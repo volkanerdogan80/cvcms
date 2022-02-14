@@ -24,19 +24,19 @@
                     <div class="tab-pane fade <?= $key == 0 ? 'show active' : ''; ?>" id="<?= $lang->getCode(); ?>" role="tabpanel" aria-labelledby="<?= $lang->getCode(); ?>-tab">
                         <div class="form-group">
                             <label class="col-form-label"><?= $lang->getTitle(); ?> <?= cve_admin_lang_path('Inputs', 'title') ?></label>
-                            <input name="title[<?= $lang->getCode(); ?>]" value="<?= $blog->getTitle($lang->getCode()); ?>" type="text" class="form-control" required>
+                            <input name="title[<?= $lang->getCode(); ?>]" value="<?= $content->getTitle($lang->getCode()); ?>" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label class="col-form-label"><?= $lang->getTitle(); ?> <?= cve_admin_lang_path('Inputs', 'content') ?></label>
-                            <textarea name="content[<?= $lang->getCode(); ?>]" class="form-control ckedtor" id="content-<?= $lang->getCode(); ?>" style="height: 150px"><?= $blog->getContent($lang->getCode()); ?></textarea>
+                            <textarea name="content[<?= $lang->getCode(); ?>]" class="form-control ckedtor" id="content-<?= $lang->getCode(); ?>" style="height: 150px"><?= $content->getContent($lang->getCode()); ?></textarea>
                         </div>
                         <div class="form-group">
                             <label class="col-form-label"><?= $lang->getTitle(); ?> <?= cve_admin_lang_path('Inputs', 'summary') ?></label>
-                            <textarea name="description[<?= $lang->getCode(); ?>]" class="form-control" style="height: 100px"><?= $blog->getDescription($lang->getCode()); ?></textarea>
+                            <textarea name="description[<?= $lang->getCode(); ?>]" class="form-control" style="height: 100px"><?= $content->getDescription($lang->getCode()); ?></textarea>
                         </div>
                         <div class="form-group">
                             <label class="col-form-label"><?= $lang->getTitle(); ?> <?= cve_admin_lang_path('Inputs', 'keywords') ?></label>
-                            <input name="keywords[<?= $lang->getCode(); ?>]" value="<?= $blog->getKeywords($lang->getCode()); ?>" type="text" class="form-control inputtags">
+                            <input name="keywords[<?= $lang->getCode(); ?>]" value="<?= $content->getKeywords($lang->getCode()); ?>" type="text" class="form-control inputtags">
                         </div>
                     </div>
                 <?php endforeach; ?>

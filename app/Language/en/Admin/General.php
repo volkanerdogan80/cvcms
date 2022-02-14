@@ -19,5 +19,8 @@ return [
 
         'extra_fields' => 'Extra Fields',
         'image_gallery'      => 'Image Gallery',
+
+        'yes'   => 'Yes',
+        'no'    => 'No'
     ]
 ];

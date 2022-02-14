@@ -152,3 +152,7 @@
 
 
 <?php $this->endSection(); ?>
+
+<?php $this->section('script'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'contact.js'); ?>
+<?php $this->endSection(); ?>

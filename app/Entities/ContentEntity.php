@@ -332,18 +332,21 @@ class ContentEntity extends Entity
 
     public function withThumbnail()
     {
-        $model = new ImageModel();
-        return $model->find($this->attributes['thumbnail']);
+        if($this->attributes['thumbnail']){
+            $model = new ImageModel();
+            return $model->find($this->attributes['thumbnail']);
+        }
+        return null;
     }
 
     public function withGallery()
     {
+        if(is_null($this->attributes['gallery'])){
+            return [];
+        }
         $model = new ImageModel();
         $galleryList = json_decode($this->attributes['gallery'], true);
-        if($galleryList != null){
-            return $model->find($galleryList);
-        }
-        return null;
+        return $model->find($galleryList);
     }
 
     public function withCategories()

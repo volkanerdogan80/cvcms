@@ -9,18 +9,18 @@
                             data-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false">
-                        <?= cve_admin_lang_path('Buttons', 'add_extra_fields') ?>
+                        <?= cve_admin_lang_path('Buttons', 'add_extra_fields'); ?>
                     </button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item new-field"
                            data-url="<?= base_url(route_to("admin_field_add")); ?>"
                            data-type="standard">
-                            <?= cve_admin_lang_path('Buttons', 'fixed_fields') ?>
+                            <?= cve_admin_lang_path('Buttons', 'fixed_fields'); ?>
                         </a>
                         <a class="dropdown-item new-field"
                            data-url="<?= base_url(route_to("admin_field_add")); ?>"
                            data-type="translation">
-                            <?= cve_admin_lang_path('Buttons', 'language_option') ?>
+                            <?= cve_admin_lang_path('Buttons', 'language_option'); ?>
                         </a>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="col-md-1  mt-3">
                                     <button class="btn btn-danger btn-lg field-remove">
-                                        <i class="fas fa-trash"></i>
+                                        <?= cve_admin_lang_path('Buttons', 'delete'); ?>
                                     </button>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="col-md-1">
                                     <button class="btn btn-danger btn-lg field-remove">
-                                        <i class="fas fa-trash"></i>
+                                        <?= cve_admin_lang_path('Buttons', 'delete'); ?>
                                     </button>
                                 </div>
                             </div>

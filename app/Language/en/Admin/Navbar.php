@@ -7,7 +7,7 @@ return [
         'logout'        => 'Logout',
         'profile'       => 'Profile',
         'settings'      => 'Settings',
-        'notifications' => 'Notifications',
+        'send_notification' => 'Send Notification',
         'mark_all_read' => 'Mark All As Read',
         'view_all'      => 'View All',
         'messages'      => 'Messages',

@@ -3,6 +3,7 @@
 namespace App\Controllers\Traits;
 
 use App\Entities\ContentEntity;
+use App\Libraries\Firebase;
 use App\Models\CategoryModel;
 use App\Models\ContentModel;
 use App\Models\UserModel;
@@ -53,13 +54,9 @@ trait ContentTrait
                 return redirect()->back()->with('error', $this->contentModel->errors());
             }
 
-            if($this->share_status){
-                cve_autoshare($insertID);
-            }
-
-            if($this->add_category){
-                $this->contentModel->category('insert', $insertID, $this->request->getPost('categories'));
-            }
+            $this->shareOnSocialMedia($insertID);
+            $this->sendNotification($insertID);
+            $this->addCategory($insertID, 'insert');
 
             return redirect()->route('admin_' . $this->module . '_edit', [$insertID])
                 ->with('success', cve_admin_lang_path('Success', 'create_success'));
@@ -88,17 +85,12 @@ trait ContentTrait
                 return redirect()->back()->with('error', $this->contentModel->errors());
             }
 
-            if($this->share_status){
-                cve_autoshare($id);
-            }
-
-            if($this->add_category){
-                $this->contentModel->category('update', $id, $this->request->getPost('categories'));
-            }
+            $this->shareOnSocialMedia($id);
+            $this->sendNotification($id);
+            $this->addCategory($id, 'update');
 
             return redirect()->back()->with('success', cve_admin_lang_path('Success', 'update_success'));
         }
-
 
         return view(cve_module_view($this->module, 'edit/index'), $this->editViewData($content));
     }
@@ -352,6 +344,33 @@ trait ContentTrait
             $item = null;
         }
         return$item;
+    }
+
+    protected function shareOnSocialMedia($content_id)
+    {
+        $social = $this->request->getPost('social');
+        $status = $this->request->getPost('status');
+        if ($social == STATUS_ACTIVE && $status == STATUS_ACTIVE){
+            cve_autoshare($content_id);
+        }
+    }
+
+    protected function sendNotification($content_id)
+    {
+        $firebase = new Firebase();
+        $notification = $this->request->getPost('notification');
+        $status = $this->request->getPost('status');
+        if ($notification == STATUS_ACTIVE && $status == STATUS_ACTIVE){
+            $firebase->setContent($content_id)->setToken()->send();
+        }
+
+    }
+
+    protected function addCategory($id, $type)
+    {
+        if ($this->request->getPost('categories')){
+            $this->contentModel->category($type, $id, $this->request->getPost('categories'));
+        }
     }
 
 }

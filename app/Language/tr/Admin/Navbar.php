@@ -7,7 +7,7 @@ return [
         'logout'        => 'Çıkış Yap',
         'profile'       => 'Profilim',
         'settings'      => 'Ayarlar',
-        'notifications' => 'Bildirimler',
+        'send_notification' => 'Bildirim Gönder',
         'mark_all_read' => 'Tümünü Okundu Olarak İşaretle',
         'view_all'      => 'Tümünü Göster',
         'messages'      => 'Mesajlar',

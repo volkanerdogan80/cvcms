@@ -16,6 +16,7 @@ return [
         'author_select' => 'Select Author',
         'bio' => 'Biography',
         'comment' => 'Comment',
+        'comment_status'     => 'Comment Status',
         'your_comment' => 'Your Comment',
         'country' => 'Country',
         'none' => 'None',
@@ -53,5 +54,11 @@ return [
         'search' => 'Search',
         'contract' => 'I agree terms and conditions',
         'newsletter' => 'I would like to be informed about the campaigns and discounts',
+        'social_media_share'    => 'Share on social media?',
+        'social_media_posts' => 'Social Media Posts',
+        'total_shares'       => 'Total Shares',
+        'send_notification'     => 'Send Notification?',
+        'message'       => 'Your Message',
+        'notify_link'   => 'The link of the page that is requested to be opened when clicked on the notification',
     ]
 ];

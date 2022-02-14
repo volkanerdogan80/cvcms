@@ -61,12 +61,12 @@
                         <div class="row ml-2">
                             <div class="dropdown d-inline mr-2">
                                 <button class="btn btn-primary btn-lg dropdown-toggle"
-                                        type="button" id="dropdownMenuButton"
+                                        type="button" id="dropdownMenuButtons"
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
                                         aria-expanded="false"
                                 >
-                                    <?= cve_admin_lang_path('Buttons', 'action'); ?>
+                                    <?= cve_admin_lang_path('Inputs', 'action'); ?>
                                 </button>
                                 <div class="dropdown-menu">
                                     <?php if ($segment != 'deleted'): ?>
@@ -138,31 +138,35 @@
                                 <th><?= cve_admin_lang_path('General', 'created_at'); ?></th>
                                 <th><?= cve_admin_lang_path('General', 'status'); ?></th>
                             </tr>
-                            <?php foreach ($contents as $page): ?>
-                                <tr data-id="<?= $page->id; ?>">
+                            <?php foreach ($contents as $content): ?>
+                                <tr data-id="<?= $content->id; ?>">
                                     <td>
                                         <div class="custom-checkbox custom-control">
-                                            <input data-id="<?= $page->id; ?>" type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-<?= $page->id; ?>">
-                                            <label for="checkbox-<?= $page->id; ?>" class="custom-control-label">&nbsp;</label>
+                                            <input data-id="<?= $content->id; ?>" type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-<?= $content->id; ?>">
+                                            <label for="checkbox-<?= $content->id; ?>" class="custom-control-label">&nbsp;</label>
                                         </div>
                                     </td>
                                     <td>
-                                        <?= $page->getTitle(); ?>
+                                        <?= $content->getTitle(); ?>
                                         <?php if ($segment == 'deleted'): ?>
                                             <div class="table-links">
                                                 <div class="bullet"></div>
-                                                <a data-url="<?= base_url(route_to('admin_page_undo_delete')); ?>" class="text-success undo-delete" href="javascript:void(0)">
+                                                <a data-url="<?= base_url(route_to('admin_page_undo_delete')); ?>"
+                                                   class="text-success undo-delete"
+                                                   href="javascript:void(0)">
                                                     <?= cve_admin_lang_path('Buttons', 'undo_delete'); ?>
                                                 </a>
                                                 <div class="bullet"></div>
-                                                <a class="text-danger purge-delete" data-url="<?= base_url(route_to('admin_page_purge_delete')); ?>" href="javascript:void(0)">
+                                                <a class="text-danger purge-delete"
+                                                   data-url="<?= base_url(route_to('admin_page_purge_delete')); ?>"
+                                                   href="javascript:void(0)">
                                                     <?= cve_admin_lang_path('Buttons', 'purge_delete'); ?>
                                                 </a>
                                             </div>
                                         <?php else: ?>
                                             <div class="table-links">
                                                 <div class="bullet"></div>
-                                                <a href="<?= base_url(route_to('admin_page_edit', $page->id)); ?>">
+                                                <a href="<?= base_url(route_to('admin_page_edit', $content->id)); ?>">
                                                     <?= cve_admin_lang_path('Buttons', 'edit'); ?>
                                                 </a>
                                                 <div class="bullet"></div>
@@ -175,19 +179,19 @@
                                                            data-status="<?= STATUS_ACTIVE ?>"
                                                            data-url="<?= base_url(route_to('admin_page_status')); ?>"
                                                            href="javascript:void(0)">
-                                                            <?= cve_admin_lang_path('Buttons', 'active'); ?>
+                                                            <?= cve_admin_lang_path('Buttons', 'activate'); ?>
                                                         </a>
                                                         <a class="dropdown-item status-change"
                                                            data-status="<?= STATUS_PASSIVE ?>"
                                                            data-url="<?= base_url(route_to('admin_page_status')); ?>"
                                                            href="javascript:void(0)">
-                                                            <?= cve_admin_lang_path('Buttons', 'passive'); ?>
+                                                            <?= cve_admin_lang_path('Buttons', 'passivate'); ?>
                                                         </a>
                                                         <a class="dropdown-item status-change"
                                                            data-status="<?= STATUS_PENDING ?>"
                                                            data-url="<?= base_url(route_to('admin_page_status')); ?>"
                                                            href="javascript:void(0)">
-                                                            <?= cve_admin_lang_path('Buttons', 'pending'); ?>
+                                                            <?= cve_admin_lang_path('Buttons', 'standby'); ?>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -200,13 +204,13 @@
                                             </div>
                                         <?php endif; ?>
                                     </td>
-                                    <td><?= $page->withUser()->getFullName(); ?></td>
-                                    <td><?= $page->getViews(); ?></td>
-                                    <td><?= $page->getCreatedAt(); ?></td>
+                                    <td><?= $content->withUser()->getFullName(); ?></td>
+                                    <td><?= $content->getViews(); ?></td>
+                                    <td><?= $content->getCreatedAt(); ?></td>
                                     <td>
-                                        <div style="<?= $page->getStatus() != STATUS_ACTIVE ? 'display: none' : '' ?>" class="badge badge-status badge-status-active badge-success"><?= cve_admin_lang_path('General', 'active'); ?></div>
-                                        <div style="<?= $page->getStatus() != STATUS_PASSIVE ? 'display: none' : '' ?>" class="badge badge-status badge-status-passive badge-danger"><?= cve_admin_lang_path('General', 'passive'); ?></div>
-                                        <div style="<?= $page->getStatus() != STATUS_PENDING ? 'display: none' : '' ?>" class="badge badge-status badge-status-pending badge-warning"><?= cve_admin_lang_path('General', 'pending'); ?></div>
+                                        <div style="<?= $content->getStatus() != STATUS_ACTIVE ? 'display: none' : '' ?>" class="badge badge-status badge-status-active badge-success"><?= cve_admin_lang_path('General', 'active'); ?></div>
+                                        <div style="<?= $content->getStatus() != STATUS_PASSIVE ? 'display: none' : '' ?>" class="badge badge-status badge-status-passive badge-danger"><?= cve_admin_lang_path('General', 'passive'); ?></div>
+                                        <div style="<?= $content->getStatus() != STATUS_PENDING ? 'display: none' : '' ?>" class="badge badge-status badge-status-pending badge-warning"><?= cve_admin_lang_path('General', 'pending'); ?></div>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -259,13 +263,13 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input value="<?= @$search; ?>" name="search" type="text" class="form-control" placeholder="<?= cve_admin_lang_path('Inputs', 'search'); ?>...">
+                                    <input value="<?= @$search; ?>" name="search" type="text" class="form-control" placeholder="Ara...">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <select name="perpage" class="form-control select2">
+                                <select name="perPage" class="form-control select2">
                                     <option value=""><?= cve_admin_lang_path('Inputs', 'per_page'); ?></option>
                                     <?php foreach (config('system')->perPageList as $per): ?>
                                         <option value="<?= $per ?>"><?= $per ?></option>

@@ -85,5 +85,6 @@ return [
         'page_undo_delete_failure'     => 'You are not allowed to restore a page that does not belong to you.',
         'page_purge_delete_failure'    => 'You are not allowed to permanently delete a page that does not belong to you.',
 
+        'notification_send_failure'   => 'An error occurred while sending notification. Please try again.',
     ]
 ];

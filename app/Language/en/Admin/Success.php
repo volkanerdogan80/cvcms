@@ -5,7 +5,7 @@ return [
     'description' => 'The data in this field contains success messages used in the panel.',
     'text' => [
         'register_success'      => 'Registration has been completed successfully. The verification mail has been sent to you.',
-        'email_send_success'    => 'Email Successfully Sent! ',
+        'email_send_success'    => 'Email Sent Successfully!',
         'reset_email_success'   => 'Password reset link has been successfully sent to your email address. ',
 
         'verification_success'  => 'Verification Successful.',
@@ -41,6 +41,8 @@ return [
         'theme_setting_updated'     => 'Theme settings saved successfully.',
         'theme_activated_success'   => 'The theme you have just selected has been successfully activated.',
 
-        'unsubscribe_success' => 'Email subscription has been terminated successfully.'
+        'unsubscribe_success' => 'Email subscription has been terminated successfully.',
+        'notification_success'  => 'Notification Sent Successfully!',
+
     ]
 ];

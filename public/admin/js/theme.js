@@ -90,7 +90,7 @@ function showSnackbar(status, message) {
     );
 }
 
-function cveThemeRequest(url, data, callback)
+function cveThemeRequest(url, data, callback, alert = true)
 {
     $.ajax(url, {
         type: 'POST',
@@ -99,11 +99,11 @@ function cveThemeRequest(url, data, callback)
             ...data
         },
         success: function (response) {
-            showSnackbar(response.status, response.message)
+            if(alert){showSnackbar(response.status, response.message);}
             callback(response)
         },
         error: function (xhr, opt, error){
-            showSnackbar(false, error)
+            if(alert){showSnackbar(false, error);}
             callback({
                 status: false,
                 message: error,

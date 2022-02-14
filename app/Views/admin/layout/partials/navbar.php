@@ -39,31 +39,10 @@
                     </div>
                 </div>
             </li>
-            <li class="dropdown dropdown-list-toggle">
-                <a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep">
+            <li>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#notification-modal" class="nav-link nav-link-lg notification-modal-show">
                     <i class="far fa-bell"></i>
                 </a>
-                <div class="dropdown-menu dropdown-list dropdown-menu-right">
-                    <div class="dropdown-header"><?= cve_admin_lang_path('Navbar', 'notifications') ?>
-                        <div class="float-right">
-                            <a href="#"><?= cve_admin_lang_path('Navbar', 'mark_all_read') ?></a>
-                        </div>
-                    </div>
-                    <div class="dropdown-list-content dropdown-list-icons">
-                        <a href="#" class="dropdown-item dropdown-item-unread">
-                            <div class="dropdown-item-icon bg-primary text-white">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <div class="dropdown-item-desc">
-                                Template update is available now!
-                                <div class="time text-primary">2 Min Ago</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="dropdown-footer text-center">
-                        <a href="#"><?= cve_admin_lang_path('Navbar', 'view_all') ?> <i class="fas fa-chevron-right"></i></a>
-                    </div>
-                </div>
             </li>
             <li class="dropdown">
                 <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
