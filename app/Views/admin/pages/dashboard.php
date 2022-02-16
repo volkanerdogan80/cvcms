@@ -238,5 +238,8 @@
             }
         });
     </script>
-
+<?= script_tag('public/admin/js/countries.js') ?>
+<?= script_tag('public/admin/js/jquery.vmap.min.js') ?>
+<?= script_tag('public/admin/js/jquery.vmap.world.js') ?>
+<?= script_tag('public/admin/js/analytics.js') ?>
 <?php $this->endSection(); ?>

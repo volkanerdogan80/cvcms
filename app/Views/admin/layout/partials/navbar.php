@@ -48,11 +48,13 @@
                     </div>
                 </div>
             </li>
-            <li>
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#notification-modal" class="nav-link nav-link-lg notification-modal-show">
-                    <i class="far fa-bell"></i>
-                </a>
-            </li>
+            <?php if(config('firebase')->status): ?>
+                <li>
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#notification-modal" class="nav-link nav-link-lg notification-modal-show">
+                        <i class="far fa-bell"></i>
+                    </a>
+                </li>
+            <?php endif; ?>
             <li class="dropdown">
                 <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                     <img alt="image" src="<?= cve_language(true)->getFlag() ?>" class="rounded-circle mr-1">

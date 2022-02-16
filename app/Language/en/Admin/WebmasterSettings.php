@@ -12,6 +12,7 @@ return [
         'select_json_file' => 'Select Service Account JSON File',
         'yandex_settings' => 'Yandex Settings',
         'code' => 'Code',
-        'specific_code' => 'Specific Code'
+        'specific_code' => 'Specific Code',
+        'google_recaptcha' => 'Google Recaptcha Key'
     ]
 ];

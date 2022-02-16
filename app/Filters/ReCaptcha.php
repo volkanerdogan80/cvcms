@@ -8,23 +8,25 @@ class ReCaptcha implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        if($request->getMethod() == 'post'){
-            if ($request->getPost('g-recaptcha-response')){
-                $client = \Config\Services::curlrequest();
-                $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
-                    'form_params' => [
-                        'secret' => '6Let_eIZAAAAABKMXHVDrqmLxCEhLOA70dUfcUqh',
-                        'response' => $request->getPost('g-recaptcha-response'),
-                        'remoteip' => $request->getIPAddress()
-                    ]
-                ]);
+        if(config('webmaster')->reCaptchaKey){
+            if($request->getMethod() == 'post'){
+                if ($request->getPost('g-recaptcha-response')){
+                    $client = \Config\Services::curlrequest();
+                    $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
+                        'form_params' => [
+                            'secret' => '6Let_eIZAAAAABKMXHVDrqmLxCEhLOA70dUfcUqh',
+                            'response' => $request->getPost('g-recaptcha-response'),
+                            'remoteip' => $request->getIPAddress()
+                        ]
+                    ]);
 
-                $res = json_decode($response->getBody());
-                if (!isset($res->success) || !$res->success){
+                    $res = json_decode($response->getBody());
+                    if (!isset($res->success) || !$res->success){
+                        return redirect()->back()->with('error', lang('Validation.text.recaptcha_validation'));
+                    }
+                }else{
                     return redirect()->back()->with('error', lang('Validation.text.recaptcha_validation'));
                 }
-            }else{
-                return redirect()->back()->with('error', lang('Validation.text.recaptcha_validation'));
             }
         }
     }

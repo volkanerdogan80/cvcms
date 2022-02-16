@@ -18,6 +18,8 @@ class Webmaster extends BaseConfig
 
     public $code = '';
 
+    public $reCaptchaKey = '';
+
     public static $registrars = [
         'App\Controllers\Config'
     ];

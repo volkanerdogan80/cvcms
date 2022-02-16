@@ -360,7 +360,7 @@ trait ContentTrait
         $firebase = new Firebase();
         $notification = $this->request->getPost('notification');
         $status = $this->request->getPost('status');
-        if ($notification == STATUS_ACTIVE && $status == STATUS_ACTIVE){
+        if (config('firebase')->status && $notification == STATUS_ACTIVE && $status == STATUS_ACTIVE){
             $firebase->setContent($content_id)->setToken()->send();
         }
 

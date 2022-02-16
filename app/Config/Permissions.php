@@ -144,5 +144,8 @@ class Permissions extends BaseConfig
         'admin_service_purge_delete_all' => 'Admin/Permissions.text.admin_service_purge_delete_all',
 
         'admin_firebase_notification_send' => 'Admin/Permissions.text.admin_firebase_notification_send',
+
+        'analytics_realtime' => 'Admin/Permissions.text.analytics_realtime',
+        'analytics_metrics' => 'Admin/Permissions.text.analytics_metrics',
     ];
 }

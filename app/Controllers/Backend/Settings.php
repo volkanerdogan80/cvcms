@@ -66,7 +66,7 @@ class Settings extends BaseController
                 'emailVerify' => $this->request->getPost('emailVerify'),
                 'defaultGroup' => $this->request->getPost('defaultGroup'),
                 'perPageList' => $this->request->getPost('perPageList'),
-                'modules' => $this->request->getPost('modules'),
+                'install' => true,
             ];
 
             $this->settingEntity->setKey('system');
@@ -217,9 +217,10 @@ class Settings extends BaseController
             $settings = [
                 'googleVerify' => $this->request->getPost('googleVerify'),
                 'googleAnalytics' => $this->request->getPost('googleAnalytics'),
+                'accountId' => $this->request->getPost('accountId'),
+                'reCaptchaKey' => $this->request->getPost('reCaptchaKey'),
                 'yandexVerify' => $this->request->getPost('yandexVerify'),
                 'yandexMetrika' => $this->request->getPost('yandexMetrika'),
-                'accountId' => $this->request->getPost('accountId'),
                 'code' => $this->request->getPost('code'),
             ];
 

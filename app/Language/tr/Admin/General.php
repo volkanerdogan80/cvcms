@@ -24,5 +24,12 @@ return [
         'no' => 'Hayır',
 
         'realtime_visitor_info' => 'Anlık Ziyaretçi Bilgisi',
+
+        'today' => 'Bugün',
+        'yesterday' => 'Dün',
+        'last_7_days' => 'Son 7 Gün',
+        'last_30_days' => 'Son 30 Gün',
+        'this_month' => 'Bu Ay',
+        'last_month' => 'Önceki Ay'
     ]
 ];

@@ -146,5 +146,8 @@ return [
         'admin_service_purge_delete_all' => 'Permission to delete all service posts permanently',
 
         'admin_firebase_notification_send' => 'Authorization to send custom notifications',
+
+        'analytics_realtime' => 'Authorization to display instant visitor detail page',
+        'analytics_metrics' => 'Authorization to display visitor history detail page',
     ]
 ];

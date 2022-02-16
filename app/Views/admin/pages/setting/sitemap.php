@@ -10,6 +10,19 @@
             <?= $this->include('admin/layout/partials/errors'); ?>
 
             <div class="section-body">
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group row mb-4">
+                            <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2">
+                                <?= cve_admin_lang_path('SitemapSettings', 'access_route'); ?>
+                            </label>
+                            <div class="col-sm-12 col-md-8">
+                                <input value="<?= base_url(route_to('sitemap.listing')); ?>" name="sur_name" type="text" class="form-control" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <form action="<?php current_url(); ?>" method="post">
                     <?= csrf_field(); ?>
                     <?php foreach (cve_module_list() as $module): ?>

@@ -14,5 +14,6 @@ return [
         'monthly' => 'Monthly',
         'yearly' => 'Yearly',
         'never' => 'Never',
+        'access_route' => 'Access Route',
     ]
 ];

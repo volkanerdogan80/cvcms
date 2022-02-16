@@ -36,6 +36,12 @@
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('WebmasterSettings', 'google_recaptcha') ?></label>
+                                <div class="col-sm-12 col-md-8">
+                                    <input name="reCaptchaKey" value="<?= $setting->getValue('reCaptchaKey'); ?>" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('WebmasterSettings', 'google_analytics') ?></label>
                                 <div class="col-sm-12 col-md-8">
                                     <input type="file" name="analytics-json" class="custom-file-input" id="customFile">

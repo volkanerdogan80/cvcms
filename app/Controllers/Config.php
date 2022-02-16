@@ -56,7 +56,7 @@ class Config extends BaseController
                     'emailVerify' => $setting->getValue('emailVerify'),
                     'defaultGroup' => $setting->getValue('defaultGroup'),
                     'perPageList' => explode(',', $setting->getValue('perPageList')),
-                    'modules' => $setting->getValue('modules', true),
+                    'install' => $setting->getValue('install'),
                 ];
             }
             return [];
@@ -241,9 +241,10 @@ class Config extends BaseController
                 return [
                     'googleVerify' => $setting->getValue('googleVerify'),
                     'googleAnalytics' => $setting->getValue('googleAnalytics'),
+                    'accountId' => $setting->getValue('accountId'),
+                    'reCaptchaKey' => $setting->getValue('reCaptchaKey'),
                     'yandexVerify' => $setting->getValue('yandexVerify'),
                     'yandexMetrika' => $setting->getValue('yandexMetrika'),
-                    'accountId' => $setting->getValue('accountId'),
                     'code' => $setting->getValue('code'),
                 ];
             }

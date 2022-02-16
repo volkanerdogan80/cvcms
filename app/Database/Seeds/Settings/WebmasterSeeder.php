@@ -21,10 +21,11 @@ class WebmasterSeeder extends Seeder
         $data = [
             'googleVerify' => $default->googleVerify,
             'googleAnalytics' => $default->googleAnalytics,
+            'accountId' => $default->accountId,
+            'reCaptchaKey' => $default->reCaptchaKey,
             'yandexVerify' => $default->yandexVerify,
             'yandexMetrika' => $default->yandexMetrika,
             'code' => $default->code,
-            'accountId' => $default->accountId
         ];
 
         $entity->setKey('webmaster');

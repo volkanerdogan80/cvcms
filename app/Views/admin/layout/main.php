@@ -75,12 +75,12 @@
     let adminImagePicker = '<?= base_url(route_to('admin_image_picker')); ?>';
     let admin_message_listing = '<?= base_url(route_to('admin_message_listing', null)); ?>';
     let daterange = {
-        today: 'Today',
-        yesterday: 'Yesterday',
-        last_7_days: 'Last 7 Days',
-        last_30_days: 'Last 30 Days',
-        this_month: 'This Month',
-        last_month: 'Last Month',
+        today: '<?=cve_admin_lang_path('General', 'today') ?>',
+        yesterday: '<?=cve_admin_lang_path('General', 'yesterday') ?>',
+        last_7_days: '<?=cve_admin_lang_path('General', 'last_7_days') ?>',
+        last_30_days: '<?=cve_admin_lang_path('General', 'last_30_days') ?>',
+        this_month: '<?=cve_admin_lang_path('General', 'this_month') ?>',
+        last_month: '<?=cve_admin_lang_path('General', 'last_month') ?>'
     }
 </script>
 <?= script_tag('public/admin/js/stisla.js'); ?>
@@ -115,10 +115,7 @@
 <?= script_tag('public/admin/js/image-picker.js'); ?>
 <?= script_tag('public/admin/js/custom-field.js'); ?>
 <?= script_tag('public/admin/js/messages.js'); ?>
-<?= script_tag('public/admin/js/analytics.js') ?>
-<script>
-    let admin_realtime_visitors = '<?= base_url(route_to('admin_realtime_visitors')); ?>'
-</script>
+
 <?php $this->renderSection('script'); ?>
 </body>
 </html>

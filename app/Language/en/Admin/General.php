@@ -24,5 +24,13 @@ return [
         'no'    => 'No',
 
         'realtime_visitor_info' => 'Instant visitor information',
+
+        'today' => 'Today',
+        'yesterday' => 'Yesterday',
+        'last_7_days' => 'Last 7 Days',
+        'last_30_days' => 'Last 30 Days',
+        'this_month' => 'This Month',
+        'last_month' => 'Last Month'
+
     ]
 ];

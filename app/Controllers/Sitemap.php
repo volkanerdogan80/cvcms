@@ -26,17 +26,19 @@ class Sitemap extends BaseController
     {
         $countContent = [];
 
-        $category = $this->categoryModel->whereIn('module', $this->activeModules)->countAllResults();
+        if(count($this->activeModules) > 0){
+            $category = $this->categoryModel->whereIn('module', $this->activeModules)->countAllResults();
 
-        foreach ($this->activeModules as $module){
-            $count = $this->contentModel->where('module', $module)->countAllResults();
+            foreach ($this->activeModules as $module){
+                $count = $this->contentModel->where('module', $module)->countAllResults();
+                $countContent = array_merge($countContent, [
+                    $module => $count / self::$PERPAGE
+                ]);
+            }
             $countContent = array_merge($countContent, [
-                $module => $count / self::$PERPAGE
+                'category' => $category / self::$PERPAGE
             ]);
         }
-        $countContent = array_merge($countContent, [
-            'category' => $category / self::$PERPAGE
-        ]);
 
         $this->response->setHeader('Content-Type', 'application/xml');
         return view( PANEL_FOLDER . '/sitemap/listing', [

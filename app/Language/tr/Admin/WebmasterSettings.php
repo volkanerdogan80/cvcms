@@ -12,6 +12,7 @@ return [
         'select_json_file' => 'Hizmet Hesabı JSON Dosyası Seç',
         'yandex_settings' => 'Yandex Ayarları',
         'code' => 'Kod',
-        'specific_code' => 'Özel Kod'
+        'specific_code' => 'Özel Kod',
+        'google_recaptcha' => 'Google Recaptcha Anahtarı'
     ]
 ];

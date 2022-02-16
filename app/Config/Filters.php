@@ -34,7 +34,7 @@ class Filters extends BaseConfig
             ]
 		],
 		'after'  => [
-            //'toolbar',
+            'toolbar',
             'honeypot' => [
                 'except' => [
                     '*/' . PANEL_FOLDER . '/*'
@@ -42,22 +42,26 @@ class Filters extends BaseConfig
             ],
             'ThemeJavascript' => [
                 'except' => [
-                    '*/' . PANEL_FOLDER . '/*'
+                    '*/' . PANEL_FOLDER . '/*',
+                    'install/*',
                 ]
             ],
             'ThemeStyle' => [
                 'except' => [
-                    '*/' . PANEL_FOLDER . '/*'
+                    '*/' . PANEL_FOLDER . '/*',
+                    'install/*',
                 ]
             ],
             'ThemeWebmaster' => [
                 'except' => [
-                    '*/' . PANEL_FOLDER . '/*'
+                    '*/' . PANEL_FOLDER . '/*',
+                    'install/*',
                 ]
             ],
             'ThemeFirebase' => [
                 'except' => [
-                    '*/' . PANEL_FOLDER . '/*'
+                    '*/' . PANEL_FOLDER . '/*',
+                    'install/*',
                 ]
             ]
         ]

@@ -26,7 +26,7 @@ class BaseController extends Controller
 	 *
 	 * @var array
 	 */
-	protected $helpers = ['html', 'cve', 'text', 'theme', 'list', 'post', 'category', 'user', 'comment', 'general'];
+	protected $helpers = [];
 
 	/**
 	 * Constructor.
@@ -36,7 +36,9 @@ class BaseController extends Controller
 		// Do Not Edit This Line
 		parent::initController($request, $response, $logger);
 
-
+        if (config('system')->install){
+            helper(['form','html', 'sdc', 'text', 'theme', 'list', 'post', 'category', 'user', 'comment', 'general']);
+        }
         //--------------------------------------------------------------------
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------

@@ -21,11 +21,11 @@
                                 <label for="email"><?= cve_admin_lang_path('Inputs', 'email') ?></label>
                                 <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
                             </div>
-
-                            <div class="form-group">
-                                <div class="g-recaptcha" data-sitekey="6Let_eIZAAAAABwHW3sQsCjvnFVHj7uBK6tkUmiy"></div>
-                            </div>
-
+                            <?php if(config('webmaster')->reCaptchaKey): ?>
+                                <div class="form-group">
+                                    <div class="g-recaptcha" data-sitekey="6Let_eIZAAAAABwHW3sQsCjvnFVHj7uBK6tkUmiy"></div>
+                                </div>
+                            <?php endif; ?>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
                                     <?= cve_admin_lang_path('Auth', 'reset_password') ?>

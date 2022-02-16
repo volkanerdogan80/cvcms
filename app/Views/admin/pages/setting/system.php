@@ -102,36 +102,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- TODO: Bu alan multi modül sisteminde gerekli değil ama birden fazla modül alıp aynı yerden yönetmek isteyenler için kullanışlı olabilir şimdilik dursun -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Modüller</h4>
-                        </div>
-                        <div class="card-body">
-                            <?php foreach (cve_module_list() as $module): ?>
-                                <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('Modules', strtolower($module)) ?></label>
-                                    <div class="col-sm-12 col-md-8">
-                                        <div class="selectgroup w-100">
-                                            <label class="selectgroup-item">
-                                                <?php $module = strtolower($module); ?>
-                                                <input <?= $setting->getValue('modules')->$module ? 'checked' : ''; ?> type="radio" name="modules[<?= $module ?>]" value="1" class="selectgroup-input">
-                                                <span class="selectgroup-button"><?= cve_admin_lang_path('Buttons', 'active') ?></span>
-                                            </label>
-                                            <label class="selectgroup-item">
-                                                <input <?= !$setting->getValue('modules')->$module ? 'checked' : ''; ?> type="radio" name="modules[<?= $module ?>]" value="0" class="selectgroup-input">
-                                                <span class="selectgroup-button"><?= cve_admin_lang_path('Buttons', 'passive') ?></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                        <div class="card-footer text-right">
-                            <button type="submit" class="btn btn-success btn-block btn-lg"><?= cve_admin_lang_path('Buttons', 'update') ?></button>
-                        </div>
-                    </div>
-
                 </form>
             </div>
         </section>

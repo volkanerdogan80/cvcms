@@ -26,8 +26,8 @@ class SystemSeeder extends Seeder
             'login' => $default->login,
             'emailVerify' => $default->emailVerify,
             'defaultGroup' => $group->id,
+            'install' => true,
             'perPageList' => implode(',', $default->perPageList),
-            'modules' => $default->modules //TODO: cve_module_list() eklenerek başlangıçta modüller yüklenebilir?
         ];
 
         $entity->setKey('system');

@@ -1,7 +1,9 @@
 setInterval(function () {
     cve_request.post(admin_realtime_visitors, {}, function (response) {
         if (response.status) {
-            setRealTimeVisitorsData(response.data);
+            if($('#visitorMap').length){
+                setRealTimeVisitorsData(response.data);
+            }
             $('.analytics-realtime-visitors').text(response.online)
         }
     }, false)
@@ -33,7 +35,7 @@ function getCountryCode(country) {
 $('.daterange-analytics').daterangepicker({
     locale: {
         format: 'YYYY-MM-DD',
-        cancelLabel: 'Temizle'
+        cancelLabel: 'Vazgeç'
     },
     drops: 'left',
     opens: 'left',

@@ -147,5 +147,8 @@ return [
         'admin_service_purge_delete_all' => 'Tüm hizmet yazılarını kalıcı olarak silme yetkisi',
 
         'admin_firebase_notification_send' => 'Özel bildirim gönderme yetkisi',
+
+        'analytics_realtime' => 'Anlık ziyaretçi verileri detay sayfası görüntüleme yetkisi',
+        'analytics_metrics' => 'Geçmiş ziyaretçi verileri detay sayfası görüntüleme yetkisi',
     ]
 ];

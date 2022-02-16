@@ -77,9 +77,11 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="g-recaptcha" data-sitekey="6Let_eIZAAAAABwHW3sQsCjvnFVHj7uBK6tkUmiy"></div>
-                                    </div>
+                                    <?php if(config('webmaster')->reCaptchaKey): ?>
+                                        <div class="form-group">
+                                            <div class="g-recaptcha" data-sitekey="6Let_eIZAAAAABwHW3sQsCjvnFVHj7uBK6tkUmiy"></div>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </form>

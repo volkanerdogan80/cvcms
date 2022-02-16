@@ -35,11 +35,11 @@
                             </div>
                             <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
                         </div>
-
-                        <div class="form-group">
-                            <div class="g-recaptcha" data-sitekey="6Let_eIZAAAAABwHW3sQsCjvnFVHj7uBK6tkUmiy"></div>
-                        </div>
-
+                        <?php if(config('webmaster')->reCaptchaKey): ?>
+                            <div class="form-group">
+                                <div class="g-recaptcha" data-sitekey="6Let_eIZAAAAABwHW3sQsCjvnFVHj7uBK6tkUmiy"></div>
+                            </div>
+                        <?php endif; ?>
                         <div class="form-group text-right">
                             <a href="<?= base_url(route_to('admin_forgot_password')); ?>" class="float-left mt-3">
                                 <?= cve_admin_lang_path('Auth', 'forgot_password') ?>
