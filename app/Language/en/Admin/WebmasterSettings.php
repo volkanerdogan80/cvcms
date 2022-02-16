@@ -7,6 +7,11 @@ return [
         'verify_key' => 'Validation Key',
         'tracking_code' => 'Tracking Code',
         'google_settings' => 'Google Settings',
-        'yandex_settings' => 'Yandex Settings'
+        'google_analytics' => 'Google Analytics',
+        'view_id' => 'View ID',
+        'select_json_file' => 'Select Service Account JSON File',
+        'yandex_settings' => 'Yandex Settings',
+        'code' => 'Code',
+        'specific_code' => 'Specific Code'
     ]
 ];

@@ -21,6 +21,8 @@ return [
         'image_gallery'  => 'Görsel Galerisi',
 
         'yes' => 'Evet',
-        'no' => 'Hayır'
+        'no' => 'Hayır',
+
+        'realtime_visitor_info' => 'Anlık Ziyaretçi Bilgisi',
     ]
 ];

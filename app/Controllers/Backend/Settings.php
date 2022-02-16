@@ -219,6 +219,7 @@ class Settings extends BaseController
                 'googleAnalytics' => $this->request->getPost('googleAnalytics'),
                 'yandexVerify' => $this->request->getPost('yandexVerify'),
                 'yandexMetrika' => $this->request->getPost('yandexMetrika'),
+                'accountId' => $this->request->getPost('accountId'),
                 'code' => $this->request->getPost('code'),
             ];
 
@@ -226,6 +227,11 @@ class Settings extends BaseController
             $this->settingEntity->setValue($settings);
 
             $this->settingModel->where('skey', 'webmaster')->update(null, $this->settingEntity);
+
+            $analyticsFile = $this->request->getFile('analytics-json');
+            if($analyticsFile->getName()){
+                $analyticsFile->move(WRITEPATH . 'uploads', 'google-analytics-account.json', true);
+            }
 
             if($this->settingModel->errors()){
                 return redirect()->back()->with('error', $this->settingModel->errors());

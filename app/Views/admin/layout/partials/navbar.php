@@ -12,6 +12,15 @@
             </ul>
         </form>
         <ul class="navbar-nav navbar-right">
+            <?php if (config('webmaster')->accountId): ?>
+                <li>
+                    <a href="<?= base_url(route_to('admin_analytics_dashboard')) ?>"
+                       data-toggle="tooltip" data-placement="top" title="<?= cve_admin_lang_path('Buttons', 'analytics'); ?>"
+                       class="nav-link nav-link-lg">
+                        <i class="fas fa-chart-line"></i>
+                    </a>
+                </li>
+            <?php endif; ?>
             <li>
                 <a href="<?= base_url(route_to('admin_cache_clean')) ?>"
                    data-toggle="tooltip" data-placement="top" title="<?= cve_admin_lang_path('Navbar', 'clear_cache') ?>"

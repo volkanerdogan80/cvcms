@@ -51,5 +51,6 @@ return [
         'go_to_dashboard'   => 'Panel\'e Git',
         'go_to_forgot_pass' => 'Şifremi Unuttum Sayfası\'na Git',
 
+        'analytics' => 'İstatistikler',
     ]
 ];

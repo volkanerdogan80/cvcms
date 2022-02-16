@@ -14,6 +14,8 @@ class Webmaster extends BaseConfig
     public $yandexVerify = '';
     public $yandexMetrika = '';
 
+    public $accountId = '';
+
     public $code = '';
 
     public static $registrars = [

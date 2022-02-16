@@ -149,6 +149,11 @@ $routes->group('firebase', function ($routes) {
     $routes->post('notification/send', 'Firebase::send', ['as' => 'admin_firebase_notification_send']);
 });
 
+$routes->group('analytics', function ($routes) {
+    $routes->get('dashboard', 'Backend\Analytics::dashboard', ['as' => 'admin_analytics_dashboard']);
+    $routes->post('realtime/visitors', 'Backend\Analytics::getRealTimeVisitors', ['as' => 'admin_realtime_visitors']);
+});
+
 
 
 

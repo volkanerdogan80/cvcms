@@ -86,5 +86,6 @@ return [
         'page_purge_delete_failure'    => 'Kendinize ait olmayan silinmiş bir sayfayı kalıcı olarak silemezsiniz.',
 
         'notification_send_failure'   => 'Bildirim gönderimi esnasında bir hata meydana geldi. Lütfen tekrar deneyiniz.',
+        'realtime_visitors_failure'   => 'Sitenizdeki anlık ziyaretçi sayısı bilgisine erişilemiyor. Günlük kullanım limiti dolmuş olabilir.'
     ]
 ];

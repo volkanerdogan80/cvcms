@@ -14,7 +14,8 @@
       "ext-pdo": "*",
       "ext-curl": "*",
       "ext-simplexml": "*",
-		"codeigniter4/translations": "^4.1"
+		"codeigniter4/translations": "^4.1",
+		"google/apiclient": "^2.12"
     },
 	"require-dev": {
 		"fzaninotto/faker": "^1.9@dev",

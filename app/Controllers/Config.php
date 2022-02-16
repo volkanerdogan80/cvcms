@@ -243,6 +243,7 @@ class Config extends BaseController
                     'googleAnalytics' => $setting->getValue('googleAnalytics'),
                     'yandexVerify' => $setting->getValue('yandexVerify'),
                     'yandexMetrika' => $setting->getValue('yandexMetrika'),
+                    'accountId' => $setting->getValue('accountId'),
                     'code' => $setting->getValue('code'),
                 ];
             }

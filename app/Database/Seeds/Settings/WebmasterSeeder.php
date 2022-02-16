@@ -24,6 +24,7 @@ class WebmasterSeeder extends Seeder
             'yandexVerify' => $default->yandexVerify,
             'yandexMetrika' => $default->yandexMetrika,
             'code' => $default->code,
+            'accountId' => $default->accountId
         ];
 
         $entity->setKey('webmaster');

@@ -7,6 +7,11 @@ return [
         'verify_key' => 'Doğrulama Anahtarı',
         'tracking_code' => 'İzleme Kodu',
         'google_settings' => 'Google Ayarları',
-        'yandex_settings' => 'Yandex Ayarları'
+        'google_analytics' => 'Google Analytics',
+        'view_id' => 'Görünüm Kimliği',
+        'select_json_file' => 'Hizmet Hesabı JSON Dosyası Seç',
+        'yandex_settings' => 'Yandex Ayarları',
+        'code' => 'Kod',
+        'specific_code' => 'Özel Kod'
     ]
 ];

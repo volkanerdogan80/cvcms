@@ -30,11 +30,6 @@
     <?= csrf_meta() ?>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <?php $this->renderSection('style'); ?>
-
-    <script>
-        let adminImagePicker = '<?= base_url(route_to('admin_image_picker')); ?>'
-    </script>
-
 </head>
 
 <body>
@@ -67,19 +62,18 @@
         title: '<?= cve_admin_lang_path('General', 'are_you_sure') ?>',
         text: '<?= cve_admin_lang_path('General', 'purge_delete_desc') ?>'
     }
-    let imagePickerModal = {
+    /*let imagePickerModal = {
         buttonText: {
-            single: '<?= cve_admin_lang_path('Buttons', 'single_modal_button_title') ?>',
-            multi: '<?= cve_admin_lang_path('Buttons', 'multi_modal_button_title') ?>',
+            single: '<?php // cve_admin_lang_path('Buttons', 'single_modal_button_title') ?>',
+            multi: '<?php // cve_admin_lang_path('Buttons', 'multi_modal_button_title') ?>',
         },
         title: {
-            single: '<?= cve_admin_lang_path('Buttons', 'single_modal_title') ?>',
-            multi: '<?= cve_admin_lang_path('Buttons', 'multi_modal_title') ?>',
+            single: '<?php // cve_admin_lang_path('Buttons', 'single_modal_title') ?>',
+            multi: '<?php // cve_admin_lang_path('Buttons', 'multi_modal_title') ?>',
         }
-    }
-
+    }*/
+    let adminImagePicker = '<?= base_url(route_to('admin_image_picker')); ?>';
     let admin_message_listing = '<?= base_url(route_to('admin_message_listing', null)); ?>'
-
 </script>
 
 <?= script_tag('public/admin/js/stisla.js'); ?>

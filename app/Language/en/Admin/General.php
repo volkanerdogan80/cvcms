@@ -21,6 +21,8 @@ return [
         'image_gallery'      => 'Image Gallery',
 
         'yes'   => 'Yes',
-        'no'    => 'No'
+        'no'    => 'No',
+
+        'realtime_visitor_info' => 'Instant visitor information',
     ]
 ];

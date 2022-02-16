@@ -64,8 +64,8 @@
                                 <div class="card-header">
                                     <h4>Online</h4>
                                 </div>
-                                <div class="card-body">
-                                    132
+                                <div class="card-body analytics-realtime-visitors">
+                                    0
                                 </div>
                             </div>
                         </div>
@@ -189,131 +189,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-8 col-md-8 col-12 col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4><?= cve_admin_lang_path('Dashboard', 'statistics'); ?></h4>
-                                <div class="card-header-action">
-                                    <div class="btn-group">
-                                        <a href="#" class="btn btn-primary"><?= cve_admin_lang_path('Dashboard', 'weekly'); ?></a>
-                                        <a href="#" class="btn"><?= cve_admin_lang_path('Dashboard', 'monthly'); ?></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <canvas id="myChart" height="182"></canvas>
-                                <div class="statistic-details mt-sm-4">
-                                    <div class="statistic-details-item">
-                                        <span class="text-muted"><span class="text-danger"><i class="fas fa-caret-down"></i></span> 23%</span>
-                                        <div class="detail-value">985.147</div>
-                                        <div class="detail-name"><?= cve_admin_lang_path('Dashboard', 'page_views'); ?></div>
-                                    </div>
-                                    <div class="statistic-details-item">
-                                        <span class="text-muted"><span class="text-primary"><i class="fas fa-caret-up"></i></span> 7%</span>
-                                        <div class="detail-value">2dk</div>
-                                        <div class="detail-name"><?= cve_admin_lang_path('Dashboard', 'session_duration'); ?></div>
-                                    </div>
-                                    <div class="statistic-details-item">
-                                        <span class="text-muted"><span class="text-primary"><i class="fas fa-caret-up"></i></span>9%</span>
-                                        <div class="detail-value">123.567</div>
-                                        <div class="detail-name"><?= cve_admin_lang_path('Dashboard', 'number_of_sessions'); ?></div>
-                                    </div>
-                                    <div class="statistic-details-item">
-                                        <span class="text-muted"><span class="text-primary"><i class="fas fa-caret-up"></i></span> 19%</span>
-                                        <div class="detail-value">54.254</div>
-                                        <div class="detail-name"><?= cve_admin_lang_path('Dashboard', 'unique_sessions'); ?></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4><?= cve_admin_lang_path('Dashboard', 'reference_url'); ?></h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="mb-4">
-                                    <div class="text-small float-right font-weight-bold text-muted">2,100</div>
-                                    <div class="font-weight-bold mb-1">Google</div>
-                                    <div class="progress" data-height="3">
-                                        <div class="progress-bar" role="progressbar" data-width="80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-4">
-                                    <div class="text-small float-right font-weight-bold text-muted">1,880</div>
-                                    <div class="font-weight-bold mb-1">Facebook</div>
-                                    <div class="progress" data-height="3">
-                                        <div class="progress-bar" role="progressbar" data-width="67%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-4">
-                                    <div class="text-small float-right font-weight-bold text-muted">1,521</div>
-                                    <div class="font-weight-bold mb-1">Bing</div>
-                                    <div class="progress" data-height="3">
-                                        <div class="progress-bar" role="progressbar" data-width="58%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-4">
-                                    <div class="text-small float-right font-weight-bold text-muted">884</div>
-                                    <div class="font-weight-bold mb-1">Yahoo</div>
-                                    <div class="progress" data-height="3">
-                                        <div class="progress-bar" role="progressbar" data-width="36%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-4">
-                                    <div class="text-small float-right font-weight-bold text-muted">473</div>
-                                    <div class="font-weight-bold mb-1">Yandex</div>
-                                    <div class="progress" data-height="3">
-                                        <div class="progress-bar" role="progressbar" data-width="28%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-4">
-                                    <div class="text-small float-right font-weight-bold text-muted">418</div>
-                                    <div class="font-weight-bold mb-1">Twitter</div>
-                                    <div class="progress" data-height="3">
-                                        <div class="progress-bar" role="progressbar" data-width="20%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h4><?= cve_admin_lang_path('Dashboard', 'popular_browsers'); ?></h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <div class="browser browser-chrome"></div>
-                                        <div class="mt-2 font-weight-bold">Chrome</div>
-                                        <div class="text-muted text-small"><span class="text-primary"><i class="fas fa-caret-up"></i></span> 48%</div>
-                                    </div>
-                                    <div class="col text-center">
-                                        <div class="browser browser-firefox"></div>
-                                        <div class="mt-2 font-weight-bold">Firefox</div>
-                                        <div class="text-muted text-small"><span class="text-primary"><i class="fas fa-caret-up"></i></span> 26%</div>
-                                    </div>
-                                    <div class="col text-center">
-                                        <div class="browser browser-safari"></div>
-                                        <div class="mt-2 font-weight-bold">Safari</div>
-                                        <div class="text-muted text-small"><span class="text-danger"><i class="fas fa-caret-down"></i></span> 14%</div>
-                                    </div>
-                                    <div class="col text-center">
-                                        <div class="browser browser-opera"></div>
-                                        <div class="mt-2 font-weight-bold">Opera</div>
-                                        <div class="text-muted text-small">7%</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
     </div>
@@ -322,7 +197,6 @@
 <?php $this->section('script'); ?>
 
 <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'chart.min.js') ?>
-
     <script>
         var statistics_chart = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(statistics_chart, {

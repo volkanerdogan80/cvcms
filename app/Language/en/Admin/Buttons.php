@@ -51,5 +51,8 @@ return [
         'go_to_dashboard'   => 'Go To Dashboard',
         'go_to_forgot_pass' => 'Go To Forgot Password Page',
 
+        'analytics' => 'Statistics',
+
+
     ]
 ];
