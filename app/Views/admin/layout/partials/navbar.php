@@ -14,7 +14,7 @@
         <ul class="navbar-nav navbar-right">
             <?php if (config('webmaster')->accountId): ?>
                 <li>
-                    <a href="<?= base_url(route_to('admin_analytics_dashboard')) ?>"
+                    <a href="<?= base_url(route_to('admin_analytics_realtime')) ?>"
                        data-toggle="tooltip" data-placement="top" title="<?= cve_admin_lang_path('Buttons', 'analytics'); ?>"
                        class="nav-link nav-link-lg">
                         <i class="fas fa-chart-line"></i>

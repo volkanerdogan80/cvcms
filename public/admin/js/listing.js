@@ -166,6 +166,16 @@ $('.daterange-cus').daterangepicker({
     opens: 'left',
     timePicker: true,
     timePicker24Hour: true,
+    "autoApply": false,
+    ranges: {
+        [daterange.today]: [moment(), moment()],
+        [daterange.yesterday]: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        [daterange.last_7_days]: [moment().subtract(6, 'days'), moment()],
+        [daterange.last_30_days]: [moment().subtract(29, 'days'), moment()],
+        [daterange.this_month]: [moment().startOf('month'), moment().endOf('month')],
+        [daterange.last_month]: [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+    },
+    "alwaysShowCalendars": true,
 });
 
 $('.date_filter_clear').click(function (){

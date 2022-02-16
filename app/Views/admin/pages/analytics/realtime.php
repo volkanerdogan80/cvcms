@@ -9,7 +9,12 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Anlık Ziyaretçi</h1>
+            <h1><?= cve_admin_lang_path('Analytics', 'instant_visitors') ?></h1>
+            <div class="section-header-breadcrumb">
+                <a href="<?= base_url(route_to('admin_analytics_metrics')); ?>" class="btn btn-primary" style="margin-right: 7px">
+                    <i class="fas fa-history"></i> <?= cve_admin_lang_path('Buttons', 'visitor_history') ?>
+                </a>
+            </div>
         </div>
 
         <?= $this->include('admin/layout/partials/errors'); ?>
@@ -19,7 +24,7 @@
                 <div class="col-12 col-sm-12 col-lg-9">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Ziyaretçiler</h4>
+                            <h4><?= cve_admin_lang_path('Analytics', 'visitors') ?></h4>
                         </div>
                         <div class="card-body">
                             <div id="visitorMap" data-height="300"></div>
@@ -33,7 +38,7 @@
                                 <i class="fas fa-users"></i>
                             </div>
                             <h4 class="analytics-realtime-visitors">0</h4>
-                            <div class="card-description" data-height="285" style="height: 285px;">Anlık Ziyaretçi Sayısı</div>
+                            <div class="card-description" data-height="285" style="height: 285px;"><?= cve_admin_lang_path('Analytics', 'visitor_number') ?></div>
                         </div>
                     </div>
                 </div>
@@ -58,10 +63,5 @@
 <?= script_tag('public/admin/js/chart.min.js') ?>
 <?= script_tag('public/admin/js/jquery.vmap.min.js') ?>
 <?= script_tag('public/admin/js/jquery.vmap.world.js') ?>
-<?= script_tag('public/admin/js/jquery.vmap.indonesia.js') ?>
-<?= script_tag('public/admin/js/analytics.js') ?>
 <?= script_tag('public/admin/js/statistic.js') ?>
-<script>
-    let admin_realtime_visitors = '<?= base_url(route_to('admin_realtime_visitors')); ?>'
-</script>
 <?php $this->endSection(); ?>

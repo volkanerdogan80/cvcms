@@ -52,5 +52,8 @@ return [
         'go_to_forgot_pass' => 'Şifremi Unuttum Sayfası\'na Git',
 
         'analytics' => 'İstatistikler',
+        'instant_visitors' => 'Anlık Ziyaretçiler',
+        'visitor_history' => 'Ziyaretçi Geçmişi',
+
     ]
 ];

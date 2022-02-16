@@ -113,4 +113,4 @@ setInterval(function () {
             $('.navbar-message-list').html(response.data)
         }
     }, false)
-}, 3000)
+}, 300000)

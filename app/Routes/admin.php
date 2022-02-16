@@ -150,7 +150,8 @@ $routes->group('firebase', function ($routes) {
 });
 
 $routes->group('analytics', function ($routes) {
-    $routes->get('dashboard', 'Backend\Analytics::dashboard', ['as' => 'admin_analytics_dashboard']);
+    $routes->get('realtime', 'Backend\Analytics::realtime', ['as' => 'admin_analytics_realtime']);
+    $routes->get('metrics', 'Backend\Analytics::metrics', ['as' => 'admin_analytics_metrics']);
     $routes->post('realtime/visitors', 'Backend\Analytics::getRealTimeVisitors', ['as' => 'admin_realtime_visitors']);
 });
 

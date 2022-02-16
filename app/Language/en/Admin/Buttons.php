@@ -52,7 +52,7 @@ return [
         'go_to_forgot_pass' => 'Go To Forgot Password Page',
 
         'analytics' => 'Statistics',
-
-
+        'instant_visitors' => 'Instant Visitors',
+        'visitor_history' => 'Visitor History',
     ]
 ];
