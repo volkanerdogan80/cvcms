@@ -27,7 +27,7 @@ class SettingEntity extends Entity
         return $this->attributes['skey'];
     }
 
-    public function getValue(string $key = null, $isArray = false)
+    public function getValue($key = null, $isArray = false)
     {
         if (!is_null($key)){
             if ($isArray){

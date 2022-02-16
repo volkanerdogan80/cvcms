@@ -127,6 +127,7 @@ class Config extends BaseController
                     'SMTPPort' => $setting->getValue('SMTPPort'),
                     'SMTPCrypto' => $setting->getValue('SMTPCrypto'),
                     'mailType' => $setting->getValue('mailType'),
+                    'template' => json_decode($setting->getValue('template'), true)
                 ];
             }
             return [];

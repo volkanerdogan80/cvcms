@@ -51,7 +51,7 @@
                 <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'page_template_select'); ?></label>
                 <select name="page_type" class="form-control select2">
                     <?php foreach ($template_list as $key => $value): ?>
-                        <option <?= $key == $content->getPageType() ? 'selected' : ''; ?> value="<?= $key; ?>"><?= $value; ?></option>
+                        <option <?= $key == $content->getPageType() ? 'selected' : ''; ?> value="<?= $key; ?>"><?= $value['title'] ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>

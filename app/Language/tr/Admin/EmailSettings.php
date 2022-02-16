@@ -18,5 +18,11 @@ return [
         'mail' => 'Mail',
         'sendmail' => 'Sendmail',
         'smtp' => 'SMTP',
+        'accountVerify' => 'Hesap Doğrulama',
+        'accountVerifySuccess' => 'Hesap Doğrulama Başarılı',
+        'forgotPassword' => 'Şifre Sıfırlama',
+        'passwordChangeSuccess' => 'Şifre Sıfırlama Başarılı',
+        'newsletterSubscribeSuccess' => 'Eposta Aboneliği Başarılı',
+        'theme_settings' => 'Şablon Ayarları',
     ]
 ];

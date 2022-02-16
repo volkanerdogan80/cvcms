@@ -38,7 +38,7 @@ class Page extends BaseController
     protected function createViewData()
     {
         return [
-            'template_list' => $this->getPageTemplate()
+            'template_list' => page_template()
         ];
     }
 
@@ -46,7 +46,7 @@ class Page extends BaseController
     {
         return [
             'content' => $content,
-            'template_list' => $this->getPageTemplate()
+            'template_list' => page_template()
         ];
     }
 

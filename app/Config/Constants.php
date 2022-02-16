@@ -101,3 +101,4 @@ defined('DEFAULT_VIDEO_SELECT_ICON')   || define('DEFAULT_VIDEO_SELECT_ICON', PU
 defined('DEFAULT_FILE_SELECT_ICON')    || define('DEFAULT_FILE_SELECT_ICON', PUBLIC_ADMIN_IMAGE_PATH . 'default/default-file.png');
 
 defined('LANGUAGE_PATH')        || define('LANGUAGE_PATH', APPPATH . 'Language/');
+defined('THEMES_PATH')          || define('THEMES_PATH', ROOTPATH . 'themes/');

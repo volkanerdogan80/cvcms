@@ -18,5 +18,12 @@ return [
         'mail' => 'Mail',
         'sendmail' => 'Sendmail',
         'smtp' => 'SMTP',
+        'accountVerify' => 'Account Verification',
+        'accountVerifySuccess' => 'Account Verification Success',
+        'forgotPassword' => 'Reset Password',
+        'passwordChangeSuccess' => 'Password Reset Success',
+        'newsletterSubscribeSuccess' => 'Email Subscription Success',
+        'theme_settings' => 'Theme Settings',
+
     ]
 ];

@@ -1,0 +1,56 @@
+<?php
+
+function post_format()
+{
+    return [
+        'standard' => [
+            'name' => 'Standart Format',
+            'custom_field' => []
+        ],
+        'video' => [
+            'name' => 'Video Format',
+            'custom_field' => [
+                ['key' => 'youtube', 'lang' => false, 'value' => ''],
+                ['key' => 'vimeo', 'lang' => false, 'value' => ''],
+            ]
+        ],
+        'gallery' => [
+            'name' => 'Galeri Format',
+            'custom_field' => [
+                ['key' => 'youtube', 'lang' => false, 'value' => ''],
+                ['key' => 'vimeo', 'lang' => false, 'value' => ''],
+            ]
+        ],
+        'download' => [
+            'name' => 'Download Format',
+            'custom_field' => [
+                ['key' => 'download_url', 'lang' => false, 'value' => ''],
+                ['key' => 'file_size', 'lang' => false, 'value' => ''],
+            ]
+        ]
+    ];
+}
+
+function page_template()
+{
+    return [
+        'default' => [
+            'path' => cve_theme_file_path('page/default'),
+            'title' => 'Varsayılan Şablon'
+        ],
+        'contact' => [
+            'path' => cve_theme_file_path('page/contact'),
+            'title' => 'İletişim Sayfa Şablonu'
+        ],
+    ];
+}
+
+function email_template()
+{
+    return [
+        'default_account_verify' => [
+            'path' =>  cve_theme_file_path('email/account-verify'),
+            'title' => 'Varsayılan Hesap Doğrulama Şablonu'
+        ]
+    ];
+}

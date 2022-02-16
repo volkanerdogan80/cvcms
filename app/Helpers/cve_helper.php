@@ -268,11 +268,6 @@ function cve_slug_creator($str, $options = array())
     return $options['lowercase'] ? mb_strtolower($str, 'UTF-8') : $str;
 }
 
-function cve_module_view($module, $path): string
-{
-    return '\Modules/'. ucfirst($module) . '/Views/' . $path;
-}
-
 function cve_module_list()
 {
     $module_list = [];
@@ -286,6 +281,46 @@ function cve_module_list()
         }
         return $module_list;
     }
+}
+
+function cve_module_view($module, $path): string
+{
+    return '\Modules/'. ucfirst($module) . '/Views/' . $path;
+}
+
+function cve_email_template(): array
+{
+    $default = [
+        'default_account_verify' => [
+            'path' => PANEL_FOLDER . '/email/account-verify',
+            'title' => 'Varsayılan Hesap Doğrulama Maili'
+        ],
+        'default_account_verify_success' => [
+            'path' => PANEL_FOLDER . '/email/account-verify-success',
+            'title' => 'Varsayılan Hesap Doğrulama Başarılı Maili'
+        ],
+        'default_forgot_password' => [
+            'path' => PANEL_FOLDER . '/email/forgot-password',
+            'title' => 'Varsayılan Şifre Sıfırlama Talebi Maili'
+        ],
+        'default_forgot_password_success' => [
+            'path' => PANEL_FOLDER . '/email/password-change-success',
+            'title' => 'Varsayılan Şifre Sıfırlama Başarılı Maili'
+        ],
+        'default_newsletter_subscribe_success' => [
+            'path' => PANEL_FOLDER . '/email/newsletter-subscribe-success',
+            'title' => 'Varsayılan Eposta Aboneliği Başarılı Maili'
+        ],
+    ];
+
+    return array_merge($default, email_template());
+}
+
+function cve_view($path, $data = []): string
+{
+    $viewPath = THEMES_PATH . cve_theme_folder();
+    $renderer = \Config\Services::renderer($viewPath, null, false);
+    return $renderer->setData($data)->render($path);
 }
 
 function recurse_copy($src,$dst)

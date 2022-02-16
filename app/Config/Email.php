@@ -168,6 +168,14 @@ class Email extends BaseConfig
 	 */
 	public $DSN = false;
 
+    public $template = [
+        'accountVerify' => 'default_account_verify',
+        'accountVerifySuccess' => 'default_account_verify_success',
+        'forgotPassword' => 'default_forgot_password',
+        'passwordChangeSuccess' => 'default_forgot_password_success',
+        'newsletterSubscribeSuccess' => 'default_newsletter_subscribe_success',
+    ];
+
     public static $registrars = [
         'App\Controllers\Config'
     ];

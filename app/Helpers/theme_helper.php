@@ -80,7 +80,17 @@ function cve_theme_public($path = null): string
  */
 function cve_theme_public_path($path = null): string
 {
-    return APPPATH . 'public/' . cve_theme_folder() . '/' . $path;
+    return ROOTPATH . 'public/' . cve_theme_folder() . '/' . $path;
 }
 
-require_once APPPATH . 'Views/themes/' . cve_theme_folder() . '/helper.php';
+/**
+ * @param null $path | The file path to be used in the public folder.
+ * @return string
+ */
+function cve_theme_file_path($path = null): string
+{
+    return ROOTPATH . 'theme/' . cve_theme_folder() . '/' . $path;
+}
+
+//TODO: Yeni sisteme uyarlanacak
+require_once ROOTPATH . 'themes/' . cve_theme_folder() . '/helper.php';

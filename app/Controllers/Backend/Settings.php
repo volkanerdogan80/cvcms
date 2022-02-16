@@ -100,7 +100,8 @@ class Settings extends BaseController
                 'SMTPPass' => $this->request->getPost('SMTPPass'),
                 'SMTPPort' => $this->request->getPost('SMTPPort'),
                 'SMTPCrypto' => $this->request->getPost('SMTPCrypto'),
-                'mailType' => $this->request->getPost('mailType')
+                'mailType' => $this->request->getPost('mailType'),
+                'template' => json_encode($this->request->getPost('template'), JSON_UNESCAPED_UNICODE),
             ];
 
             $this->settingEntity->setKey('email');

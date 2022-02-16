@@ -6,6 +6,7 @@ class Home extends BaseController
     public function index()
     {
 
+        print_r(cve_email_template());
         /*$model->insert([
             'name' => 'Volkan Erdoğan',
             'email' => 'volkanerdogan80@gmail.com',

@@ -23,7 +23,7 @@ class Themes extends BaseController
         helper('filesystem');
 
         return view(PANEL_FOLDER . "/pages/theme/listing", [
-            'themes' => directory_map(APPPATH . 'Views/themes'),
+            'themes' => directory_map(ROOTPATH . 'themes'),
             'active' => $this->themeModel->where('status', STATUS_ACTIVE)->first()
         ]);
     }
@@ -89,7 +89,7 @@ class Themes extends BaseController
         if ($theme){
             $this->themeModel->update($theme->id, ['status' => STATUS_ACTIVE]);
         }else{
-            $file = include APPPATH . "Views/themes/" . $folder . '/info.php';
+            $file = include ROOTPATH . "themes/" . $folder . '/info.php';
             $this->themeEntity->setFolder($folder);
             $this->themeEntity->setName($file['name']);
             $this->themeEntity->setAuthor($file['author']);

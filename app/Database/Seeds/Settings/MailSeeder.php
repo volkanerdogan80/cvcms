@@ -24,7 +24,8 @@ class MailSeeder extends Seeder
             'SMTPPass' => $default->SMTPPass,
             'SMTPPort' => $default->SMTPPort,
             'SMTPCrypto' => $default->SMTPCrypto,
-            'mailType' => $default->mailType
+            'mailType' => $default->mailType,
+            'template' => json_encode($default->template, JSON_UNESCAPED_UNICODE)
         ];
 
         $entity->setKey('email');

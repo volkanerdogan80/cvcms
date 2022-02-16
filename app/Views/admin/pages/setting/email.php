@@ -100,10 +100,31 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><?= cve_admin_lang_path('EmailSettings', 'theme_settings') ?></h4>
+                        </div>
+                        <div class="card-body">
+                            <?php foreach (config('email')->template as $tkey => $tvalue): ?>
+                                <?php $isSelected = config('email')->template[$tkey]; ?>
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('EmailSettings', $tkey); ?></label>
+                                    <div class="col-sm-12 col-md-8">
+                                        <select name="template[<?= $tkey; ?>]" class="form-control select2">
+                                            <?php foreach (cve_email_template() as $key => $value): ?>
+                                                <option <?= $isSelected == $key ? 'selected': ''; ?> value="<?= $key; ?>"><?= $value['title']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
                         <div class="card-footer text-right">
                             <button type="submit" class="btn btn-success btn-block btn-lg"><?= cve_admin_lang_path('Buttons', 'update') ?></button>
                         </div>
                     </div>
+
                 </form>
             </div>
         </section>

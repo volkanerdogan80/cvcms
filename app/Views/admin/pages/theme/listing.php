@@ -13,7 +13,7 @@
                 <div class="row">
                     <?php foreach ($themes as $key => $value): ?>
                         <?php $key = str_replace('\\', '', $key); ?>
-                        <?php $theme = include APPPATH . 'Views/themes/' . $key . '/info.php'; ?>
+                        <?php $theme = include ROOTPATH . 'themes/' . $key . '/info.php'; ?>
                         <div class="col-12 col-md-4 col-lg-4">
                             <article class="article article-style-c">
                                 <div class="article-header">
