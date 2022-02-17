@@ -35,7 +35,7 @@ function get_comments(array $params)
 function cve_comment($comment = null)
 {
     if (is_null($comment)){
-        $render = \Config\Services::renderer();
+        $render = \Config\Services::themeRenderer();
         if (isset($render->getData()['comment'])){
             return $render->getData()['comment'];
         }
@@ -59,7 +59,7 @@ function cve_comment($comment = null)
 function cve_comments($params = null)
 {
     if (is_null($params)){
-        $render = \Config\Services::renderer();
+        $render = \Config\Services::themeRenderer();
         return $render->getData()['comments'];
     }
 

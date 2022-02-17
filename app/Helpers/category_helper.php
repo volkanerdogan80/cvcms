@@ -34,7 +34,7 @@ function get_categories($params)
 function cve_category($category = null)
 {
     if (is_null($category)){
-        $render = \Config\Services::renderer();
+        $render = \Config\Services::themeRenderer();
         if (isset($render->getData()['category'])){
             return $render->getData()['category'];
         }elseif($category = cve_post_category()){

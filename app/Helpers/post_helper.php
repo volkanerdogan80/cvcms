@@ -21,7 +21,7 @@ function get_post($params)
 function cve_post($content = null)
 {
     if (is_null($content)){
-        $render = \Config\Services::renderer();
+        $render = \Config\Services::themeRenderer();
         if (isset($render->getData()['content'])){
             return $render->getData()['content'];
         }

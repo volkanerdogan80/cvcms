@@ -27,4 +27,23 @@ class Services extends CoreServices
 	//
 	//        return new \CodeIgniter\Example();
 	//    }
+    public static function themeRenderer(string $viewPath = null, $config = null, bool $getShared = true)
+    {
+        if ($getShared)
+        {
+            return static::getSharedInstance('themeRenderer', $viewPath, $config);
+        }
+
+        if (is_null($config))
+        {
+            $config = new \Config\View();
+        }
+
+        if (is_null($viewPath))
+        {
+            $viewPath = THEMES_PATH . cve_theme_folder();
+        }
+
+        return new \CodeIgniter\View\View($config, $viewPath, static::locator(), CI_DEBUG, static::logger());
+    }
 }

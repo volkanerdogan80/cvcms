@@ -325,7 +325,7 @@ function cve_email_template($template = null)
 function cve_view($path, $data = []): string
 {
     $viewPath = THEMES_PATH . cve_theme_folder();
-    $renderer = \Config\Services::renderer($viewPath, null, false);
+    $renderer = \Config\Services::themeRenderer($viewPath, null, true);
     return $renderer->setData($data)->render($path);
 }
 

@@ -20,7 +20,7 @@ function get_user($params){
 function cve_user($user = null)
 {
     if (is_null($user)){
-        $render = \Config\Services::renderer();
+        $render = \Config\Services::themeRenderer();
         if (isset($render->getData()['user'])){
             return $render->getData()['user'];
         }elseif($post = cve_post_author()){
