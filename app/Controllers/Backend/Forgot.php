@@ -40,7 +40,12 @@ class Forgot extends BaseController
                 return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'user_not_found'));
             }
 
-            $send = $this->emailTo->setUser($user)->forgotPassword()->send();
+            $send = $this->emailTo
+                ->setData(['user' => $user])
+                ->setEmail($user->getEmail())
+                ->setSubject('Hesap Doğrulama Maili')
+                ->setTemplate('forgotPassword')->send();
+
             if(!$send){
                 return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'password_update_failure'));
             }
@@ -75,6 +80,14 @@ class Forgot extends BaseController
                 }
 
                 session()->destroy();
+
+                $user = $this->userModel->find($userID);
+                $this->emailTo->setData(['user' => $user])
+                    ->setEmail($user->getEmail())
+                    ->setSubject('Hesap Doğrulama Maili')
+                    ->setTemplate('passwordChangeSuccess')
+                    ->send();
+
                 return view(PANEL_FOLDER . '/pages/verify/reset-password-success');
             }
 

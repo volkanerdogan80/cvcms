@@ -78,7 +78,12 @@ class Register extends BaseController
             $user = $this->userModel->find($insert);
 
             if ($this->system->emailVerify){
-                $to = $this->emailTo->setUser($user)->accountVerify()->send();
+                $to = $this->emailTo->setData(['user' => $user])
+                    ->setEmail($user->getEmail())
+                    ->setSubject('Hesap Doğrulama Maili')
+                    ->setTemplate('accountVerify')
+                    ->send();
+
                 if($to){
                     return redirect()->back()->with('success', cve_admin_lang_path('Success', 'register_success'));
                 }

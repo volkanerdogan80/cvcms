@@ -8,10 +8,55 @@ class EmailTo
 {
     protected $email;
     protected $user;
+    protected $data;
+    protected $subject;
+    protected $template;
 
     public function __construct()
     {
         $this->email = \Config\Services::email();
+        $this->template = config('email')->template;
+        $this->data = [];
+    }
+
+    public function setData($data = [])
+    {
+        $this->data = $data;
+        return $this;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email->setTo($email);
+        return $this;
+    }
+
+    public function setSubject($subject)
+    {
+        $this->email->setSubject($subject);
+        return $this;
+    }
+
+    public function setTemplate($template = null, $custom = false)
+    {
+        if ($custom){
+            $this->email->setMessage($template);
+            return $this;
+        }
+
+        if (array_key_exists($this->template[$template], email_template())){
+            $message = cve_view(cve_email_template($this->template[$template]), $this->data);
+        }else{
+            $message = view(cve_email_template($this->template[$template]), $this->data);
+        }
+
+        $this->email->setMessage($message);
+        return $this;
+    }
+
+    public function send()
+    {
+        return $this->email->send();
     }
 
     public function setUser($user)
@@ -25,54 +70,4 @@ class EmailTo
             return $this;
         }
     }
-
-    public function accountVerify()
-    {
-        $this->email->setSubject('Hesabınızı Doğrulayın');
-        $this->email->setMessage(view(PANEL_FOLDER . '/email/account-verify', ['user' => $this->user]));
-        return $this;
-    }
-
-    public function accountVerifySuccess()
-    {
-        $this->email->setSubject('Hesabınız Doğrulandı');
-        $this->email->setMessage(view(PANEL_FOLDER . '/email/account-verify-success', ['user' => $this->user]));
-        return $this;
-    }
-
-    public function forgotPassword()
-    {
-        $this->email->setSubject('Şifre Sıfırlama Talebi');
-        $this->email->setMessage(view(PANEL_FOLDER . '/email/forgot-password', ['user' => $this->user]));
-        return $this;
-    }
-
-    public function passwordChangeSuccess()
-    {
-        $this->email->setSubject('Şifre Sıfırlama Talebi');
-        $this->email->setMessage(view(PANEL_FOLDER . '/email/password-change-success', ['user' => $this->user]));
-        return $this;
-    }
-
-    public function newsletterSubscribeSuccess()
-    {
-        $this->email->setSubject('Eposta Aboneliği Başarılı');
-        $this->email->setMessage(view(PANEL_FOLDER . '/email/newsletter-subscribe-success', ['user' => $this->user]));
-        return $this;
-    }
-
-
-    public function customMessage($subject, $message)
-    {
-        $this->email->setSubject($subject);
-        $this->email->setMessage($message);
-        return $this;
-    }
-
-    public function send()
-    {
-        return $this->email->send();
-    }
-
-
 }

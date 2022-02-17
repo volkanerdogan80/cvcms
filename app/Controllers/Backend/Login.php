@@ -60,7 +60,13 @@ class Login extends BaseController
             }
 
             if($user->getStatus() == STATUS_PENDING){
-                $this->emailTo->setUser($user)->accountVerify()->send();
+
+                $this->emailTo->setData(['user' => $user])
+                    ->setSubject('Hesap Doğrulama Maili')
+                    ->setEmail($user->getEmail())
+                    ->setTemplate('accountVerify')
+                    ->send();
+
                 return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'user_login_passive_failure'));
             }
 

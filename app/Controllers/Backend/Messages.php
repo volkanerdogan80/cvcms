@@ -12,11 +12,13 @@ class Messages extends BaseController
 {
     protected $messageModel;
     protected $messageEntity;
+    protected $emailTo;
 
     public function __construct()
     {
         $this->messageModel = new MessageModel();
         $this->messageEntity = new MessageEntity();
+        $this->emailTo =  new EmailTo();
     }
 
     public function listing($status = null)
@@ -192,9 +194,11 @@ class Messages extends BaseController
             $this->messageEntity->setMessage($reply);
             $this->messageEntity->setStatus(STATUS_READ);
 
-            $email = new EmailTo();
+            $to =  $this->emailTo->setEmail($message->getEmail())
+                ->setSubject($message->getSubject())
+                ->setTemplate($reply, true)
+                ->send();
 
-            $to = $email->setUser($message->getEmail())->customMessage($message->getSubject(), $reply)->send();
             if(!$to){
                 return $this->response->setJSON([
                     'status' => false,

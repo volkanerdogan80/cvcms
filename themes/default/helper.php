@@ -35,11 +35,11 @@ function page_template()
 {
     return [
         'default' => [
-            'path' => cve_theme_file_path('page/default'),
+            'path' => 'page/default',
             'title' => 'Varsayılan Şablon'
         ],
         'contact' => [
-            'path' => cve_theme_file_path('page/contact'),
+            'path' => 'page/contact',
             'title' => 'İletişim Sayfa Şablonu'
         ],
     ];
@@ -48,8 +48,8 @@ function page_template()
 function email_template()
 {
     return [
-        'default_account_verify' => [
-            'path' =>  cve_theme_file_path('email/account-verify'),
+        'default_theme_account_verify' => [
+            'path' =>  'email/account-verify',
             'title' => 'Varsayılan Hesap Doğrulama Şablonu'
         ]
     ];

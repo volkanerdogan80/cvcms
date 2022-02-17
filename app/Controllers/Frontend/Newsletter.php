@@ -32,7 +32,10 @@ class Newsletter extends BaseController
             }
 
             $subscriber = $this->newsletterModel->find($insert);
-            $this->emailTo->setUser($subscriber)->newsletterSubscribeSuccess()->send();
+
+            $this->emailTo->setEmail($subscriber)
+                ->setTemplate('newsletterSubscribeSuccess')
+                ->send();
 
             return $this->response(['status' => true, 'message' => 'Başarılı bir şekilde abone oldunuz.']);
         }

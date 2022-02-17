@@ -4,17 +4,20 @@ namespace App\Controllers\Backend;
 
 use \App\Controllers\BaseController;
 use App\Entities\UserEntity;
+use App\Libraries\EmailTo;
 use App\Models\UserModel;
 
 class Verification extends BaseController
 {
     protected $userModel;
     protected $userEntity;
+    protected $emailTo;
 
     public function __construct()
     {
         $this->userModel = new UserModel();
         $this->userEntity = new UserEntity();
+        $this->emailTo = new EmailTo();
     }
 
     public function account($token)
@@ -46,6 +49,12 @@ class Verification extends BaseController
         if (!$update){
             return view(PANEL_FOLDER . '/pages/verify/account-error');
         }
+
+        $this->emailTo->setData(['user' => $user])
+            ->setEmail($user->getEmail())
+            ->setSubject('Hesabınız Başarılı Şekilde Doğrulandı')
+            ->setTemplate('accountVerifySuccess')
+            ->send();
 
         return view(PANEL_FOLDER . '/pages/verify/account-success');
 

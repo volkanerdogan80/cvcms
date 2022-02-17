@@ -288,32 +288,38 @@ function cve_module_view($module, $path): string
     return '\Modules/'. ucfirst($module) . '/Views/' . $path;
 }
 
-function cve_email_template(): array
+function cve_email_template($template = null)
 {
     $default = [
         'default_account_verify' => [
-            'path' => PANEL_FOLDER . '/email/account-verify',
+            'path' => 'admin/email/account-verify',
             'title' => 'Varsayılan Hesap Doğrulama Maili'
         ],
         'default_account_verify_success' => [
-            'path' => PANEL_FOLDER . '/email/account-verify-success',
+            'path' => 'admin/email/account-verify-success',
             'title' => 'Varsayılan Hesap Doğrulama Başarılı Maili'
         ],
         'default_forgot_password' => [
-            'path' => PANEL_FOLDER . '/email/forgot-password',
+            'path' => 'admin/email/forgot-password',
             'title' => 'Varsayılan Şifre Sıfırlama Talebi Maili'
         ],
         'default_forgot_password_success' => [
-            'path' => PANEL_FOLDER . '/email/password-change-success',
+            'path' => 'admin/email/password-change-success',
             'title' => 'Varsayılan Şifre Sıfırlama Başarılı Maili'
         ],
         'default_newsletter_subscribe_success' => [
-            'path' => PANEL_FOLDER . '/email/newsletter-subscribe-success',
+            'path' => 'admin/email/newsletter-subscribe-success',
             'title' => 'Varsayılan Eposta Aboneliği Başarılı Maili'
         ],
     ];
 
-    return array_merge($default, email_template());
+    $template_list = array_merge($default, email_template());;
+
+    if (!is_null($template)){
+        return $template_list[$template]['path'];
+    }
+
+    return $template_list;
 }
 
 function cve_view($path, $data = []): string

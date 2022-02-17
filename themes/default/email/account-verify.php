@@ -1,4 +1,4 @@
-<html>
+<html lang="tr">
 <head>
     <title>Email Şablonları Test</title>
 </head>

@@ -89,7 +89,7 @@ function cve_theme_public_path($path = null): string
  */
 function cve_theme_file_path($path = null): string
 {
-    return ROOTPATH . 'theme/' . cve_theme_folder() . '/' . $path;
+    return ROOTPATH . 'themes/' . cve_theme_folder() . '/' . $path;
 }
 
 //TODO: Yeni sisteme uyarlanacak
