@@ -6,10 +6,7 @@ class Home extends BaseController
     public function index()
     {
 
-        $x = cve_cat_selectbox([
-            'class' => 'form-control select2',
-            'name' => 'select[]'
-        ]);
+        print_r(cve_theme_public('js/main.js'));
         /*$model->insert([
             'name' => 'Volkan Erdoğan',
             'email' => 'volkanerdogan80@gmail.com',

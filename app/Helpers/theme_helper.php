@@ -71,7 +71,7 @@ function cve_theme_author()
  */
 function cve_theme_public($path = null): string
 {
-    return base_url('public/' . cve_theme_folder() . '/' . $path);
+    return base_url('themes/' . cve_theme_folder() . '/public/' . $path);
 }
 
 /**
@@ -80,17 +80,8 @@ function cve_theme_public($path = null): string
  */
 function cve_theme_public_path($path = null): string
 {
-    return ROOTPATH . 'public/' . cve_theme_folder() . '/' . $path;
-}
-
-/**
- * @param null $path | The file path to be used in the public folder.
- * @return string
- */
-function cve_theme_file_path($path = null): string
-{
-    return ROOTPATH . 'themes/' . cve_theme_folder() . '/' . $path;
+    return THEMES_PATH . cve_theme_folder() . '/public/' . $path;
 }
 
 //TODO: Yeni sisteme uyarlanacak
-require_once ROOTPATH . 'themes/' . cve_theme_folder() . '/helper.php';
+require_once THEMES_PATH . cve_theme_folder() . '/helper.php';

@@ -1,1 +1,0 @@
-<!-- Varsayılan Sayfa Şablonu -->

@@ -346,11 +346,11 @@ function recurse_copy($src,$dst)
     closedir($dir);
 }
 
-function delete_directory($dirname): bool
+function delete_directory($dirname)
 {
     if (is_dir($dirname))
         $dir_handle = opendir($dirname);
-    if (!$dir_handle)
+    if (!isset($dir_handle))
         return false;
     while($file = readdir($dir_handle)) {
         if ($file != "." && $file != "..") {

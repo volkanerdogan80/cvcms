@@ -13,7 +13,7 @@
                 <form action="<?= current_url(); ?>" method="post">
                     <?= csrf_field(); ?>
 
-                    <?= $this->include('themes/'.$theme->getFolder().'/setting'); ?>
+                    <?php require_once(THEMES_PATH. $theme->getFolder() .'/setting.php'); ?>
 
                 </form>
             </div>

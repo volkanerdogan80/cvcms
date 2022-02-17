@@ -35,11 +35,8 @@ class Themes extends BaseController
             return redirect()->back()->with('error', cve_admin_lang_path('Errors','theme_active_deletion_error'));
         }
 
-        $view_path = APPPATH . 'Views/themes/'.$folder;
-        $public_path = ROOTPATH . 'public/'.$folder;
-
+        $view_path = THEMES_PATH . $folder;
         delete_directory($view_path);
-        delete_directory($public_path);
 
         foreach (cve_language(false, null) as $key => $value){
             $lang_path = APPPATH . 'Language/' . $value->getCode() . '/' . $folder;
