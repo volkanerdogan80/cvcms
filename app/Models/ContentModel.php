@@ -137,6 +137,7 @@ class ContentModel extends Model
         $db = \Config\Database::connect();
         $builder = $db->table('content_share');
 
+        //TODO: Try catch ile yapılmış. Bir sorun olursa kaynaklara bakılacak.
         if ($type == 'get'){
             return $builder->where('content_id', $content_id)
                 ->where('status', 1)

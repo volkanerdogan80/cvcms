@@ -18,17 +18,60 @@ class Content extends BaseController
     public function index($slug)
     {
         $content = cve_post($slug);
-        $this->contentModel->update($content->id, ['views' => $content->getViews()+1]);
 
-        if (cve_post_template($content)){
-            return view('themes/' . cve_theme_folder() . '/page/' . cve_post_template($content),[
-                'content' => $content
-            ]);
+        // TODO: İçerik bulunamadı için 404 sayfası hazırla
+        if (!$content){
+            return redirect()->to(base_url(route_to('homepage')));
         }
 
-        return view('themes/' . cve_theme_folder() . '/single/' . cve_post_module($content),[
+        $this->viewIncrease($content);
+
+        if (cve_post_template($content)) {
+            return $this->page($content);
+        }
+
+        return $this->single($content);
+    }
+
+    private function single($content)
+    {
+        // TODO: Kullanıcıyı anasayfa değilde hata mesajı sayfasına yönlendir
+        if (!is_dir(cve_theme_file_path('single'))) {
+            return redirect()->to(base_url(route_to('homepage')));
+        }
+
+        // TODO: Kullanıcıyı anasayfa değilde hata mesajı sayfasına yönlendir
+        if (!file_exists(cve_theme_file_path('single/' . cve_post_module($content) . '.php'))) {
+            return redirect()->to(base_url(route_to('homepage')));
+        }
+
+        return cve_view('single/' . cve_post_module($content), [
             'content' => $content
         ]);
+    }
 
+    private function page($content)
+    {
+        $page_template = cve_post_template($content);
+        $page_template_list = page_template();
+
+        // TODO: Kullanıcıyı anasayfa yerine hata mesajı sayfasına yönlendir
+        if (!isset($page_template_list[$page_template])) {
+            return redirect()->to(base_url(route_to('homepage')));
+        }
+
+        // TODO: Kullanıcıyı anasayfa yerine hata mesajı sayfasına yönlendir
+        if (!file_exists(cve_theme_file_path($page_template_list[$page_template]['path'] . '.php'))) {
+            return redirect()->to(base_url(route_to('homepage')));
+        }
+
+        return cve_view($page_template_list[$page_template]['path'], [
+            'content' => $content
+        ]);
+    }
+
+    private function viewIncrease($content)
+    {
+        $this->contentModel->update($content->id, ['views' => $content->getViews() + 1]);
     }
 }

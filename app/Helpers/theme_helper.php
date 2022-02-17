@@ -75,6 +75,15 @@ function cve_theme_public($path = null): string
 }
 
 /**
+ * @param null $path | Returns path of a file in themes folder
+ * @return string
+ */
+function cve_theme_file_path($path = null)
+{
+    return THEMES_PATH . cve_theme_folder() . '/' . $path;
+}
+
+/**
  * @param null $path | The file path to be used in the public folder.
  * @return string
  */

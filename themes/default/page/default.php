@@ -1,1 +1,1 @@
-<?php
+SAYFALAR DEFAULT

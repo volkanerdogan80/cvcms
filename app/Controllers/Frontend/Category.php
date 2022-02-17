@@ -12,7 +12,7 @@ class Category extends BaseController
     {
         $category = cve_category($slug);
 
-        return view('themes/' . cve_theme_folder() . '/category/' . cve_cat_module($category), [
+        return  cve_view('category/' . cve_cat_module($category), [
             'category' => $category
         ]);
     }
