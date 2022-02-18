@@ -41,4 +41,12 @@ class FavoriteModel extends Model
         $builder = $builder->where('content_id', $content_id);
         return $builder->countAllResults();
     }
+
+    public function getContentFavoriteCount($content_id)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->where('content_id', $content_id);
+        $builder = $builder->selectCount('content_id', 'favorite');
+        return $builder->first()->favorite;
+    }
 }

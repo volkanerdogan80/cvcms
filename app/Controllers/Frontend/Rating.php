@@ -48,11 +48,10 @@ class Rating extends BaseController
                 'status' => true,
                 'message' => 'Değercelendirme başarılı bir şekilde yapıldı.',
                 'data' => [
-                    'ratingAvg' => $this->ratingModel->getContentVoteAvg($content_id)->vote,
+                    'ratingAvg' => $this->ratingModel->getContentVoteAvg($content_id),
                     'voteList' => $this->ratingModel->getContentVoteCount($content_id),
                 ]
             ]);
-
         }
 
         return $this->response([

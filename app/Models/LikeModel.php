@@ -41,4 +41,12 @@ class LikeModel extends Model
         $builder = $builder->where('content_id', $content_id);
         return $builder->countAllResults();
     }
+
+    public function getContentLikeCount($content_id)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->where('content_id', $content_id);
+        $builder = $builder->selectCount('content_id', 'like');
+        return $builder->first()->like;
+    }
 }

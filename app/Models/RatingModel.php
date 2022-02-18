@@ -34,7 +34,7 @@ class RatingModel extends Model
         $builder = $this->setTable($this->table);
         $builder = $builder->where('content_id', $content_id);
         $builder = $builder->selectAvg('vote');
-        return $builder->first();
+        return $builder->first()->vote;
     }
 
     public function getContentIpControl($content_id, $remote_addr)

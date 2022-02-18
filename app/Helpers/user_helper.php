@@ -42,6 +42,19 @@ function cve_user($user = null)
 }
 
 /**
+ * Kullanıcının ID değerini döner
+ * @param null $user | ID, Email veya UserEntity Object
+ * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
+ */
+function cve_user_id($user = null)
+{
+    if ($data = cve_user($user)){
+        return $data->id;
+    }
+    return null;
+}
+
+/**
  * Returns the group ID value of the user
  * @param null $user | ID, Email veya UserEntity Object
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Entities\ContentEntity;
+use CodeIgniter\Database\BaseBuilder;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
@@ -183,7 +184,36 @@ class ContentModel extends Model
 
     }
 
-    public function prepareBuilder($module, $category){
+    public function getContent($params)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('status', STATUS_ACTIVE);
+        $builder = $builder->where($params);
+        return $builder->first();
+    }
+
+    public function getNextContent($content_id)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('status', STATUS_ACTIVE);
+        $builder = $builder->where('id >', $content_id);
+        $builder = $builder->orderBy('id', 'ASC');
+        return $builder->first();
+    }
+
+    public function getPrevContent($content_id)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('status', STATUS_ACTIVE);
+        $builder = $builder->where('id <', $content_id);
+        $builder = $builder->orderBy('id', 'DESC');
+        return $builder->first();
+    }
+
+    public function prepareBuilder($module, $format, $category){
 
         $builder = $this->setTable($this->table);
         $builder = $builder->select('contents.*');
@@ -200,14 +230,17 @@ class ContentModel extends Model
             $builder = $builder->distinct();
         }
 
+        if(!is_null($format)){
+            $builder = $builder->where('contents.post_format', $format);
+        }
+
         return $builder;
     }
 
-    public function getRandom($module, $limit, $category)
+    public function getRandom($module, $format, $limit, $category)
     {
 
-        $builder = $this->prepareBuilder($module, $category);
-
+        $builder = $this->prepareBuilder($module, $format, $category);
 
         $builder = $builder->orderBy('contents.id', 'RANDOM');
 
@@ -217,22 +250,22 @@ class ContentModel extends Model
         ];
     }
 
-    public function getRecent($module, $limit, $offset, $category)
+    public function getRecent($module, $format, $limit, $offset, $category)
     {
-        $builder = $this->prepareBuilder($module, $category);
+        $builder = $this->prepareBuilder($module, $format, $category);
 
         $builder = $builder->orderBy('contents.id', 'DESC');
 
-            return [
-                'contents' => !is_null($offset) ? $builder->findAll($limit, $offset) : $builder->paginate($limit),
-                'pager' => !is_null($offset) ? null : $builder->pager
-            ];
+        return [
+            'contents' => !is_null($offset) ? $builder->findAll($limit, $offset) : $builder->paginate($limit),
+            'pager' => !is_null($offset) ? null : $builder->pager
+        ];
     }
 
-    public function getWeekTop($module, $limit, $category)
+    public function getWeekTop($module, $format, $limit, $category)
     {
 
-        $builder = $this->prepareBuilder($module, $category);
+        $builder = $this->prepareBuilder($module, $format, $category);
 
         $builder = $builder->orderBy('contents.views', 'DESC');
 
@@ -248,9 +281,9 @@ class ContentModel extends Model
         ];
     }
 
-    public function getMonthTop($module, $limit, $category): array
+    public function getMonthTop($module, $format, $limit, $category): array
     {
-        $builder = $this->prepareBuilder($module, $category);
+        $builder = $this->prepareBuilder($module, $format, $category);
 
         $builder = $builder->orderBy('contents.views', 'DESC');
 
@@ -266,10 +299,10 @@ class ContentModel extends Model
         ];
     }
 
-    public function getMostRead($module, $limit, $category)
+    public function getMostRead($module, $format, $limit, $category)
     {
 
-        $builder = $this->prepareBuilder($module, $category);
+        $builder = $this->prepareBuilder($module, $format, $category);
 
         $builder = $builder->orderBy('contents.views', 'DESC');
 
@@ -279,15 +312,91 @@ class ContentModel extends Model
         ];
     }
 
-    public function getMostComment($module, $limit, $category): array
+    public function getMostComment($module, $format, $limit, $category): array
     {
-        $builder = $this->prepareBuilder($module, $category);
+        $builder = $this->prepareBuilder($module, $format, $category);
 
         $builder = $builder->join('comments', 'contents.id = comments.content_id');
         $builder = $builder->selectCount('comments.content_id', 'comment_count');
         $builder = $builder->groupBy('comments.content_id');
 
         $builder = $builder->orderBy('comment_count', 'DESC');
+
+        return [
+            'contents' => $builder->paginate($limit),
+            'pager' => $builder->pager
+        ];
+    }
+
+    public function getTopLiked($module, $format, $limit, $category)
+    {
+        $builder = $this->prepareBuilder($module, $format, $category);
+
+        if(!is_null($format)){
+            $builder = $builder->where('contents.post_format', $format);
+        }
+
+        $builder = $builder->join('content_likes', 'contents.id = content_likes.content_id');
+        $builder = $builder->selectCount('content_likes.content_id', 'like_count');
+        $builder = $builder->groupBy('content_likes.content_id');
+
+        $builder = $builder->orderBy('like_count', 'DESC');
+
+        return [
+            'contents' => $builder->paginate($limit),
+            'pager' => $builder->pager
+        ];
+    }
+
+    public function getTopFavorite($module, $format, $limit, $category)
+    {
+        $builder = $this->prepareBuilder($module, $format, $category);
+
+        if(!is_null($format)){
+            $builder = $builder->where('contents.post_format', $format);
+        }
+
+        $builder = $builder->join('content_favorites', 'contents.id = content_favorites.content_id');
+        $builder = $builder->selectCount('content_favorites.content_id', 'favorite_count');
+        $builder = $builder->groupBy('content_favorites.content_id');
+
+        $builder = $builder->orderBy('favorite_count', 'DESC');
+
+        return [
+            'contents' => $builder->paginate($limit),
+            'pager' => $builder->pager
+        ];
+    }
+
+    public function getTopVoted($module, $format, $limit, $category)
+    {
+        $builder = $this->prepareBuilder($module, $format, $category);
+
+        $builder = $builder->join('content_rating', 'contents.id = content_rating.content_id');
+        $builder = $builder->selectCount('content_rating.content_id', 'vote_count');
+        $builder = $builder->groupBy('content_rating.content_id');
+
+        $builder = $builder->orderBy('vote_count', 'DESC');
+
+        return [
+            'contents' => $builder->paginate($limit),
+            'pager' => $builder->pager
+        ];
+    }
+
+    public function getTopRating($module, $format, $limit, $category)
+    {
+        $builder = $this->prepareBuilder($module, $format, $category);
+
+        if(!is_null($format)){
+            $builder = $builder->where('contents.post_format', $format);
+        }
+
+        $builder = $builder->join('content_rating', 'contents.id = content_rating.content_id');
+        $builder = $builder->selectAvg('content_rating.vote', 'vote_avg');
+        $builder = $builder->groupBy('content_rating.content_id');
+
+        $builder = $builder->orderBy('vote_avg', 'DESC');
 
         return [
             'contents' => $builder->paginate($limit),
@@ -314,5 +423,76 @@ class ContentModel extends Model
             'contents' => $builder->paginate($limit),
             'pager' => $builder->pager
         ];
+    }
+
+    public function getUserContent($user, $limit, $pager, $module, $category, $format)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('contents.*');
+        $builder = $builder->where('contents.status', STATUS_ACTIVE);
+        $builder = $builder->where('contents.user_id', $user);
+
+        if (!is_null($category)){
+            $category = explode(',', $category);
+            $builder = $builder->whereIn('content_categories.category_id', $category);
+            $builder = $builder->join('content_categories', 'content_categories.content_id = contents.id');
+            $builder = $builder->distinct();
+        }
+
+        if(!is_null($format)){
+            $builder = $builder->where('contents.post_format', $format);
+        }
+
+        if(!is_null($module)){
+            $builder = $builder->where('contents.module', $module);
+        }
+
+        if ($pager){
+            return [
+                'users' => $builder->paginate($limit),
+                'pager' => $builder->pager
+            ];
+        }
+
+        return $builder->findAll($limit);
+
+    }
+
+    public function getUserFavoriteContent($user, $limit, $pager, $module, $category, $format)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select(['contents.*']);
+
+        $builder = $builder->whereIn('contents.id', function (BaseBuilder $builder) use($user){
+            $builder = $builder->select('content_id');
+            $builder = $builder->from('content_favorites');
+            $builder = $builder->where('user_id', $user);
+            return $builder;
+        });
+
+        if (!is_null($category)){
+            $category = explode(',', $category);
+            $builder = $builder->whereIn('content_categories.category_id', $category);
+            $builder = $builder->join('content_categories', 'content_categories.content_id = contents.id');
+            $builder = $builder->distinct();
+        }
+
+        if(!is_null($format)){
+            $builder = $builder->where('contents.post_format', $format);
+        }
+
+        if(!is_null($module)){
+            $builder = $builder->where('contents.module', $module);
+        }
+
+        if ($pager){
+            return [
+                'users' => $builder->paginate($limit),
+                'pager' => $builder->pager
+            ];
+        }
+
+        return $builder->findAll($limit);
+
     }
 }

@@ -80,4 +80,20 @@ class UserModel extends Model
             'pager' => $builder->pager
         ];
     }
+
+    public function getGroupUsers($group, $pager, $limit)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('users.*');
+        $builder = $builder->where('group_id', $group);
+
+        if ($pager){
+            return [
+                'users' => $builder->paginate($limit),
+                'pager' => $builder->pager
+            ];
+        }
+
+        return $builder->findAll($limit);
+    }
 }

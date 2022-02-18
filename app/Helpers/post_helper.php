@@ -9,7 +9,7 @@ function get_post($params)
 {
     $model = new \App\Models\ContentModel();
     return cve_cache(cve_cache_name('get_post', $params), function () use ($model, $params) {
-        return $model->where('status', STATUS_ACTIVE)->where($params)->first();
+        return $model->getContent($params);
     });
 }
 
@@ -356,11 +356,109 @@ function cve_post_comments($content = null)
     return null;
 }
 
+
+/**
+ * Returns the number of likes of the content.
+ * @return int
+ */
 function cve_post_comment_count(): int
 {
     return count(cve_post_comments());
 }
 
+/**
+ * Returns the number of likes a content has
+ * @param null $content | Slug and id (related to content) or object state of the content
+ * @return \CodeIgniter\Cache\CacheInterface|false|int|mixed
+ */
+function cve_post_liked($content = null){
+    $model = new \App\Models\LikeModel();
+    $content_id = cve_post_id($content);
+    if(is_null($content_id)){
+        return 0;
+    }
+    return cve_cache('content_like_' . $content_id, function () use($model, $content_id){
+        return $model->getContentLikeCount($content_id);
+    });
+}
+
+/**
+ * Returns how many times a content has been favorited
+ * @param null $content | Slug and id (related to content) or object state of the content
+ * @return \CodeIgniter\Cache\CacheInterface|false|int|mixed
+ */
+function cve_post_favorite($content = null){
+    $model = new \App\Models\FavoriteModel();
+    $content_id = cve_post_id($content);
+    if(is_null($content_id)){
+        return 0;
+    }
+    return cve_cache('content_favorite_' . $content_id, function () use($model, $content_id){
+        return $model->getContentFavoriteCount($content_id);
+    });
+}
+
+/**
+ * Returns the average of the total scores awarded to a content.
+ * @param null $content | Slug and id (related to content) or object state of the content
+ * @return \CodeIgniter\Cache\CacheInterface|false|int|mixed
+ */
+function cve_post_rating($content = null){
+    $model = new \App\Models\RatingModel();
+    $content_id = cve_post_id($content);
+    if(is_null($content_id)){
+        return 3;
+    }
+    return cve_cache('content_vote_' . $content_id, function () use($model, $content_id){
+        return $model->getContentVoteAvg($content_id);
+    });
+}
+
+/**
+ * Returns how many people voted on a content based on points. (Ex: 1 point => 5 people, 2 points => 10 people etc.)
+ * @param null $content | Slug and id (related to content) or object state of the content
+ * @return \CodeIgniter\Cache\CacheInterface|false|int|mixed
+ */
+function cve_post_voted($content = null){
+    $model = new \App\Models\RatingModel();
+    $content_id = cve_post_id($content);
+    if(is_null($content_id)){
+        return 3;
+    }
+    return cve_cache('content_vote_' . $content_id, function () use($model, $content_id){
+        return $model->getContentVoteCount($content_id);
+    });
+}
+
+/**
+ * Returns next post information
+ * @param null $content | Slug and id (related to content) or object state of the content
+ * @return \CodeIgniter\Cache\CacheInterface|false|mixed
+ */
+function cve_post_next($content = null)
+{
+    $model = new \App\Models\ContentModel();
+    $content_id = cve_post_id($content);
+
+    return cve_cache('next_post_' . $content_id, function () use($model, $content_id){
+        return $model->getNextContent($content_id);
+    });
+}
+
+/**
+ * Returns previous post information
+ * @param null $content | Slug and id (related to content) or object state of the content
+ * @return \CodeIgniter\Cache\CacheInterface|false|mixed
+ */
+function cve_post_prev($content = null)
+{
+    $model = new \App\Models\ContentModel();
+    $content_id = cve_post_id($content);
+
+    return cve_cache('prev_post_' . $content_id, function () use($model, $content_id){
+        return $model->getPrevContent($content_id);
+    });
+}
 /**
  * Returns created time of content
  * @param null $content | Slug and id (related to content) or object state of the content

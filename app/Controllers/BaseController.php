@@ -50,7 +50,8 @@ class BaseController extends Controller
                 'comment',
                 'general',
                 'setting',
-                'is'
+                'is',
+                'group'
             ]);
         }
         //--------------------------------------------------------------------

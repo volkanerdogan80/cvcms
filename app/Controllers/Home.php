@@ -1,12 +1,15 @@
 <?php namespace App\Controllers;
 
-
 class Home extends BaseController
 {
     public function index()
     {
 
-        print_r(cve_theme_public('js/main.js'));
+        print_r(cve_user_favorite_posts([
+            'user' =>  3,
+            'category' => '5'
+        ]));
+
         /*$model->insert([
             'name' => 'Volkan Erdoğan',
             'email' => 'volkanerdogan80@gmail.com',
