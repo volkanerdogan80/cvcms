@@ -77,6 +77,6 @@ function cve_thumbnail($params = null, $size = null)
     }elseif($image = cve_category($params)){
         return cve_cat_image($params, $size);
     }else{
-        return base_url(config('site')->headerLogo);
+        return cve_site_header_logo();
     }
 }

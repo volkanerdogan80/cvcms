@@ -9,12 +9,12 @@
     }
 </script>
 
-<?php if($id = cve_post_id()): ?>
+<?php if(is_post()): ?>
     <script>
-        routes.content_like = '<?= base_url(route_to('content_like', $id)); ?>';
-        routes.content_favorite = '<?= base_url(route_to('content_favorite', $id)); ?>';
-        routes.content_vote = '<?= base_url(route_to('content_vote', $id)); ?>';
-        routes.content_comment = '<?= base_url(route_to('content_comment', $id))?>';
+        routes.content_like = '<?= base_url(route_to('content_like', cve_post_id())); ?>';
+        routes.content_favorite = '<?= base_url(route_to('content_favorite', cve_post_id())); ?>';
+        routes.content_vote = '<?= base_url(route_to('content_vote', cve_post_id())); ?>';
+        routes.content_comment = '<?= base_url(route_to('content_comment', cve_post_id()))?>';
     </script>
 <?php endif; ?>
 
