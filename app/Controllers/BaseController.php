@@ -37,7 +37,21 @@ class BaseController extends Controller
 		parent::initController($request, $response, $logger);
 
         if (config('system')->install){
-            helper(['form','html', 'sdc', 'text', 'theme', 'list', 'post', 'category', 'user', 'comment', 'general']);
+            helper([
+                'form',
+                'html',
+                'sdc',
+                'text',
+                'theme',
+                'list',
+                'post',
+                'category',
+                'user',
+                'comment',
+                'general',
+                'setting',
+                'is'
+            ]);
         }
         //--------------------------------------------------------------------
 		// Preload any models, libraries, etc, here.

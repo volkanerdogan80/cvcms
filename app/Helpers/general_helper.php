@@ -11,8 +11,7 @@ function cve_title()
     }elseif($title = cve_cat_title()){
         return $title;
     }else{
-        $locale = service('request')->getLocale();
-        return config('site')->title[$locale];
+        return cve_site_title();
     }
 }
 

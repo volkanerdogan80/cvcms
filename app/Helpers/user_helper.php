@@ -150,6 +150,12 @@ function cve_user_status($user = null)
     return null;
 }
 
+// TODO: Bu metot ve metota bağlı sistem geliştirilecek.
+function cve_user_twitter($user = null)
+{
+    return "@cvcms";
+}
+
 /**
  * Returns the user's Register Date
  * @param null $user | ID, Email or UserEntity Object

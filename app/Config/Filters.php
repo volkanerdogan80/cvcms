@@ -16,7 +16,9 @@ class Filters extends BaseConfig
         'ThemeJavascript' => \App\Filters\ThemeJavascript::class,
         'ThemeStyle' => \App\Filters\ThemeStyle::class,
         'ThemeWebmaster' => \App\Filters\ThemeWebmaster::class,
-        'ThemeFirebase' => \App\Filters\ThemeFirebase::class
+        'ThemeFirebase' => \App\Filters\ThemeFirebase::class,
+        'ThemeMeta' => \App\Filters\ThemeMeta::class,
+        'ThemeRichSnippet' => \App\Filters\ThemeRichSnippet::class,
 	];
 
 	// Always applied before every request
@@ -59,6 +61,18 @@ class Filters extends BaseConfig
                 ]
             ],
             'ThemeFirebase' => [
+                'except' => [
+                    '*/' . PANEL_FOLDER . '/*',
+                    'install/*',
+                ]
+            ],
+            'ThemeMeta' => [
+                'except' => [
+                    '*/' . PANEL_FOLDER . '/*',
+                    'install/*',
+                ]
+            ],
+            'ThemeRichSnippet' => [
                 'except' => [
                     '*/' . PANEL_FOLDER . '/*',
                     'install/*',
