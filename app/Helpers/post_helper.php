@@ -38,6 +38,15 @@ function cve_post($content = null)
     }
 }
 
+
+function cve_posts(){
+    $render = \Config\Services::themeRenderer();
+    if (isset($render->getData()['contents'])){
+        return $render->getData()['contents'];
+    }
+    return null;
+}
+
 /**
  * Returns Content ID
  * @param null $content | Slug and id (related to content) or object state of the content
@@ -218,6 +227,16 @@ function cve_post_keywords($content = null, bool $is_array = false)
         return $data->getKeywords(null,$is_array);
     }
     return null;
+}
+
+/**
+ * Generates url for given tag
+ * @param $keyword
+ * @return string
+ */
+function cve_tag_link($keyword): string
+{
+    return sprintf("%s?q=%s", base_url(route_to('search')), $keyword);
 }
 
 /**

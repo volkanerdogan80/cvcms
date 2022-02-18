@@ -21,7 +21,7 @@ class Content extends BaseController
 
         // TODO: İçerik bulunamadı için 404 sayfası hazırla
         if (!$content){
-            return redirect()->to(base_url(route_to('homepage')));
+            return redirect('homepage');
         }
 
         $this->viewIncrease($content);
@@ -37,12 +37,12 @@ class Content extends BaseController
     {
         // TODO: Kullanıcıyı anasayfa değilde hata mesajı sayfasına yönlendir
         if (!is_dir(cve_theme_file_path('single'))) {
-            return redirect()->to(base_url(route_to('homepage')));
+            return redirect('homepage');
         }
 
         // TODO: Kullanıcıyı anasayfa değilde hata mesajı sayfasına yönlendir
         if (!file_exists(cve_theme_file_path('single/' . cve_post_module($content) . '.php'))) {
-            return redirect()->to(base_url(route_to('homepage')));
+            return redirect('homepage');
         }
 
         return cve_view('single/' . cve_post_module($content), [
@@ -57,12 +57,12 @@ class Content extends BaseController
 
         // TODO: Kullanıcıyı anasayfa yerine hata mesajı sayfasına yönlendir
         if (!isset($page_template_list[$page_template])) {
-            return redirect()->to(base_url(route_to('homepage')));
+            return redirect('homepage');
         }
 
         // TODO: Kullanıcıyı anasayfa yerine hata mesajı sayfasına yönlendir
         if (!file_exists(cve_theme_file_path($page_template_list[$page_template]['path'] . '.php'))) {
-            return redirect()->to(base_url(route_to('homepage')));
+            return redirect('homepage');
         }
 
         return cve_view($page_template_list[$page_template]['path'], [

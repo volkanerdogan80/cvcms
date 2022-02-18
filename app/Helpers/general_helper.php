@@ -55,9 +55,9 @@ function cve_keywords()
  */
 function cve_link($params = null)
 {
-    if (cve_post($params)){
+    if (is_post($params)){
         return cve_post_link($params);
-    }elseif(cve_category($params)){
+    }elseif(is_category($params)){
         return  cve_cat_link($params);
     }else{
         return base_url(route_to('homepage'));

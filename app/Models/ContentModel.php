@@ -184,6 +184,23 @@ class ContentModel extends Model
 
     }
 
+    public function search($search, $perPage = 20)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('status', STATUS_ACTIVE);
+        $builder = $builder->groupStart();
+        $builder = $builder->like('contents.title', $search);
+        $builder = $builder->orLike('contents.description', $search);
+        $builder = $builder->orLike('contents.keywords', $search);
+        $builder = $builder->groupEnd();
+
+        return [
+            'contents' => $builder->paginate($perPage),
+            'pager' => $builder->pager
+        ];
+    }
+
     public function getContent($params)
     {
         $builder = $this->setTable($this->table);

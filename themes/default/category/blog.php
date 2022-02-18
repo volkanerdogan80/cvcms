@@ -3,6 +3,6 @@
     <title><?= cve_title(); ?></title>
 </head>
 <body>
-<p>Merhaba Kategoriler!</p>
+<p><?php print_r($category) ?></p>
 </body>
 </html>

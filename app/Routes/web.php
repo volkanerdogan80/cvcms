@@ -2,6 +2,7 @@
 
 $routes->get('', 'Frontend\Home::index', ['as' => 'homepage']);
 $routes->get('category/(:any)', 'Frontend\Category::index/$1', ['as' => 'category']);
+$routes->get('search', 'Frontend\Search::index', ['as' => 'search']);
 $routes->post('message/send', 'Frontend\Message::send', ['as' => 'message_send']);
 $routes->post('content/like/(:num)', 'Frontend\Like::liked/$1', ['as' => 'content_like']);
 $routes->post('content/vote/(:num)', 'Frontend\Rating::voted/$1', ['as' => 'content_vote']);
