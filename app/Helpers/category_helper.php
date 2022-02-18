@@ -132,12 +132,13 @@ function cve_cat_slug($category = null)
 /**
  * Returns the Title of the category sent in the parameter
  * @param null $category | slug, id, CategoryEntity Object
+ * @param null $lang | Language code
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
-function cve_cat_title($category = null)
+function cve_cat_title($category = null, $lang = null)
 {
     if ($data = cve_category($category)){
-        return $data->getTitle();
+        return $data->getTitle($lang);
     }
     return null;
 }

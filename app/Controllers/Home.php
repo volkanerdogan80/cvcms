@@ -7,7 +7,7 @@ class Home extends BaseController
 
         print_r(cve_user_favorite_posts([
             'user' =>  3,
-            'category' => '5'
+            'format' => 'gallery'
         ]));
 
         /*$model->insert([

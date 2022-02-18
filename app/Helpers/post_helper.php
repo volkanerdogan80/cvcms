@@ -67,12 +67,13 @@ function cve_post_slug($content = null)
 /**
  * Returns Content Title
  * @param null $content | Slug and id (related to content) or object state of the content
+ * @param null $lang | Language code
  * @return mixed
  */
-function cve_post_title($content = null)
+function cve_post_title($content = null, $lang = null)
 {
     if ($data = cve_post($content)){
-        return $data->getTitle();
+        return $data->getTitle($lang);
     }
     return null;
 }
@@ -146,6 +147,31 @@ function cve_post_gallery($content = null)
 {
     if ($data = cve_post($content)){
         return $data->withGallery();
+    }
+    return null;
+}
+
+/**
+ * İçerik yorum durumunu geri döner
+ * @param null $content | Slug and id (related to content) or object state of the content
+ * @return bool
+ *
+ */
+function cve_post_comment_status($content = null){
+    if ($data = cve_post($content)){
+        return $data->getComment();
+    }
+    return null;
+}
+
+/**
+ * İçerik post format değerini getirir
+ * @param null $content | Slug and id (related to content) or object state of the content
+ * @return null
+ */
+function cve_post_format($content = null){
+    if ($data = cve_post($content)){
+        return $data->getPostFormat();
     }
     return null;
 }

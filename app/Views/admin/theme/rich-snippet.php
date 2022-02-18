@@ -1,4 +1,4 @@
-<?php if (is_blog_post() || is_page_post() || is_service_post()): ?>
+<?php if (is_blog() || is_page() || is_service()): ?>
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
