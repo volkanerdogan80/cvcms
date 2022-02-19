@@ -50,18 +50,34 @@ function cve_keywords()
 /**
  * Generates a link to the content sent as a parameter or returns the site homepage link
  * @param null $params | Category ID, Category Slug, Category Entity Object
+ * @param null $route | If a url located on the router is to be generated $route should be set to true
  * Content ID, Content Slug Content Entity Object
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|string|null
  */
-function cve_link($params = null)
+function cve_link($params = null, $route = false)
 {
+    if ($route){
+        return cve_route($params);
+    }
+
     if (is_post($params)){
         return cve_post_link($params);
     }elseif(is_category($params)){
-        return  cve_cat_link($params);
+        return cve_cat_link($params);
     }else{
         return base_url(route_to('homepage'));
     }
+}
+
+
+/**
+ * Generates urls located on the router
+ * @param string $key | The name value of a url in the router
+ * @return string
+ */
+function cve_route(string $key = 'homepage', ...$params)
+{
+    return base_url(route_to($key, ...$params));
 }
 
 /**

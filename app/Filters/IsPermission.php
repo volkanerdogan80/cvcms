@@ -17,6 +17,11 @@ class IsPermission implements FilterInterface
             $permit = $segment[2].$segment[3];
 
             if(session('userData.group') != DEFAULT_ADMIN_GROUP){
+
+                if(!in_array(ADMIN_LOGIN_PERMIT_KEY, session()->permissions)){
+                    return redirect()->to(route_to('homepage'));
+                }
+
                 if (array_key_exists($permit, config('permissions')->list)){
                     if(!in_array($permit, session()->permissions)){
                         return redirect()->to(route_to('admin_permissions_error'));

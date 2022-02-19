@@ -65,14 +65,14 @@ class GroupEntity extends Entity
         return json_decode($this->attributes['permissions']);
     }
 
-    public function haveLoginPermit(): bool
+    public function haveLoginPermit()
     {
         if($this->attributes['slug'] == DEFAULT_ADMIN_GROUP){
             return true;
         }
 
         $permit = json_decode($this->attributes['permissions']);
-        if (in_array(LOGIN_PERMIT_KEY, $permit)){
+        if (in_array(LOGIN_PERMIT_KEY, $permit) || in_array(ADMIN_LOGIN_PERMIT_KEY, $permit)){
             return true;
         }
 

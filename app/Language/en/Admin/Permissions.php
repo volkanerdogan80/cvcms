@@ -9,6 +9,7 @@ return [
         'error_content'     => 'Since you do not  have access authorization, you cannot display this page.',
         'error_content_2'   => 'If you think there is a mistake, please contact the administrator.',
 
+        'user_login'         => 'User Login Authorization',
         'admin_login'        => 'Authorization to access to the administration panel',
         'group_listing'      => 'Authorization to list groups ',
         'group_create'       => 'Authorization to create new group',

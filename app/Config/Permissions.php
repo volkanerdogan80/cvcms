@@ -8,6 +8,7 @@ use \CodeIgniter\Config\BaseConfig;
 class Permissions extends BaseConfig
 {
     public $list = [
+        'user_login'    => 'Admin/Permissions.text.user_login',
         'admin_login'   => 'Admin/Permissions.text.admin_login',
         'group_listing' => 'Admin/Permissions.text.group_listing',
         'group_create'  => 'Admin/Permissions.text.group_create',
@@ -34,6 +35,7 @@ class Permissions extends BaseConfig
         'setting_email'   => 'Admin/Permissions.text.setting_email',
         'setting_cache'   => 'Admin/Permissions.text.setting_cache',
         'setting_image'   => 'Admin/Permissions.text.setting_image',
+        'setting_sitemap' => 'Admin/Permissions.text.setting_sitemap',
         'setting_webmaster'   => 'Admin/Permissions.text.setting_webmaster',
         'setting_firebase'    => 'Admin/Permissions.text.setting_firebase',
         'setting_autoshare'   => 'Admin/Permissions.text.setting_autoshare',

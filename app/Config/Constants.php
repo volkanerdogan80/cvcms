@@ -88,7 +88,8 @@ defined('PANEL_FOLDER')      || define('PANEL_FOLDER', 'admin'); //  Admin panel
 
 defined('DEFAULT_ADMIN_GROUP')      || define('DEFAULT_ADMIN_GROUP', 'admin');
 defined('DEFAULT_REGISTER_USER')    || define('DEFAULT_REGISTER_USER', 'user');
-defined('LOGIN_PERMIT_KEY')         || define('LOGIN_PERMIT_KEY', 'admin_login');
+defined('LOGIN_PERMIT_KEY')         || define('LOGIN_PERMIT_KEY', 'user_login');
+defined('ADMIN_LOGIN_PERMIT_KEY')   || define('ADMIN_LOGIN_PERMIT_KEY', 'admin_login');
 
 defined('UPLOAD_FOLDER_PATH')       || define('UPLOAD_FOLDER_PATH', 'public/upload/');
 defined('PUBLIC_ADMIN_PATH')        || define('PUBLIC_ADMIN_PATH', 'public/admin/');

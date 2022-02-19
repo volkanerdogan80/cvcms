@@ -9,23 +9,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-
-
 <div class="container">
     <div class="jumbotron">
-        <h1><?= cve_post_title() ?></h1>
-        <p><?= cve_post_description() ?></p>
+        <h1>Giriş Sayfası</h1>
     </div>
     <div class="row">
         <div class="col-md-9">
-            <?= cmp_comment_modal() ?>
-            <?= cmp_login_modal() ?>
-            <p><?= cmp_comment_list(true) ?></p>
+            <p><?= cmp_login_form(false,true) ?></p>
         </div>
     </div>
 
 </div>
-
 </body>
 </html>

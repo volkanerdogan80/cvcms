@@ -9,6 +9,7 @@ return [
         'error_content'     => 'Bu sayfaya erişim yetkiniz bulunmadığı için görüntüleyemiyorsunuz.',
         'error_content_2'   => 'Eğer bir hata olduğunu düşünüyorsanız lütfen yönetici ile iletişime geçiniz.',
 
+        'user_login'            => 'Kullanıcı giriş yapma yetkisi',
         'admin_login'           => 'Yönetim paneline erişim yetkisi',
         'group_listing'         => 'Grupları listeleme yetkisi',
         'group_create'          => 'Yeni Grup oluşturma yetkisi',

@@ -17,6 +17,9 @@ trait ResponseTrait
         }
 
         $status = $params['status'] ? 'success' : 'error';
+        if (isset($params['route'])){
+            return redirect()->to(route_to($params['route']))->with($status, $params['message']);
+        }
         return redirect()->back()->with($status, $params['message']);
     }
 }

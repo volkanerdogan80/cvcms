@@ -42,6 +42,10 @@ function page_template()
             'path' => 'page/contact',
             'title' => 'İletişim Sayfa Şablonu'
         ],
+        'login' => [
+            'path' => 'auth/login',
+            'title' => 'Giriş Sayfası Şablonu'
+        ],
     ];
 }
 

@@ -10,4 +10,8 @@ $routes->post('content/favorite/(:num)', 'Frontend\Favorite::favorite/$1', ['as'
 $routes->post('content/comment/(:num)', 'Frontend\Comment::send/$1', ['as' => 'content_comment']);
 $routes->post('newsletter/subscribe', 'Frontend\Newsletter::subscribe', ['as' => 'newsletter_subscribe']);
 $routes->get('newsletter/unsubscribe/(:any)', 'Frontend\Newsletter::unsubscribe/$1', ['as' => 'newsletter_unsubscribe']);
+
+$routes->post('login', 'Frontend\Login::login', ['as' => 'login']);
+$routes->get('logout', 'Frontend\Login::logout', ['as' => 'logout']);
+
 $routes->get('(:any)', 'Frontend\Content::index/$1', ['as' => 'content']);
