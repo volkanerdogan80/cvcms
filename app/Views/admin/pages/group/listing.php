@@ -19,7 +19,7 @@
 
             <div class="section-body">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12">dr
                         <div class="card author-box card-primary">
                             <div class="card-body">
                                 <div class="float-left">
@@ -40,7 +40,7 @@
                                 <div class="float-right">
                                     <form action="<?= current_url(); ?>" method="GET">
                                         <div class="input-group">
-                                            <input name="search" type="text" class="form-control" placeholder="<?= cve_admin_lang_path('General', 'search') ?>...">
+                                            <input name="search" type="text" class="form-control" placeholder="<?= cve_admin_lang_path('Inputs', 'search') ?>...">
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                             </div>

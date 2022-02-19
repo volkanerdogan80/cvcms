@@ -140,9 +140,9 @@ function cve_post_thumbnail($content = null, $size = null)
     }
 
     if ($data = cve_post($content)){
-        //TODO: null yerine default image dönsün.
-        //return $data->withThumbnail()->getUrl($size);
-        return $data->withThumbnail() ? $data->withThumbnail()->getUrl($size) : 'public/admin/img/default/default-image.png';
+        if($thumbnail = $data->withThumbnail()){
+            return $thumbnail->getUrl($size);
+        }
     }
     return null;
 }
@@ -168,7 +168,7 @@ function cve_post_gallery($content = null)
  */
 function cve_post_comment_status($content = null){
     if ($data = cve_post($content)){
-        return $data->getComment();
+        return $data->getCommentStatus();
     }
     return null;
 }
@@ -194,11 +194,17 @@ function cve_post_format($content = null){
 function cve_post_category($content = null, int $index = null)
 {
     if ($data = cve_post($content)){
-        if (is_null($index) || !isset($data->withCategories()[$index])){
-            $categories = $data->withCategories();
-            return end($categories); // end array son elemanı
+        if ($categories = $data->withCategories()){
+            if (is_null($index)){
+                return end($categories);
+            }
+
+            if (!isset($categories[$index])){
+                return end($categories);
+            }
+
+            return $categories[$index];
         }
-        return $data->withCategories()[$index];
     }
     return null;
 }

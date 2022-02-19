@@ -51,7 +51,8 @@ class BaseController extends Controller
                 'general',
                 'setting',
                 'is',
-                'group'
+                'group',
+                'component'
             ]);
         }
         //--------------------------------------------------------------------

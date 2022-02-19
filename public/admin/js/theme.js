@@ -50,6 +50,11 @@ $('.cve-comment-form').on('submit', function (e){
 });
 
 $(document).on('click', '.cve-comment-reply', function () {
+
+    $('html,body').animate({
+        scrollTop: $('#cve-comment-form').offset().top
+    }, 1000);
+
     let comment_id = $(this).data('id')
     let name = $(this).data('name')
 
@@ -61,9 +66,10 @@ $(document).on('click', '.cve-comment-reply', function () {
         value: comment_id,
         id: 'comment_id'
     }).appendTo('.cve-comment-form');
-    $('.cve-comment-form').prepend('<div class="cve-alert cve-primary cve-comment-reply-area">' +
-        '<span class="cve-alert-close-btn cve-comment-reply-close-btn">&times;</span>' +
-        ''+name+' '+message.comment_reply+'</div>'
+    $('.cve-comment-form').prepend('<div class="uk-width-1-1@s cve-comment-reply-area"><div class="uk-alert-primary" uk-alert>' +
+        '<a class="uk-alert-close cve-comment-reply-close-btn" uk-close></a>' +
+        '<p>'+name+' '+message.comment_reply+' </p>'+
+        '</div></div>'
     )
 });
 

@@ -352,7 +352,10 @@ class ContentEntity extends Entity
     public function withCategories()
     {
         $model = new CategoryModel();
-        return $model->find($this->getCategories());
+        if(count($this->getCategories()) > 0) {
+            return $model->find($this->getCategories());
+        }
+        return null;
     }
 
     public function withShare()
