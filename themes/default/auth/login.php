@@ -14,8 +14,11 @@
         <h1>Giriş Sayfası</h1>
     </div>
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-6">
             <p><?= cmp_login_form(false,true) ?></p>
+        </div>
+        <div class="col-md-6">
+            <p><?= cmp_register_form(true) ?></p>
         </div>
     </div>
 

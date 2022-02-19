@@ -39,3 +39,16 @@ function cmp_login_modal($login_text = 'Login', $logout_text = 'Logout', $type =
         'type' => $type
     ]);
 }
+
+function cmp_register_form($shadow = false){
+    return view('components/auth/register/form', [
+        'shadow' => $shadow
+    ]);
+}
+
+function cmp_register_modal($text = 'Register', $type = 'primary'){
+    return view('components/auth/register/modal', [
+        'text' => $text,
+        'type' => $type
+    ]);
+}

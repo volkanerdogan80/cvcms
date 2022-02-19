@@ -21,6 +21,7 @@
         <div class="col-md-9">
             <?= cmp_comment_modal() ?>
             <?= cmp_login_modal() ?>
+            <?= cmp_register_modal() ?>
             <p><?= cmp_comment_list(true) ?></p>
         </div>
     </div>
