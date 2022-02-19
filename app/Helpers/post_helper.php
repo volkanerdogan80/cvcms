@@ -450,11 +450,11 @@ function cve_post_favorite($content = null){
 }
 
 /**
- * Returns the average of the total scores awarded to a content.
+ * Returns average rating of a content
  * @param null $content | Slug and id (related to content) or object state of the content
  * @return \CodeIgniter\Cache\CacheInterface|false|int|mixed
  */
-function cve_post_rating($content = null){
+function cve_post_rating_avg($content = null){
     $model = new \App\Models\RatingModel();
     $content_id = cve_post_id($content);
     if(is_null($content_id)){
@@ -470,15 +470,28 @@ function cve_post_rating($content = null){
  * @param null $content | Slug and id (related to content) or object state of the content
  * @return \CodeIgniter\Cache\CacheInterface|false|int|mixed
  */
-function cve_post_voted($content = null){
+function cve_post_rating_score($content = null){
     $model = new \App\Models\RatingModel();
     $content_id = cve_post_id($content);
+    $vote_list = ['5' => 0, '4' => 0, '3' => 0, '2' => 0, '1' => 0];
+
     if(is_null($content_id)){
-        return 3;
+        return $vote_list;
     }
-    return cve_cache('content_vote_' . $content_id, function () use($model, $content_id){
+
+    $score_list =  cve_cache('content_score_' . $content_id, function () use($model, $content_id){
         return $model->getContentVoteCount($content_id);
     });
+
+    foreach ($vote_list as $key => $vote) {
+        foreach ($score_list as $score){
+            if ($key == $score->vote){
+                $vote_list[$key] = $score->count;
+            }
+        }
+    }
+
+    return $vote_list;
 }
 
 /**

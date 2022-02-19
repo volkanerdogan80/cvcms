@@ -1,59 +1,26 @@
 <?php
 
-
 namespace App\Controllers\Backend;
 
 use \App\Controllers\BaseController;
-use App\Entities\UserEntity;
-use App\Libraries\EmailTo;
-use App\Models\UserModel;
+use App\Controllers\Traits\AuthTrait;
 
 class Forgot extends BaseController
 {
-    protected $userModel;
-    protected $userEntity;
-    protected $emailTo;
-    protected $validation;
+    use AuthTrait{
+        AuthTrait::__construct as private __traitConstruct;
+    }
 
     public function __construct()
     {
-        $this->userModel = new UserModel();
-        $this->userEntity = new UserEntity();
-        $this->emailTo = new EmailTo();
-        $this->validation = \Config\Services::validation();
+        $this->__traitConstruct();
     }
 
     public function index()
     {
         if($this->request->getMethod() == 'post'){
-
-            $data = [
-              'email' => $this->request->getPost('email')
-            ];
-
-            if(!$this->validation->run($data, 'forgot')){
-                return redirect()->back()->with('error', $this->validation->getErrors());
-            }
-
-            $user = $this->userModel->where('email',$data['email'])->first();
-            if (!$user){
-                return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'user_not_found'));
-            }
-
-            $send = $this->emailTo
-                ->setData(['user' => $user])
-                ->setEmail($user->getEmail())
-                ->setSubject('Hesap Doğrulama Maili')
-                ->setTemplate('forgotPassword')->send();
-
-            if(!$send){
-                return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'password_update_failure'));
-            }
-
-            return view(PANEL_FOLDER . '/pages/verify/forgot-success');
-
+            return $this->forgot();
         }
-
         return view(PANEL_FOLDER . '/pages/auth/forgot-password');
     }
 

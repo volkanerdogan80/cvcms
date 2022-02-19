@@ -20,6 +20,9 @@
         <div class="col-md-6">
             <p><?= cmp_register_form(true) ?></p>
         </div>
+        <div class="col-md-6">
+            <p><?= cmp_forgot_form(true) ?></p>
+        </div>
     </div>
 
 </div>

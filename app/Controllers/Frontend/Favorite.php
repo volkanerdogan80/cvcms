@@ -20,6 +20,9 @@ class Favorite extends BaseController
 
     public function favorite($content_id)
     {
+        if(!is_logged_in()){
+            return $this->response(['status' => false, 'message' => 'Lütfen giriş yaparak tekrar deneyiniz.']);
+        }
         if ($this->request->getMethod() == 'post'){
 
             if ($favorite = $this->favoriteModel->getUserFavoriteControl($content_id)){

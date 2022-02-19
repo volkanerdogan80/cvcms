@@ -52,3 +52,45 @@ function cmp_register_modal($text = 'Register', $type = 'primary'){
         'type' => $type
     ]);
 }
+
+function cmp_forgot_form($shadow = false){
+    return view('components/auth/forgot/form', [
+        'shadow' => $shadow
+    ]);
+}
+
+function cmp_forgot_modal($text = 'Forgot Password?', $type = 'link', $button = true){
+    return view('components/auth/forgot/modal', [
+        'text' => $text,
+        'type' => $type,
+        'button' => $button
+    ]);
+}
+
+function cmp_favorite_button($type = '1', $content = null){
+    return view('components/buttons/favorite', [
+        'type' => $type,
+        'content' => $content
+    ]);
+}
+
+function cmp_like_button($type = '1', $content = null){
+    return view('components/buttons/like', [
+        'type' => $type,
+        'content' => $content
+    ]);
+}
+
+function cmp_user_score_panel($content = null){
+    return view('components/rating/user-score-panel', [
+        'content' => $content
+    ]);
+}
+
+function cmp_alert_message(){
+    return view('components/other/alert');
+}
+
+function cmp_language_dropdown(){
+    return view('components/language/dropdown');
+}

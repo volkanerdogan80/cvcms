@@ -21,7 +21,8 @@ $(document).on('click', '.cve-voted', function (){
         if (response.status){
 
             $.each(response.data.voteList, function (i, item) {
-                $('.cve-'+item.vote+'-vote').text(item.count);
+                $('.cve-'+item.vote+'-text').text(item.count);
+                $('.cve-' + item.vote + '-value').val(item.count);
             });
 
             let avg = parseFloat(response.data.ratingAvg);

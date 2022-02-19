@@ -1,3 +1,4 @@
+<?= csrf_meta() ?>
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="">
 <?php if (cve_post_id()): ?>

@@ -1,16 +1,19 @@
 <?php
 
-
 namespace App\Controllers\Backend;
 
 use \App\Controllers\BaseController;
+use App\Controllers\Traits\LanguageTrait;
 use App\Entities\LanguageEntity;
 use App\Models\LanguageModel;
 
 class Language extends BaseController
 {
+    use LanguageTrait;
+
     protected $languageModel;
     protected $languageEntity;
+
     public function __construct()
     {
         $this->languageModel = new LanguageModel();
@@ -224,16 +227,6 @@ class Language extends BaseController
             'status' => false,
             'message' => cve_admin_lang_path('Errors', 'purge_delete_failure')
         ]);
-    }
-
-    public function changeLanguage($lang){
-        $uri = new \CodeIgniter\HTTP\URI(previous_url());
-        $segments = $uri->getSegments();
-        $segments[0] = $lang; // kök dizin değişince segment[0] olmalı yoksa çalışmaz!!
-        $query = $uri->getQuery();
-        $newUri = implode('/', $segments);
-        $newUri = $query ? $newUri . '?' . $query : $newUri;
-        return redirect()->to(base_url($newUri));
     }
 
     public function status()

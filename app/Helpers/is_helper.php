@@ -249,6 +249,66 @@ function is_email_verify()
 
 }
 
+function is_favorite($content = null){
+
+    if (!is_logged_in()){
+        return false;
+    }
+
+    $model = new \App\Models\FavoriteModel();
+
+    $user_id = session('userData.id');
+    $content_id = cve_post_id($content);
+
+    $control = cve_cache(cve_cache_name('user_favorite_control', [
+        'user_id' => $user_id,
+        'content_id' => $content_id,
+    ]), function () use($model, $content_id){
+        return $model->getUserFavoriteControl($content_id);
+    });
+
+    if ($control){
+        return true;
+    }
+    return false;
+}
+
+function is_liked($content = null){
+    $model = new \App\Models\LikeModel();
+    $content_id = cve_post_id($content);
+    $remote_addr = service('request')->getIPAddress();
+
+    $control = cve_cache(cve_cache_name('user_liked_control', [
+        'remote_addr' => $remote_addr,
+        'content_id' => $content_id,
+    ]), function () use($model, $content_id, $remote_addr){
+        return $model->getUserLikeControl($content_id, $remote_addr);
+    });
+
+    if ($control){
+        return true;
+    }
+    return false;
+}
+
+function is_rating($content = null){
+    $model = new \App\Models\RatingModel();
+    $content_id = cve_post_id($content);
+    $remote_addr = service('request')->getIPAddress();
+
+    $control = cve_cache(cve_cache_name('user_rating_control', [
+        'remote_addr' => $remote_addr,
+        'content_id' => $content_id,
+    ]), function () use($model, $content_id, $remote_addr){
+        return $model->getContentIpControl($content_id, $remote_addr);
+    });
+
+    if ($control){
+        return $control->vote;
+    }
+    return false;
+}
+
 function is_product_post(): bool
 {
     if (is_post() && cve_post_module() == 'product'){

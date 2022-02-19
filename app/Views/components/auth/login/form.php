@@ -17,9 +17,17 @@
         <?php if ($is_modal): ?>
             <input type="hidden" name="is_modal" value="1">
         <?php endif; ?>
-        <div class="uk-width-1-1@s">
+        <div class="uk-width-3-4@s">
+            <button class="uk-button uk-button-link uk-margin-small-right"
+                    type="button"
+                    uk-toggle="target: #cve-forgot-modal">
+                Şifremi Unuttum
+            </button>
+        </div>
+        <div class="uk-width-1-4@s">
             <button type="submit" class="uk-button uk-button-primary uk-float-right">Giriş Yap</button>
         </div>
     </form>
+    <?= cmp_forgot_modal('Şifremi Unuttum', false, false); ?>
 </div>
 

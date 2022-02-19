@@ -79,7 +79,7 @@ trait AuthTrait
         if ($this->system->emailVerify){
             $to = $this->emailTo->setData(['user' => $user])
                 ->setEmail($user->getEmail())
-                ->setSubject('Hesap Doğrulama Maili')
+                ->setSubject('Hesap Doğrulama Maili') // TODO: Çeviri sistemine al
                 ->setTemplate('accountVerify')
                 ->send();
 
@@ -92,6 +92,7 @@ trait AuthTrait
 
         return redirect()->back()->with('success', cve_admin_lang_path('Success', 'register_success'));
     }
+
     public function login()
     {
         $data = [
@@ -151,6 +152,33 @@ trait AuthTrait
         ]);
 
         return $this->loginSuccess();
+    }
+
+    public function forgot(){
+
+        $data = [
+            'email' => $this->request->getPost('email')
+        ];
+
+        if(!$this->validation->run($data, 'forgot')){
+            return redirect()->back()->with('error', $this->validation->getErrors());
+        }
+
+        $user = $this->userModel->where('email',$data['email'])->first();
+        if (!$user){
+            return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'user_not_found'));
+        }
+
+        $send = $this->emailTo
+            ->setData(['user' => $user])
+            ->setEmail($user->getEmail())
+            ->setSubject('Şifre Sıfırlama Maili') // TODO: Çeviri sistemine al
+            ->setTemplate('forgotPassword')->send();
+
+        if(!$send){
+            return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'password_update_failure'));
+        }
+        return redirect()->back()->with('success', cve_admin_lang_path('Success', 'reset_email_success'));
     }
 
     public function logout()

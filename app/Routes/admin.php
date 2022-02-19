@@ -91,7 +91,7 @@ $routes->group('language', function ($routes){
     $routes->post('delete', 'Backend\Language::delete', ['as' => 'admin_language_delete']);
     $routes->post('undo-delete', 'Backend\Language::undoDelete', ['as' => 'admin_language_undo_delete']);
     $routes->post('purge-delete', 'Backend\Language::purgeDelete', ['as' => 'admin_language_purge_delete']);
-    $routes->get('change-language/(:alpha)', 'Backend\Language::changeLanguage/$1', ['as' => 'admin_language_change']);
+    $routes->get('change-language/(:alpha)', 'Backend\Language::change/$1', ['as' => 'admin_language_change']);
 });
 
 $routes->group('comments', function ($routes){

@@ -11,8 +11,11 @@ $routes->post('content/comment/(:num)', 'Frontend\Comment::send/$1', ['as' => 'c
 $routes->post('newsletter/subscribe', 'Frontend\Newsletter::subscribe', ['as' => 'newsletter_subscribe']);
 $routes->get('newsletter/unsubscribe/(:any)', 'Frontend\Newsletter::unsubscribe/$1', ['as' => 'newsletter_unsubscribe']);
 
+$routes->get('language/change/(:alpha)', 'Frontend\Language::change/$1', ['as' => 'language_change']);
+
 $routes->post('register', 'Frontend\Register::register', ['as' => 'register']);
 $routes->post('login', 'Frontend\Login::login', ['as' => 'login']);
+$routes->post('forgot-password', 'Frontend\Forgot::forgot', ['as' => 'forgot-password']);
 $routes->get('logout', 'Frontend\Login::logout', ['as' => 'logout']);
 
 $routes->get('(:any)', 'Frontend\Content::index/$1', ['as' => 'content']);

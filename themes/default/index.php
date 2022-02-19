@@ -13,6 +13,9 @@
     <div class="jumbotron">
         <h1>Ana Sayfa</h1>
     </div>
+    <?= cmp_alert_message() ?>
+
+
     <div class="row">
         <div class="col-md-9">
 
