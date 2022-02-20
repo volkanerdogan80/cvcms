@@ -36,7 +36,7 @@ class Filters extends BaseConfig
             ]
 		],
 		'after'  => [
-            'toolbar',
+            //'toolbar',
             'honeypot' => [
                 'except' => [
                     '*/' . PANEL_FOLDER . '/*'

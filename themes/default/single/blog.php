@@ -25,6 +25,7 @@
             <?= cmp_like_button('1') ?>
             <?= cmp_comment_modal() ?>
             <?= cmp_login_modal() ?>
+            <?= cmp_register_modal() ?>
         </div>
     </div>
     <div class="row">
@@ -34,7 +35,7 @@
     </div>
     <div class="row">
         <div class="col-md-9">
-            <?= cmp_register_modal() ?>
+
             <p><?= cmp_comment_list(true) ?></p>
         </div>
     </div>

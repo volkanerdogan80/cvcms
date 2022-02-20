@@ -94,3 +94,10 @@ function cmp_alert_message(){
 function cmp_language_dropdown(){
     return view('components/language/dropdown');
 }
+
+function cmp_bootstrap_multilevel_menu($key)
+{
+    return view('components/menu/bootstrap-4-multilevel', [
+        'key' => $key
+    ]);
+}

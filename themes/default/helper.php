@@ -46,6 +46,14 @@ function page_template()
             'path' => 'auth/login',
             'title' => 'Giriş Sayfası Şablonu'
         ],
+        'register' => [
+            'path' => 'auth/register',
+            'title' => 'Kayıt Ol Sayfası Şablonu'
+        ],
+        'forgot' => [
+            'path' => 'auth/forgot',
+            'title' => 'Şifremi Unuttum Sayfası Şablonu'
+        ],
     ];
 }
 

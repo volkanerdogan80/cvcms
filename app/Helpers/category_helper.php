@@ -294,7 +294,7 @@ function cve_cat_posts($category, $limit = 10, $pager = false)
     $model = new \App\Models\ContentModel();
 
     $posts = cve_cache(cve_cache_name('cat_posts', $params), function () use ($model, $category, $limit){
-        return $model->getCategoryContent($category, $limit);
+        return $model->getCategoryContent(cve_cat_id($category), $limit);
     });
 
     if ($pager){

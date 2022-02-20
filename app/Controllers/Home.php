@@ -5,10 +5,7 @@ class Home extends BaseController
     public function index()
     {
 
-        print_r(cve_user_favorite_posts([
-            'user' =>  3,
-            'format' => 'gallery'
-        ]));
+        print_r(cve_menu('ust-menu'));
 
         /*$model->insert([
             'name' => 'Volkan Erdoğan',
