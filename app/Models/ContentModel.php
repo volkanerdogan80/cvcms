@@ -58,15 +58,38 @@ class ContentModel extends Model
         'status'         => 'required|string',
     ];
 
+    /**
+     * Array olarak gönderilen değerleri where sorgusu ile 1 tane içerik döner
+     * @param $params
+     * @return array|object|null
+     */
     public function getContent($params)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
-        $builder = $builder->where('status', STATUS_ACTIVE);
         $builder = $builder->where($params);
         return $builder->first();
     }
 
+    /**
+     * Array olarak gönderilen değerleri where sorgusu ile tüm içerikleri döner
+     * @param $params
+     * @return array|object|null
+     */
+    public function getContents($params)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where($params);
+        return $builder->findAll();
+    }
+
+    /**
+     * Slug değeri ile içerik bilgilerini getirir
+     * @param $content_slug
+     * @param null $status
+     * @return array|object|null
+     */
     public function getContentBySlug($content_slug, $status = null)
     {
         $builder = $this->setTable($this->table);
@@ -77,6 +100,12 @@ class ContentModel extends Model
         return $builder->first();
     }
 
+    /**
+     * ID değeri ile içerik bilgilerini getirir
+     * @param $content_id
+     * @param null $status
+     * @return array|object|null
+     */
     public function getContentById($content_id, $status = null)
     {
         $builder = $this->setTable($this->table);
@@ -89,6 +118,13 @@ class ContentModel extends Model
         return $builder->first();
     }
 
+    /**
+     * ID veya ID'leri olan içerikleri getirir
+     * @param $content_ids
+     * @param null $per_page
+     * @param null $status
+     * @return array
+     */
     public function getContentByIds($content_ids, $per_page = null, $status = null)
     {
         if (!is_array($content_ids))
@@ -113,6 +149,12 @@ class ContentModel extends Model
         ];
     }
 
+    /**
+     * Status durumuna göre içerikleri getirir
+     * @param $status
+     * @param null $per_page
+     * @return array
+     */
     public function getContentsByStatus($status, $per_page = null)
     {
         $builder = $this->setTable($this->table);
@@ -130,6 +172,13 @@ class ContentModel extends Model
         ];
     }
 
+    /**
+     * Post Type değeri ile eşleşen içerikleri getirir
+     * @param $post_type
+     * @param null $per_page
+     * @param null $status
+     * @return array
+     */
     public function getContentByPostType($post_type, $per_page = null, $status = null)
     {
         $builder = $this->setTable($this->table);
@@ -151,6 +200,13 @@ class ContentModel extends Model
         ];
     }
 
+    /**
+     * Comment Status ile işleşen içerikleri getirir
+     * @param $comment_status
+     * @param null $per_page
+     * @param null $status
+     * @return array
+     */
     public function getContentByCommentStatus($comment_status, $per_page = null, $status = null)
     {
         $builder = $this->setTable($this->table);
@@ -172,6 +228,13 @@ class ContentModel extends Model
         ];
     }
 
+    /**
+     * Sayfa Türü ile işleşen içerikleri getirir
+     * @param $page_type
+     * @param null $per_page
+     * @param null $status
+     * @return array
+     */
     public function getContentByPageType($page_type, $per_page = null, $status = null)
     {
         $builder = $this->setTable($this->table);
@@ -193,6 +256,13 @@ class ContentModel extends Model
         ];
     }
 
+    /**
+     * User ID değeri ile eşleşen içerikleri getirir
+     * @param $user_id
+     * @param null $per_page
+     * @param null $status
+     * @return array
+     */
     public function getContentsByUserId($user_id, $per_page = null, $status = null)
     {
         $builder = $this->setTable($this->table);
@@ -214,6 +284,13 @@ class ContentModel extends Model
         ];
     }
 
+    /**
+     * Bir kategoride yer alan içerikleri getirir
+     * @param $category_id
+     * @param null $per_page
+     * @param null $status
+     * @return array
+     */
     public function getContentsByCategoryId($category_id, $per_page = null, $status = null)
     {
         $builder = $this->setTable($this->table);
@@ -241,6 +318,13 @@ class ContentModel extends Model
         ];
     }
 
+    /**
+     * Birden fazla kategoriye ait içerikleri getirir
+     * @param $category_ids
+     * @param null $per_page
+     * @param null $status
+     * @return array
+     */
     public function getContentsByCategoryIds($category_ids, $per_page = null, $status = null)
     {
         if (!is_array($category_ids))

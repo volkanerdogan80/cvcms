@@ -205,7 +205,14 @@ function cve_slug_creator($str, $options = array())
     $str = preg_replace('/(' . preg_quote($options['delimiter'], '/') . '){2,}/', '$1', $str);
     $str = mb_substr($str, 0, ($options['limit'] ? $options['limit'] : mb_strlen($str, 'UTF-8')), 'UTF-8');
     $str = trim($str, $options['delimiter']);
-    return $options['lowercase'] ? mb_strtolower($str, 'UTF-8') : $str;
+    $slug =  $options['lowercase'] ? mb_strtolower($str, 'UTF-8') : $str;
+
+    $model = new \App\Models\ContentModel();
+    $control = $model->getContentBySlug($slug);
+    if ($control){
+        return cve_slug_creator(increment_string($str, '-'), $options);
+    }
+    return $slug;
 }
 
 function cve_module_list()
@@ -253,13 +260,51 @@ function cve_email_template($template = null)
         ],
     ];
 
-    $template_list = array_merge($default, email_template());;
+    if (!function_exists('email_template')){
+        $theme_template = [];
+    }else{
+        $theme_template = email_template();
+    }
+
+    $template_list = array_merge($default, $theme_template);
 
     if (!is_null($template)){
         return $template_list[$template]['path'];
     }
 
     return $template_list;
+}
+
+function cve_content_format(){
+
+    $default = [
+        'standard' => [
+            'name' => 'Standart Format',
+            'custom_field' => []
+        ]
+    ];
+
+    if (!function_exists('post_format')){
+        $theme_post_format = [];
+    }else{
+        $theme_post_format = post_format();
+    }
+
+    return array_merge($default,$theme_post_format);
+}
+
+function cve_page_template(){
+    if (!function_exists('page_template')){
+        return [
+            'default' => [
+                'path' => 'page/default',
+                'title' => 'Varsayılan Şablon'
+            ]
+        ];
+
+    }else{
+        return page_template();
+    }
 }
 
 function cve_theme_view($path, $data = []): string

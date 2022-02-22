@@ -54,14 +54,14 @@ function cve_category($category = null)
 }
 
 /**
- * These methods are written for use by developers. They send requests to the get_categories method.
+ * These methods are created for get used by developers. They send requests to the get_categories method.
  * @param $module
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
 function cve_categories($module)
 {
-    return get_categories(['module' => $module]);
-}
+    $params = !is_array($module) ? ['module' => $module] : $module;
+    return get_categories($params);}
 
 /**
  * Returns the ID value of the category sent in the parameter
@@ -317,9 +317,10 @@ function cve_cat_posts($category, $limit = 10, $pager = false)
 function cve_cat_tree($module = null, $parent_id = 0, $add = '-', $data = [])
 {
     $params = ['parent_id' => $parent_id];
-    !is_null($module) ? $params['module'] = $module : null;
+    if (!is_null($module))
+        $params['module'] = $module;
 
-    $categories = get_categories($params);
+    $categories = cve_categories($params);
 
     foreach ($categories as $category){
         $title = cve_cat_parent_id($category) != 0 ? $add . ' ' . cve_cat_title($category) : cve_cat_title($category);

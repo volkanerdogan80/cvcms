@@ -7,8 +7,7 @@ class Home extends BaseController
     public function index()
     {
 
-        $model = new GroupModel();
-        print_r($model);
+        print_r(get_posts());
 
 
         /*$model->insert([

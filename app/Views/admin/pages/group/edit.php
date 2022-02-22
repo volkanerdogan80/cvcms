@@ -93,7 +93,7 @@
 <?php $this->section('script'); ?>
 
 <script>
-    $(document).on('change', '#permit-filter', function (){
+    $(document).on('keyup', '#permit-filter', function (){
         let permit_list = $('.permit-list').find('li');
         let filter = $(this).val().toUpperCase();
         permit_list.each(function (index, item){

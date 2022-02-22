@@ -23,7 +23,7 @@ class CustomField extends BaseController
     {
         $view = "";
         $get_format = $this->request->getGet('format');
-        $format = post_format()[$get_format];
+        $format = cve_content_format()[$get_format];
 
         if (isset($format['custom_field'])){
             foreach ($format['custom_field'] as $item) {

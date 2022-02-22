@@ -81,6 +81,10 @@
                         <i class="fas fa-cog"></i> <?= cve_admin_lang('Navbar', 'settings') ?>
                     </a>
                     <div class="dropdown-divider"></div>
+                    <a href="<?= base_url(route_to('homepage')); ?>" target="_blank" class="dropdown-item has-icon">
+                        <i class="fas fa-home"></i> <?= cve_admin_lang('Navbar', 'go_to_site') ?>
+                    </a>
+                    <div class="dropdown-divider"></div>
                     <a href="<?= base_url(route_to('admin_logout')); ?>" class="dropdown-item has-icon text-danger">
                         <i class="fas fa-sign-out-alt"></i> <?= cve_admin_lang('Navbar', 'logout') ?>
                     </a>

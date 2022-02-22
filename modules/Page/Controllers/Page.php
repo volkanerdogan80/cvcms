@@ -37,16 +37,13 @@ class Page extends BaseController
 
     protected function createViewData()
     {
-        return [
-            'template_list' => page_template()
-        ];
+        return [];
     }
 
     protected function editViewData($content)
     {
         return [
-            'content' => $content,
-            'template_list' => page_template()
+            'content' => $content
         ];
     }
 

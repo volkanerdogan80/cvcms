@@ -7,9 +7,24 @@
  */
 function get_post($params)
 {
+    $params = array_merge($params, ['status' => STATUS_ACTIVE]);
     $model = new \App\Models\ContentModel();
     return cve_cache(cve_cache_name('get_post', $params), function () use ($model, $params) {
         return $model->getContent($params);
+    });
+}
+
+/**
+ * Belirtilen şartlarda birden fazla içerik geri döner
+ * @param $params | Necessary conditions for where clause
+ * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
+ */
+function get_posts($params)
+{
+    $params = array_merge($params, ['status' => STATUS_ACTIVE]);
+    $model = new \App\Models\ContentModel();
+    return cve_cache(cve_cache_name('get_posts', $params), function () use ($model, $params) {
+        return $model->getContents($params);
     });
 }
 
@@ -38,8 +53,16 @@ function cve_post($content = null)
     }
 }
 
+/**
+ * Kullanıcılar tarafından kullanılacak olan birden fazla içerik dönen metot
+ * @param null $params
+ * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
+ */
+function cve_posts($params = null){
+    if (!is_null($params)){
+        return get_posts($params);
+    }
 
-function cve_posts(){
     $render = \Config\Services::themeRenderer();
     if (isset($render->getData()['contents'])){
         return $render->getData()['contents'];

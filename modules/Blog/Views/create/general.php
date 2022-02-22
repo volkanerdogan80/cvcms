@@ -76,7 +76,7 @@
             <div class="form-group">
                 <label class="col-form-label">Post Format</label>
                 <select data-url="<?= base_url(route_to('admin_post_format_add')) ?>" name="post_format" class="form-control select2 post_format">
-                    <?php foreach (post_format() as $key => $format): ?>
+                    <?php foreach (cve_content_format() as $key => $format): ?>
                         <option value="<?= $key ?>"><?= $format['name'] ?></option>
                     <?php endforeach; ?>
                 </select>
