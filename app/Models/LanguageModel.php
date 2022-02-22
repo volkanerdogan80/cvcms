@@ -33,6 +33,53 @@ class LanguageModel extends Model
         'title' => 'required'
     ];
 
+    public function getLanguage($params)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where($params);
+        return $builder->first();
+    }
+
+    public function getLanguageById($lang_id, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('id', $lang_id);
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        return $builder->first();
+    }
+
+    public function getLanguageByCode($lang_code, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('code', $lang_code);
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        return $builder->first();
+    }
+
+    public function getLanguagesByStatus($status, $per_page = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('status', $status);
+        $builder = $builder->orderBy('id', 'DESC');
+
+        if(is_null($per_page)){
+            return $builder->findAll();
+        }
+
+        return [
+            'contents' => $builder->paginate($per_page),
+            'pager' => $builder->pager
+        ];
+    }
+
     public function getListing(
         ?string $status = null,
         ?string $search = null,

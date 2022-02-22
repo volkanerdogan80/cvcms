@@ -29,4 +29,19 @@ class SettingModel extends Model
         'svalue' => 'required',
     ];
 
+    public function getSetting($params)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where($params);
+        return $builder->first();
+    }
+
+    public function getSettingByKey($key)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('skey', $key);
+        return $builder->first();
+    }
 }

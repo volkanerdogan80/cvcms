@@ -4,6 +4,7 @@
 namespace App\Models;
 
 use App\Entities\CategoryEntity;
+use CodeIgniter\Database\BaseBuilder;
 use \CodeIgniter\Model;
 
 class CategoryModel extends Model
@@ -41,6 +42,144 @@ class CategoryModel extends Model
         'image'     => 'permit_empty|numeric',
         'status'    => 'permit_empty|alpha',
     ];
+
+    public function getCategory($params)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where($params);
+        return $builder->first();
+    }
+
+    public function getCategoryBySlug($category_slug, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+        $builder = $builder->where('slug', $category_slug);
+        return $builder->first();
+    }
+
+    public function getCategoryById($category_id, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+        $builder = $builder->where('id', $category_id);
+        return $builder->first();
+    }
+
+    public function getCategoriesByStatus($status, $per_page = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('status', $status);
+        $builder = $builder->orderBy('id', 'DESC');
+
+        if(is_null($per_page)){
+            return $builder->findAll();
+        }
+
+        return [
+            'contents' => $builder->paginate($per_page),
+            'pager' => $builder->pager
+        ];
+    }
+
+    public function getCategoriesByUserId($user_id, $per_page = null, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        $builder = $builder->where('user_id', $user_id);
+        $builder = $builder->orderBy('id', 'DESC');
+
+        if(is_null($per_page)){
+            return $builder->findAll();
+        }
+
+        return [
+            'contents' => $builder->paginate($per_page),
+            'pager' => $builder->pager
+        ];
+    }
+
+    public function getCategoriesByContentId($content_id, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+
+        $builder = $builder->whereIn('id', function (BaseBuilder $builder) use($content_id){
+            return $builder->select('category_id')
+                ->from('content_categories')
+                ->where('content_id', $content_id);
+        });
+
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        return $builder->findAll();
+    }
+
+    public function getCategoryByContentId($content_id, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+
+        $builder = $builder->whereIn('id', function (BaseBuilder $builder) use($content_id){
+            return $builder->select('category_id')
+                ->from('content_categories')
+                ->where('content_id', $content_id);
+        });
+
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        return $builder->first();
+    }
+
+    public function getCategoriesByParentId($parent_id, $per_page = null, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        $builder = $builder->where('parent_id', $parent_id);
+        $builder = $builder->orderBy('id', 'DESC');
+
+        if(is_null($per_page)){
+            return $builder->findAll();
+        }
+
+        return [
+            'contents' => $builder->paginate($per_page),
+            'pager' => $builder->pager
+        ];
+    }
+
+    public function getCategoryByParentId($parent_id, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        $builder = $builder->where('parent_id', $parent_id);
+        $builder = $builder->orderBy('id', 'DESC');
+
+        return $builder->first();
+    }
+
+
+
 
     public function getListing(
         ?string $status = null,

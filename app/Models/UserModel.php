@@ -43,6 +43,87 @@ class UserModel extends Model
         'status'        => 'required'
     ];
 
+
+    public function getUser($params)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where($params);
+        return $builder->first();
+    }
+
+    public function getUserById($group_id, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('id', $group_id);
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        return $builder->first();
+    }
+
+    public function getUsersByGroupId($group_id, $per_page = null, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('group_id', $group_id);
+        $builder = $builder->orderBy('id', 'DESC');
+
+        if(is_null($per_page)){
+            return $builder->findAll();
+        }
+
+        return [
+            'contents' => $builder->paginate($per_page),
+            'pager' => $builder->pager
+        ];
+    }
+
+    public function getUserByVerifyKey($verify_key, $status = null){
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('verify_key', $verify_key);
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        return $builder->first();
+    }
+
+    public function getUsersByStatus($status, $per_page = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('status', $status);
+        $builder = $builder->orderBy('id', 'DESC');
+
+        if(is_null($per_page)){
+            return $builder->findAll();
+        }
+
+        return [
+            'contents' => $builder->paginate($per_page),
+            'pager' => $builder->pager
+        ];
+    }
+
+    public function getGroupUsers($group, $pager, $limit)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('users.*');
+        $builder = $builder->where('group_id', $group);
+
+        if ($pager){
+            return [
+                'users' => $builder->paginate($limit),
+                'pager' => $builder->pager
+            ];
+        }
+
+        return $builder->findAll($limit);
+    }
+
+
     public function getListing(
         ?string $status = null,
         ?string $search = null,
@@ -79,21 +160,5 @@ class UserModel extends Model
             'users' => $builder->paginate($perPage),
             'pager' => $builder->pager
         ];
-    }
-
-    public function getGroupUsers($group, $pager, $limit)
-    {
-        $builder = $this->setTable($this->table);
-        $builder = $builder->select('users.*');
-        $builder = $builder->where('group_id', $group);
-
-        if ($pager){
-            return [
-                'users' => $builder->paginate($limit),
-                'pager' => $builder->pager
-            ];
-        }
-
-        return $builder->findAll($limit);
     }
 }

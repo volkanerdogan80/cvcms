@@ -34,6 +34,25 @@ class ImageModel extends Model
         'size' => 'required',
     ];
 
+    public function getImage($params)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where($params);
+        return $builder->first();
+    }
+
+    public function getImageById($image_id, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('id', $image_id);
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        return $builder->first();
+    }
+
     public function getListing(
         ?string $search = null,
         ?array $dateFilter = null,

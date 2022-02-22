@@ -58,6 +58,219 @@ class ContentModel extends Model
         'status'         => 'required|string',
     ];
 
+    public function getContent($params)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('status', STATUS_ACTIVE);
+        $builder = $builder->where($params);
+        return $builder->first();
+    }
+
+    public function getContentBySlug($content_slug, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+        $builder = $builder->where('slug', $content_slug);
+        return $builder->first();
+    }
+
+    public function getContentById($content_id, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        $builder = $builder->where('id', $content_id);
+        return $builder->first();
+    }
+
+    public function getContentByIds($content_ids, $per_page = null, $status = null)
+    {
+        if (!is_array($content_ids))
+            $content_ids = explode(',', $content_ids);
+
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        $builder = $builder->whereIn('id', $content_ids);
+        $builder = $builder->orderBy('id', 'DESC');
+
+        if(is_null($per_page)){
+            return $builder->findAll();
+        }
+
+        return [
+            'contents' => $builder->paginate($per_page),
+            'pager' => $builder->pager
+        ];
+    }
+
+    public function getContentsByStatus($status, $per_page = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('status', $status);
+        $builder = $builder->orderBy('id', 'DESC');
+
+        if(is_null($per_page)){
+            return $builder->findAll();
+        }
+
+        return [
+            'contents' => $builder->paginate($per_page),
+            'pager' => $builder->pager
+        ];
+    }
+
+    public function getContentByPostType($post_type, $per_page = null, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        $builder = $builder->where('post_type', $post_type);
+        $builder = $builder->orderBy('id', 'DESC');
+
+        if(is_null($per_page)){
+            return $builder->findAll();
+        }
+
+        return [
+            'contents' => $builder->paginate($per_page),
+            'pager' => $builder->pager
+        ];
+    }
+
+    public function getContentByCommentStatus($comment_status, $per_page = null, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        $builder = $builder->where('comment_status', $comment_status);
+        $builder = $builder->orderBy('id', 'DESC');
+
+        if(is_null($per_page)){
+            return $builder->findAll();
+        }
+
+        return [
+            'contents' => $builder->paginate($per_page),
+            'pager' => $builder->pager
+        ];
+    }
+
+    public function getContentByPageType($page_type, $per_page = null, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        $builder = $builder->where('page_type', $page_type);
+        $builder = $builder->orderBy('id', 'DESC');
+
+        if(is_null($per_page)){
+            return $builder->findAll();
+        }
+
+        return [
+            'contents' => $builder->paginate($per_page),
+            'pager' => $builder->pager
+        ];
+    }
+
+    public function getContentsByUserId($user_id, $per_page = null, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        $builder = $builder->where('user_id', $user_id);
+        $builder = $builder->orderBy('id', 'DESC');
+
+        if(is_null($per_page)){
+            return $builder->findAll();
+        }
+
+        return [
+            'contents' => $builder->paginate($per_page),
+            'pager' => $builder->pager
+        ];
+    }
+
+    public function getContentsByCategoryId($category_id, $per_page = null, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+
+        $builder = $builder->whereIn('id', function (BaseBuilder $builder) use($category_id){
+            return $builder->select('content_id')
+                ->from('content_categories')
+                ->where('category_id', $category_id)
+                ->distinct();
+        });
+
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        $builder = $builder->orderBy('id', 'DESC');
+
+        if(is_null($per_page)){
+            return $builder->findAll();
+        }
+
+        return [
+            'contents' => $builder->paginate($per_page),
+            'pager' => $builder->pager
+        ];
+    }
+
+    public function getContentsByCategoryIds($category_ids, $per_page = null, $status = null)
+    {
+        if (!is_array($category_ids))
+            $category_ids = explode(',', $category_ids);
+
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+
+        $builder = $builder->whereIn('id', function (BaseBuilder $builder) use($category_ids){
+            return $builder->select('content_id')
+                ->from('content_categories')
+                ->whereIn('category_id', $category_ids)
+                ->distinct();
+        });
+
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+
+        $builder = $builder->orderBy('id', 'DESC');
+
+        if(is_null($per_page)){
+            return $builder->findAll();
+        }
+
+        return [
+            'contents' => $builder->paginate($per_page),
+            'pager' => $builder->pager
+        ];
+    }
+
     public function getListing(array $filter = [])
     {
         $builder = $this->setTable($this->table);
@@ -199,15 +412,6 @@ class ContentModel extends Model
             'contents' => $builder->paginate($perPage),
             'pager' => $builder->pager
         ];
-    }
-
-    public function getContent($params)
-    {
-        $builder = $this->setTable($this->table);
-        $builder = $builder->select('*');
-        $builder = $builder->where('status', STATUS_ACTIVE);
-        $builder = $builder->where($params);
-        return $builder->first();
     }
 
     public function getNextContent($content_id)

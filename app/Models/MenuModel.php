@@ -29,4 +29,32 @@ class MenuModel extends Model
     protected $validationRules = [
         'skey' => 'required|is_unique[menus.skey,id,{id}]',
     ];
+
+    public function getMenu($params)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where($params);
+        return $builder->first();
+    }
+
+    public function getMenuByKey($key, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('skey', $key);
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+        return $builder->first();
+    }
+
+    public function getMenuById($id, $status = null)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('id', $id);
+        if (!is_null($status))
+            $builder = $builder->where('status', $status);
+        return $builder->first();
+    }
 }

@@ -1,11 +1,15 @@
 <?php namespace App\Controllers;
 
+use App\Models\GroupModel;
+
 class Home extends BaseController
 {
     public function index()
     {
 
-       echo base_url('public/admin/img/loading.gif');
+        $model = new GroupModel();
+        print_r($model);
+
 
         /*$model->insert([
             'name' => 'Volkan Erdoğan',
