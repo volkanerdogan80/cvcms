@@ -13,7 +13,7 @@ class ThemeRichSnippet implements FilterInterface
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
-        $view = view(PANEL_FOLDER . '/theme/rich-snippet');
+        $view = view('theme-autoload/rich-snippet');
 
         $body = $response->getBody();
         $body = str_ireplace('</head>', $view . '</head>', $body);

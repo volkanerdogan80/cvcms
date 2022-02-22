@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1><?= cve_admin_lang_path('Sidebar', 'dashboard'); ?></h1>
+                <h1><?= cve_admin_lang('Sidebar', 'dashboard'); ?></h1>
             </div>
             <?= $this->include(PANEL_FOLDER . '/layout/partials/errors'); ?>
 
@@ -17,7 +17,7 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4><?= cve_admin_lang_path('Dashboard', 'blog_content'); ?></h4>
+                                    <h4><?= cve_admin_lang('Dashboard', 'blog_content'); ?></h4>
                                 </div>
                                 <div class="card-body">
                                     <?= $count['blog'] ?>
@@ -32,7 +32,7 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4><?= cve_admin_lang_path('Dashboard', 'comments'); ?></h4>
+                                    <h4><?= cve_admin_lang('Dashboard', 'comments'); ?></h4>
                                 </div>
                                 <div class="card-body">
                                     <?= $count['comment']; ?>
@@ -47,7 +47,7 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4><?= cve_admin_lang_path('Dashboard', 'users'); ?></h4>
+                                    <h4><?= cve_admin_lang('Dashboard', 'users'); ?></h4>
                                 </div>
                                 <div class="card-body">
                                     <?= $count['user']; ?>
@@ -75,9 +75,9 @@
                     <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4><?= cve_admin_lang_path('Dashboard', 'last_register_user') ?></h4>
+                                <h4><?= cve_admin_lang('Dashboard', 'last_register_user') ?></h4>
                                 <div class="card-header-action">
-                                    <a href="<?= base_url(route_to('admin_user_listing', null)); ?>" class="btn btn-primary"><?= cve_admin_lang_path('Buttons', 'view_all'); ?></a>
+                                    <a href="<?= base_url(route_to('admin_user_listing', null)); ?>" class="btn btn-primary"><?= cve_admin_lang('Buttons', 'view_all'); ?></a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -102,9 +102,9 @@
                     <div class="col-lg-8 col-md-12 col-12 col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4><?= cve_admin_lang_path('Dashboard', 'last_blog_content'); ?></h4>
+                                <h4><?= cve_admin_lang('Dashboard', 'last_blog_content'); ?></h4>
                                 <div class="card-header-action">
-                                    <a href="<?= base_url(route_to('admin_blog_listing', null)); ?>" class="btn btn-primary"><?= cve_admin_lang_path('Buttons', 'view_all'); ?></a>
+                                    <a href="<?= base_url(route_to('admin_blog_listing', null)); ?>" class="btn btn-primary"><?= cve_admin_lang('Buttons', 'view_all'); ?></a>
                                 </div>
                             </div>
                             <div class="card-body p-0">
@@ -145,9 +145,9 @@
                     <div class="col-lg-4 col-md-12 col-12 col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4><?= cve_admin_lang_path('Dashboard', 'recent_activities') ?></h4>
+                                <h4><?= cve_admin_lang('Dashboard', 'recent_activities') ?></h4>
                                 <div class="card-header-action">
-                                    <a href="#" class="btn btn-primary"><?= cve_admin_lang_path('Buttons', 'view_all'); ?></a>
+                                    <a href="#" class="btn btn-primary"><?= cve_admin_lang('Buttons', 'view_all'); ?></a>
                                 </div>
                             </div>
                             <div class="card-body">

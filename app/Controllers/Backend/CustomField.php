@@ -12,7 +12,7 @@ class CustomField extends BaseController
         $type = $this->request->getGet('type');
         return $this->response->setJSON([
             'status' => true,
-            'message' => cve_admin_lang_path('Success', 'extra_field_added'),
+            'message' => cve_admin_lang('Success', 'extra_field_added'),
             'view' => view(PANEL_FOLDER . '/pages/field/' . $type, [
                 'random' => random_string('alpha',4)
             ])
@@ -41,7 +41,7 @@ class CustomField extends BaseController
 
         return $this->response->setJSON([
             'status' => true,
-            'message' => cve_admin_lang_path('Success','create'),
+            'message' => cve_admin_lang('Success','create'),
             'view' => $view
         ]);
     }

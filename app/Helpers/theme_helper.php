@@ -78,19 +78,28 @@ function cve_theme_public($path = null): string
  * @param null $path | Returns path of a file in themes folder
  * @return string
  */
-function cve_theme_file_path($path = null)
+function cve_theme_file($path = null, $folder = false)
 {
-    return THEMES_PATH . cve_theme_folder() . '/' . $path;
+    $file_path = THEMES_PATH . cve_theme_folder() . '/' . $path;
+    if (!$folder){
+        $file_ext = pathinfo($path, PATHINFO_EXTENSION);
+        $file_path = empty($file_ext) ? $file_path . '.php' : $file_path;
+    }
+    return $file_path;
 }
 
 /**
- * @param null $path | The file path to be used in the public folder.
+ * @param null $path | Includes a file in the theme
  * @return string
  */
-function cve_theme_public_path($path = null): string
+function cve_theme_include($path = null)
 {
-    return THEMES_PATH . cve_theme_folder() . '/public/' . $path;
+    require_once (cve_theme_file($path));
 }
 
-//TODO: Yeni sisteme uyarlanacak
-require_once THEMES_PATH . cve_theme_folder() . '/helper.php';
+if (is_dir(THEMES_PATH. cve_theme_folder())){
+    $file = THEMES_PATH. cve_theme_folder() . '/helper.php';
+    if (file_exists($file)){
+        require_once $file;
+    }
+}

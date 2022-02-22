@@ -13,7 +13,7 @@ class ThemeStyle implements FilterInterface
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
-        $view = view(PANEL_FOLDER . '/theme/style');
+        $view = view('theme-autoload/style');
 
         $body = $response->getBody();
         $body = str_ireplace('</head>', $view . '</head>', $body);

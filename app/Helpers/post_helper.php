@@ -29,10 +29,10 @@ function cve_post($content = null)
 
     if (is_object($content)){
         return $content;
-    }elseif(is_string($content)){
-        return get_post(['slug' => $content]);
     }elseif(is_numeric($content) || is_integer($content)){
         return get_post(['id' => $content]);
+    }elseif(is_string($content)){
+        return get_post(['slug' => $content]);
     }else{
         return null;
     }

@@ -11,7 +11,7 @@ class Cache extends BaseController
     public function clean()
     {
         cache()->clean();
-        return redirect()->back()->with('success', cve_admin_lang_path('Success', 'cache_clean'));
+        return redirect()->back()->with('success', cve_admin_lang('Success', 'cache_clean'));
     }
 
 }

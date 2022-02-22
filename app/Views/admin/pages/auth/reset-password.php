@@ -11,26 +11,26 @@
                 </div>
 
                 <div class="card card-primary">
-                    <div class="card-header"><?= cve_admin_lang_path('Auth', 'reset_password') ?></h4></div>
+                    <div class="card-header"><?= cve_admin_lang('Auth', 'reset_password') ?></h4></div>
 
                     <div class="card-body">
                         <?= $this->include(PANEL_FOLDER . '/layout/partials/errors'); ?>
-                        <p class="text-muted"><?= cve_admin_lang_path('Auth', 'verify_time_limit') ?></p>
+                        <p class="text-muted"><?= cve_admin_lang('Auth', 'verify_time_limit') ?></p>
                         <form method="POST">
                             <?= csrf_field() ?>
                             <div class="form-group">
-                                <label for="password"><?= cve_admin_lang_path('Inputs', 'new_password') ?></label>
+                                <label for="password"><?= cve_admin_lang('Inputs', 'new_password') ?></label>
                                 <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password" tabindex="2" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="password-confirm"><?= cve_admin_lang_path('Inputs', 'password2') ?></label>
+                                <label for="password-confirm"><?= cve_admin_lang('Inputs', 'password2') ?></label>
                                 <input id="password-confirm" type="password" class="form-control" name="password2" tabindex="2" required>
                             </div>
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                    <?= cve_admin_lang_path('Auth', 'reset_password') ?>
+                                    <?= cve_admin_lang('Auth', 'reset_password') ?>
                                 </button>
                             </div>
                         </form>

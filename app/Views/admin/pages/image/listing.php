@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1><?= cve_admin_lang_path('Sidebar', 'images') ?></h1>
+                <h1><?= cve_admin_lang('Sidebar', 'images') ?></h1>
             </div>
 
             <?= $this->include(PANEL_FOLDER . '/layout/partials/errors'); ?>
@@ -26,7 +26,7 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <select name="per_page" class="form-control selectric">
-                                            <option value=""><?= cve_admin_lang_path('Inputs', 'per_page') ?></option>
+                                            <option value=""><?= cve_admin_lang('Inputs', 'per_page') ?></option>
                                             <?php foreach (config('system')->perPageList as $per): ?>
                                                 <option value="<?= $per ?>"><?= $per ?></option>
                                             <?php endforeach; ?>
@@ -40,7 +40,7 @@
                                                 <i class="fas fa-calendar"></i>
                                             </div>
                                         </div>
-                                        <input value="<?= $dateFilter ?>" name="dateFilter" placeholder="<?= cve_admin_lang_path('Inputs', 'date_filter') ?>" type="text" class="form-control daterange-cus">
+                                        <input value="<?= $dateFilter ?>" name="dateFilter" placeholder="<?= cve_admin_lang('Inputs', 'date_filter') ?>" type="text" class="form-control daterange-cus">
                                         <div class="input-group-append">
                                             <button type="button" class="btn btn-light date_filter_clear"><i class="fas fa-trash"></i></button>
                                         </div>
@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="input-group">
-                                        <input value="<?= $search ?>" name="search" type="text" class="form-control" placeholder="<?= cve_admin_lang_path('Inputs', 'search') ?>...">
+                                        <input value="<?= $search ?>" name="search" type="text" class="form-control" placeholder="<?= cve_admin_lang('Inputs', 'search') ?>...">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                         </div>

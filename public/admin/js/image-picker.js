@@ -66,7 +66,7 @@ $(document).on('click', '.images-picker-select', function (){
         input = input + '<div class="col-6 col-sm-2">\n' +
             '<label class="mb-4">\n' +
             '<input type="hidden" name="'+inputName+'[]" value="'+item+'">'+
-            '<img src="'+srcList[index]+'" class="imagecheck-image">\n' +
+            '<img style="width: 187px; height: 134px;" src="'+srcList[index]+'" class="imagecheck-image">\n' +
             '</label>\n' +
             '</div>';
     });

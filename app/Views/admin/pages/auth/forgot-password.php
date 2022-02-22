@@ -11,14 +11,14 @@
                 </div>
 
                 <div class="card card-primary">
-                    <div class="card-header"><h4><?= cve_admin_lang_path('Auth', 'forgot_password') ?></h4></div>
+                    <div class="card-header"><h4><?= cve_admin_lang('Auth', 'forgot_password') ?></h4></div>
 
                     <div class="card-body">
-                        <p class="text-muted"><?= cve_admin_lang_path('Auth', 'reset_email') ?></p>
+                        <p class="text-muted"><?= cve_admin_lang('Auth', 'reset_email') ?></p>
                         <form method="POST">
                             <?= csrf_field() ?>
                             <div class="form-group">
-                                <label for="email"><?= cve_admin_lang_path('Inputs', 'email') ?></label>
+                                <label for="email"><?= cve_admin_lang('Inputs', 'email') ?></label>
                                 <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
                             </div>
                             <?php if(config('webmaster')->reCaptchaKey): ?>
@@ -28,7 +28,7 @@
                             <?php endif; ?>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                    <?= cve_admin_lang_path('Auth', 'reset_password') ?>
+                                    <?= cve_admin_lang('Auth', 'reset_password') ?>
                                 </button>
                             </div>
                         </form>

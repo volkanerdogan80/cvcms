@@ -34,14 +34,14 @@ function post_format()
 function page_template()
 {
     return [
-        'default' => cve_theme_file_path('page/default')
+        'default' => cve_theme_file('page/default')
     ];
 }
 
 function email_template()
 {
     return [
-        'accountVerify' => cve_theme_file_path('email/account-verify'),
+        'accountVerify' => cve_theme_file('email/account-verify'),
         'forgotPassword' => '',
     ];
 }

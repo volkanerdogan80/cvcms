@@ -44,7 +44,7 @@ class Groups extends BaseController
                 return redirect()->back()->with('error', $this->groupModel->errors());
             }
 
-            return redirect()->back()->with('success', cve_admin_lang_path('Success', 'create_success'));
+            return redirect()->back()->with('success', cve_admin_lang('Success', 'create_success'));
 
         }
         return view(PANEL_FOLDER . '/pages/group/create');
@@ -67,7 +67,7 @@ class Groups extends BaseController
                 return redirect()->back()->with('error', $this->groupModel->errors());
             }
 
-            return redirect()->back()->with('success', cve_admin_lang_path('Success', 'update_success'));
+            return redirect()->back()->with('success', cve_admin_lang('Success', 'update_success'));
         }
 
         $data = [
@@ -83,7 +83,7 @@ class Groups extends BaseController
             if (!$data){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'delete_empty_fields')
+                    'message' => cve_admin_lang('Errors', 'delete_empty_fields')
                 ]);
             }
 
@@ -93,7 +93,7 @@ class Groups extends BaseController
             if($adminGroup){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'delete_admin_group_failure')
+                    'message' => cve_admin_lang('Errors', 'delete_admin_group_failure')
                 ]);
             }
 
@@ -101,7 +101,7 @@ class Groups extends BaseController
             if($userList){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'delete_group_with_user')
+                    'message' => cve_admin_lang('Errors', 'delete_group_with_user')
                 ]);
             }
 
@@ -110,19 +110,19 @@ class Groups extends BaseController
             if(!$delete){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'delete_failure')
+                    'message' => cve_admin_lang('Errors', 'delete_failure')
                 ]);
             }
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'delete_success')
+                'message' => cve_admin_lang('Success', 'delete_success')
             ]);
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'delete_failure')
+            'message' => cve_admin_lang('Errors', 'delete_failure')
         ]);
     }
 
@@ -133,7 +133,7 @@ class Groups extends BaseController
             if (!$data){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'restore_empty_fields')
+                    'message' => cve_admin_lang('Errors', 'restore_empty_fields')
                 ]);
             }
 
@@ -142,20 +142,20 @@ class Groups extends BaseController
             if(!$update){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'undo_delete_failure')
+                    'message' => cve_admin_lang('Errors', 'undo_delete_failure')
                 ]);
             }
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'undo_delete_success')
+                'message' => cve_admin_lang('Success', 'undo_delete_success')
             ]);
 
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'undo_delete_failure')
+            'message' => cve_admin_lang('Errors', 'undo_delete_failure')
         ]);
 
     }
@@ -167,7 +167,7 @@ class Groups extends BaseController
             if (!$data){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'purge_delete_empty_fields')
+                    'message' => cve_admin_lang('Errors', 'purge_delete_empty_fields')
                 ]);
             }
             $delete = $this->groupModel->delete($data, true);
@@ -175,20 +175,20 @@ class Groups extends BaseController
             if(!$delete){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'delete_failure')
+                    'message' => cve_admin_lang('Errors', 'delete_failure')
                 ]);
             }
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'purge_delete_success')
+                'message' => cve_admin_lang('Success', 'purge_delete_success')
             ]);
 
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'purge_delete_failure')
+            'message' => cve_admin_lang('Errors', 'purge_delete_failure')
         ]);
     }
 

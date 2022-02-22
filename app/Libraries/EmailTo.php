@@ -45,7 +45,7 @@ class EmailTo
         }
 
         if (array_key_exists($this->template[$template], email_template())){
-            $message = cve_view(cve_email_template($this->template[$template]), $this->data);
+            $message = cve_theme_view(cve_email_template($this->template[$template]), $this->data);
         }else{
             $message = view(cve_email_template($this->template[$template]), $this->data);
         }

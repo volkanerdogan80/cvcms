@@ -1,41 +1,4 @@
 <?php
-function cve_language($used = false, $status = STATUS_ACTIVE)
-{
-    $model =  new \App\Models\LanguageModel();
-    $locale = service('request')->getLocale();
-
-    if (is_null($status)){
-        return $model->findAll();
-    }
-
-    if ($used){
-        return $model->where('status', $status)->where('code', $locale)->first();
-    }
-    return $model->where('status', $status)->findAll();
-}
-
-function cve_lang_data($data, $lang = null)
-{
-    if(is_array($data)){
-        $data = json_decode($data);
-    }
-
-    $locale = !is_null($lang) ? $lang : service('request')->getLocale();
-
-    if(isset($data->$locale)){
-        return $data->$locale;
-    }
-    return null;
-}
-
-function cve_admin_lang_path($file, $text = null)
-{
-
-    if(!is_null($text)){
-        return lang('Admin/' . ucfirst($file) . '.text.' . $text);
-    }
-    return lang('Admin/' . ucfirst($file)  . '.text');
-}
 
 function cve_autoshare($content_id)
 {
@@ -163,29 +126,6 @@ function cve_multi_image_area(string $areaID, string $inputName = null, $images 
         ]);
     }
     return '<div id="'.$areaID.'" class="row gutters-sm">'.$image_list.'</div>';
-}
-
-function cve_tree_menu($data, $item)
-{
-    if (isset($item->children)){
-        echo view(PANEL_FOLDER . '/pages/menu/partials/item', [
-            'partial' => 'child-start',
-            'menu' => $data,
-            'item' => $item
-        ]);
-        foreach ($item->children as $child) {
-            cve_tree_menu($data, $child);
-        }
-        echo view(PANEL_FOLDER . '/pages/menu/partials/item', [
-            'partial' => 'child-end',
-        ]);
-    }else{
-        echo view(PANEL_FOLDER . '/pages/menu/partials/item', [
-            'partial' => 'item',
-            'menu' => $data,
-            'item' => $item
-        ]);
-    }
 }
 
 function cve_slug_creator($str, $options = array())
@@ -322,45 +262,9 @@ function cve_email_template($template = null)
     return $template_list;
 }
 
-function cve_view($path, $data = []): string
+function cve_theme_view($path, $data = []): string
 {
     $viewPath = THEMES_PATH . cve_theme_folder();
     $renderer = \Config\Services::themeRenderer($viewPath, null, true);
     return $renderer->setData($data)->render($path);
-}
-
-function recurse_copy($src,$dst)
-{
-    $dir = opendir($src);
-    @mkdir($dst);
-    while(false !== ( $file = readdir($dir)) ) {
-        if (( $file != '.' ) && ( $file != '..' )) {
-            if ( is_dir($src . '/' . $file) ) {
-                recurse_copy($src . '/' . $file,$dst . '/' . $file);
-            }
-            else {
-                copy($src . '/' . $file,$dst . '/' . $file);
-            }
-        }
-    }
-    closedir($dir);
-}
-
-function delete_directory($dirname)
-{
-    if (is_dir($dirname))
-        $dir_handle = opendir($dirname);
-    if (!isset($dir_handle))
-        return false;
-    while($file = readdir($dir_handle)) {
-        if ($file != "." && $file != "..") {
-            if (!is_dir($dirname."/".$file))
-                unlink($dirname."/".$file);
-            else
-                delete_directory($dirname.'/'.$file);
-        }
-    }
-    closedir($dir_handle);
-    rmdir($dirname);
-    return true;
 }

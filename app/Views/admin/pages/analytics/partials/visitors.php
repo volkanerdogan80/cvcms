@@ -1,12 +1,12 @@
 <table class="table table-hover">
     <thead>
     <tr>
-        <th scope="col"><?= cve_admin_lang_path('Analytics', 'date') ?></th>
-        <th scope="col"><?= cve_admin_lang_path('Analytics', 'user') ?></th>
-        <th scope="col"><?= cve_admin_lang_path('Analytics', 'session') ?></th>
-        <th scope="col"><?= cve_admin_lang_path('Analytics', 'page_view') ?></th>
-        <th scope="col"><?= cve_admin_lang_path('Analytics', 'pw_vs') ?></th> <!-- Sayfa Görüntüleme / Ziyaretçi -->
-        <th scope="col"><?= cve_admin_lang_path('Analytics', 'instant_view') ?></th>
+        <th scope="col"><?= cve_admin_lang('Analytics', 'date') ?></th>
+        <th scope="col"><?= cve_admin_lang('Analytics', 'user') ?></th>
+        <th scope="col"><?= cve_admin_lang('Analytics', 'session') ?></th>
+        <th scope="col"><?= cve_admin_lang('Analytics', 'page_view') ?></th>
+        <th scope="col"><?= cve_admin_lang('Analytics', 'pw_vs') ?></th> <!-- Sayfa Görüntüleme / Ziyaretçi -->
+        <th scope="col"><?= cve_admin_lang('Analytics', 'instant_view') ?></th>
     </tr>
     </thead>
     <tbody>

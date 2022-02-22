@@ -4,7 +4,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1><?= cve_admin_lang_path('Translation', 'translate_page_title'); ?></h1>
+            <h1><?= cve_admin_lang('Translation', 'translate_page_title'); ?></h1>
         </div>
 
         <?= $this->include(PANEL_FOLDER . '/layout/partials/errors'); ?>
@@ -15,11 +15,11 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group">
-                            <label><?= cve_admin_lang_path('Inputs', 'title'); ?></label>
+                            <label><?= cve_admin_lang('Inputs', 'title'); ?></label>
                             <textarea class="form-control" name="translate[title]" style="height: 60px;"><?= $strings['title']; ?></textarea>
                         </div>
                         <div class="form-group">
-                            <label><?= cve_admin_lang_path('Inputs', 'description'); ?></label>
+                            <label><?= cve_admin_lang('Inputs', 'description'); ?></label>
                             <textarea class="form-control" name="translate[description]" style="height: 60px;"><?= $strings['description']; ?></textarea>
                         </div>
                         <?php foreach ($strings['text'] as $key => $value): ?>
@@ -30,7 +30,7 @@
                         <?php endforeach; ?>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success btn-block btn-lg"><?= cve_admin_lang_path('Buttons', 'update'); ?></button>
+                        <button type="submit" class="btn btn-success btn-block btn-lg"><?= cve_admin_lang('Buttons', 'update'); ?></button>
                     </div>
                 </div>
             </form>

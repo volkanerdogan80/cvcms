@@ -13,7 +13,7 @@ class ThemeMeta implements FilterInterface
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
-        $view = view(PANEL_FOLDER . '/theme/meta');
+        $view = view('theme-autoload/meta');
 
         $body = $response->getBody();
         $body = str_ireplace('</head>', $view . '</head>', $body);

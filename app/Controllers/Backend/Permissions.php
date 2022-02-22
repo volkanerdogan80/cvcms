@@ -11,7 +11,7 @@ class Permissions extends BaseController
         if($this->request->isAJAX()){
             return $this->response->setJSON([
                 'status' => false,
-                'message' => cve_admin_lang_path('Errors', 'unauthorized_request')
+                'message' => cve_admin_lang('Errors', 'unauthorized_request')
             ]);
         }
         return view(PANEL_FOLDER . '/pages/verify/permissions-error');

@@ -4,10 +4,10 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1><?= cve_admin_lang_path('Analytics', 'visitor_history') ?></h1>
+            <h1><?= cve_admin_lang('Analytics', 'visitor_history') ?></h1>
             <div class="section-header-breadcrumb">
                 <a href="<?= base_url(route_to('admin_analytics_realtime')); ?>" class="btn btn-primary">
-                    <i class="fas fa-user-clock"></i> <?= cve_admin_lang_path('Buttons', 'instant_visitors') ?>
+                    <i class="fas fa-user-clock"></i> <?= cve_admin_lang('Buttons', 'instant_visitors') ?>
                 </a>
             </div>
         </div>
@@ -19,7 +19,7 @@
                     <h4><?= $page_title ?></h4>
                     <form class="card-header-form">
                         <div class="input-group">
-                            <input value="" name="dateFilter" placeholder="<?= cve_admin_lang_path('Inputs', 'date_filter') ?>" type="text" class="form-control daterange-analytics">
+                            <input value="" name="dateFilter" placeholder="<?= cve_admin_lang('Inputs', 'date_filter') ?>" type="text" class="form-control daterange-analytics">
                             <div class="input-group-btn">
                                 <button class="btn btn-primary btn-icon"><i class="fas fa-search"></i></button>
                             </div>
@@ -30,22 +30,22 @@
                 <div class="card-body">
                     <ul class="nav nav-tabs" id="myTab2" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="visitors-tab2" data-toggle="tab" href="#visitors" role="tab" aria-controls="listing" aria-selected="true"><?= cve_admin_lang_path('Analytics', 'visitors') ?></a>
+                            <a class="nav-link active" id="visitors-tab2" data-toggle="tab" href="#visitors" role="tab" aria-controls="listing" aria-selected="true"><?= cve_admin_lang('Analytics', 'visitors') ?></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="referral-tab2" data-toggle="tab" href="#referral" role="tab" aria-controls="referral" aria-selected="false"><?= cve_admin_lang_path('Analytics', 'referrals') ?></a>
+                            <a class="nav-link" id="referral-tab2" data-toggle="tab" href="#referral" role="tab" aria-controls="referral" aria-selected="false"><?= cve_admin_lang('Analytics', 'referrals') ?></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="browser-tab2" data-toggle="tab" href="#browser" role="tab" aria-controls="browser" aria-selected="false"><?= cve_admin_lang_path('Analytics', 'browser') ?></a>
+                            <a class="nav-link" id="browser-tab2" data-toggle="tab" href="#browser" role="tab" aria-controls="browser" aria-selected="false"><?= cve_admin_lang('Analytics', 'browser') ?></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="operating-tab2" data-toggle="tab" href="#operating" role="tab" aria-controls="operating" aria-selected="false"><?= cve_admin_lang_path('Analytics', 'operating') ?></a>
+                            <a class="nav-link" id="operating-tab2" data-toggle="tab" href="#operating" role="tab" aria-controls="operating" aria-selected="false"><?= cve_admin_lang('Analytics', 'operating') ?></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="keywords-tab2" data-toggle="tab" href="#keywords" role="tab" aria-controls="keywords" aria-selected="false"><?= cve_admin_lang_path('Analytics', 'keywords') ?></a>
+                            <a class="nav-link" id="keywords-tab2" data-toggle="tab" href="#keywords" role="tab" aria-controls="keywords" aria-selected="false"><?= cve_admin_lang('Analytics', 'keywords') ?></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="topContent-tab2" data-toggle="tab" href="#topContent" role="tab" aria-controls="topContent" aria-selected="false"><?= cve_admin_lang_path('Analytics', 'top_content') ?></a>
+                            <a class="nav-link" id="topContent-tab2" data-toggle="tab" href="#topContent" role="tab" aria-controls="topContent" aria-selected="false"><?= cve_admin_lang('Analytics', 'top_content') ?></a>
                         </li>
                     </ul>
                     <div class="tab-content tab-bordered" id="myTab3Content">

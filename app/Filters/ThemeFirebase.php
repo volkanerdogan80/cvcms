@@ -13,7 +13,7 @@ class ThemeFirebase implements FilterInterface
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
-        $view = view(PANEL_FOLDER . '/theme/firebase');
+        $view = view('theme-autoload/firebase');
 
         $body = $response->getBody();
         $body = str_ireplace('</body>', $view . '</body>', $body);

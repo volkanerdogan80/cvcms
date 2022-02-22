@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1><?= cve_admin_lang_path('Sidebar', 'category_create') ?></h1>
+                <h1><?= cve_admin_lang('Sidebar', 'category_create') ?></h1>
             </div>
 
             <?= $this->include(PANEL_FOLDER . '/layout/partials/errors'); ?>
@@ -33,10 +33,10 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('Inputs', 'parent_category') ?></label>
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('Inputs', 'parent_category') ?></label>
                                 <div class="col-sm-12 col-md-8">
                                     <select name="parent_id" class="form-control select2">
-                                        <option value=""><?= cve_admin_lang_path('General', 'none') ?></option>
+                                        <option value=""><?= cve_admin_lang('General', 'none') ?></option>
                                         <?php foreach ($categories as $category): ?>
                                             <option value="<?= $category->id; ?>"><?= $category->getTitle(); ?></option>
                                         <?php endforeach; ?>
@@ -47,19 +47,19 @@
                                 <?php foreach (cve_language() as $key => $lang): ?>
                                     <div class="tab-pane fade <?= $key == 0 ? 'show active' : ''; ?>" id="<?= $lang->getCode(); ?>" role="tabpanel" aria-labelledby="<?= $lang->getCode(); ?>-tab">
                                         <div class="form-group row mb-4">
-                                            <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= $lang->getTitle(); ?> <?= cve_admin_lang_path('Inputs', 'title') ?></label>
+                                            <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= $lang->getTitle(); ?> <?= cve_admin_lang('Inputs', 'title') ?></label>
                                             <div class="col-sm-12 col-md-8">
                                                 <input name="title[<?= $lang->getCode(); ?>]" type="text" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="form-group row mb-4">
-                                            <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= $lang->getTitle(); ?> <?= cve_admin_lang_path('Inputs', 'description') ?></label>
+                                            <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= $lang->getTitle(); ?> <?= cve_admin_lang('Inputs', 'description') ?></label>
                                             <div class="col-sm-12 col-md-8">
                                                 <textarea name="description[<?= $lang->getCode(); ?>]" class="form-control" style="height: 150px"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row mb-4">
-                                            <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= $lang->getTitle(); ?> <?= cve_admin_lang_path('Inputs', 'keywords') ?></label>
+                                            <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= $lang->getTitle(); ?> <?= cve_admin_lang('Inputs', 'keywords') ?></label>
                                             <div class="col-sm-12 col-md-8">
                                                 <input name="keywords[<?= $lang->getCode(); ?>]" value="" type="text" class="form-control inputtags">
                                             </div>
@@ -69,33 +69,33 @@
                             </div>
 
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('Inputs', 'module') ?></label>
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('Inputs', 'module') ?></label>
                                 <div class="col-sm-12 col-md-8">
                                     <select name="module" class="form-control select2" required>
-                                        <option value=""><?= cve_admin_lang_path('Inputs', 'module_select') ?></option>
+                                        <option value=""><?= cve_admin_lang('Inputs', 'module_select') ?></option>
                                         <?php foreach (cve_module_list() as $module): ?>
-                                            <option value="<?= $module ?>"><?= cve_admin_lang_path('Modules', strtolower($module)) ?></option>
+                                            <option value="<?= $module ?>"><?= cve_admin_lang('Modules', strtolower($module)) ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('Inputs', 'status') ?></label>
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('Inputs', 'status') ?></label>
                                 <div class="col-sm-12 col-md-8">
                                     <div class="selectgroup w-100">
                                         <label class="selectgroup-item">
                                             <input checked type="radio" name="status" value="<?= STATUS_ACTIVE ?>" class="selectgroup-input">
-                                            <span class="selectgroup-button"><?= cve_admin_lang_path('Buttons', 'active') ?></span>
+                                            <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'active') ?></span>
                                         </label>
                                         <label class="selectgroup-item">
                                             <input  type="radio" name="status" value="<?= STATUS_PASSIVE ?>" class="selectgroup-input">
-                                            <span class="selectgroup-button"><?= cve_admin_lang_path('Buttons', 'passive') ?></span>
+                                            <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'passive') ?></span>
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('Buttons', 'image') ?></label>
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('Buttons', 'image') ?></label>
                                 <div class="col-sm-12 col-md-8">
                                     <?= cve_single_image_picker('category-image', 'image', 'category-image-id'); ?>
                                 </div>
@@ -104,7 +104,7 @@
                         <div class="card-footer">
                             <div class="form-group row " style="justify-content: center">
                                 <div class="col-sm-12 col-md-8">
-                                    <button type="submit" class="btn btn-success btn-block btn-lg"><?= cve_admin_lang_path('Buttons', 'save') ?></button>
+                                    <button type="submit" class="btn btn-success btn-block btn-lg"><?= cve_admin_lang('Buttons', 'save') ?></button>
                                 </div>
                             </div>
                         </div>

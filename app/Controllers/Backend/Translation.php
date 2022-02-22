@@ -20,7 +20,7 @@ class Translation extends BaseController
             if (!cve_permit_control('translation_listing')){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Translation', 'no_permit')
+                    'message' => cve_admin_lang('Translation', 'no_permit')
                 ]);
             }
 
@@ -32,7 +32,7 @@ class Translation extends BaseController
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success','create_success'),
+                'message' => cve_admin_lang('Success','create_success'),
                 'view' => view(PANEL_FOLDER . '/pages/translation/partials/folder-list', [
                     'folder_list' => $folder,
                     'lang' => $lang
@@ -42,7 +42,7 @@ class Translation extends BaseController
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'invalid_request_type')
+            'message' => cve_admin_lang('Errors', 'invalid_request_type')
         ]);
 
     }
@@ -86,7 +86,7 @@ class Translation extends BaseController
             fwrite($t_file, $text);
             fclose($t_file);
 
-            return redirect()->back()->with('success', cve_admin_lang_path('Success', 'update_success'));
+            return redirect()->back()->with('success', cve_admin_lang('Success', 'update_success'));
         }
 
         $strings = include $path;

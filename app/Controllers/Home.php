@@ -5,7 +5,7 @@ class Home extends BaseController
     public function index()
     {
 
-        print_r(cve_menu('ust-menu'));
+       echo base_url('public/admin/img/loading.gif');
 
         /*$model->insert([
             'name' => 'Volkan Erdoğan',

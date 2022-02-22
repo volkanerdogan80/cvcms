@@ -60,5 +60,6 @@ return [
         'send_notification'     => 'Bildirim Gönderilsin mi?',
         'message'       => 'Mesajınız',
         'notify_link'   => 'Bildirime tıklayınca açılması istenen sayfanın linki',
+        'filter_permits'   => 'İzinleri Filtrele...',
     ]
 ];

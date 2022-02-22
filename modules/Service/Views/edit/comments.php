@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h4><?= cve_admin_lang_path('Blog', 'comments') ?></h4>
+            <h4><?= cve_admin_lang('Blog', 'comments') ?></h4>
         </div>
         <div class="card-body">
             <ul class="list-unstyled list-unstyled-border list-unstyled-noborder comment-list">

@@ -32,10 +32,10 @@ function cve_user($user = null)
 
     if (is_object($user)){
         return $user;
-    }elseif(is_string($user)){
-        return get_user(['email' => $user]);
     }elseif(is_numeric($user) || is_integer($user)){
         return get_user(['id' => $user]);
+    }elseif(is_string($user)){
+        return get_user(['email' => $user]);
     }else{
         return null; // TODO: Duruma göre aktif kullanıcının session bilgisi de döndürülebilir.
     }

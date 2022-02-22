@@ -12,15 +12,15 @@
                                 <div class="empty-state-icon bg-danger">
                                     <i class="fas fa-times"></i>
                                 </div>
-                                <h2><?= cve_admin_lang_path('Errors', 'verification_failure') ?></h2>
-                                <p><?= cve_admin_lang_path('Errors', 'verification_failure_msg') ?></p>
-                                <b><?= cve_admin_lang_path('Auth', 'why_title') ?></b>
+                                <h2><?= cve_admin_lang('Errors', 'verification_failure') ?></h2>
+                                <p><?= cve_admin_lang('Errors', 'verification_failure_msg') ?></p>
+                                <b><?= cve_admin_lang('Auth', 'why_title') ?></b>
                                 <ol style="text-align: left">
-                                    <li><?= cve_admin_lang_path('Auth', 'why_verify_key') ?></li>
-                                    <li><?= cve_admin_lang_path('Auth', 'why_verify_already') ?></li>
-                                    <li><?= cve_admin_lang_path('Auth', 'why_account_suspend') ?></li>
+                                    <li><?= cve_admin_lang('Auth', 'why_verify_key') ?></li>
+                                    <li><?= cve_admin_lang('Auth', 'why_verify_already') ?></li>
+                                    <li><?= cve_admin_lang('Auth', 'why_account_suspend') ?></li>
                                 </ol>
-                                <a href="<?= base_url(route_to('admin_login')) ?>" class="btn btn-primary mt-4"><?= cve_admin_lang_path('Buttons', 'go_to_login_page') ?></a>
+                                <a href="<?= base_url(route_to('admin_login')) ?>" class="btn btn-primary mt-4"><?= cve_admin_lang('Buttons', 'go_to_login_page') ?></a>
                             </div>
                         </div>
                     </div>

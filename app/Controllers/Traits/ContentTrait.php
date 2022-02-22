@@ -59,7 +59,7 @@ trait ContentTrait
             $this->addCategory($insertID, 'insert');
 
             return redirect()->route('admin_' . $this->module . '_edit', [$insertID])
-                ->with('success', cve_admin_lang_path('Success', 'create_success'));
+                ->with('success', cve_admin_lang('Success', 'create_success'));
 
         }
         return view(cve_module_view($this->module, 'create/index'), $this->createViewData());
@@ -71,7 +71,7 @@ trait ContentTrait
         $content = $this->contentModel->find($id);
         if ($content->getUserId() != session('userData.id')){
             if(!cve_permit_control($this->edit_all_permit)){
-                return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'blog_edit_auth_failure'));
+                return redirect()->back()->with('error', cve_admin_lang('Errors', 'blog_edit_auth_failure'));
             }
         }
 
@@ -89,7 +89,7 @@ trait ContentTrait
             $this->sendNotification($id);
             $this->addCategory($id, 'update');
 
-            return redirect()->back()->with('success', cve_admin_lang_path('Success', 'update_success'));
+            return redirect()->back()->with('success', cve_admin_lang('Success', 'update_success'));
         }
 
         return view(cve_module_view($this->module, 'edit/index'), $this->editViewData($content));
@@ -102,7 +102,7 @@ trait ContentTrait
             if (!$id){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'delete_empty_fields')
+                    'message' => cve_admin_lang('Errors', 'delete_empty_fields')
                 ]);
             }
             //$data = !is_array($data) ? [$data] : $data;
@@ -112,7 +112,7 @@ trait ContentTrait
                 if(!cve_permit_control($this->delete_all_permit)){
                     return $this->response->setJSON([
                         'status' => false,
-                        'message' => cve_admin_lang_path('Errors', 'blog_delete_failure')
+                        'message' => cve_admin_lang('Errors', 'blog_delete_failure')
                     ]);
                 }
             }
@@ -121,19 +121,19 @@ trait ContentTrait
             if (!$delete){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'delete_failure')
+                    'message' => cve_admin_lang('Errors', 'delete_failure')
                 ]);
             }
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'delete_success')
+                'message' => cve_admin_lang('Success', 'delete_success')
             ]);
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'delete_failure')
+            'message' => cve_admin_lang('Errors', 'delete_failure')
         ]);
     }
 
@@ -144,7 +144,7 @@ trait ContentTrait
             if (!$id){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'restore_empty_fields')
+                    'message' => cve_admin_lang('Errors', 'restore_empty_fields')
                 ]);
             }
             $content = $this->contentModel->where('user_id !=', session('userData.id'))->find($id);
@@ -152,7 +152,7 @@ trait ContentTrait
                 if(!cve_permit_control($this->undo_delete_all_permit)){
                     return $this->response->setJSON([
                         'status' => false,
-                        'message' => cve_admin_lang_path('Errors', 'blog_undo_delete_failure')
+                        'message' => cve_admin_lang('Errors', 'blog_undo_delete_failure')
                     ]);
                 }
             }
@@ -161,20 +161,20 @@ trait ContentTrait
             if(!$update){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'undo_delete_failure')
+                    'message' => cve_admin_lang('Errors', 'undo_delete_failure')
                 ]);
             }
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'undo_delete_success')
+                'message' => cve_admin_lang('Success', 'undo_delete_success')
             ]);
 
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'undo_delete_failure')
+            'message' => cve_admin_lang('Errors', 'undo_delete_failure')
         ]);
 
     }
@@ -186,7 +186,7 @@ trait ContentTrait
             if (!$id){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'purge_delete_empty_fields')
+                    'message' => cve_admin_lang('Errors', 'purge_delete_empty_fields')
                 ]);
             }
             $content = $this->contentModel->where('user_id !=', session('userData.id'))->find($id);
@@ -194,7 +194,7 @@ trait ContentTrait
                 if(!cve_permit_control($this->purge_delete_all_permit)){
                     return $this->response->setJSON([
                         'status' => false,
-                        'message' => cve_admin_lang_path('Errors', 'blog_purge_delete_failure')
+                        'message' => cve_admin_lang('Errors', 'blog_purge_delete_failure')
                     ]);
                 }
             }
@@ -203,7 +203,7 @@ trait ContentTrait
             if(!$purgeDelete){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'purge_delete_failure')
+                    'message' => cve_admin_lang('Errors', 'purge_delete_failure')
                 ]);
             }
 
@@ -215,13 +215,13 @@ trait ContentTrait
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'purge_delete_success')
+                'message' => cve_admin_lang('Success', 'purge_delete_success')
             ]);
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'purge_delete_failure')
+            'message' => cve_admin_lang('Errors', 'purge_delete_failure')
         ]);
     }
 
@@ -232,7 +232,7 @@ trait ContentTrait
             if (!$id){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'change_status_empty_fields')
+                    'message' => cve_admin_lang('Errors', 'change_status_empty_fields')
                 ]);
             }
             $status = $this->request->getPost('status');
@@ -242,7 +242,7 @@ trait ContentTrait
                 if(!cve_permit_control($this->status_all_permit)){
                     return $this->response->setJSON([
                         'status' => false,
-                        'message' => cve_admin_lang_path('Errors', 'blog_edit_failure')
+                        'message' => cve_admin_lang('Errors', 'blog_edit_failure')
                     ]);
                 }
             }
@@ -251,7 +251,7 @@ trait ContentTrait
             if(!$update){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'update_failure')
+                    'message' => cve_admin_lang('Errors', 'update_failure')
                 ]);
             }
 
@@ -261,13 +261,13 @@ trait ContentTrait
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'update_success')
+                'message' => cve_admin_lang('Success', 'update_success')
             ]);
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'update_failure')
+            'message' => cve_admin_lang('Errors', 'update_failure')
         ]);
     }
 

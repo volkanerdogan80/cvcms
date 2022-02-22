@@ -30,6 +30,7 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+$routes->get('/', 'Frontend\Home::index');
 $routes->get('sitemap.xml', 'Sitemap::listing', ['as' => 'sitemap.listing']);
 $routes->get('sitemap-(:any)-(:num).xml', 'Sitemap::generate/$1/$2', ['as' => 'sitemap.generate']);
 
@@ -67,14 +68,39 @@ $routes->group('{locale}', function ($routes){
         $routes->group('admin', function ($routes){
             require APPPATH . 'Routes/admin.php';
 
-            if (file_exists(ROOTPATH.'modules')) {
+            if (is_dir(ROOTPATH.'modules')) {
                 $modulesPath = ROOTPATH.'modules/';
                 $modules = scandir($modulesPath);
 
                 foreach ($modules as $module) {
                     if ($module === '.' || $module === '..') continue;
                     if (is_dir($modulesPath) . '/' . $module) {
-                        $routesPath = $modulesPath . $module . '/Config/Routes.php';
+                        $routesPath = $modulesPath . $module . '/Routes/admin.php';
+                        if (file_exists($routesPath)) {
+                            require($routesPath);
+                        } else {
+                            continue;
+                        }
+                    }
+                }
+            }
+
+        });
+    }
+
+    if (file_exists(APPPATH . 'Routes/api.php'))
+    {
+        $routes->group('api', function ($routes){
+            require APPPATH . 'Routes/api.php';
+
+            if (is_dir(ROOTPATH.'modules')) {
+                $modulesPath = ROOTPATH.'modules/';
+                $modules = scandir($modulesPath);
+
+                foreach ($modules as $module) {
+                    if ($module === '.' || $module === '..') continue;
+                    if (is_dir($modulesPath) . '/' . $module) {
+                        $routesPath = $modulesPath . $module . '/Routes/api.php';
                         if (file_exists($routesPath)) {
                             require($routesPath);
                         } else {
@@ -89,13 +115,24 @@ $routes->group('{locale}', function ($routes){
 
     if (file_exists(APPPATH . 'Routes/web.php'))
     {
+        if (is_dir(ROOTPATH.'modules')) {
+            $modulesPath = ROOTPATH.'modules/';
+            $modules = scandir($modulesPath);
+
+            foreach ($modules as $module) {
+                if ($module === '.' || $module === '..') continue;
+                if (is_dir($modulesPath) . '/' . $module) {
+                    $routesPath = $modulesPath . $module . '/Routes/web.php';
+                    if (file_exists($routesPath)) {
+                        require($routesPath);
+                    } else {
+                        continue;
+                    }
+                }
+            }
+        }
+
         require APPPATH . 'Routes/web.php';
     }
-
-    if (file_exists(APPPATH . 'Routes/api.php'))
-    {
-        require APPPATH . 'Routes/api.php';
-    }
-
 });
 

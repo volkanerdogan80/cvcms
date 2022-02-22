@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1><?= cve_admin_lang_path('Sidebar', 'translation'); ?></h1>
+                <h1><?= cve_admin_lang('Sidebar', 'translation'); ?></h1>
             </div>
 
             <?= $this->include(PANEL_FOLDER . '/layout/partials/errors'); ?>
@@ -14,7 +14,7 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4><?= cve_admin_lang_path('Translation', 'language_select'); ?></h4>
+                                <h4><?= cve_admin_lang('Translation', 'language_select'); ?></h4>
                             </div>
                             <div class="card-body">
                                 <div class="list-group">
@@ -34,7 +34,7 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4><?= cve_admin_lang_path('Translation', 'folder_select'); ?></h4>
+                                <h4><?= cve_admin_lang('Translation', 'folder_select'); ?></h4>
                             </div>
                             <div class="card-body" id="folder_list">
 

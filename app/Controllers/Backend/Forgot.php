@@ -43,7 +43,7 @@ class Forgot extends BaseController
 
                 $update = $this->userModel->update($userID, $this->userEntity);
                 if(!$update){
-                    return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'password_update_failure'));
+                    return redirect()->back()->with('error', cve_admin_lang('Errors', 'password_update_failure'));
                 }
 
                 session()->destroy();

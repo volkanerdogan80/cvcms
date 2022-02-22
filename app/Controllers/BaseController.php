@@ -53,7 +53,9 @@ class BaseController extends Controller
                 'is',
                 'group',
                 'component',
-                'menu'
+                'menu',
+                'language',
+                'module'
             ]);
         }
         //--------------------------------------------------------------------

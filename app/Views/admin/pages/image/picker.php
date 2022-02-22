@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h5 class="modal-title"><?= cve_admin_lang_path('Buttons', 'single_modal_title') ?></h5>
+    <h5 class="modal-title"><?= cve_admin_lang('Buttons', 'single_modal_title') ?></h5>
     <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 <div class="modal-body image-picker-modal-body">
@@ -22,7 +22,10 @@
                                value="<?= $image->id; ?>"
                                class="imagecheck-input"  />
                         <figure class="imagecheck-figure">
-                            <img src="<?= $image->getUrl('187x134'); ?>" class="imagecheck-image">
+                            <img src="<?= base_url(LOADING_GIF); ?>"
+                                 data-src="<?= $image->getUrl('187x134'); ?>"
+                                 style="width: 187px; height: 134px;"
+                                 class="imagecheck-image lazyload">
                         </figure>
                     </label>
                 </div>
@@ -42,11 +45,11 @@
         </div>
     </div>
     <?php if($type == 'editor'): ?>
-        <button type="button" class="btn btn-primary image-picker-use"><?= cve_admin_lang_path('Buttons', 'save') ?></button>
+        <button type="button" class="btn btn-primary image-picker-use"><?= cve_admin_lang('Buttons', 'save') ?></button>
     <?php elseif($type == 'single'): ?>
-        <button type="button" class="btn btn-primary image-picker-select"><?= cve_admin_lang_path('Buttons', 'single_modal_button_title') ?></button>
+        <button type="button" class="btn btn-primary image-picker-select"><?= cve_admin_lang('Buttons', 'single_modal_button_title') ?></button>
     <?php elseif($type == 'multi'): ?>
-        <button type="button" class="btn btn-primary images-picker-select"><?= cve_admin_lang_path('Buttons', 'multi_modal_button_title') ?></button>
+        <button type="button" class="btn btn-primary images-picker-select"><?= cve_admin_lang('Buttons', 'multi_modal_button_title') ?></button>
     <?php endif; ?>
 </div>
 
@@ -70,10 +73,11 @@
                 '<label class="imagecheck mb-4">\n' +
                 '<input data-original="'+image.original+'" data-id="'+image.id+'" data-src="'+image.src+'" name="imagecheck" type="radio" value="6" class="imagecheck-input"  />\n' +
                 '<figure class="imagecheck-figure">\n' +
-                '<img src="'+image.src+'" alt="" class="imagecheck-image">\n' +
+                '<img src="'+image.src+'" style="width: 187px; height: 134px" alt="" class="imagecheck-image">\n' +
                 '</figure>\n' +
                 '</label>\n' +
                 '</div>');
         }
     });
+    $("img.lazyload").lazyload();
 </script>

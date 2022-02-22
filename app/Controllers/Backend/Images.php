@@ -6,6 +6,7 @@ namespace App\Controllers\Backend;
 use \App\Controllers\BaseController;
 use App\Entities\ImageEntity;
 use App\Models\ImageModel;
+use PHPUnit\Exception;
 
 class Images extends BaseController
 {
@@ -53,7 +54,7 @@ class Images extends BaseController
         $area = $this->request->getGet('area');
         $input_id = $this->request->getGet('input');
         $type = $this->request->getGet('type');
-        $images = $this->imageModel->findAll();
+        $images = $this->imageModel->orderBy('id','DESC')->findAll();
 
         return view(PANEL_FOLDER . '/pages/image/picker', [
             'src_id' => $src_id ? $src_id : null,
@@ -91,7 +92,7 @@ class Images extends BaseController
         if(!$file->hasMoved()){
             return $this->response->setJSON([
                 'status' => false,
-                'message' => cve_admin_lang_path('Errors', 'image_upload_failure')
+                'message' => cve_admin_lang('Errors', 'image_upload_failure')
             ]);
         }
 
@@ -105,7 +106,7 @@ class Images extends BaseController
         if($this->imageModel->errors()){
             return $this->response->setJSON([
                 'status' => false,
-                'message' => cve_admin_lang_path('Errors', 'image_database_failure')
+                'message' => cve_admin_lang('Errors', 'image_database_failure')
             ]);
         }
 
@@ -154,53 +155,57 @@ class Images extends BaseController
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'delete_success')
+                'message' => cve_admin_lang('Success', 'delete_success')
             ]);
         }
 
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'image_deletion_failure')
+            'message' => cve_admin_lang('Errors', 'image_deletion_failure')
         ]);
     }
 
     private function manipulation($file)
     {
-        $manipulation = \Config\Services::image();
+        try {
+            $manipulation = \Config\Services::image();
 
-        $thumbnail = $this->imageSetting->thumbnail;
-        $imagePath = ROOTPATH . UPLOAD_FOLDER_PATH . $file->getName();
+            $thumbnail = $this->imageSetting->thumbnail;
+            $imagePath = ROOTPATH . UPLOAD_FOLDER_PATH . $file->getName();
 
-        foreach ($thumbnail as $key => $value){
-            $manipulation->withFile($imagePath);
-            $nameExp = explode('.', $file->getName());
-            $sizeExp = explode('x', $value);
-            $width = $sizeExp[0];
-            $height = $sizeExp[1];
-            $name = $nameExp[0];
-            $path = ROOTPATH . UPLOAD_FOLDER_PATH .$name . '-'.$value.'.' . $file->getClientExtension();
-            $manipulation->fit($width, $height, 'center');
-            $manipulation->save($path);
-        }
+            foreach ($thumbnail as $key => $value){
+                $manipulation->withFile($imagePath);
+                $nameExp = explode('.', $file->getName());
+                $sizeExp = explode('x', $value);
+                $width = $sizeExp[0];
+                $height = $sizeExp[1];
+                $name = $nameExp[0];
+                $path = ROOTPATH . UPLOAD_FOLDER_PATH .$name . '-'.$value.'.' . $file->getClientExtension();
+                $manipulation->fit($width, $height, 'center');
+                $manipulation->save($path);
+            }
 
-        if($this->imageSetting->compressor != 0){
-            $manipulation->withFile($imagePath);
-            $manipulation->save($imagePath, $this->imageSetting->compressor);
-        }
+            if($this->imageSetting->compressor != 0){
+                $manipulation->withFile($imagePath);
+                $manipulation->save($imagePath, $this->imageSetting->compressor);
+            }
 
-        $watermark = $this->imageSetting->watermark;
-        if ($watermark['status']){
-            $manipulation->withFile($imagePath);
-            $manipulation->text($watermark['text'], [
-                'color' => $watermark['color'],
-                'opacity' => $watermark['opacity'],
-                'withShadow' => $watermark['withShadow'],
-                'fontSize' => $watermark['fontSize'],
-                'hAlign' => $watermark['hAlign'],
-                'vAlign' => $watermark['vAlign'],
-            ]);
-            $manipulation->save($imagePath);
+            $watermark = $this->imageSetting->watermark;
+            if ($watermark['status']){
+                $manipulation->withFile($imagePath);
+                $manipulation->text($watermark['text'], [
+                    'color' => $watermark['color'],
+                    'opacity' => $watermark['opacity'],
+                    'withShadow' => $watermark['withShadow'],
+                    'fontSize' => $watermark['fontSize'],
+                    'hAlign' => $watermark['hAlign'],
+                    'vAlign' => $watermark['vAlign'],
+                ]);
+                $manipulation->save($imagePath);
+            }
+        }catch (\Exception $exception){
+
         }
 
     }

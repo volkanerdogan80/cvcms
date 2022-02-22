@@ -6,6 +6,16 @@
  */
 
 "use strict";
+$("img.lazyload").lazyload();
+
+let open_menu = localStorage.getItem('cve_open_menu');
+if (open_menu){
+    $('#' + open_menu).addClass('active');
+}
+
+$(document).on('click', '.clear-storage', function () {
+    localStorage.removeItem('cve_open_menu');
+})
 
 $('.notification_send').click(function (){
     let url = $(this).data('url');

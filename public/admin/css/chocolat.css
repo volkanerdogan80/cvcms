@@ -2,7 +2,7 @@
     cursor : zoom-out;
 }
 .chocolat-open{
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 .chocolat-overlay{
     height:100%;

@@ -15,7 +15,7 @@ class Search extends BaseController
             $contents = cve_cache(sprintf("%s_%s", 'search_', $search), function () use($model, $search){
                 return $model->search($search, 20);
             });
-            return cve_view('search', $contents);
+            return cve_theme_view('search', $contents);
         }
 
         // TODO: Kullanıcıyı anasayfa değilde hata mesajı sayfasına yönlendir

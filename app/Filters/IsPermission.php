@@ -22,7 +22,7 @@ class IsPermission implements FilterInterface
                     return redirect()->to(route_to('homepage'));
                 }
 
-                if (array_key_exists($permit, config('permissions')->list)){
+                if (array_key_exists($permit, permissions())){
                     if(!in_array($permit, session()->permissions)){
                         return redirect()->to(route_to('admin_permissions_error'));
                     }

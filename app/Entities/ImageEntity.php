@@ -57,29 +57,36 @@ class ImageEntity extends Entity
         return $this->attributes['slug'];
     }
 
-    public function getUrl($size = null): string
+    public function getUrl($size = null)
     {
-        if (!is_null($size))
-        {
+        if (!is_null($size)){
             $image = UPLOAD_FOLDER_PATH . $this->attributes['slug'] . '-' . $size . '.' . $this->attributes['type'];
             if(!file_exists(ROOTPATH . $image)){
-                $this->manipulation($size);
+                if ($this->manipulation($size)){
+                    return base_url($image);
+                }
+                return base_url($this->attributes['url']);
             }
             return base_url($image);
         }
         return base_url($this->attributes['url']);
     }
 
-    private function manipulation($size): void
+    private function manipulation($size)
     {
-        $manipulation = \Config\Services::image();
-        $manipulation->withFile(ROOTPATH. $this->attributes['url']);
-        $sizeExp = explode('x', $size);
-        $width = $sizeExp[0];
-        $height = $sizeExp[1];
-        $path = ROOTPATH . UPLOAD_FOLDER_PATH . $this->attributes['slug'] . '-' . $size . '.' . $this->attributes['type'];
-        $manipulation->fit($width, $height, 'center');
-        $manipulation->save($path);
+        try {
+            $manipulation = \Config\Services::image();
+            $manipulation->withFile(ROOTPATH. $this->attributes['url']);
+            $sizeExp = explode('x', $size);
+            $width = $sizeExp[0];
+            $height = $sizeExp[1];
+            $path = ROOTPATH . UPLOAD_FOLDER_PATH . $this->attributes['slug'] . '-' . $size . '.' . $this->attributes['type'];
+            $manipulation->fit($width, $height, 'center');
+            $manipulation->save($path);
+            return true;
+        }catch (\Exception $exception){
+            return false;
+        }
     }
 
     public function getType(): string

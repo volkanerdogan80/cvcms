@@ -11,12 +11,12 @@
                             <div class="empty-state-icon bg-success">
                                 <i class="fas fa-check"></i>
                             </div>
-                            <h2><?= cve_admin_lang_path('Success', 'email_send_success') ?></h2>
+                            <h2><?= cve_admin_lang('Success', 'email_send_success') ?></h2>
                             <p>
-                                <?= cve_admin_lang_path('Success', 'reset_email_success') ?>
+                                <?= cve_admin_lang('Success', 'reset_email_success') ?>
                             </p>
                             <a href="<?= base_url(route_to('admin_login')); ?>" class="btn btn-primary mt-4">
-                                <?= cve_admin_lang_path('Auth', 'login') ?>
+                                <?= cve_admin_lang('Auth', 'login') ?>
                             </a>
                         </div>
                     </div>

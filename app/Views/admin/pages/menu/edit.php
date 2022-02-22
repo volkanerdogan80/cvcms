@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1><?= cve_admin_lang_path('Menus', 'menu_edit') ?></h1>
+                <h1><?= cve_admin_lang('Menus', 'menu_edit') ?></h1>
                 <div class="section-header-breadcrumb">
                     <form action="<?= current_url() ?>" method="post">
                         <?= csrf_field(); ?>
@@ -13,7 +13,7 @@
                             <div class="input-group mb-3">
                                 <input name="name" type="text" class="form-control" value="<?= $data->getKey(); ?>">
                                 <div class="input-group-append">
-                                    <button class="btn btn-success" type="submit"><?= cve_admin_lang_path('Buttons', 'update') ?></button>
+                                    <button class="btn btn-success" type="submit"><?= cve_admin_lang('Buttons', 'update') ?></button>
                                 </div>
                             </div>
                         </div>
@@ -29,23 +29,23 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'type_select') ?></label>
+                                    <label class="col-form-label"><?= cve_admin_lang('Inputs', 'type_select') ?></label>
                                     <select name="type" class="form-control selectric menu-type">
-                                        <option value="type"><?= cve_admin_lang_path('Inputs', 'type_select') ?></option>
-                                        <option value="category"><?= cve_admin_lang_path('Inputs', 'category') ?></option>
-                                        <option value="content"><?= cve_admin_lang_path('Inputs', 'content') ?></option>
-                                        <option value="static"><?= cve_admin_lang_path('Inputs', 'fixed') ?></option>
-                                        <option value="custom"><?= cve_admin_lang_path('Inputs', 'custom') ?></option>
+                                        <option value="type"><?= cve_admin_lang('Inputs', 'type_select') ?></option>
+                                        <option value="category"><?= cve_admin_lang('Inputs', 'category') ?></option>
+                                        <option value="content"><?= cve_admin_lang('Inputs', 'content') ?></option>
+                                        <option value="static"><?= cve_admin_lang('Inputs', 'fixed') ?></option>
+                                        <option value="custom"><?= cve_admin_lang('Inputs', 'custom') ?></option>
                                     </select>
                                 </div>
                                 <div class="module-area area" style="display: none">
                                     <div class="form-group">
-                                        <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'module_select') ?></label>
+                                        <label class="col-form-label"><?= cve_admin_lang('Inputs', 'module_select') ?></label>
                                         <select data-url="<?= base_url(route_to('admin_menu_select')); ?>" name="module" class="form-control selectric menu-module">
-                                            <option value="module"><?= cve_admin_lang_path('Inputs', 'module_select') ?></option>
+                                            <option value="module"><?= cve_admin_lang('Inputs', 'module_select') ?></option>
                                             <?php foreach (cve_module_list() as $module): ?>
                                                 <option value="<?= $module; ?>">
-                                                    <?= cve_admin_lang_path('Modules', strtolower($module)) ?>
+                                                    <?= cve_admin_lang('Modules', strtolower($module)) ?>
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
@@ -53,17 +53,17 @@
                                 </div>
                                 <div class="module-select-item area" id="module-category-area" style="display: none">
                                     <div class="form-group">
-                                        <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'category_select') ?></label>
+                                        <label class="col-form-label"><?= cve_admin_lang('Inputs', 'category_select') ?></label>
                                         <select name="category" class="form-control select2 module-category">
-                                            <option value="category"><?= cve_admin_lang_path('Inputs', 'category_select') ?></option>
+                                            <option value="category"><?= cve_admin_lang('Inputs', 'category_select') ?></option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="module-select-item area" id="module-content-area" style="display: none">
                                     <div class="form-group">
-                                        <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'content_select') ?></label>
+                                        <label class="col-form-label"><?= cve_admin_lang('Inputs', 'content_select') ?></label>
                                         <select name="content" class="form-control select2 module-content">
-                                            <option value="content"><?= cve_admin_lang_path('Inputs', 'content_select') ?></option>
+                                            <option value="content"><?= cve_admin_lang('Inputs', 'content_select') ?></option>
                                         </select>
                                     </div>
                                 </div>
@@ -87,7 +87,7 @@
                                         <?php foreach (cve_language() as $key => $lang): ?>
                                             <div class="tab-pane fade <?= $key == 0 ? 'show active' : ''; ?>" id="<?= $lang->getCode(); ?>" role="tabpanel" aria-labelledby="<?= $lang->getCode(); ?>-tab">
                                                 <div class="form-group">
-                                                    <label><?= $lang->getTitle(); ?> <?= cve_admin_lang_path('Inputs', 'title') ?></label>
+                                                    <label><?= $lang->getTitle(); ?> <?= cve_admin_lang('Inputs', 'title') ?></label>
                                                     <input data-lang="<?= $lang->getCode(); ?>" type="text" class="form-control custom-title">
                                                 </div>
                                                 <div class="form-group">
@@ -99,8 +99,8 @@
                                     </div>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <a href="<?= current_url(); ?>" class="btn btn-primary btn-lg"><?= cve_admin_lang_path('Buttons', 'clear') ?></a>
-                                    <button type="submit" class="btn btn-success btn-lg menu-item-add"><?= cve_admin_lang_path('Buttons', 'add') ?></button>
+                                    <a href="<?= current_url(); ?>" class="btn btn-primary btn-lg"><?= cve_admin_lang('Buttons', 'clear') ?></a>
+                                    <button type="submit" class="btn btn-success btn-lg menu-item-add"><?= cve_admin_lang('Buttons', 'add') ?></button>
                                 </div>
                             </div>
                         </div>

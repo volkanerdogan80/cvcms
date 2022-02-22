@@ -56,31 +56,31 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
 <script>
     let purgeDelete = {
-        title: '<?= cve_admin_lang_path('General', 'are_you_sure') ?>',
-        text: '<?= cve_admin_lang_path('General', 'purge_delete_desc') ?>'
+        title: '<?= cve_admin_lang('General', 'are_you_sure') ?>',
+        text: '<?= cve_admin_lang('General', 'purge_delete_desc') ?>'
     }
     /*let imagePickerModal = {
         buttonText: {
-            single: '<?php // cve_admin_lang_path('Buttons', 'single_modal_button_title') ?>',
-            multi: '<?php // cve_admin_lang_path('Buttons', 'multi_modal_button_title') ?>',
+            single: '<?php // cve_admin_lang('Buttons', 'single_modal_button_title') ?>',
+            multi: '<?php // cve_admin_lang('Buttons', 'multi_modal_button_title') ?>',
         },
         title: {
-            single: '<?php // cve_admin_lang_path('Buttons', 'single_modal_title') ?>',
-            multi: '<?php // cve_admin_lang_path('Buttons', 'multi_modal_title') ?>',
+            single: '<?php // cve_admin_lang('Buttons', 'single_modal_title') ?>',
+            multi: '<?php // cve_admin_lang('Buttons', 'multi_modal_title') ?>',
         }
     }*/
     let adminImagePicker = '<?= base_url(route_to('admin_image_picker')); ?>';
     let admin_message_listing = '<?= base_url(route_to('admin_message_listing', null)); ?>';
     let daterange = {
-        today: '<?=cve_admin_lang_path('General', 'today') ?>',
-        yesterday: '<?=cve_admin_lang_path('General', 'yesterday') ?>',
-        last_7_days: '<?=cve_admin_lang_path('General', 'last_7_days') ?>',
-        last_30_days: '<?=cve_admin_lang_path('General', 'last_30_days') ?>',
-        this_month: '<?=cve_admin_lang_path('General', 'this_month') ?>',
-        last_month: '<?=cve_admin_lang_path('General', 'last_month') ?>'
+        today: '<?=cve_admin_lang('General', 'today') ?>',
+        yesterday: '<?=cve_admin_lang('General', 'yesterday') ?>',
+        last_7_days: '<?=cve_admin_lang('General', 'last_7_days') ?>',
+        last_30_days: '<?=cve_admin_lang('General', 'last_30_days') ?>',
+        this_month: '<?=cve_admin_lang('General', 'this_month') ?>',
+        last_month: '<?=cve_admin_lang('General', 'last_month') ?>'
     }
 </script>
 <?= script_tag('public/admin/js/stisla.js'); ?>

@@ -64,7 +64,7 @@ class Language extends BaseController
 
             recurse_copy(LANGUAGE_PATH.'en', LANGUAGE_PATH.$code);
 
-            return redirect()->route('admin_language_edit', [$insertID])->with('success', cve_admin_lang_path('Success', 'create_success'));
+            return redirect()->route('admin_language_edit', [$insertID])->with('success', cve_admin_lang('Success', 'create_success'));
 
         }
 
@@ -96,7 +96,7 @@ class Language extends BaseController
                     delete_directory(LANGUAGE_PATH . $language->getCode());
                 }
             }
-            return redirect()->back()->with('success', cve_admin_lang_path('Success', 'update_success'));
+            return redirect()->back()->with('success', cve_admin_lang('Success', 'update_success'));
 
         }
 
@@ -112,7 +112,7 @@ class Language extends BaseController
             if (!$data){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'delete_empty_fields')
+                    'message' => cve_admin_lang('Errors', 'delete_empty_fields')
                 ]);
             }
             $data = !is_array($data) ? [$data] : $data;
@@ -125,7 +125,7 @@ class Language extends BaseController
             if($control){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'default_language_delete_failure')
+                    'message' => cve_admin_lang('Errors', 'default_language_delete_failure')
                 ]);
             }
 
@@ -133,7 +133,7 @@ class Language extends BaseController
             if (!$delete){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'delete_failure')
+                    'message' => cve_admin_lang('Errors', 'delete_failure')
                 ]);
             }
 
@@ -141,13 +141,13 @@ class Language extends BaseController
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'delete_success')
+                'message' => cve_admin_lang('Success', 'delete_success')
             ]);
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'delete_failure')
+            'message' => cve_admin_lang('Errors', 'delete_failure')
         ]);
     }
 
@@ -158,14 +158,14 @@ class Language extends BaseController
             if (!$data){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'restore_empty_fields')
+                    'message' => cve_admin_lang('Errors', 'restore_empty_fields')
                 ]);
             }
             $update = $this->languageModel->update($data, ['deleted_at' => null]);
             if(!$update){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'undo_delete_failure')
+                    'message' => cve_admin_lang('Errors', 'undo_delete_failure')
                 ]);
             }
 
@@ -173,14 +173,14 @@ class Language extends BaseController
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'undo_delete_success')
+                'message' => cve_admin_lang('Success', 'undo_delete_success')
             ]);
 
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'undo_delete_failure')
+            'message' => cve_admin_lang('Errors', 'undo_delete_failure')
         ]);
 
     }
@@ -192,7 +192,7 @@ class Language extends BaseController
             if (!$data){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'purge_delete_empty_fields')
+                    'message' => cve_admin_lang('Errors', 'purge_delete_empty_fields')
                 ]);
             }
             $language = $this->languageModel->onlyDeleted()->find($data);
@@ -201,7 +201,7 @@ class Language extends BaseController
             if(!$purgeDelete){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'purge_delete_failure')
+                    'message' => cve_admin_lang('Errors', 'purge_delete_failure')
                 ]);
             }
             if(is_array($language)){
@@ -219,13 +219,13 @@ class Language extends BaseController
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'purge_delete_success')
+                'message' => cve_admin_lang('Success', 'purge_delete_success')
             ]);
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'purge_delete_failure')
+            'message' => cve_admin_lang('Errors', 'purge_delete_failure')
         ]);
     }
 
@@ -236,7 +236,7 @@ class Language extends BaseController
             if (!$data){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'change_status_empty_fields')
+                    'message' => cve_admin_lang('Errors', 'change_status_empty_fields')
                 ]);
             }
             $status = $this->request->getPost('status');
@@ -250,7 +250,7 @@ class Language extends BaseController
                 if ($control){
                     return $this->response->setJSON([
                         'status' => false,
-                        'message' => cve_admin_lang_path('Errors', 'default_language_status_failure')
+                        'message' => cve_admin_lang('Errors', 'default_language_status_failure')
                     ]);
                 }
             }
@@ -259,7 +259,7 @@ class Language extends BaseController
             if(!$update){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'status_change_failure')
+                    'message' => cve_admin_lang('Errors', 'status_change_failure')
                 ]);
             }
 
@@ -267,13 +267,13 @@ class Language extends BaseController
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'status_change_success')
+                'message' => cve_admin_lang('Success', 'status_change_success')
             ]);
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'status_change_failure')
+            'message' => cve_admin_lang('Errors', 'status_change_failure')
         ]);
     }
 
@@ -289,7 +289,7 @@ class Language extends BaseController
             if (!$control){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'default_language_inactive')
+                    'message' => cve_admin_lang('Errors', 'default_language_inactive')
                 ]);
             }
 
@@ -298,14 +298,14 @@ class Language extends BaseController
             return $this->response->setJSON([
                 'status' => true,
                 'default' => $control->getCode(),
-                'message' => cve_admin_lang_path('Success', 'new_default_language') . $control->getTitle()
+                'message' => cve_admin_lang('Success', 'new_default_language') . $control->getTitle()
             ]);
 
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'default_language_change_failure')
+            'message' => cve_admin_lang('Errors', 'default_language_change_failure')
         ]);
     }
 

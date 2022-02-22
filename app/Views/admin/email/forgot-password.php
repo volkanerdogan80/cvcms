@@ -8,8 +8,8 @@
             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                     <td>
-                        <p><?= cve_admin_lang_path('EmailTemplate', 'greeting') ?> <?= $user->getFullName(); ?>,</p>
-                        <p><?= cve_admin_lang_path('EmailTemplate', 'password_forgot_content') ?></p>
+                        <p><?= cve_admin_lang('EmailTemplate', 'greeting') ?> <?= $user->getFullName(); ?>,</p>
+                        <p><?= cve_admin_lang('EmailTemplate', 'password_forgot_content') ?></p>
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                             <tbody>
                             <tr>
@@ -19,7 +19,7 @@
                                         <tr>
                                             <td>
                                                 <a href="<?= base_url(route_to('admin_forgot_verify', $user->getVerifyToken())); ?>" target="_blank">
-                                                    <?= cve_admin_lang_path('Auth', 'reset_password') ?>
+                                                    <?= cve_admin_lang('Auth', 'reset_password') ?>
                                                 </a>
                                             </td>
                                         </tr>
@@ -29,8 +29,8 @@
                             </tr>
                             </tbody>
                         </table>
-                        <p><?= cve_admin_lang_path('EmailTemplate', 'alt_content') ?></p>
-                        <p><?= cve_admin_lang_path('EmailTemplate', 'thanks') ?></p>
+                        <p><?= cve_admin_lang('EmailTemplate', 'alt_content') ?></p>
+                        <p><?= cve_admin_lang('EmailTemplate', 'thanks') ?></p>
                     </td>
                 </tr>
             </table>

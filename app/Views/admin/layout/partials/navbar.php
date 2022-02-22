@@ -15,7 +15,7 @@
             <?php if (config('webmaster')->accountId): ?>
                 <li>
                     <a href="<?= base_url(route_to('admin_analytics_realtime')) ?>"
-                       data-toggle="tooltip" data-placement="top" title="<?= cve_admin_lang_path('Buttons', 'analytics'); ?>"
+                       data-toggle="tooltip" data-placement="top" title="<?= cve_admin_lang('Buttons', 'analytics'); ?>"
                        class="nav-link nav-link-lg">
                         <i class="fas fa-chart-line"></i>
                     </a>
@@ -23,7 +23,7 @@
             <?php endif; ?>
             <li>
                 <a href="<?= base_url(route_to('admin_cache_clean')) ?>"
-                   data-toggle="tooltip" data-placement="top" title="<?= cve_admin_lang_path('Navbar', 'clear_cache') ?>"
+                   data-toggle="tooltip" data-placement="top" title="<?= cve_admin_lang('Navbar', 'clear_cache') ?>"
                    class="nav-link nav-link-lg">
                     <i class="fas fa-tachometer-alt"></i>
                 </a>
@@ -33,9 +33,9 @@
                     <i class="far fa-envelope"></i>
                 </a>
                 <div class="dropdown-menu dropdown-list dropdown-menu-right">
-                    <div class="dropdown-header"><?= cve_admin_lang_path('Navbar', 'messages') ?>
+                    <div class="dropdown-header"><?= cve_admin_lang('Navbar', 'messages') ?>
                         <div class="float-right">
-                            <a class="message-mark-all-read" href="javascript:void(0) " data-url="<?= base_url(route_to('admin_message_all_read')) ?>" ><?= cve_admin_lang_path('Navbar', 'mark_all_read') ?></a>
+                            <a class="message-mark-all-read" href="javascript:void(0) " data-url="<?= base_url(route_to('admin_message_all_read')) ?>" ><?= cve_admin_lang('Navbar', 'mark_all_read') ?></a>
                         </div>
                     </div>
                     <div class="dropdown-list-content dropdown-list-message navbar-message-list">
@@ -43,7 +43,7 @@
                     </div>
                     <div class="dropdown-footer text-center">
                         <a href="<?= base_url(route_to('admin_message_listing', null)) ?>">
-                            <?= cve_admin_lang_path('Navbar', 'view_all') ?> <i class="fas fa-chevron-right"></i>
+                            <?= cve_admin_lang('Navbar', 'view_all') ?> <i class="fas fa-chevron-right"></i>
                         </a>
                     </div>
                 </div>
@@ -75,14 +75,14 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a href="features-profile.html" class="dropdown-item has-icon">
-                        <i class="far fa-user"></i> <?= cve_admin_lang_path('Navbar', 'profile') ?>
+                        <i class="far fa-user"></i> <?= cve_admin_lang('Navbar', 'profile') ?>
                     </a>
                     <a href="<?= base_url(route_to('admin_setting_home')); ?>" class="dropdown-item has-icon">
-                        <i class="fas fa-cog"></i> <?= cve_admin_lang_path('Navbar', 'settings') ?>
+                        <i class="fas fa-cog"></i> <?= cve_admin_lang('Navbar', 'settings') ?>
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="<?= base_url(route_to('admin_logout')); ?>" class="dropdown-item has-icon text-danger">
-                        <i class="fas fa-sign-out-alt"></i> <?= cve_admin_lang_path('Navbar', 'logout') ?>
+                        <i class="fas fa-sign-out-alt"></i> <?= cve_admin_lang('Navbar', 'logout') ?>
                     </a>
                 </div>
             </li>

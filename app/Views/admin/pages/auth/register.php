@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="card card-primary">
-                    <div class="card-header"><h4><?= cve_admin_lang_path('Auth', 'register') ?></h4></div>
+                    <div class="card-header"><h4><?= cve_admin_lang('Auth', 'register') ?></h4></div>
 
                     <div class="card-body">
                         <?= $this->include(PANEL_FOLDER . '/layout/partials/errors'); ?>
@@ -20,8 +20,8 @@
                             <div class="alert alert-warning alert-has-icon">
                                 <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
                                 <div class="alert-body">
-                                    <div class="alert-title"><?= cve_admin_lang_path('Auth', 'informing') ?></div>
-                                    <?= cve_admin_lang_path('Errors', 'registry_system_inactive') ?>
+                                    <div class="alert-title"><?= cve_admin_lang('Auth', 'informing') ?></div>
+                                    <?= cve_admin_lang('Errors', 'registry_system_inactive') ?>
                                 </div>
                             </div>
                         <?php endif; ?>
@@ -30,27 +30,27 @@
                             <?= csrf_field() ?>
                             <div class="row">
                                 <div class="form-group col-6">
-                                    <label for="first_name"><?= cve_admin_lang_path('Inputs', 'first_name') ?></label>
+                                    <label for="first_name"><?= cve_admin_lang('Inputs', 'first_name') ?></label>
                                     <input id="first_name" type="text" class="form-control" name="first_name" autofocus required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="sur_name"><?= cve_admin_lang_path('Inputs', 'last_name') ?></label>
+                                    <label for="sur_name"><?= cve_admin_lang('Inputs', 'last_name') ?></label>
                                     <input id="sur_name" type="text" class="form-control" name="sur_name" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="email"><?= cve_admin_lang_path('Inputs', 'email') ?></label>
+                                <label for="email"><?= cve_admin_lang('Inputs', 'email') ?></label>
                                 <input id="email" type="email" class="form-control" name="email" required>
                             </div>
 
                             <div class="row">
                                 <div class="form-group col-6">
-                                    <label for="password" class="d-block"><?= cve_admin_lang_path('Inputs', 'password') ?></label>
+                                    <label for="password" class="d-block"><?= cve_admin_lang('Inputs', 'password') ?></label>
                                     <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password" required>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="password2" class="d-block"><?= cve_admin_lang_path('Inputs', 'password2') ?></label>
+                                    <label for="password2" class="d-block"><?= cve_admin_lang('Inputs', 'password2') ?></label>
                                     <input id="password2" type="password" class="form-control" name="password2" required>
                                 </div>
                             </div>
@@ -60,19 +60,19 @@
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" name="agree" class="custom-control-input" id="agree" required>
-                                            <label class="custom-control-label" for="agree"><?= cve_admin_lang_path('Inputs', 'contract') ?></label>
+                                            <label class="custom-control-label" for="agree"><?= cve_admin_lang('Inputs', 'contract') ?></label>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" checked name="newsletter" class="custom-control-input" id="newsletter">
-                                            <label class="custom-control-label" for="newsletter"><?= cve_admin_lang_path('Inputs', 'newsletter') ?></label>
+                                            <label class="custom-control-label" for="newsletter"><?= cve_admin_lang('Inputs', 'newsletter') ?></label>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                            <?= cve_admin_lang_path('Auth', 'register') ?>
+                                            <?= cve_admin_lang('Auth', 'register') ?>
                                         </button>
                                     </div>
                                 </div>

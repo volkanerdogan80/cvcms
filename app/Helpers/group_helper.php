@@ -44,10 +44,10 @@ function cve_group($group = null){
 
     if (is_object($group)){
         return $group;
-    }elseif(is_string($group)){
-        return get_group(['slug' => $group]);
     }elseif(is_numeric($group) || is_integer($group)){
         return get_group(['id' => $group]);
+    }elseif(is_string($group)){
+        return get_group(['slug' => $group]);
     }else{
         return null;
     }

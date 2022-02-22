@@ -32,7 +32,7 @@ class Themes extends BaseController
     {
         $theme = $this->themeModel->where('folder', $folder)->where('status', STATUS_ACTIVE)->first();
         if ($theme){
-            return redirect()->back()->with('error', cve_admin_lang_path('Errors','theme_active_deletion_error'));
+            return redirect()->back()->with('error', cve_admin_lang('Errors','theme_active_deletion_error'));
         }
 
         $view_path = THEMES_PATH . $folder;
@@ -43,7 +43,7 @@ class Themes extends BaseController
             delete_directory($lang_path);
         }
 
-        return redirect()->back()->with('success', cve_admin_lang_path('Success','delete_success'));
+        return redirect()->back()->with('success', cve_admin_lang('Success','delete_success'));
 
     }
 
@@ -53,7 +53,7 @@ class Themes extends BaseController
 
         if($this->request->getMethod() == 'post'){
             if (!cve_permit_control('admin_theme_setting_update')){
-                return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'unauthorized_request'));
+                return redirect()->back()->with('error', cve_admin_lang('Errors', 'unauthorized_request'));
             }
 
             $setting = $this->request->getPost('setting');
@@ -68,7 +68,7 @@ class Themes extends BaseController
                 return redirect()->back()->with('error', $this->themeModel->errors());
             }
 
-            return redirect()->back()->with('success', cve_admin_lang_path('Success', 'theme_setting_updated'));
+            return redirect()->back()->with('success', cve_admin_lang('Success', 'theme_setting_updated'));
 
         }
 
@@ -102,7 +102,7 @@ class Themes extends BaseController
             return redirect()->back()->with('error', $this->themeModel->errors());
         }
 
-        return redirect()->back()->with('success', cve_admin_lang_path('Success', 'theme_activated_success'));
+        return redirect()->back()->with('success', cve_admin_lang('Success', 'theme_activated_success'));
     }
 
 }

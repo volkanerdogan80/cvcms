@@ -16,7 +16,7 @@ class Firebase extends BaseController
     public function index()
     {
         $this->response->setHeader('Content-Type', 'application/javascript');
-        return view(PANEL_FOLDER . '/theme/firebase-messaging-sw');
+        return view('theme-autoload/firebase-messaging-sw');
     }
 
     /**
@@ -46,19 +46,19 @@ class Firebase extends BaseController
             if ($send){
                 return $this->response->setJSON([
                     'status' => true,
-                    'message' => cve_admin_lang_path('Success', 'notification_success')
+                    'message' => cve_admin_lang('Success', 'notification_success')
                 ]);
             }
 
             return $this->response->setJSON([
                 'status' => false,
-                'message' => cve_admin_lang_path('Errors', 'notification_send_failure')
+                'message' => cve_admin_lang('Errors', 'notification_send_failure')
             ]);
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'invalid_request_type')
+            'message' => cve_admin_lang('Errors', 'invalid_request_type')
         ]);
     }
 }

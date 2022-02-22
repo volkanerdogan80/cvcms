@@ -60,5 +60,7 @@ return [
         'send_notification'     => 'Send Notification?',
         'message'       => 'Your Message',
         'notify_link'   => 'The link of the page that is requested to be opened when clicked on the notification',
+        'filter_permits'   => 'Filter Permissions...',
+
     ]
 ];

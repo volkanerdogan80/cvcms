@@ -36,16 +36,16 @@ class Content extends BaseController
     private function single($content)
     {
         // TODO: Kullanıcıyı anasayfa değilde hata mesajı sayfasına yönlendir
-        if (!is_dir(cve_theme_file_path('single'))) {
+        if (!is_theme_folder('single')) {
             return redirect('homepage');
         }
 
         // TODO: Kullanıcıyı anasayfa değilde hata mesajı sayfasına yönlendir
-        if (!file_exists(cve_theme_file_path('single/' . cve_post_module($content) . '.php'))) {
+        if (!is_theme_file('single/' . cve_post_module($content))) {
             return redirect('homepage');
         }
 
-        return cve_view('single/' . cve_post_module($content), [
+        return cve_theme_view('single/' . cve_post_module($content), [
             'content' => $content
         ]);
     }
@@ -61,11 +61,11 @@ class Content extends BaseController
         }
 
         // TODO: Kullanıcıyı anasayfa yerine hata mesajı sayfasına yönlendir
-        if (!file_exists(cve_theme_file_path($page_template_list[$page_template]['path'] . '.php'))) {
+        if (!is_theme_file($page_template_list[$page_template]['path'])) {
             return redirect('homepage');
         }
 
-        return cve_view($page_template_list[$page_template]['path'], [
+        return cve_theme_view($page_template_list[$page_template]['path'], [
             'content' => $content
         ]);
     }

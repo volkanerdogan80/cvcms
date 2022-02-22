@@ -34,7 +34,7 @@ trait AuthTrait
     public function register()
     {
         if(!$this->system->register){
-            return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'registry_system_inactive'));
+            return redirect()->back()->with('error', cve_admin_lang('Errors', 'registry_system_inactive'));
         }
 
         $data = [
@@ -84,13 +84,13 @@ trait AuthTrait
                 ->send();
 
             if($to){
-                return redirect()->back()->with('success', cve_admin_lang_path('Success', 'register_success'));
+                return redirect()->back()->with('success', cve_admin_lang('Success', 'register_success'));
             }
 
-            return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'email_send_failure'));
+            return redirect()->back()->with('error', cve_admin_lang('Errors', 'email_send_failure'));
         }
 
-        return redirect()->back()->with('success', cve_admin_lang_path('Success', 'register_success'));
+        return redirect()->back()->with('success', cve_admin_lang('Success', 'register_success'));
     }
 
     public function login()
@@ -106,23 +106,23 @@ trait AuthTrait
 
         $user = $this->userModel->where('email', $data['email'])->first();
         if(!$user){
-            return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'user_not_found'));
+            return redirect()->back()->with('error', cve_admin_lang('Errors', 'user_not_found'));
         }
 
         if (!config('system')->login){
             $adminControl = $this->groupModel->where(['id' => $user->getGroupID(), 'slug' => DEFAULT_ADMIN_GROUP])->first();
             if (!$adminControl){
-                return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'login_system_inactive'));
+                return redirect()->back()->with('error', cve_admin_lang('Errors', 'login_system_inactive'));
             }
         }
 
         $group = $this->groupModel->find($user->getGroupID());
         if(!$group->haveLoginPermit()){
-            return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'no_login_permit'));
+            return redirect()->back()->with('error', cve_admin_lang('Errors', 'no_login_permit'));
         }
 
         if(!$user->getPasswordVerify($data['password'])){
-            return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'user_info_failure'));
+            return redirect()->back()->with('error', cve_admin_lang('Errors', 'user_info_failure'));
         }
 
         if($user->getStatus() == STATUS_PENDING){
@@ -133,11 +133,11 @@ trait AuthTrait
                 ->setTemplate('accountVerify')
                 ->send();
 
-            return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'user_login_pending_failure'));
+            return redirect()->back()->with('error', cve_admin_lang('Errors', 'user_login_pending_failure'));
         }
 
         if($user->getStatus() == STATUS_PASSIVE){
-            return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'user_login_passive_failure'));
+            return redirect()->back()->with('error', cve_admin_lang('Errors', 'user_login_passive_failure'));
         }
 
         session()->set([
@@ -166,7 +166,7 @@ trait AuthTrait
 
         $user = $this->userModel->where('email',$data['email'])->first();
         if (!$user){
-            return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'user_not_found'));
+            return redirect()->back()->with('error', cve_admin_lang('Errors', 'user_not_found'));
         }
 
         $send = $this->emailTo
@@ -176,9 +176,9 @@ trait AuthTrait
             ->setTemplate('forgotPassword')->send();
 
         if(!$send){
-            return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'password_update_failure'));
+            return redirect()->back()->with('error', cve_admin_lang('Errors', 'password_update_failure'));
         }
-        return redirect()->back()->with('success', cve_admin_lang_path('Success', 'reset_email_success'));
+        return redirect()->back()->with('success', cve_admin_lang('Success', 'reset_email_success'));
     }
 
     public function logout()

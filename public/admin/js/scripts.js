@@ -89,6 +89,10 @@ $(function() {
       sidebar_nicescroll = $(".main-sidebar").getNiceScroll();
 
       $(".main-sidebar .sidebar-menu li a.has-dropdown").off('click').on('click', function() {
+
+        let cve_id = $(this).closest('li').attr('id');
+        localStorage.setItem('cve_open_menu', cve_id);
+
         var me     = $(this);
         var active = false;
         if(me.parent().hasClass("active")){

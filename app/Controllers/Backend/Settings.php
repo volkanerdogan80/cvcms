@@ -47,7 +47,7 @@ class Settings extends BaseController
                 return redirect()->back()->with('error', $this->settingModel->errors());
             }
 
-            return redirect()->back()->with('success', cve_admin_lang_path('Success', 'settings_updated'));
+            return redirect()->back()->with('success', cve_admin_lang('Success', 'settings_updated'));
 
         }
 
@@ -78,7 +78,7 @@ class Settings extends BaseController
                 return redirect()->back()->with('error', $this->settingModel->errors());
             }
 
-            return redirect()->back()->with('success',  cve_admin_lang_path('Success', 'settings_updated'));
+            return redirect()->back()->with('success',  cve_admin_lang('Success', 'settings_updated'));
 
         }
 
@@ -113,7 +113,7 @@ class Settings extends BaseController
                 return redirect()->back()->with('error', $this->settingModel->errors());
             }
 
-            return redirect()->back()->with('success',  cve_admin_lang_path('Success', 'settings_updated'));
+            return redirect()->back()->with('success',  cve_admin_lang('Success', 'settings_updated'));
         }
 
         return view(PANEL_FOLDER . '/pages/setting/email', [
@@ -144,7 +144,7 @@ class Settings extends BaseController
                 return redirect()->back()->with('error', $this->settingModel->errors());
             }
 
-            return redirect()->back()->with('success',  cve_admin_lang_path('Success', 'settings_updated'));
+            return redirect()->back()->with('success',  cve_admin_lang('Success', 'settings_updated'));
 
         }
 
@@ -173,7 +173,7 @@ class Settings extends BaseController
                 return redirect()->back()->with('error', $this->settingModel->errors());
             }
 
-            return redirect()->back()->with('success',  cve_admin_lang_path('Success', 'settings_updated'));
+            return redirect()->back()->with('success',  cve_admin_lang('Success', 'settings_updated'));
 
         }
 
@@ -203,7 +203,7 @@ class Settings extends BaseController
                 return redirect()->back()->with('error', $this->settingModel->errors());
             }
 
-            return redirect()->back()->with('success', cve_admin_lang_path('Success', 'settings_updated'));
+            return redirect()->back()->with('success', cve_admin_lang('Success', 'settings_updated'));
 
         }
 
@@ -239,7 +239,7 @@ class Settings extends BaseController
                 return redirect()->back()->with('error', $this->settingModel->errors());
             }
 
-            return redirect()->back()->with('success',  cve_admin_lang_path('Success', 'settings_updated'));
+            return redirect()->back()->with('success',  cve_admin_lang('Success', 'settings_updated'));
 
         }
         return view(PANEL_FOLDER . '/pages/setting/webmaster', [
@@ -272,7 +272,7 @@ class Settings extends BaseController
                 return redirect()->back()->with('error', $this->settingModel->errors());
             }
 
-            return redirect()->back()->with('success',  cve_admin_lang_path('Success', 'settings_updated'));
+            return redirect()->back()->with('success',  cve_admin_lang('Success', 'settings_updated'));
         }
 
         return view(PANEL_FOLDER . '/pages/setting/firebase', [
@@ -301,7 +301,7 @@ class Settings extends BaseController
                 return redirect()->back()->with('error', $this->settingModel->errors());
             }
 
-            return redirect()->back()->with('success',  cve_admin_lang_path('Success', 'settings_updated'));
+            return redirect()->back()->with('success',  cve_admin_lang('Success', 'settings_updated'));
 
         }
 
@@ -331,7 +331,7 @@ class Settings extends BaseController
                 return redirect()->back()->with('error', $this->settingModel->errors());
             }
 
-            return redirect()->back()->with('success', cve_admin_lang_path('Success', 'settings_updated'));
+            return redirect()->back()->with('success', cve_admin_lang('Success', 'settings_updated'));
         }
 
         return view(PANEL_FOLDER. '/pages/setting/social', [
@@ -364,7 +364,7 @@ class Settings extends BaseController
                 return redirect()->back()->with('error', $this->settingModel->errors());
             }
 
-            return redirect()->back()->with('success', cve_admin_lang_path('Success', 'settings_updated'));
+            return redirect()->back()->with('success', cve_admin_lang('Success', 'settings_updated'));
         }
 
         return view(PANEL_FOLDER .'/pages/setting/contact', [

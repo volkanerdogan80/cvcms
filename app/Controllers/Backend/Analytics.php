@@ -22,7 +22,7 @@ class Analytics extends BaseController
         $this->client->setAuthConfig(WRITEPATH . 'uploads/google-analytics-account.json');
         $this->client->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
         $this->analytics = new \Google_Service_Analytics($this->client);
-        $this->pageTitle = cve_admin_lang_path('Analytics', 'last_30_days');
+        $this->pageTitle = cve_admin_lang('Analytics', 'last_30_days');
 
     }
 
@@ -72,21 +72,21 @@ class Analytics extends BaseController
 
                 return $this->response->setJSON([
                     'status' => true,
-                    'message' => cve_admin_lang_path('General', 'realtime_visitor_info'),
+                    'message' => cve_admin_lang('General', 'realtime_visitor_info'),
                     'online' => $result->getTotalResults(),
                     'data' => $result->getRows(),
                 ]);
             }catch (\Exception $exception){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'realtime_visitors_failure')
+                    'message' => cve_admin_lang('Errors', 'realtime_visitors_failure')
                 ]);
             }
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors','invalid_request_type')
+            'message' => cve_admin_lang('Errors','invalid_request_type')
         ]);
     }
 

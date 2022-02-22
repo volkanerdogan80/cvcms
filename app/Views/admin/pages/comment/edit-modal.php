@@ -1,11 +1,11 @@
 <div class="modal-header">
-    <h5 class="modal-title"><?= cve_admin_lang_path('General', 'now_editing') ?> <?= $comment->getName() ?></h5>
+    <h5 class="modal-title"><?= cve_admin_lang('General', 'now_editing') ?> <?= $comment->getName() ?></h5>
     <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 <div class="modal-body comment-modal">
     <input type="hidden" value="<?= $comment->id ?>" id="comment_id">
     <div class="form-group">
-        <label class="col-form-label"><?= cve_admin_lang_path('Comments', 'comment') ?></label>
+        <label class="col-form-label"><?= cve_admin_lang('Comments', 'comment') ?></label>
         <textarea id="comment" class="form-control" style="height: 200px"><?= $comment->getComment() ?></textarea>
     </div>
     <div id="accordion">
@@ -18,7 +18,7 @@
                 <blockquote class="blockquote">
                     <p class="mb-0"><?= $comment->getComment() ?></p>
                     <hr>
-                    <footer class="blockquote-footer"><?= cve_admin_lang_path('Comments', 'commenter') ?>: <cite title="Comment Owner"><strong> <?= $comment->getName() ?></strong> </cite></footer>
+                    <footer class="blockquote-footer"><?= cve_admin_lang('Comments', 'commenter') ?>: <cite title="Comment Owner"><strong> <?= $comment->getName() ?></strong> </cite></footer>
                 </blockquote>
 
                 </p>
@@ -26,7 +26,7 @@
         </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-primary btn-block comment-edit" data-url="<?= base_url(route_to('admin_comment_edit')) ?>" ><?= cve_admin_lang_path('Buttons', 'send') ?></button>
+    <button type="button" class="btn btn-outline-primary btn-block comment-edit" data-url="<?= base_url(route_to('admin_comment_edit')) ?>" ><?= cve_admin_lang('Buttons', 'send') ?></button>
 </div>
 
 

@@ -31,7 +31,7 @@ class Messages extends BaseController
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'message_content_fetched'),
+                'message' => cve_admin_lang('Success', 'message_content_fetched'),
                 'data' => view(PANEL_FOLDER . '/pages/message/partials/navbar-last-messages', [
                     'messages' => $message,
                 ]),
@@ -68,19 +68,19 @@ class Messages extends BaseController
             if(!$delete){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'delete_failure')
+                    'message' => cve_admin_lang('Errors', 'delete_failure')
                 ]);
             }
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'delete_success')
+                'message' => cve_admin_lang('Success', 'delete_success')
             ]);
 
         }
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'invalid_request_type')
+            'message' => cve_admin_lang('Errors', 'invalid_request_type')
         ]);
 
     }
@@ -95,20 +95,20 @@ class Messages extends BaseController
             if(!$update){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'undo_delete_failure')
+                    'message' => cve_admin_lang('Errors', 'undo_delete_failure')
                 ]);
             }
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'undo_delete_success')
+                'message' => cve_admin_lang('Success', 'undo_delete_success')
             ]);
 
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'invalid_request_type')
+            'message' => cve_admin_lang('Errors', 'invalid_request_type')
         ]);
 
     }
@@ -123,20 +123,20 @@ class Messages extends BaseController
             if(!$delete){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'purge_delete_failure')
+                    'message' => cve_admin_lang('Errors', 'purge_delete_failure')
                 ]);
             }
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'purge_delete_success')
+                'message' => cve_admin_lang('Success', 'purge_delete_success')
             ]);
 
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'invalid_request_type')
+            'message' => cve_admin_lang('Errors', 'invalid_request_type')
         ]);
     }
 
@@ -150,7 +150,7 @@ class Messages extends BaseController
             if (!$message){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'message_not_found')
+                    'message' => cve_admin_lang('Errors', 'message_not_found')
                 ]);
             }
 
@@ -161,13 +161,13 @@ class Messages extends BaseController
             if ($this->messageModel->errors()) {
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'message_mark_read_failure')
+                    'message' => cve_admin_lang('Errors', 'message_mark_read_failure')
                 ]);
             }
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'message_content_fetched'),
+                'message' => cve_admin_lang('Success', 'message_content_fetched'),
                 'data' => view(PANEL_FOLDER . '/pages/message/detail', [
                     'message' => $message
                 ])
@@ -176,7 +176,7 @@ class Messages extends BaseController
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'invalid_request_type')
+            'message' => cve_admin_lang('Errors', 'invalid_request_type')
         ]);
     }
 
@@ -202,7 +202,7 @@ class Messages extends BaseController
             if(!$to){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'email_send_failure')
+                    'message' => cve_admin_lang('Errors', 'email_send_failure')
                 ]);
             }
 
@@ -211,19 +211,19 @@ class Messages extends BaseController
             if ($this->messageModel->errors()) {
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'message_send_db_failure')
+                    'message' => cve_admin_lang('Errors', 'message_send_db_failure')
                 ]);
             }
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'message_send_success')
+                'message' => cve_admin_lang('Success', 'message_send_success')
             ]);
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'invalid_request_type')
+            'message' => cve_admin_lang('Errors', 'invalid_request_type')
         ]);
 
     }
@@ -235,7 +235,7 @@ class Messages extends BaseController
             if (!cve_permit_control('message_detail')){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'message_auth_failure')
+                    'message' => cve_admin_lang('Errors', 'message_auth_failure')
                 ]);
             }
 
@@ -246,19 +246,19 @@ class Messages extends BaseController
             if ($this->messageModel->errors()) {
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'message_mark_read_failure')
+                    'message' => cve_admin_lang('Errors', 'message_mark_read_failure')
                 ]);
             }
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'message_mark_read_success')
+                'message' => cve_admin_lang('Success', 'message_mark_read_success')
             ]);
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'invalid_request_type')
+            'message' => cve_admin_lang('Errors', 'invalid_request_type')
         ]);
     }
 }

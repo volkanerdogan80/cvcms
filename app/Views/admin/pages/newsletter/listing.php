@@ -6,7 +6,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1><?= cve_admin_lang_path('Sidebar', 'email_subscribers'); ?></h1>
+                <h1><?= cve_admin_lang('Sidebar', 'email_subscribers'); ?></h1>
             </div>
 
             <?= $this->include('admin/layout/partials/errors'); ?>
@@ -20,13 +20,13 @@
                                     <button class="btn btn-primary btn-lg dropdown-toggle" type="button"
                                             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
-                                        <?= cve_admin_lang_path('Buttons', 'action'); ?>
+                                        <?= cve_admin_lang('Buttons', 'action'); ?>
                                     </button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item all-unsubscribe"
                                            href="javascript:void(0)"
                                            data-url="<?= base_url(route_to('admin_newsletter_unsubscribe', 'all')); ?>">
-                                            <?= cve_admin_lang_path('Buttons', 'delete'); ?>
+                                            <?= cve_admin_lang('Buttons', 'delete'); ?>
                                         </a>
                                     </div>
                                 </div>
@@ -36,10 +36,10 @@
                             <div class="row">
                                 <button type="button" class="btn btn-primary btn-lg mr-2" data-toggle="modal"
                                         data-target="#filter">
-                                    <?= cve_admin_lang_path('Buttons', 'filter'); ?>
+                                    <?= cve_admin_lang('Buttons', 'filter'); ?>
                                 </button>
                                 <a href="<?= current_url(); ?>" class="btn btn-primary btn-lg">
-                                    <?= cve_admin_lang_path('Buttons', 'clear'); ?>
+                                    <?= cve_admin_lang('Buttons', 'clear'); ?>
                                 </a>
                             </div>
                         </div>
@@ -55,9 +55,9 @@
                                             <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
                                         </div>
                                     </th>
-                                    <th><?= cve_admin_lang_path('Inputs', 'full_name'); ?></th>
-                                    <th><?= cve_admin_lang_path('Inputs', 'email'); ?></th>
-                                    <th><?= cve_admin_lang_path('General', 'created_at'); ?></th>
+                                    <th><?= cve_admin_lang('Inputs', 'full_name'); ?></th>
+                                    <th><?= cve_admin_lang('Inputs', 'email'); ?></th>
+                                    <th><?= cve_admin_lang('General', 'created_at'); ?></th>
                                 </tr>
                                 <?php foreach ($subscribers as $key => $subscriber): ?>
                                     <tr data-id="<?= $subscriber->id; ?>">
@@ -75,7 +75,7 @@
                                                 <a data-url="<?= base_url(route_to('admin_newsletter_unsubscribe', $subscriber->token)); ?>"
                                                    href="javascript:void(0)"
                                                    class="text-danger unsubscribe">
-                                                    <?= cve_admin_lang_path('Buttons', 'delete'); ?>
+                                                    <?= cve_admin_lang('Buttons', 'delete'); ?>
                                                 </a>
                                             </div>
                                         </td>
@@ -98,7 +98,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><?= cve_admin_lang_path('Buttons', 'filter'); ?></h5>
+                    <h5 class="modal-title"><?= cve_admin_lang('Buttons', 'filter'); ?></h5>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <form action="<?= current_url(); ?>" method="get">
@@ -113,7 +113,7 @@
                                             </div>
                                         </div>
                                         <input value="" name="dateFilter"
-                                               placeholder="<?= cve_admin_lang_path('Inputs', 'date_filter'); ?>"
+                                               placeholder="<?= cve_admin_lang('Inputs', 'date_filter'); ?>"
                                                type="text" class="form-control daterange-cus">
                                         <div class="input-group-append">
                                             <button type="button" class="btn btn-light date_filter_clear"><i
@@ -126,14 +126,14 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <input value="<?= $search; ?>" name="search" type="text" class="form-control"
-                                               placeholder="<?= cve_admin_lang_path('Inputs', 'search'); ?>">
+                                               placeholder="<?= cve_admin_lang('Inputs', 'search'); ?>">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <select name="per_page" class="form-control select2">
-                                        <option value=""><?= cve_admin_lang_path('Inputs', 'per_page'); ?></option>
+                                        <option value=""><?= cve_admin_lang('Inputs', 'per_page'); ?></option>
                                         <?php foreach (config('system')->perPageList as $per): ?>
                                             <option value="<?= $per ?>"><?= $per ?></option>
                                         <?php endforeach; ?>
@@ -144,7 +144,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary btn-lg"
-                                type="submit"><?= cve_admin_lang_path('Buttons', 'filter'); ?></button>
+                                type="submit"><?= cve_admin_lang('Buttons', 'filter'); ?></button>
                     </div>
                 </form>
             </div>

@@ -327,7 +327,7 @@
     </style>
 </head>
 <body class="">
-<span class="preheader"><?= cve_admin_lang_path('EmailTemplate', 'pre_header') ?></p></span>
+<span class="preheader"><?= cve_admin_lang('EmailTemplate', 'pre_header') ?></p></span>
 <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
     <tr>
         <td>&nbsp;</td>

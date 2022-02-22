@@ -44,10 +44,10 @@ function cve_category($category = null)
 
     if (is_object($category)){
         return $category;
-    }elseif(is_string($category)){
-        return get_category(['slug' => $category]);
     }elseif(is_numeric($category) || is_integer($category)){
         return get_category(['id' => $category]);
+    }elseif(is_string($category)){
+        return get_category(['slug' => $category]);
     }else{
         return null;
     }
@@ -191,7 +191,9 @@ function cve_cat_image_id($category = null)
 function cve_cat_image($category = null, $size = null)
 {
     if ($data = cve_category($category)){
-        return $data->withImage()->getUrl($size);
+        if($image = $data->withImage()){
+            return $image->getUrl($size);
+        }
     }
     return null;
 }

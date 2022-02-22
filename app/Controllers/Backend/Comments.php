@@ -89,7 +89,7 @@ class Comments extends BaseController
                 if(!cve_permit_control('admin_comment_edit_all')){
                     return $this->response->setJSON([
                         'status' => false,
-                        'message' => cve_admin_lang_path('Errors', 'comment_edit_failure')
+                        'message' => cve_admin_lang('Errors', 'comment_edit_failure')
                     ]);
                 }
             }
@@ -101,17 +101,17 @@ class Comments extends BaseController
             if($this->commentModel->errors()){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'update_failure')
+                    'message' => cve_admin_lang('Errors', 'update_failure')
                 ]);
             }
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'update_success')
+                'message' => cve_admin_lang('Success', 'update_success')
             ]);
         }
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'update_failure')
+            'message' => cve_admin_lang('Errors', 'update_failure')
         ]);
     }
 
@@ -128,7 +128,7 @@ class Comments extends BaseController
                 if(!cve_permit_control('admin_blog_status_all')){
                     return $this->response->setJSON([
                         'status' => false,
-                        'message' => cve_admin_lang_path('Errors', 'comment_reply_status_failure')
+                        'message' => cve_admin_lang('Errors', 'comment_reply_status_failure')
                     ]);
                 }
             }
@@ -137,19 +137,19 @@ class Comments extends BaseController
             if(!$update){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'status_change_failure')
+                    'message' => cve_admin_lang('Errors', 'status_change_failure')
                 ]);
             }
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'status_change_success')
+                'message' => cve_admin_lang('Success', 'status_change_success')
             ]);
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'status_change_failure')
+            'message' => cve_admin_lang('Errors', 'status_change_failure')
         ]);
     }
 
@@ -165,7 +165,7 @@ class Comments extends BaseController
                 if(!cve_permit_control('admin_blog_delete_all')){
                     return $this->response->setJSON([
                         'status' => false,
-                        'message' => cve_admin_lang_path('Errors', 'comment_reply_status_failure')
+                        'message' => cve_admin_lang('Errors', 'comment_reply_status_failure')
                     ]);
                 }
             }
@@ -177,19 +177,19 @@ class Comments extends BaseController
             if (!$delete){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'delete_failure')
+                    'message' => cve_admin_lang('Errors', 'delete_failure')
                 ]);
             }
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'delete_success')
+                'message' => cve_admin_lang('Success', 'delete_success')
             ]);
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'delete_failure')
+            'message' => cve_admin_lang('Errors', 'delete_failure')
         ]);
     }
 
@@ -205,7 +205,7 @@ class Comments extends BaseController
                 if(!cve_permit_control('admin_comment_undo_delete_all')){
                     return $this->response->setJSON([
                         'status' => false,
-                        'message' => cve_admin_lang_path('Errors', 'comment_undo_delete_failure')
+                        'message' => cve_admin_lang('Errors', 'comment_undo_delete_failure')
                     ]);
                 }
             }
@@ -214,20 +214,20 @@ class Comments extends BaseController
             if(!$update){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'comment_undo_delete_failure')
+                    'message' => cve_admin_lang('Errors', 'comment_undo_delete_failure')
                 ]);
             }
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'undo_delete_success')
+                'message' => cve_admin_lang('Success', 'undo_delete_success')
             ]);
 
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'comment_undo_delete_failure')
+            'message' => cve_admin_lang('Errors', 'comment_undo_delete_failure')
         ]);
     }
 
@@ -243,7 +243,7 @@ class Comments extends BaseController
                 if(!cve_permit_control('admin_comment_purge_delete_all')){
                     return $this->response->setJSON([
                         'status' => false,
-                        'message' => cve_admin_lang_path('Errors', 'comment_purge_delete_failure')
+                        'message' => cve_admin_lang('Errors', 'comment_purge_delete_failure')
                     ]);
                 }
             }
@@ -251,19 +251,19 @@ class Comments extends BaseController
             if(!$purgeDelete){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'purge_delete_failure')
+                    'message' => cve_admin_lang('Errors', 'purge_delete_failure')
                 ]);
             }
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'purge_delete_success')
+                'message' => cve_admin_lang('Success', 'purge_delete_success')
             ]);
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'purge_delete_failure')
+            'message' => cve_admin_lang('Errors', 'purge_delete_failure')
         ]);
     }
 
@@ -297,7 +297,7 @@ class Comments extends BaseController
                 if(!cve_permit_control('admin_comment_reply_all')){
                     return $this->response->setJSON([
                         'status' => false,
-                        'message' => cve_admin_lang_path('Errors', 'comment_reply_failure')
+                        'message' => cve_admin_lang('Errors', 'comment_reply_failure')
                     ]);
                 }
             }
@@ -314,13 +314,13 @@ class Comments extends BaseController
             if($this->commentModel->errors()){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'create_failure')
+                    'message' => cve_admin_lang('Errors', 'create_failure')
                 ]);
             }
 
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'create_success'),
+                'message' => cve_admin_lang('Success', 'create_success'),
                 'comment' => view(PANEL_FOLDER. '/pages/comment/reply-comment', [
                     'comment' => $this->commentModel->find($insertID),
                     'level' => $level+1
@@ -330,7 +330,7 @@ class Comments extends BaseController
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'create_failure')
+            'message' => cve_admin_lang('Errors', 'create_failure')
         ]);
 
     }

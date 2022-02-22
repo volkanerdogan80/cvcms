@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1><?= cve_admin_lang_path('Settings', 'system_setting') ?></h1>
+                <h1><?= cve_admin_lang('Settings', 'system_setting') ?></h1>
             </div>
 
             <?= $this->include(PANEL_FOLDER . '/layout/partials/errors'); ?>
@@ -15,67 +15,67 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('SystemSettings', 'maintenance') ?></label>
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('SystemSettings', 'maintenance') ?></label>
                                 <div class="col-sm-12 col-md-8">
                                     <div class="selectgroup w-100">
                                         <label class="selectgroup-item">
                                             <input <?= $setting->getValue('maintenance') ? 'checked' : ''; ?> type="radio" name="maintenance" value="1" class="selectgroup-input">
-                                            <span class="selectgroup-button"><?= cve_admin_lang_path('Buttons', 'active') ?></span>
+                                            <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'active') ?></span>
                                         </label>
                                         <label class="selectgroup-item">
                                             <input <?= !$setting->getValue('maintenance') ? 'checked' : ''; ?> type="radio" name="maintenance" value="0" class="selectgroup-input">
-                                            <span class="selectgroup-button"><?= cve_admin_lang_path('Buttons', 'passive') ?></span>
+                                            <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'passive') ?></span>
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('SystemSettings', 'register_system') ?></label>
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('SystemSettings', 'register_system') ?></label>
                                 <div class="col-sm-12 col-md-8">
                                     <div class="selectgroup w-100">
                                         <label class="selectgroup-item">
                                             <input <?= $setting->getValue('register') ? 'checked' : ''; ?> type="radio" name="register" value="1" class="selectgroup-input">
-                                            <span class="selectgroup-button"><?= cve_admin_lang_path('Buttons', 'active') ?></span>
+                                            <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'active') ?></span>
                                         </label>
                                         <label class="selectgroup-item">
                                             <input <?= !$setting->getValue('register') ? 'checked' : ''; ?> type="radio" name="register" value="0" class="selectgroup-input">
-                                            <span class="selectgroup-button"><?= cve_admin_lang_path('Buttons', 'passive') ?></span>
+                                            <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'passive') ?></span>
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('SystemSettings', 'login_system') ?></label>
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('SystemSettings', 'login_system') ?></label>
                                 <div class="col-sm-12 col-md-8">
                                     <div class="selectgroup w-100">
                                         <label class="selectgroup-item">
                                             <input <?= $setting->getValue('login') ? 'checked' : ''; ?> type="radio" name="login" value="1" class="selectgroup-input">
-                                            <span class="selectgroup-button"><?= cve_admin_lang_path('Buttons', 'active') ?></span>
+                                            <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'active') ?></span>
                                         </label>
                                         <label class="selectgroup-item">
                                             <input <?= !$setting->getValue('login') ? 'checked' : ''; ?> type="radio" name="login" value="0" class="selectgroup-input">
-                                            <span class="selectgroup-button"><?= cve_admin_lang_path('Buttons', 'passive') ?></span>
+                                            <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'passive') ?></span>
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('SystemSettings', 'email_verify') ?></label>
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('SystemSettings', 'email_verify') ?></label>
                                 <div class="col-sm-12 col-md-8">
                                     <div class="selectgroup w-100">
                                         <label class="selectgroup-item">
                                             <input <?= $setting->getValue('emailVerify') ? 'checked' : ''; ?> type="radio" name="emailVerify" value="1" class="selectgroup-input">
-                                            <span class="selectgroup-button"><?= cve_admin_lang_path('Buttons', 'active') ?></span>
+                                            <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'active') ?></span>
                                         </label>
                                         <label class="selectgroup-item">
                                             <input <?= !$setting->getValue('emailVerify') ? 'checked' : ''; ?> type="radio" name="emailVerify" value="0" class="selectgroup-input">
-                                            <span class="selectgroup-button"><?= cve_admin_lang_path('Buttons', 'passive') ?></span>
+                                            <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'passive') ?></span>
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('SystemSettings', 'default_group') ?></label>
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('SystemSettings', 'default_group') ?></label>
                                 <div class="col-sm-12 col-md-8">
                                     <select name="defaultGroup" class="form-control select2">
                                         <?php foreach ($groups as $group): ?>
@@ -90,8 +90,8 @@
                             </div>
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2">
-                                    <?= cve_admin_lang_path('SystemSettings', 'per_page_list') ?>
-                                    <a href="javascript:;" data-toggle="popover" title="<?= cve_admin_lang_path('SystemSettings', 'per_page_list') ?>" data-content="<?= lang('Help.text.settings_per_page') ?>" data-trigger="focus" data-original-title="<?= lang('Input.text.per_page_select'); ?>">
+                                    <?= cve_admin_lang('SystemSettings', 'per_page_list') ?>
+                                    <a href="javascript:;" data-toggle="popover" title="<?= cve_admin_lang('SystemSettings', 'per_page_list') ?>" data-content="<?= lang('Help.text.settings_per_page') ?>" data-trigger="focus" data-original-title="<?= lang('Input.text.per_page_select'); ?>">
                                         <i class="fas fa-question-circle"></i>
                                     </a>
                                 </label>

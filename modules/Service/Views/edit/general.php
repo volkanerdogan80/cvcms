@@ -2,63 +2,63 @@
     <div class="card">
         <div class="card-body">
             <div class="form-group">
-                <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'status'); ?></label>
+                <label class="col-form-label"><?= cve_admin_lang('Inputs', 'status'); ?></label>
                 <div class="selectgroup w-100">
                     <label class="selectgroup-item">
                         <input <?= $content->getStatus() == STATUS_ACTIVE ? 'checked': '' ?> type="radio" name="status" value="<?= STATUS_ACTIVE ?>" class="selectgroup-input" required>
-                        <span class="selectgroup-button"><?= cve_admin_lang_path('General', 'active'); ?></span>
+                        <span class="selectgroup-button"><?= cve_admin_lang('General', 'active'); ?></span>
                     </label>
                     <label class="selectgroup-item">
                         <input <?= $content->getStatus() == STATUS_PASSIVE ? 'checked': '' ?> type="radio" name="status" value="<?= STATUS_PASSIVE ?>" class="selectgroup-input" required>
-                        <span class="selectgroup-button"><?= cve_admin_lang_path('General', 'passive'); ?></span>
+                        <span class="selectgroup-button"><?= cve_admin_lang('General', 'passive'); ?></span>
                     </label>
                     <label class="selectgroup-item">
                         <input <?= $content->getStatus() == STATUS_PENDING ? 'checked': '' ?> type="radio" name="status" value="<?= STATUS_PENDING ?>" class="selectgroup-input" required>
-                        <span class="selectgroup-button"><?= cve_admin_lang_path('General', 'pending'); ?></span>
+                        <span class="selectgroup-button"><?= cve_admin_lang('General', 'pending'); ?></span>
                     </label>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'comment_status'); ?></label>
+                <label class="col-form-label"><?= cve_admin_lang('Inputs', 'comment_status'); ?></label>
                 <div class="selectgroup w-100">
                     <label class="selectgroup-item">
                         <input <?= $content->getCommentStatus() == STATUS_ACTIVE ? 'checked': '' ?> type="radio" name="comment" value="<?= STATUS_ACTIVE ?>" class="selectgroup-input" required>
-                        <span class="selectgroup-button"><?= cve_admin_lang_path('General', 'active'); ?></span>
+                        <span class="selectgroup-button"><?= cve_admin_lang('General', 'active'); ?></span>
                     </label>
                     <label class="selectgroup-item">
                         <input <?= $content->getCommentStatus() == STATUS_PASSIVE ? 'checked': '' ?> type="radio" name="comment" value="<?= STATUS_PASSIVE ?>" class="selectgroup-input" required>
-                        <span class="selectgroup-button"><?= cve_admin_lang_path('General', 'passive'); ?></span>
+                        <span class="selectgroup-button"><?= cve_admin_lang('General', 'passive'); ?></span>
                     </label>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'social_media_share') ?></label>
+                <label class="col-form-label"><?= cve_admin_lang('Inputs', 'social_media_share') ?></label>
                 <div class="selectgroup w-100">
                     <label class="selectgroup-item">
                         <input type="radio" name="social" value="<?= STATUS_ACTIVE ?>" class="selectgroup-input" required>
-                        <span class="selectgroup-button"><?= cve_admin_lang_path('General', 'yes') ?></span>
+                        <span class="selectgroup-button"><?= cve_admin_lang('General', 'yes') ?></span>
                     </label>
                     <label class="selectgroup-item">
                         <input checked type="radio" name="social" value="<?= STATUS_PASSIVE ?>" class="selectgroup-input" required>
-                        <span class="selectgroup-button"><?= cve_admin_lang_path('General', 'no') ?></span>
+                        <span class="selectgroup-button"><?= cve_admin_lang('General', 'no') ?></span>
                     </label>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'send_notification') ?></label>
+                <label class="col-form-label"><?= cve_admin_lang('Inputs', 'send_notification') ?></label>
                 <div class="selectgroup w-100">
                     <label class="selectgroup-item">
                         <input type="radio" name="notification" value="<?= STATUS_ACTIVE ?>" class="selectgroup-input" required>
-                        <span class="selectgroup-button"><?= cve_admin_lang_path('General', 'yes') ?></span>
+                        <span class="selectgroup-button"><?= cve_admin_lang('General', 'yes') ?></span>
                     </label>
                     <label class="selectgroup-item">
                         <input checked type="radio" name="notification" value="<?= STATUS_PASSIVE ?>" class="selectgroup-input" required>
-                        <span class="selectgroup-button"><?= cve_admin_lang_path('General', 'no') ?></span>
+                        <span class="selectgroup-button"><?= cve_admin_lang('General', 'no') ?></span>
                     </label>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'categories'); ?></label>
+                <label class="col-form-label"><?= cve_admin_lang('Inputs', 'categories'); ?></label>
                 <select name="categories[]" class="form-control select2" multiple="">
                     <?php foreach ($categories as $category): ?>
                         <option <?= in_array($category->id, $content->getCategories()) ? 'selected': ''; ?> value="<?= $category->id; ?>"><?= $category->getTitle(); ?></option>
@@ -66,7 +66,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'related_content'); ?></label>
+                <label class="col-form-label"><?= cve_admin_lang('Inputs', 'related_content'); ?></label>
                 <select name="similar[]" class="form-control select2" multiple="">
                     <?php foreach ($similar as $related): ?>
                         <option <?= in_array($related->id, $content->getSimilar()) ? 'selected': ''; ?> value="<?= $related->id; ?>"><?= $related->getTitle(); ?></option>
@@ -74,7 +74,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label class="col-form-label"><?= cve_admin_lang_path('Inputs', 'thumbnail'); ?></label>
+                <label class="col-form-label"><?= cve_admin_lang('Inputs', 'thumbnail'); ?></label>
                 <br>
                 <?= cve_single_image_picker('page-image', 'thumbnail', 'page-image-id', [
                     'image' => $content->withThumbnail() ? $content->withThumbnail()->getUrl('187x134') :  null,
@@ -83,18 +83,18 @@
             </div>
         </div>
         <div class="card-footer text-right">
-            <button type="submit" class="btn btn-success btn-block btn-lg"><?= cve_admin_lang_path('Buttons', 'update'); ?></button>
+            <button type="submit" class="btn btn-success btn-block btn-lg"><?= cve_admin_lang('Buttons', 'update'); ?></button>
         </div>
     </div>
     <div class="card">
         <div class="card-header d-flex">
-            <h4><?= cve_admin_lang_path('Inputs', 'social_media_posts') ?></h4>
+            <h4><?= cve_admin_lang('Inputs', 'social_media_posts') ?></h4>
         </div>
         <div class="card">
             <div class="card-body">
                 <ul class="list-group">
                     <?php foreach ($content->withShare() as $social): ?>
-                        <li class="list-group-item list-group-item-success"><?= $social->social ?> <?= cve_admin_lang_path('Blog', 'shared'); ?></li>
+                        <li class="list-group-item list-group-item-success"><?= $social->social ?> <?= cve_admin_lang('Blog', 'shared'); ?></li>
                     <?php endforeach; ?>
                 </ul>
             </div>

@@ -4,7 +4,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1><?= cve_admin_lang_path('Page', 'create'); ?></h1>
+            <h1><?= cve_admin_lang('Page', 'create'); ?></h1>
         </div>
 
         <?= $this->include('admin/layout/partials/errors'); ?>

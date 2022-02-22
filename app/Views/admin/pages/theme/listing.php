@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1><?= cve_admin_lang_path('Sidebar', 'themes'); ?></h1>
+                <h1><?= cve_admin_lang('Sidebar', 'themes'); ?></h1>
             </div>
 
             <?= $this->include('admin/layout/partials/errors'); ?>
@@ -22,7 +22,7 @@
                                         <div class="article-badge">
                                             <div class="article-badge-item bg-success">
                                                 <i class="fas fa-fire"></i>
-                                                <?= cve_admin_lang_path('General', 'active'); ?>
+                                                <?= cve_admin_lang('General', 'active'); ?>
                                             </div>
                                         </div>
                                     <?php endif; ?>
@@ -47,23 +47,23 @@
                                         <?php if ($key == $active->getFolder()): ?>
                                             <div class="col-md-6">
                                                 <a href="<?= base_url(route_to('admin_theme_setting')); ?>" class="btn btn-success btn-icon icon-left btn-block">
-                                                    <i class="fas fa-tools"></i> <?= cve_admin_lang_path('Buttons', 'settings'); ?>
+                                                    <i class="fas fa-tools"></i> <?= cve_admin_lang('Buttons', 'settings'); ?>
                                                 </a>
                                             </div>
                                             <div class="col-md-6">
                                                 <a href="<?= base_url(route_to('admin_theme_delete', $key)); ?>" class="btn btn-danger btn-icon icon-left  btn-block">
-                                                    <i class="fas fa-trash"></i> <?= cve_admin_lang_path('Buttons', 'delete'); ?>
+                                                    <i class="fas fa-trash"></i> <?= cve_admin_lang('Buttons', 'delete'); ?>
                                                 </a>
                                             </div>
                                         <?php else: ?>
                                             <div class="col-md-6">
                                                 <a href="<?= base_url(route_to('admin_theme_active', $key)); ?>" class="btn btn-primary btn-icon icon-left btn-block">
-                                                    <i class="fas fa-lock-open"></i> <?= cve_admin_lang_path('Buttons', 'activate'); ?>
+                                                    <i class="fas fa-lock-open"></i> <?= cve_admin_lang('Buttons', 'activate'); ?>
                                                 </a>
                                             </div>
                                             <div class="col-md-6">
                                                 <a href="<?= base_url(route_to('admin_theme_delete', $key)); ?>" class="btn btn-danger btn-icon icon-left btn-block">
-                                                    <i class="fas fa-trash"></i> <?= cve_admin_lang_path('Buttons', 'delete'); ?>
+                                                    <i class="fas fa-trash"></i> <?= cve_admin_lang('Buttons', 'delete'); ?>
                                                 </a>
                                             </div>
                                         <?php endif; ?>

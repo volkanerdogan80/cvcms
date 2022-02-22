@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1><?= cve_admin_lang_path('Settings', 'site_setting') ?></h1>
+                <h1><?= cve_admin_lang('Settings', 'site_setting') ?></h1>
             </div>
 
             <?= $this->include(PANEL_FOLDER . '/layout/partials/errors'); ?>
@@ -39,19 +39,19 @@
                                         <!-- TODO: cve_lang_data() yeni dil eklenince sorun çıkarıyor. Site setting sayfası hata veriyor -->
                                             <div class="tab-pane fade <?= $key == 0 ? 'show active' : ''; ?>" id="<?= $lang->getCode(); ?>" role="tabpanel" aria-labelledby="<?= $lang->getCode(); ?>-tab">
                                                 <div class="form-group row mb-4">
-                                                    <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= $lang->getTitle(); ?> <?= cve_admin_lang_path('SiteSettings', 'site_title') ?></label>
+                                                    <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= $lang->getTitle(); ?> <?= cve_admin_lang('SiteSettings', 'site_title') ?></label>
                                                     <div class="col-sm-12 col-md-8">
                                                         <input name="title[<?= $lang->getCode(); ?>]" value="<?= cve_lang_data($setting->getValue('title'), $lang->getCode()); ?>" type="text" class="form-control" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row mb-4">
-                                                    <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= $lang->getTitle(); ?> <?= cve_admin_lang_path('SiteSettings', 'site_description') ?></label>
+                                                    <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= $lang->getTitle(); ?> <?= cve_admin_lang('SiteSettings', 'site_description') ?></label>
                                                     <div class="col-sm-12 col-md-8">
                                                         <textarea name="description[<?= $lang->getCode(); ?>]" style="height: 150px" type="text" class="form-control" required><?= cve_lang_data($setting->getValue('description'), $lang->getCode()); ?></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row mb-4">
-                                                    <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= $lang->getTitle(); ?> <?= cve_admin_lang_path('SiteSettings', 'site_keywords') ?></label>
+                                                    <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= $lang->getTitle(); ?> <?= cve_admin_lang('SiteSettings', 'site_keywords') ?></label>
                                                     <div class="col-sm-12 col-md-8">
                                                         <input name="keywords[<?= $lang->getCode(); ?>]" value="<?= cve_lang_data($setting->getValue('keywords'), $lang->getCode()); ?>" type="text" class="form-control inputtags">
                                                     </div>
@@ -60,44 +60,44 @@
                                         <?php endforeach; ?>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('SiteSettings', 'header_logo') ?></label>
+                                        <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('SiteSettings', 'header_logo') ?></label>
                                         <div class="col-sm-12 col-md-8">
                                             <div id="header-image-preview" class="image-preview" style="background-repeat: no-repeat;background-image: url(<?= base_url($setting->getValue('headerLogo'))?>);background-size: contain;background-position: center center;">
-                                                <label for="image-upload" id="header-image-label"><?= cve_admin_lang_path('SiteSettings', 'image_select') ?></label>
+                                                <label for="image-upload" id="header-image-label"><?= cve_admin_lang('SiteSettings', 'image_select') ?></label>
                                                 <input type="file" name="headerLogo" id="header-image-upload" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('SiteSettings', 'footer_logo') ?></label>
+                                        <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('SiteSettings', 'footer_logo') ?></label>
                                         <div class="col-sm-12 col-md-8">
                                             <div id="footer-image-preview" class="image-preview" style="background-repeat: no-repeat;background-image: url(<?= base_url($setting->getValue('footerLogo'))?>);background-size: contain;background-position: center center;">
-                                                <label for="image-upload" id="footer-image-label"><?= cve_admin_lang_path('SiteSettings', 'image_select') ?></label>
+                                                <label for="image-upload" id="footer-image-label"><?= cve_admin_lang('SiteSettings', 'image_select') ?></label>
                                                 <input type="file" name="footerLogo" id="footer-image-upload" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('SiteSettings', 'mobile_logo') ?></label>
+                                        <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('SiteSettings', 'mobile_logo') ?></label>
                                         <div class="col-sm-12 col-md-8">
                                             <div id="mobile-image-preview" class="image-preview" style="background-repeat: no-repeat;background-image: url(<?= base_url($setting->getValue('mobileLogo'))?>);background-size: contain;background-position: center center;">
-                                                <label for="image-upload" id="mobile-image-label"><?= cve_admin_lang_path('SiteSettings', 'image_select') ?></label>
+                                                <label for="image-upload" id="mobile-image-label"><?= cve_admin_lang('SiteSettings', 'image_select') ?></label>
                                                 <input type="file" name="mobileLogo" id="mobile-image-upload" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang_path('SiteSettings', 'favicon') ?></label>
+                                        <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('SiteSettings', 'favicon') ?></label>
                                         <div class="col-sm-12 col-md-8">
                                             <div id="favicon-image-preview" class="image-preview" style="background-repeat: no-repeat;background-image: url(<?= base_url($setting->getValue('favicon'))?>);background-size: contain;background-position: center center;">
-                                                <label for="image-upload" id="favicon-image-label"><?= cve_admin_lang_path('SiteSettings', 'image_select') ?></label>
+                                                <label for="image-upload" id="favicon-image-label"><?= cve_admin_lang('SiteSettings', 'image_select') ?></label>
                                                 <input type="file" name="favicon" id="favicon-image-upload" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <button type="submit" class="btn btn-success btn-block btn-lg"><?= cve_admin_lang_path('Buttons', 'update') ?></button>
+                                    <button type="submit" class="btn btn-success btn-block btn-lg"><?= cve_admin_lang('Buttons', 'update') ?></button>
                                 </div>
                             </form>
                         </div>

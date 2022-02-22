@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1><?= cve_admin_lang_path('Settings', 'social_media_setting') ?></h1>
+                <h1><?= cve_admin_lang('Settings', 'social_media_setting') ?></h1>
             </div>
 
             <?= $this->include('admin/layout/partials/errors'); ?>
@@ -29,7 +29,7 @@
                             <?php endforeach; ?>
                         </div>
                         <div class="card-footer text-right">
-                            <button type="submit" class="btn btn-success btn-block btn-lg"><?= cve_admin_lang_path('Buttons', 'update') ?></button>
+                            <button type="submit" class="btn btn-success btn-block btn-lg"><?= cve_admin_lang('Buttons', 'update') ?></button>
                         </div>
                     </div>
                 </form>

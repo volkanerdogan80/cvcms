@@ -33,7 +33,7 @@ class AutoShare extends BaseController
             if (!$id){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'content_id_valid_failure')
+                    'message' => cve_admin_lang('Errors', 'content_id_valid_failure')
                 ]);
             }
 
@@ -41,7 +41,7 @@ class AutoShare extends BaseController
             if (!$content){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'content_absent_failure')
+                    'message' => cve_admin_lang('Errors', 'content_absent_failure')
                 ]);
             }
 
@@ -50,18 +50,18 @@ class AutoShare extends BaseController
             if ($content->getStatus() != STATUS_ACTIVE){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'content_status_inactive')
+                    'message' => cve_admin_lang('Errors', 'content_status_inactive')
                 ]);
             }
             return $this->response->setJSON([
                 'status' => true,
-                'message' => cve_admin_lang_path('Success', 'twitter_published')
+                'message' => cve_admin_lang('Success', 'twitter_published')
             ]);
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'twitter_status_inactive')
+            'message' => cve_admin_lang('Errors', 'twitter_status_inactive')
         ]);
     }
 
@@ -73,7 +73,7 @@ class AutoShare extends BaseController
             if (!$id){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'content_id_valid_failure')
+                    'message' => cve_admin_lang('Errors', 'content_id_valid_failure')
                 ]);
             }
 
@@ -81,21 +81,21 @@ class AutoShare extends BaseController
             if (!$content){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'content_absent_failure')
+                    'message' => cve_admin_lang('Errors', 'content_absent_failure')
                 ]);
             }
 
             if ($content->getStatus() != STATUS_ACTIVE){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'content_status_inactive')
+                    'message' => cve_admin_lang('Errors', 'content_status_inactive')
                 ]);
             }
 
             if ($this->linkedIn->config($id)->publish(true)){
                 return $this->response->setJSON([
                     'status' => true,
-                    'message' => cve_admin_lang_path('Success', 'linkedin_published')
+                    'message' => cve_admin_lang('Success', 'linkedin_published')
                 ]);
             }
 
@@ -103,7 +103,7 @@ class AutoShare extends BaseController
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'linkedin_status_inactive')
+            'message' => cve_admin_lang('Errors', 'linkedin_status_inactive')
         ]);
     }
 
@@ -119,7 +119,7 @@ class AutoShare extends BaseController
             if (!$id){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'content_id_valid_failure')
+                    'message' => cve_admin_lang('Errors', 'content_id_valid_failure')
                 ]);
             }
 
@@ -127,28 +127,28 @@ class AutoShare extends BaseController
             if (!$content){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'content_absent_failure')
+                    'message' => cve_admin_lang('Errors', 'content_absent_failure')
                 ]);
             }
 
             if ($content->getStatus() != STATUS_ACTIVE){
                 return $this->response->setJSON([
                     'status' => false,
-                    'message' => cve_admin_lang_path('Errors', 'content_status_inactive')
+                    'message' => cve_admin_lang('Errors', 'content_status_inactive')
                 ]);
             }
 
             if ($this->facebook->config($id)->publish(true)){
                 return $this->response->setJSON([
                     'status' => true,
-                    'message' => cve_admin_lang_path('Success', 'facebook_published')
+                    'message' => cve_admin_lang('Success', 'facebook_published')
                 ]);
             }
         }
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang_path('Errors', 'facebook_status_inactive')
+            'message' => cve_admin_lang('Errors', 'facebook_status_inactive')
         ]);
     }
 
@@ -165,10 +165,10 @@ class AutoShare extends BaseController
     public function linkedInTest()
     {
         if ($this->linkedIn->config()->publish()){
-            return redirect()->back()->with('success', cve_admin_lang_path('Success', 'linkedin_test_published'));
+            return redirect()->back()->with('success', cve_admin_lang('Success', 'linkedin_test_published'));
         }
 
-        return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'linkedin_test_publish_failure'));
+        return redirect()->back()->with('error', cve_admin_lang('Errors', 'linkedin_test_publish_failure'));
     }
 
     public function facebookCallback()
@@ -185,9 +185,9 @@ class AutoShare extends BaseController
     public function facebookTest()
     {
         if ($this->facebook->config()->publish()){
-            return redirect()->back()->with('success', cve_admin_lang_path('Success', 'facebook_test_published'));
+            return redirect()->back()->with('success', cve_admin_lang('Success', 'facebook_test_published'));
         }
-        return redirect()->back()->with('error', cve_admin_lang_path('Errors', 'facebook_test_publish_failure'));
+        return redirect()->back()->with('error', cve_admin_lang('Errors', 'facebook_test_publish_failure'));
     }
 
 }

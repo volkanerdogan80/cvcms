@@ -101,5 +101,7 @@ defined('DEFAULT_IMAGE_SELECT_ICON')   || define('DEFAULT_IMAGE_SELECT_ICON', PU
 defined('DEFAULT_VIDEO_SELECT_ICON')   || define('DEFAULT_VIDEO_SELECT_ICON', PUBLIC_ADMIN_IMAGE_PATH . 'default/default-video.png');
 defined('DEFAULT_FILE_SELECT_ICON')    || define('DEFAULT_FILE_SELECT_ICON', PUBLIC_ADMIN_IMAGE_PATH . 'default/default-file.png');
 
+defined('LOADING_GIF') || define('LOADING_GIF', PUBLIC_ADMIN_IMAGE_PATH . 'loading.gif');
+
 defined('LANGUAGE_PATH')        || define('LANGUAGE_PATH', APPPATH . 'Language/');
 defined('THEMES_PATH')          || define('THEMES_PATH', ROOTPATH . 'themes/');

@@ -249,6 +249,20 @@ function is_email_verify()
 
 }
 
+function is_theme_file($path = null){
+    if (file_exists(cve_theme_file($path))){
+        return true;
+    }
+    return false;
+}
+
+function is_theme_folder($path = null){
+    if (is_dir(cve_theme_file($path, true))){
+        return true;
+    }
+    return false;
+}
+
 function is_favorite($content = null){
 
     if (!is_logged_in()){

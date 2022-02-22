@@ -12,18 +12,18 @@
                             <div class="empty-state-icon bg-danger">
                                 <i class="fas fa-times"></i>
                             </div>
-                            <h2><?= cve_admin_lang_path('Errors', 'verification_failure') ?></h2>
+                            <h2><?= cve_admin_lang('Errors', 'verification_failure') ?></h2>
                             <p>
-                                <?= cve_admin_lang_path('Errors', 'reset_verify_failure_sep_1') ?>
+                                <?= cve_admin_lang('Errors', 'reset_verify_failure_sep_1') ?>
                                 <br>
-                                <?= cve_admin_lang_path('Errors', 'reset_verify_failure_sep_2') ?>
+                                <?= cve_admin_lang('Errors', 'reset_verify_failure_sep_2') ?>
                             </p>
-                            <b><?= cve_admin_lang_path('Auth', 'why_title') ?></b>
+                            <b><?= cve_admin_lang('Auth', 'why_title') ?></b>
                             <ol style="text-align: left">
-                                <li><?= cve_admin_lang_path('Auth', 'why_verify_key') ?></li>
+                                <li><?= cve_admin_lang('Auth', 'why_verify_key') ?></li>
                             </ol>
                             <a href="<?= base_url(route_to('admin_forgot_password')); ?>" class="btn btn-primary mt-4">
-                                <?= cve_admin_lang_path('Buttons', 'go_to_forgot_pass') ?>
+                                <?= cve_admin_lang('Buttons', 'go_to_forgot_pass') ?>
                             </a>
                         </div>
                     </div>

@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>"<?= $theme->getName(); ?>"  <?= cve_admin_lang_path('Theme', 'setting_page_title') ?></h1>
+                <h1>"<?= $theme->getName(); ?>"  <?= cve_admin_lang('Theme', 'setting_page_title') ?></h1>
             </div>
 
             <?= $this->include(PANEL_FOLDER . '/layout/partials/errors'); ?>
