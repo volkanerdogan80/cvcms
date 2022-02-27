@@ -18,9 +18,6 @@
     </script>
 <?php endif; ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 <script src="<?= base_url(PUBLIC_ADMIN_JS_PATH . 'theme.js') ?>"></script>
 <script src="<?= base_url(PUBLIC_ADMIN_JS_PATH . 'uikit.min.js'); ?>"></script>
 <script src="<?= base_url(PUBLIC_ADMIN_JS_PATH . 'uikit-icons.min.js'); ?>"></script>

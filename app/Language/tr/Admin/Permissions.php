@@ -121,7 +121,7 @@ return [
         'page_edit' => 'Kendi sayfa yazılarını düzenleme yetkisi',
         'page_status' => 'Kendi sayfa yazılarının durumunu değiştirme yetkisi',
         'page_delete' => 'Kendi sayfa yazılarını silme yetkisi',
-        'page_undo-delete' => 'Kendisine ait silinmiş page yazılarını geri getirme yetkisi',
+        'page_undo-delete' => 'Kendisine ait silinmiş sayfa yazılarını geri getirme yetkisi',
         'page_purge-delete' => 'Kendisine ait sayfa yazılarını kalıcı olarak silme yetkisi',
         'admin_page_listing_all' => 'Tüm sayfa yazılarını listeleme yetkisi',
         'admin_page_edit_all' => 'Tüm sayfa yazılarını düzenleme yetkisi',
@@ -151,5 +151,19 @@ return [
 
         'analytics_realtime' => 'Anlık ziyaretçi verileri detay sayfası görüntüleme yetkisi',
         'analytics_metrics' => 'Geçmiş ziyaretçi verileri detay sayfası görüntüleme yetkisi',
+
+        'report_listing' => 'Kendi raporlarını listeleme yetkisi',
+        'report_create' => 'Yeni rapor ekleme yetkisi',
+        'report_edit' => 'Kendi raporlarını düzenleme yetkisi',
+        'report_status' => 'Kendi raporlarının durumunu değiştirme yetkisi',
+        'report_delete' => 'Kendi raporlarını silme yetkisi',
+        'report_undo-delete' => 'Kendisine ait silinmiş raporları geri getirme yetkisi',
+        'report_purge-delete' => 'Kendisine ait raporları kalıcı olarak silme yetkisi',
+        'admin_report_listing_all' => 'Tüm raporları listeleme yetkisi',
+        'admin_report_edit_all' => 'Tüm raporları düzenleme yetkisi',
+        'admin_report_status_all' => 'Tüm raporların durumunu değiştirme yetkisi',
+        'admin_report_delete_all' => 'Tüm raporları silme yetkisi',
+        'admin_report_undo_delete_all' => 'Silinmiş tüm raporları geri getirme yetkisi',
+        'admin_report_purge_delete_all' => 'Tüm raporları kalıcı olarak silme yetkisi',
     ]
 ];

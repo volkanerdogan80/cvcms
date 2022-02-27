@@ -36,6 +36,7 @@ return [
         'trash_box'         => "Trash Box",
         'inbox'             => "Inbox",
         'settings'          => "Settings",
+        'details'           => "Details",
 
         'add_extra_fields'   => 'Add New Extra Field',
         'fixed_fields'       => 'Fixed Field',

@@ -17,7 +17,7 @@ class Menu extends BaseConfig
                 [
                     'title' => 'create',
                     'router' => 'admin_blog_create'
-                ],
+                ]
             ]
         ]
     ];

@@ -49,7 +49,8 @@ class Blog extends BaseController
             'similar' => $this->contentModel->where([
                 'module'=> $this->module,
                 'id !=' => $content->id
-            ])->findAll(),            'content' => $content
+            ])->findAll(),
+            'content' => $content
         ];
     }
 }

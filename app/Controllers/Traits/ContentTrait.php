@@ -149,7 +149,7 @@ trait ContentTrait
             }
             $content = $this->contentModel->where('user_id !=', session('userData.id'))->find($id);
             if ($content){
-                if(!cve_permit_control($this->undo_delete_all_permit)){
+                if(!cve_permit_control($this->undo_delete_all)){
                     return $this->response->setJSON([
                         'status' => false,
                         'message' => cve_admin_lang('Errors', 'blog_undo_delete_failure')
@@ -191,7 +191,7 @@ trait ContentTrait
             }
             $content = $this->contentModel->where('user_id !=', session('userData.id'))->find($id);
             if ($content){
-                if(!cve_permit_control($this->purge_delete_all_permit)){
+                if(!cve_permit_control($this->purge_delete_all)){
                     return $this->response->setJSON([
                         'status' => false,
                         'message' => cve_admin_lang('Errors', 'blog_purge_delete_failure')
@@ -255,9 +255,11 @@ trait ContentTrait
                 ]);
             }
 
-            if($this->share_status){
-                cve_autoshare($id);
-            }
+            //TODO: Muhtemelen status active yapınca sosyal medya paylaşımı yapılsın diye düşünüldü. Ama şu an buraya share_status diye bir şey gelmiyor.
+            // Böyle olunca da status değiştirirken ajax request hatası dönüyor. Sonra ilgilen.
+            //if($this->share_status){
+            //    cve_autoshare($id);
+            //}
 
             return $this->response->setJSON([
                 'status' => true,
@@ -343,7 +345,7 @@ trait ContentTrait
         {
             $item = null;
         }
-        return$item;
+        return $item;
     }
 
     protected function shareOnSocialMedia($content_id)

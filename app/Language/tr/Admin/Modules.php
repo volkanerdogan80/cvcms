@@ -9,6 +9,6 @@ return [
         'service'   => 'Hizmetler',
         'projects'  => 'Projeler',
         'ecommerce' => 'E-Ticaret',
-        'sample'    => 'Örnek Modül',
+        'report'    => 'Hata Raporları',
     ]
 ];

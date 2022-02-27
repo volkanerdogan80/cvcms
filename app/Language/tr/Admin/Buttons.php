@@ -36,6 +36,7 @@ return [
         'trash_box'         => "Çöp Kutusu",
         'inbox'             => "Gelen Kutusu",
         'settings'          => "Ayarlar",
+        'details'           => "Ayrıntılar",
 
         'add_extra_fields'      => 'Yeni Özel Alan Ekle',
         'fixed_fields'  => 'Sabit Alan',

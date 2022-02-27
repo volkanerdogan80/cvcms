@@ -228,7 +228,7 @@ class ContentEntity extends Entity
 
             if(isset($field->$key)){
                 if (is_object($field->$key)){
-                    return isset($field->$key->$locale) ? $field->$key->$locale : null;
+                    return $field->$key->$locale ?? null;
                 }
                 return $field->$key;
             }

@@ -1,4 +1,4 @@
-<?php $this->extend('admin/layout/main'); ?>
+<?php $this->extend(PANEL_FOLDER. '/layout/main'); ?>
 
 <?php $this->section('content'); ?>
     <div class="main-content">

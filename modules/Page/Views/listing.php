@@ -1,4 +1,4 @@
-<?php $this->extend('admin/layout/main'); ?>
+<?php $this->extend(PANEL_FOLDER . '/layout/main'); ?>
 
 <?php $segment = service('request')->uri->getSegment(5); ?>
 

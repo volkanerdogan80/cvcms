@@ -105,16 +105,16 @@
                                 <th><?= cve_admin_lang('General', 'created_at') ?></th>
                                 <th><?= cve_admin_lang('General', 'status') ?></th>
                             </tr>
-                            <?php foreach ($contents as $blog): ?>
-                                <tr data-id="<?= $blog->id; ?>">
+                            <?php foreach ($contents as $content): ?>
+                                <tr data-id="<?= $content->id; ?>">
                                     <td>
                                         <div class="custom-checkbox custom-control">
-                                            <input data-id="<?= $blog->id; ?>" type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-<?= $blog->id; ?>">
-                                            <label for="checkbox-<?= $blog->id; ?>" class="custom-control-label">&nbsp;</label>
+                                            <input data-id="<?= $content->id; ?>" type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-<?= $content->id; ?>">
+                                            <label for="checkbox-<?= $content->id; ?>" class="custom-control-label">&nbsp;</label>
                                         </div>
                                     </td>
                                     <td>
-                                        <?= $blog->getTitle(); ?>
+                                        <?= $content->getTitle(); ?>
                                         <?php if ($segment == 'deleted'): ?>
                                             <div class="table-links">
                                                 <div class="bullet"></div>
@@ -129,7 +129,7 @@
                                         <?php else: ?>
                                             <div class="table-links">
                                                 <div class="bullet"></div>
-                                                <a href="<?= base_url(route_to('admin_blog_edit',  $blog->id)); ?>">
+                                                <a href="<?= base_url(route_to('admin_blog_edit',  $content->id)); ?>">
                                                     <?= cve_admin_lang('Buttons', 'edit') ?>
                                                 </a>
                                                 <div class="bullet"></div>
@@ -164,19 +164,19 @@
                                                     </a>
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item content-share"
-                                                           data-id="<?= $blog->id ?>"
+                                                           data-id="<?= $content->id ?>"
                                                            data-url="<?= base_url(route_to('admin_share_twitter')); ?>"
                                                            href="javascript:void(0)">
                                                             Twitter
                                                         </a>
                                                         <a class="dropdown-item content-share"
-                                                           data-id="<?= $blog->id ?>"
+                                                           data-id="<?= $content->id ?>"
                                                            data-url="<?= base_url(route_to('admin_share_facebook')); ?>"
                                                            href="javascript:void(0)">
                                                             Facebook
                                                         </a>
                                                         <a class="dropdown-item content-share"
-                                                           data-id="<?= $blog->id ?>"
+                                                           data-id="<?= $content->id ?>"
                                                            data-url="<?= base_url(route_to('admin_share_linkedin')); ?>"
                                                            href="javascript:void(0)">
                                                             Linkedin
@@ -188,26 +188,26 @@
                                             </div>
                                         <?php endif; ?>
                                     </td>
-                                    <td><?= $blog->withUser()->getFullName(); ?></td>
+                                    <td><?= $content->withUser()->getFullName(); ?></td>
                                     <td>
                                         <a href="javascript:;"
                                            data-toggle="popover"
-                                           title="Yazı Kategorileri"
+                                           title="<?= cve_admin_lang('Blog', 'post_categories') ?>"
                                            data-content="
-                                                        <?php foreach ($blog->withCategories() as $blog_category): ?>
-                                                        <?= $blog_category->getTitle(); ?> -
+                                                        <?php foreach ($content->withCategories() as $content_category): ?>
+                                                        <?= $content_category->getTitle(); ?> -
                                                         <?php endforeach; ?>
                                                     "
                                            data-trigger="focus">
                                             <?= cve_admin_lang('Buttons', 'view') ?>
                                         </a>
                                     </td>
-                                    <td><?= $blog->getViews(); ?></td>
-                                    <td><?= $blog->getCreatedAt(); ?></td>
+                                    <td><?= $content->getViews(); ?></td>
+                                    <td><?= $content->getCreatedAt(); ?></td>
                                     <td>
-                                        <div style="<?= $blog->getStatus() != STATUS_ACTIVE ? 'display: none' : '' ?>" class="badge badge-status badge-status-active badge-success"><?= cve_admin_lang('General', 'active') ?></div>
-                                        <div style="<?= $blog->getStatus() != STATUS_PASSIVE ? 'display: none' : '' ?>" class="badge badge-status badge-status-passive badge-danger"><?= cve_admin_lang('General', 'passive') ?></div>
-                                        <div style="<?= $blog->getStatus() != STATUS_PENDING ? 'display: none' : '' ?>" class="badge badge-status badge-status-pending badge-warning"><?= cve_admin_lang('General', 'pending') ?></div>
+                                        <div style="<?= $content->getStatus() != STATUS_ACTIVE ? 'display: none' : '' ?>" class="badge badge-status badge-status-active badge-success"><?= cve_admin_lang('General', 'active') ?></div>
+                                        <div style="<?= $content->getStatus() != STATUS_PASSIVE ? 'display: none' : '' ?>" class="badge badge-status badge-status-passive badge-danger"><?= cve_admin_lang('General', 'passive') ?></div>
+                                        <div style="<?= $content->getStatus() != STATUS_PENDING ? 'display: none' : '' ?>" class="badge badge-status badge-status-pending badge-warning"><?= cve_admin_lang('General', 'pending') ?></div>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

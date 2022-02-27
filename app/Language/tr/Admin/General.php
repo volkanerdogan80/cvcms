@@ -10,6 +10,7 @@ return [
 
         'none'        => 'Yok',
         'created_at'  => 'Oluşturulma Tarihi',
+        'updated_at'  => 'Güncelleme Tarihi',
         'deleted_at'  => 'Silinme Tarihi',
         'status'      => 'Durumu',
 

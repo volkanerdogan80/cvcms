@@ -8,6 +8,7 @@ return [
         'author'        => 'Yazar',
         'full_name'    => 'İsim & Soyisim',
         'created_by'    => 'Oluşturan',
+        'assignee'    => 'Göreve Atanan',
         'email'        => 'Eposta Adresi',
         'readership'    => 'Okunma Sayısı',
         'view'    => 'Görüntülenme',
@@ -24,6 +25,5 @@ return [
         'language_title' => 'Dil Başlığı',
         'language_code' => 'Dil Kodu',
         'flag' => 'Bayrak',
-
     ]
 ];

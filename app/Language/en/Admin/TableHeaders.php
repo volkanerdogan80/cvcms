@@ -8,6 +8,7 @@ return [
         'author'        => 'Author',
         'full_name'    => 'Full Name',
         'created_by'    => 'Created By',
+        'assignee'    => 'Assignee',
         'email'        => 'Email Address',
         'readership'    => 'Readership',
         'view'    => 'Views',
@@ -24,6 +25,5 @@ return [
         'language_title' => 'Language Title',
         'language_code' => 'Language Code',
         'flag' => 'Flag',
-
     ]
 ];

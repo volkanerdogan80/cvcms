@@ -24,7 +24,7 @@ class Category extends BaseController
 
         return  cve_theme_view('category/' . cve_cat_module($category), [
             'category' => $category,
-            //'contents' => cve_cat_posts($category, 20, true) // Burdan object olarak gittiğinden modelde explode sorunu veriyor. Oraya bir kontrol gerek
+            'contents' => cve_cat_posts($category, 10, true)
         ]);
     }
 }

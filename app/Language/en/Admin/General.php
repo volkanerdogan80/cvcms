@@ -10,6 +10,7 @@ return [
 
         'none'       => 'None',
         'created_at' => 'Created At',
+        'updated_at' => 'Updated At',
         'deleted_at' => 'Deleted At',
         'status'     => 'Status',
 

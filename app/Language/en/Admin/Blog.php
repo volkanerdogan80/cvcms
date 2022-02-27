@@ -8,6 +8,7 @@ return [
         'listing' => 'Blog Posts',
         'create' => 'Create New Post',
         'related_contents'   => 'Related Contents',
-        'comments'           => 'Comments'
+        'comments'           => 'Comments',
+        'post_categories'    => 'Post Categories',
     ]
 ];

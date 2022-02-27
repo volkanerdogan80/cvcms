@@ -9,5 +9,6 @@ return [
         'create' => 'Yeni Yazı Oluştur',
         'related_contents'      => 'Benzer İçerik',
         'comments'              => 'Yorumlar',
+        'post_categories'       => 'Yazı Kategorileri',
     ]
 ];

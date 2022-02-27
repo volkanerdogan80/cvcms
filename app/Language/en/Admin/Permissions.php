@@ -150,5 +150,19 @@ return [
 
         'analytics_realtime' => 'Authorization to display instant visitor detail page',
         'analytics_metrics' => 'Authorization to display visitor history detail page',
+
+        'report_listing' => 'Authorization to list own reports',
+        'report_create' => 'Authorization to add new reports',
+        'report_edit' => 'Authorization to edit own reports',
+        'report_status' => 'Authorization to change the status of own reports',
+        'report_delete' => 'Authorization to delete own reports',
+        'report_undo-delete' => 'Authorization to restore own deleted reports',
+        'report_purge-delete' => 'Permission to permanently delete own reports',
+        'admin_report_listing_all' => 'Authorization to list all reports',
+        'admin_report_edit_all' => 'Authorization to edit all reports',
+        'admin_report_status_all' => 'Authorization to change the state of all reports',
+        'admin_report_delete_all' => 'Authorization to delete all reports',
+        'admin_report_undo_delete_all' => 'Authorization to delete all deleted reports',
+        'admin_report_purge_delete_all' => 'Permission to permanently delete all reports',
     ]
 ];

@@ -330,7 +330,7 @@ class Comments extends BaseController
 
         return $this->response->setJSON([
             'status' => false,
-            'message' => cve_admin_lang('Errors', 'create_failure')
+            'message' => cve_admin_lang('Errors', 'invalid_request_type')
         ]);
 
     }

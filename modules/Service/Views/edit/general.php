@@ -76,7 +76,7 @@
             <div class="form-group">
                 <label class="col-form-label"><?= cve_admin_lang('Inputs', 'thumbnail'); ?></label>
                 <br>
-                <?= cve_single_image_picker('page-image', 'thumbnail', 'page-image-id', [
+                <?= cve_single_image_picker('service-image', 'thumbnail', 'service-image-id', [
                     'image' => $content->withThumbnail() ? $content->withThumbnail()->getUrl('187x134') :  null,
                     'value' => $content->getThumbnail(),
                 ]); ?>
