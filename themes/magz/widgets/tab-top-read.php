@@ -1,132 +1,150 @@
+<?php
+$top_liked_contents = cve_top_liked_post(4, 'blog');
+$top_liked_contents_first = array_slice($top_liked_contents, 0, 1);
+$top_liked_contents_other = array_slice($top_liked_contents, 1, 3);
+
+$top_voted_contents = cve_top_voted_post(4, 'blog');
+$top_voted_contents_first = array_slice($top_voted_contents, 0, 1);
+$top_voted_contents_other = array_slice($top_voted_contents, 1, 3);
+?>
 <aside>
     <ul class="nav nav-tabs nav-justified" role="tablist">
         <li class="active">
-            <a href="#recomended" aria-controls="recomended" role="tab" data-toggle="tab">
-                <i class="ion-android-star-outline"></i> Recommended
+            <a href="#top-liked" aria-controls="top-liked" role="tab" data-toggle="tab">
+                <i class="ion-android-favorite-outline"></i> En Çok Beğenilenler
             </a>
         </li>
         <li>
-            <a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">
-                <i class="ion-ios-chatboxes-outline"></i> Comments
+            <a href="#top-voted" aria-controls="top-voted" role="tab" data-toggle="tab">
+                <i class="ion-ios-star-outline"></i> En Çok Oylananlar
             </a>
         </li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane active" id="recomended">
-            <article class="article-fw">
-                <div class="inner">
-                    <figure>
-                        <a href="single.html">
-                            <img src="<?= cve_theme_public(''); ?>/images/news/img16.jpg" alt="Sample Article">
-                        </a>
-                    </figure>
-                    <div class="details">
-                        <div class="detail">
-                            <div class="time">December 31, 2016</div>
-                            <div class="category"><a href="category.html">Sport</a></div>
+        <div class="tab-pane active" id="top-liked">
+            <?php foreach ($top_liked_contents_first as $content): ?>
+                <?php $category = cve_post_category($content); ?>
+                <article class="article-fw">
+                    <div class="inner">
+                        <figure>
+                            <a href="<?= cve_post_link($content) ?>">
+                                <img src="<?= cve_post_thumbnail($content, '318x178'); ?>"
+                                     alt="<?= cve_post_title($content) ?>">
+                            </a>
+                        </figure>
+                        <div class="details">
+                            <div class="detail">
+                                <div class="time"><?= cve_post_created_at($content) ?></div>
+                                <div class="category">
+                                    <a href="<?= cve_cat_link($category) ?>">
+                                        <?= cve_cat_title($category) ?>
+                                    </a>
+                                </div>
+                            </div>
+                            <h1>
+                                <a href="<?= cve_post_link($content) ?>">
+                                    <?= cve_post_title($content) ?>
+                                </a>
+                            </h1>
+                            <p style="font-size: 14px;">
+                                <?= cve_post_description($content) ?>
+                            </p>
                         </div>
-                        <h1><a href="single.html">Donec congue turpis vitae mauris</a></h1>
-                        <p>
-                            Donec congue turpis vitae mauris condimentum luctus. Ut dictum neque at egestas convallis.
-                        </p>
                     </div>
-                </div>
-            </article>
+                </article>
+            <?php endforeach; ?>
             <div class="line"></div>
-            <article class="article-mini">
-                <div class="inner">
-                    <figure>
-                        <a href="single.html">
-                            <img src="<?= cve_theme_public(''); ?>/images/news/img05.jpg" alt="Sample Article">
-                        </a>
-                    </figure>
-                    <div class="padding">
-                        <h1><a href="single.html">Duis aute irure dolor in reprehenderit in voluptate velit</a></h1>
-                        <div class="detail">
-                            <div class="category"><a href="category.html">Lifestyle</a></div>
-                            <div class="time">December 22, 2016</div>
+            <?php foreach ($top_liked_contents_other as $content): ?>
+                <?php $category = cve_post_category($content); ?>
+                <article class="article-mini">
+                    <div class="inner">
+                        <figure>
+                            <a href="<?= cve_post_link($content) ?>">
+                                <img src="<?= cve_post_thumbnail($content, '80x60'); ?>"
+                                     alt="<?= cve_post_title($content) ?>">
+                            </a>
+                        </figure>
+                        <div class="padding">
+                            <h1>
+                                <a href="<?= cve_post_link($content) ?>">
+                                    <?= cve_post_title($content) ?>
+                                </a>
+                            </h1>
+                            <div class="detail">
+                                <div class="category">
+                                    <a href="<?= cve_cat_link($category) ?>">
+                                        <?= cve_cat_title($category) ?>
+                                    </a>
+                                </div>
+                                <div class="time"><?= cve_post_created_at($content) ?></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </article>
-            <article class="article-mini">
-                <div class="inner">
-                    <figure>
-                        <a href="single.html">
-                            <img src="<?= cve_theme_public(''); ?>/images/news/img02.jpg" alt="Sample Article">
-                        </a>
-                    </figure>
-                    <div class="padding">
-                        <h1><a href="single.html">Fusce ullamcorper elit at felis cursus suscipit</a></h1>
-                        <div class="detail">
-                            <div class="category"><a href="category.html">Travel</a></div>
-                            <div class="time">December 21, 2016</div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <article class="article-mini">
-                <div class="inner">
-                    <figure>
-                        <a href="single.html">
-                            <img src="<?= cve_theme_public(''); ?>/images/news/img10.jpg" alt="Sample Article">
-                        </a>
-                    </figure>
-                    <div class="padding">
-                        <h1><a href="single.html">Duis aute irure dolor in reprehenderit in voluptate velit</a></h1>
-                        <div class="detail">
-                            <div class="category"><a href="category.html">Healthy</a></div>
-                            <div class="time">December 20, 2016</div>
-                        </div>
-                    </div>
-                </div>
-            </article>
+                </article>
+            <?php endforeach; ?>
         </div>
-        <div class="tab-pane comments" id="comments">
-            <div class="comment-list sm">
-                <div class="item">
-                    <div class="user">
+        <div class="tab-pane top-voted" id="top-voted">
+            <?php foreach ($top_voted_contents_first as $content): ?>
+                <?php $category = cve_post_category($content); ?>
+                <article class="article-fw">
+                    <div class="inner">
                         <figure>
-                            <img src="<?= cve_theme_public(''); ?>/images/img01.jpg" alt="User Picture">
+                            <a href="<?= cve_post_link($content) ?>">
+                                <img src="<?= cve_post_thumbnail($content, '318x178'); ?>"
+                                     alt="<?= cve_post_title($content) ?>">
+                            </a>
                         </figure>
                         <div class="details">
-                            <h5 class="name">Mark Otto</h5>
-                            <div class="time">24 Hours</div>
-                            <div class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            <div class="detail">
+                                <div class="time"><?= cve_post_created_at($content) ?></div>
+                                <div class="category">
+                                    <a href="<?= cve_cat_link($category) ?>">
+                                        <?= cve_cat_title($category) ?>
+                                    </a>
+                                </div>
+                            </div>
+                            <h1>
+                                <a href="<?= cve_post_link($content) ?>">
+                                    <?= cve_post_title($content) ?>
+                                </a>
+                            </h1>
+                            <p style="font-size: 14px;">
+                                <?= cve_post_description($content) ?>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            <?php endforeach; ?>
+            <div class="line"></div>
+            <?php foreach ($top_voted_contents_other as $content): ?>
+                <?php $category = cve_post_category($content); ?>
+                <article class="article-mini">
+                    <div class="inner">
+                        <figure>
+                            <a href="<?= cve_post_link($content) ?>">
+                                <img src="<?= cve_post_thumbnail($content, '80x60'); ?>"
+                                     alt="<?= cve_post_title($content) ?>">
+                            </a>
+                        </figure>
+                        <div class="padding">
+                            <h1>
+                                <a href="<?= cve_post_link($content) ?>">
+                                    <?= cve_post_title($content) ?>
+                                </a>
+                            </h1>
+                            <div class="detail">
+                                <div class="category">
+                                    <a href="<?= cve_cat_link($category) ?>">
+                                        <?= cve_cat_title($category) ?>
+                                    </a>
+                                </div>
+                                <div class="time"><?= cve_post_created_at($content) ?></div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="item">
-                    <div class="user">
-                        <figure>
-                            <img src="<?= cve_theme_public(''); ?>/images/img01.jpg" alt="User Picture">
-                        </figure>
-                        <div class="details">
-                            <h5 class="name">Mark Otto</h5>
-                            <div class="time">24 Hours</div>
-                            <div class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="user">
-                        <figure>
-                            <img src="<?= cve_theme_public(''); ?>/images/img01.jpg" alt="User Picture">
-                        </figure>
-                        <div class="details">
-                            <h5 class="name">Mark Otto</h5>
-                            <div class="time">24 Hours</div>
-                            <div class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </article>
+            <?php endforeach; ?>
+
         </div>
     </div>
 </aside>

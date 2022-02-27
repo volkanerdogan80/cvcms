@@ -7,8 +7,8 @@
     </figure>
     <div class="details">
         <div class="job">Web Developer</div>
-        <h3 class="name">John Doe</h3>
-        <p>Nulla sagittis rhoncus nisi, vel gravida ante. Nunc lobortis condimentum elit, quis porta ipsum rhoncus vitae. Curabitur magna leo, porta vel fringilla gravida, consectetur in libero. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
+        <h3 class="name"><?= cve_post_author(null, 'full_name') ?></h3>
+        <p><?= cve_post_author(null, 'bio') ?></p>
         <ul class="social trp sm">
             <li>
                 <a href="#" class="facebook">

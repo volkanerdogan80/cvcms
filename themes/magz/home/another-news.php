@@ -23,14 +23,10 @@
                             <?= cve_post_title($content); ?>
                         </a>
                     </h1>
-                    <p>
+                    <p style="font-size: 14px;">
                         <?= cve_post_description($content); ?>
                     </p>
                     <footer>
-                        <a href="#" class="love">
-                            <i class="ion-android-favorite-outline"></i>
-                            <div><?= cve_post_liked($content); ?></div>
-                        </a>
                         <a class="btn btn-primary more" href="<?= cve_post_link($content); ?>">
                             <div>More</div>
                             <div><i class="ion-ios-arrow-thin-right"></i></div>

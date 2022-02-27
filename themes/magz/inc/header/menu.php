@@ -1,7 +1,7 @@
 <nav class="menu">
     <div class="container">
         <div class="brand">
-            <a href="<?= base_url(route_to('homepage')) ?>">
+            <a href="<?= cve_route('homepage') ?>">
                 <img src="<?= cve_theme_public(''); ?>/images/logo.png" alt="Magz Logo">
             </a>
         </div>

@@ -21,7 +21,7 @@
                                 <?= cve_post_title($content) ?>
                             </a>
                         </h1>
-                        <p>
+                        <p style="font-size: 14px;">
                             <?= cve_post_description($content) ?>
                         </p>
                         <div class="detail">

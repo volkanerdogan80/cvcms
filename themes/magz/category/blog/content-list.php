@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <?php cve_theme_include('category/blog/breadcrumb'); ?>
             <h1 class="page-title">Category: <?= cve_cat_title() ?> </h1>
-            <p class="page-subtitle"><small><?= cve_cat_description() ?></small> </p>
+            <p class="page-subtitle" style="font-size: 20px;"><small><?= cve_cat_description() ?></small> </p>
         </div>
     </div>
     <div class="line"></div>
@@ -11,6 +11,11 @@
         <?php foreach (cve_posts()['contents'] as $content): ?>
             <article class="col-md-12 article-list">
                 <div class="inner">
+                    <?php if(cve_post_field('sponsored', $content)): ?>
+                        <div class="badge">
+                            Sponsored
+                        </div>
+                    <?php endif; ?>
                     <figure>
                         <a href="<?= cve_post_link($content) ?>">
                             <img src="<?= cve_post_thumbnail($content, '300x195') ?>" alt="<?= cve_post_title($content) ?>">
@@ -28,14 +33,11 @@
                                 <?= cve_post_title($content) ?>
                             </a>
                         </h1>
-                        <p>
+                        <p style="font-size: 14px;">
                             <?= cve_post_description($content) ?>
                         </p>
                         <footer>
-                            <a href="#" class="love">
-                                <i class="ion-android-favorite-outline"></i>
-                                <div><?= cve_post_liked($content) ?></div>
-                            </a>
+
                             <a class="btn btn-primary more" href="<?= cve_post_link($content) ?>">
                                 <div>More</div>
                                 <div><i class="ion-ios-arrow-thin-right"></i></div>

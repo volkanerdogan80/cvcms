@@ -3,7 +3,7 @@
       <span class='cve-like-1-icon'>
         <div class='cve-like-1-heart-animation-1'></div>
         <div class='cve-like-1-heart-animation-2'></div>
-      </span> Beğen ( <span class="cve-like-count"><?= cve_post_liked($content); ?></span> )
+      </span>( <span class="cve-like-count"><?= cve_post_liked($content); ?></span> )
     </a>
 
     <script>

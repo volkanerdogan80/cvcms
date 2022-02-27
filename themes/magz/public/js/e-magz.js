@@ -87,6 +87,7 @@ $(function(){
 			$(this).click(function(){
 				var countNow = $(this).find("div").html().replace(',', '');
 				if(!$(this).hasClass("active")) {
+					$('.cve-liked').trigger('click')
 					$(this).find(".animated").remove();
 					$(this).addClass("active");
 					$(this).find("i").removeClass("ion-android-favorite-outline");
@@ -99,15 +100,6 @@ $(function(){
 					  $(this).off(e);
 					});
 					// add some code ("love")
-				}else{
-					$(this).find(".animated").remove();
-					$(this).removeClass("active");
-					$(this).find("i").addClass("ion-android-favorite-outline");
-					$(this).find("i").removeClass("ion-android-favorite");
-					$(this).find("div").html(parseInt(countNow) - 1);
-					$(this).find("div").html($.number($(this).find("div").html()));
-
-					// add some code ("unlove")
 				}
 				return false;
 			});

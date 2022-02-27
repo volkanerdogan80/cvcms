@@ -3,7 +3,7 @@
       <span class='cve-favorite-1-icon'>
         <div class='cve-favorite-1-heart-animation-1'></div>
         <div class='cve-favorite-1-heart-animation-2'></div>
-      </span> Favoriye Ekle ( <span class="cve-favorite-count"><?= cve_post_favorite($content); ?></span> )
+      </span> ( <span class="cve-favorite-count"><?= cve_post_favorite($content); ?></span> )
     </a>
 
     <script>

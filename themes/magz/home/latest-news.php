@@ -6,6 +6,11 @@
         <?php $category = cve_post_category($content); ?>
         <article class="col-md-12 article-list">
             <div class="inner">
+                <?php if(cve_post_field('sponsored', $content)): ?>
+                    <div class="badge">
+                        Sponsored
+                    </div>
+                <?php endif; ?>
                 <figure>
                     <a href="<?= cve_post_link($content); ?>">
                         <img src="<?= cve_post_thumbnail($content, '300x195'); ?>" alt="<?= cve_post_title($content); ?>">
@@ -23,14 +28,10 @@
                             <?= cve_post_title($content); ?>
                         </a>
                     </h1>
-                    <p>
+                    <p style="font-size: 14px;">
                         <?= cve_post_description($content); ?>
                     </p>
                     <footer>
-                        <a href="#" class="love">
-                            <i class="ion-android-favorite-outline"></i>
-                            <div><?= cve_post_liked($content); ?></div>
-                        </a>
                         <a class="btn btn-primary more" href="<?= cve_post_link($content); ?>">
                             <div>More</div>
                             <div><i class="ion-ios-arrow-thin-right"></i></div>

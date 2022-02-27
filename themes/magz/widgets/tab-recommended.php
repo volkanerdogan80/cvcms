@@ -46,7 +46,7 @@ $top_comment_contents_other = array_slice($top_comment_contents, 1, 3);
                                     <?= cve_post_title($content) ?>
                                 </a>
                             </h1>
-                            <p>
+                            <p style="font-size: 14px;">
                                 <?= cve_post_description($content) ?>
                             </p>
                         </div>
@@ -108,7 +108,7 @@ $top_comment_contents_other = array_slice($top_comment_contents, 1, 3);
                                     <?= cve_post_title($content) ?>
                                 </a>
                             </h1>
-                            <p>
+                            <p style="font-size: 14px;">
                                 <?= cve_post_description($content) ?>
                             </p>
                         </div>
