@@ -77,9 +77,7 @@ class Config extends BaseController
             });
 
             if($setting){
-                return [
-                    'offices' => $setting->getValue(null,true),
-                ];
+                return $setting->getValue(null,true);
             }
             return [];
         }catch (\Exception $exception){

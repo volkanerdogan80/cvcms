@@ -205,14 +205,14 @@ function cve_slug_creator($str, $options = array())
     $str = preg_replace('/(' . preg_quote($options['delimiter'], '/') . '){2,}/', '$1', $str);
     $str = mb_substr($str, 0, ($options['limit'] ? $options['limit'] : mb_strlen($str, 'UTF-8')), 'UTF-8');
     $str = trim($str, $options['delimiter']);
-    $slug =  $options['lowercase'] ? mb_strtolower($str, 'UTF-8') : $str;
+    return  $options['lowercase'] ? mb_strtolower($str, 'UTF-8') : $str;
 
-    $model = new \App\Models\ContentModel();
-    $control = $model->getContentBySlug($slug);
-    if ($control){
-        return cve_slug_creator(increment_string($str, '-'), $options);
-    }
-    return $slug;
+    //$model = new \App\Models\ContentModel();
+    //$control = $model->getContentBySlug($slug);
+    //if ($control){
+    //    return cve_slug_creator(increment_string($str, '-'), $options);
+    //}
+    //return $slug;
 }
 
 function cve_module_list()
