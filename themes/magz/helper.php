@@ -42,6 +42,14 @@ function page_template()
         'forgot' => [
             'path' => 'auth/forgot',
             'title' => 'Şifremi Unuttum Sayfası Şablonu'
+        ],
+        'favorite' => [
+            'path' => 'account/favorite',
+            'title' => 'Favori İçeriklerim Sayfası'
+        ],
+        'comments' => [
+            'path' => 'account/comments',
+            'title' => 'Yorum Yaptığım İçerikler Sayfası'
         ]
     ];
 }

@@ -32,7 +32,7 @@ function cve_description()
 }
 
 /**
- * Returns the keywords of the current page, if exist otherwise keywords site title
+ * Returns the keywords of the current page, if exist otherwise keywords of site title
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
 function cve_keywords()

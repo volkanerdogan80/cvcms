@@ -108,7 +108,7 @@ class Category extends BaseController
         }
 
         return view(PANEL_FOLDER . '/pages/category/edit', [
-            'categories' => $this->categoryModel->findAll(),
+            'categories' => $this->categoryModel->where('id !=', $id)->findAll(),
             'category' => $this->categoryModel->find($id)
         ]);
     }

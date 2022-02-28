@@ -7,7 +7,7 @@ class Home extends BaseController
     public function index()
     {
 
-        print_r(get_posts());
+        print_r(config('theme'));
 
 
         /*$model->insert([

@@ -3,24 +3,16 @@
     <div class="aside-body">
         <ul class="sponsored">
             <li>
-                <a href="#">
-                    <img src="<?= cve_theme_public(''); ?>/images/sponsored.png" alt="Sponsored">
-                </a>
+                <?= config('theme')->home_page_sidebar_1_sponsored ?>
             </li>
             <li>
-                <a href="#">
-                    <img src="<?= cve_theme_public(''); ?>/images/sponsored.png" alt="Sponsored">
-                </a>
+                <?= config('theme')->home_page_sidebar_2_sponsored ?>
             </li>
             <li>
-                <a href="#">
-                    <img src="<?= cve_theme_public(''); ?>/images/sponsored.png" alt="Sponsored">
-                </a>
+                <?= config('theme')->home_page_sidebar_3_sponsored ?>
             </li>
             <li>
-                <a href="#">
-                    <img src="<?= cve_theme_public(''); ?>/images/sponsored.png" alt="Sponsored">
-                </a>
+                <?= config('theme')->home_page_sidebar_4_sponsored ?>
             </li>
         </ul>
     </div>

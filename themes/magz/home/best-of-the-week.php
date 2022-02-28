@@ -11,7 +11,12 @@
             </div>
         </h1>
         <div class="owl-carousel owl-theme carousel-1">
-            <?php foreach (cve_week_top_post(6,'blog') as $content): ?>
+            <?php
+                $limit = isset(config('theme')->top_week_count) ? config('theme')->top_week_count : 6;
+                $module = isset(config('theme')->top_week_module) ? config('theme')->top_week_module : 'blog';
+                $category = isset(config('theme')->top_week_category) ? implode(',', config('theme')->top_week_category) : null;
+            ?>
+            <?php foreach (cve_week_top_post(['limit' => $limit, 'module' => $module, 'category' => $category]) as $content): ?>
                 <?php $category = cve_post_category($content); ?>
                 <article class="article">
                     <div class="inner">

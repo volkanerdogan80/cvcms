@@ -1,9 +1,7 @@
 <aside>
     <div class="aside-body">
         <figure class="ads">
-            <a href="single.html">
-                <img src="<?= cve_theme_public('') ?>/images/ad.png">
-            </a>
+            <?= config('theme')->category_sidebar_ads ?>
             <figcaption>Advertisement</figcaption>
         </figure>
     </div>

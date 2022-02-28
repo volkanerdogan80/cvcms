@@ -1,5 +1,10 @@
 <aside>
-    <h1 class="aside-title">Popular <a href="#" class="all">See All <i class="ion-ios-arrow-right"></i></a></h1>
+    <h1 class="aside-title">
+        Popular
+        <a href="<?= cve_post_link(config('theme')->popular) ?>" class="all">
+            See All <i class="ion-ios-arrow-right"></i>
+        </a>
+    </h1>
     <div class="aside-body">
         <?php foreach (cve_most_read_post(6, 'blog') as $content): ?>
             <article class="article-mini">
