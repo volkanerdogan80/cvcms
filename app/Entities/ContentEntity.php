@@ -327,7 +327,7 @@ class ContentEntity extends Entity
     public function withUser(): ?object
     {
         $model = new UserModel();
-        return $model->find($this->attributes['user_id']);
+        return $model->withDeleted()->find($this->attributes['user_id']);
     }
 
     public function withThumbnail()
@@ -353,7 +353,7 @@ class ContentEntity extends Entity
     {
         $model = new CategoryModel();
         if(count($this->getCategories()) > 0) {
-            return $model->find($this->getCategories());
+            return $model->withDeleted()->find($this->getCategories());
         }
         return null;
     }
@@ -381,6 +381,9 @@ class ContentEntity extends Entity
     public function withComment()
     {
         $model = new CommentModel();
-        return $model->where('content_id', $this->attributes['id'])->orderBy('created_at', 'DESC')->findAll(10);
+        return $model->withDeleted()
+            ->where('content_id', $this->attributes['id'])
+            ->orderBy('created_at', 'DESC')
+            ->findAll(10);
     }
 }

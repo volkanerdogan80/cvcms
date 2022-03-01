@@ -168,7 +168,7 @@ class UserEntity extends Entity
     public function withGroup(): object
     {
         $model = new UserRoleModel();
-        return $model->find($this->attributes['group_id']);
+        return $model->withDeleted()->find($this->attributes['group_id']);
     }
 
 }

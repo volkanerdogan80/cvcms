@@ -101,6 +101,10 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card-footer text-right">
+                            <button type="submit" class="btn btn-success btn-block btn-lg"><?= cve_admin_lang('Buttons', 'update') ?></button>
+                        </div>
+
                     </div>
                 </form>
             </div>

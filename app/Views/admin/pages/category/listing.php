@@ -162,6 +162,9 @@
                             </table>
                         </div>
                     </div>
+                    <div class="card-footer text-right">
+                        <?= $pager->links('default', 'cms_pager'); ?>
+                    </div>
                 </div>
             </div>
         </section>

@@ -33,6 +33,9 @@ return [
         'purge_delete_empty_fields' => 'Kalıcı olarak silme işlemi yapabilmek için en az bir öğe seçmeniz gerekir. Lütfen tekrar deneyiniz.',
         'change_status_empty_fields'=> 'Durum değişikliği işlemi yapabilmek için en az bir öğe seçmeniz gerekir. Lütfen tekrar deneyiniz.',
 
+        'delete_category_with_subs'    => 'Bu kategoriye bağımlı alt kategoriler bulunduğu için bu kayıt silinemez.',
+        'delete_category_with_content' => 'Bu kategoriye bağımlı içerikler bulunduğu için bu kayıt silinemez.',
+
         'status_change_failure' => 'Kaydın durumu değiştilirken bir hata meydana geldi. Lütfen tekrar deneyin.',
         'create_failure'        => 'Kayıt oluşturma esnasında bir hata meydana geldi. Lütfen tekrar deneyiniz.',
         'update_failure'        => 'Kayıt güncellenirken bir hata meydana geldi. Lütfen tekrar deneyiniz.',

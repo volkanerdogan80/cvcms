@@ -6,18 +6,21 @@ namespace App\Controllers\Backend;
 use \App\Controllers\BaseController;
 use App\Entities\CategoryEntity;
 use App\Models\CategoryModel;
+use App\Models\ContentModel;
 use App\Models\UserModel;
 
 class Category extends BaseController
 {
     protected $categoryModel;
     protected $categoryEntity;
+    protected $contentModel;
     protected $userModel;
 
     public function __construct()
     {
         $this->categoryModel = new CategoryModel();
         $this->categoryEntity = new CategoryEntity();
+        $this->contentModel = new ContentModel();
         $this->userModel = new UserModel();
     }
 
@@ -155,6 +158,24 @@ class Category extends BaseController
                     'message' => cve_admin_lang('Errors', 'delete_empty_fields')
                 ]);
             }
+
+            $data = !is_array($data) ? [$data] : $data;
+            $parent_control = $this->categoryModel->whereIn('parent_id', $data)->find();
+            if($parent_control){
+                return $this->response->setJSON([
+                    'status' => false,
+                    'message' => cve_admin_lang('Errors', 'delete_category_with_subs')
+                ]);
+            }
+
+            $content_control = $this->contentModel->getContentsByCategoryIds($data);
+            if($content_control){
+                return $this->response->setJSON([
+                    'status' => false,
+                    'message' => cve_admin_lang('Errors', 'delete_category_with_content')
+                ]);
+            }
+
             $delete = $this->categoryModel->delete($data);
             if (!$delete){
                 return $this->response->setJSON([

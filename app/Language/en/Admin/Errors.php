@@ -26,12 +26,15 @@ return [
         'success_register_failed_email' => 'Registration completed successfully, but an error occurred while sending the verification email. ',
 
         'delete_admin_group_failure'  => 'You cannot delete the Root Admin group. Please try again.',
-        'delete_group_with_user'    => 'There are users connected to the group, so you cannot delete them.',
+        'delete_group_with_user'    => 'This record cannot be deleted, as there are dependent users in this user group.',
         'delete_admin_user_failure'   => 'You cannot delete administrators.',
         'delete_empty_fields'       => 'You must select at least one item in order to be able to delete. Please try again. ',
         'restore_empty_fields'      => 'You must select at least one item in order to be able to restore. Please try again. ',
         'purge_delete_empty_fields' => 'You must select at least one item in order to be able to permanently delete. Please try again.',
         'change_status_empty_fields'=> 'You must select at least one item in order to be able to change status. Please try again.',
+
+        'delete_category_with_subs' => 'This record cannot be deleted, as there are sub-categories dependent on this category.',
+        'delete_category_with_content' => 'This record cannot be deleted, as there are contents dependent on this category.',
 
         'status_change_failure' => 'An error occurred while changing status of the record. Please try again.',
         'create_failure'        => 'An error occurred while creating the record. Please try again.',

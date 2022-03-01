@@ -184,7 +184,7 @@ class CategoryEntity extends Entity
     {
         $model = new CategoryModel();
         if ($this->attributes['parent_id'] != 0){
-            return $model->find($this->attributes['parent_id']);
+            return $model->withDeleted()->find($this->attributes['parent_id']);
         }
         return null;
     }
@@ -201,7 +201,7 @@ class CategoryEntity extends Entity
     public function withUser(): ?object
     {
         $model = new UserModel();
-        return $model->find($this->attributes['user_id']);
+        return $model->withDeleted()->find($this->attributes['user_id']);
     }
 
 }

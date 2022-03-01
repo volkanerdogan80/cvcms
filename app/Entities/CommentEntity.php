@@ -114,6 +114,6 @@ class CommentEntity extends Entity
 
     public function withContent(){
         $model = new ContentModel();
-        return $model->find($this->attributes['content_id']);
+        return $model->withDeleted()->find($this->attributes['content_id']);
     }
 }

@@ -43,7 +43,7 @@ class ContentModel extends Model
     protected $validationRules    = [
         'module'         => 'required|alpha_numeric',
         'user_id'        => 'required|numeric',
-        'slug'           => 'required|alpha_numeric_punct|is_unique[contents.slug,id,{id}]',
+        'slug'           => 'required|alpha_numeric_punct',
         'title'          => 'required|string',
         'description'    => 'permit_empty|string',
         'content'        => 'permit_empty|string',
@@ -58,16 +58,57 @@ class ContentModel extends Model
         'status'         => 'required|string',
     ];
 
+    protected $beforeInsert = ['insertSlugControl'];
+    protected $beforeUpdate = ['updateSlugControl'];
+
+    protected function insertSlugControl($params)
+    {
+        $params['data']['slug'] = $this->uniqueSlug($params['data']['slug']);
+        return $params;
+    }
+
+    protected function updateSlugControl($params)
+    {
+        if(!isset($params['data']['slug'])){
+            return $params;
+        }
+
+        if($content = $this->getContent(['slug' => $params['data']['slug'], 'id' => $params['id'][0]], true)){
+            $params['data']['slug'] = $content->getSlug();
+            return $params;
+        }
+
+        if($content = $this->getContent(['title' => $params['data']['title'], 'id' => $params['id'][0]], true)){
+            $params['data']['slug'] = $content->getSlug();
+            return $params;
+        }
+
+        $params['data']['slug'] = $this->uniqueSlug($params['data']['slug']);
+        return $params;
+
+    }
+
+    protected function uniqueSlug($slug)
+    {
+        if($this->getContentBySlug($slug, null, true)){
+            $new_slug = increment_string($slug,'-');
+            return $this->uniqueSlug($new_slug);
+        }
+        return $slug;
+    }
+
     /**
      * Array olarak gönderilen değerleri where sorgusu ile 1 tane içerik döner
      * @param $params
      * @return array|object|null
      */
-    public function getContent($params)
+    public function getContent($params, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where($params);
+        if($withDeleted)
+            $builder = $builder->withDeleted();
         return $builder->first();
     }
 
@@ -90,12 +131,14 @@ class ContentModel extends Model
      * @param null $status
      * @return array|object|null
      */
-    public function getContentBySlug($content_slug, $status = null)
+    public function getContentBySlug($content_slug, $status = null, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         if (!is_null($status))
             $builder = $builder->where('status', $status);
+        if($withDeleted)
+            $builder = $builder->withDeleted();
         $builder = $builder->where('slug', $content_slug);
         return $builder->first();
     }
@@ -106,13 +149,15 @@ class ContentModel extends Model
      * @param null $status
      * @return array|object|null
      */
-    public function getContentById($content_id, $status = null)
+    public function getContentById($content_id, $status = null, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
 
         if (!is_null($status))
             $builder = $builder->where('status', $status);
+        if($withDeleted)
+            $builder = $builder->withDeleted();
 
         $builder = $builder->where('id', $content_id);
         return $builder->first();
