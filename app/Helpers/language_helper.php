@@ -25,7 +25,8 @@ function cve_lang_data($data, $lang = null)
     if(isset($data->$locale)){
         return $data->$locale;
     }
-    return null;
+    $defaultLocale = config('app')->defaultLocale;
+    return $data->$defaultLocale;
 }
 
 function cve_admin_lang($file, $text = null)

@@ -5,7 +5,11 @@ namespace App\Controllers\Traits;
 use App\Entities\ContentEntity;
 use App\Libraries\Firebase;
 use App\Models\CategoryModel;
+use App\Models\CommentModel;
 use App\Models\ContentModel;
+use App\Models\FavoriteModel;
+use App\Models\LikeModel;
+use App\Models\RatingModel;
 use App\Models\UserModel;
 
 trait ContentTrait
@@ -14,6 +18,10 @@ trait ContentTrait
     protected $contentModel;
     protected $contentEntity;
     protected $categoryModel;
+    protected $commentModel;
+    protected $ratingModel;
+    protected $likeModel;
+    protected $favoriteModel;
 
     public function __construct()
     {
@@ -21,6 +29,10 @@ trait ContentTrait
         $this->contentModel = new ContentModel();
         $this->contentEntity = new ContentEntity();
         $this->categoryModel = new CategoryModel();
+        $this->commentModel = new CommentModel();
+        $this->ratingModel = new RatingModel();
+        $this->likeModel = new LikeModel();
+        $this->favoriteModel = new FavoriteModel();
     }
 
     public function listing(string $status = null)
@@ -207,10 +219,13 @@ trait ContentTrait
                 ]);
             }
 
-
             if($this->module != 'page'){
                 $this->contentModel->category('delete', $id);
                 $this->contentModel->share('delete', $id);
+                $this->commentModel->where('content_id', $id)->delete(null,true);
+                $this->ratingModel->where('content_id', $id)->delete(null,true);
+                $this->likeModel->where('content_id', $id)->delete(null,true);
+                $this->favoriteModel->where('content_id', $id)->delete(null,true);
             }
 
             return $this->response->setJSON([

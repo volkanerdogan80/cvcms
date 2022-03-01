@@ -29,7 +29,7 @@ class CategoryEntity extends Entity
 
     public function setModule(string $module): void
     {
-        $this->attributes['module'] =  $module;
+        $this->attributes['module'] =  mb_strtolower($module);
     }
 
     public function setUserId(int $userId = null): void

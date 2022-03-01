@@ -61,5 +61,6 @@ return [
         'message'       => 'Mesajınız',
         'notify_link'   => 'Bildirime tıklayınca açılması istenen sayfanın linki',
         'filter_permits'   => 'İzinleri Filtrele...',
+        'filter_social'   => 'Sosyal Medya Ara...',
     ]
 ];

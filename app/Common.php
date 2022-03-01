@@ -28,7 +28,10 @@ function module_config($module, $config){
 function permissions(){
     $permit_list = config('permissions')->list;
     foreach (cve_module_list() as $module){
-        $permit_list = array_merge($permit_list, module_config($module, 'permissions')->list);
+        if(file_exists(ROOTPATH.'modules/'. $module .'/Config/Permissions.php')){
+            $permit_list = array_merge($permit_list, module_config($module, 'permissions')->list);
+        }
+
     }
     return $permit_list;
 }
