@@ -10,7 +10,7 @@ $score_list = cve_post_rating_score($content);
             <div>
                 <div class="rating">
                     <?php foreach ($score_list as $vote => $score): ?>
-                        <input <?= $is_rating == $vote ? 'checked' : ''; ?> type="radio" name="rating" class="cve-voted" data-vote="<?= $vote ?>" id="rating-<?= $vote ?>">
+                        <input <?= $is_rating == $vote ? 'checked' : ''; ?> type="radio" name="rating" class="cve-voted" data-content="<?= cve_post_id($content) ?>" data-vote="<?= $vote ?>" id="rating-<?= $vote ?>">
                         <label for="rating-<?= $vote ?>"></label>
                     <?php endforeach; ?>
                     <div class="emoji-wrapper">

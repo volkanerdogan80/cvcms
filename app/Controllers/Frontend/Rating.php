@@ -18,9 +18,10 @@ class Rating extends BaseController
         $this->ratingModel = new RatingModel();
     }
 
-    public function voted($content_id)
+    public function voted()
     {
         if ($this->request->getMethod() == 'post'){
+            $content_id = $this->request->getPost('id');
             $vote = $this->request->getPost('vote');
             $remote_addr = $this->request->getIPAddress();
 
@@ -46,7 +47,7 @@ class Rating extends BaseController
 
             return $this->response([
                 'status' => true,
-                'message' => 'Değercelendirme başarılı bir şekilde yapıldı.',
+                'message' => 'Derecelendirme başarılı bir şekilde yapıldı.',
                 'data' => [
                     'ratingAvg' => $this->ratingModel->getContentVoteAvg($content_id),
                     'voteList' => $this->ratingModel->getContentVoteCount($content_id),

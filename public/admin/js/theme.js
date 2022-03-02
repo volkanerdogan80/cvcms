@@ -1,27 +1,43 @@
 $(document).on('click', '.cve-liked', function (){
-    cveThemeRequest(routes.content_like,{}, function (response) {
-        if (response.status){
-            $('.cve-like-count').text(response.data.likeCount)
+    let content_id = $(this).data('content');
+    let content_like_count_selector = '.cve-'+content_id+'-content-like-count';
+    let count_selector = $(this).data('count');
+    if (count_selector){
+        content_like_count_selector = count_selector;
+    }
+    cve_liked(content_id, content_like_count_selector);
+});
+function cve_liked(content_id, content_like_count_selector){
+    cveThemeRequest(routes.content_like, {id: content_id}, function (response) {
+        if (response.status) {
+            $(content_like_count_selector).text(response.data.likeCount)
         }
     });
-});
+}
 
 $(document).on('click', '.cve-favorite', function (){
-    cveThemeRequest(routes.content_favorite,{}, function (response) {
-        if (response.status){
-            $('.cve-favorite-count').text(response.data.favoriteCount)
+    let content_id = $(this).data('content');
+    let content_favorite_count_selector = '.cve-'+content_id+'-content-like-count';
+    let count_selector = $(this).data('count');
+    if (count_selector){
+        content_favorite_count_selector = count_selector;
+    }
+    cve_favorite(content_id, content_favorite_count_selector);
+});
+function cve_favorite(content_id, content_favorite_count_selector){
+    cveThemeRequest(routes.content_favorite, {id: content_id}, function (response) {
+        if (response.status) {
+            $(content_favorite_count_selector).text(response.data.favoriteCount)
         }
     });
-});
+}
 
-$(document).on('click', '.cve-voted', function (){
-    let vote = $(this).data('vote');
-
-    cveThemeRequest(routes.content_vote,{vote: vote}, function (response) {
-        if (response.status){
+function cve_rating(content_id, vote){
+    cveThemeRequest(routes.content_vote, {id: content_id, vote: vote}, function (response) {
+        if (response.status) {
 
             $.each(response.data.voteList, function (i, item) {
-                $('.cve-'+item.vote+'-text').text(item.count);
+                $('.cve-' + item.vote + '-text').text(item.count);
                 $('.cve-' + item.vote + '-value').val(item.count);
             });
 
@@ -29,8 +45,12 @@ $(document).on('click', '.cve-voted', function (){
             $('.cve-vote-avg').text(avg.toFixed(1));
         }
     });
+}
+$(document).on('click', '.cve-voted', function (){
+    let vote = $(this).data('vote');
+    let content_id = $(this).data('content');
+    cve_rating(content_id, vote);
 });
-
 
 $(document).on('click', '.cve-newsletter', function (){
     let email = $('.cve-newsletter-email').val();
@@ -78,7 +98,6 @@ $(document).on('click', '.cve-comment-reply-close-btn', function (){
     $('.cve-comment-reply-area').hide();
     $('#comment_id').remove();
 })
-
 
 function showSnackbar(status, message) {
     let snackbar = $('#cve-snackbar');

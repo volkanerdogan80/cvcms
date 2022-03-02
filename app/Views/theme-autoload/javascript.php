@@ -11,12 +11,15 @@
 
 <?php if(is_post()): ?>
     <script>
-        routes.content_like = '<?= base_url(route_to('content_like', cve_post_id())); ?>';
-        routes.content_favorite = '<?= base_url(route_to('content_favorite', cve_post_id())); ?>';
-        routes.content_vote = '<?= base_url(route_to('content_vote', cve_post_id())); ?>';
         routes.content_comment = '<?= base_url(route_to('content_comment', cve_post_id()))?>';
     </script>
 <?php endif; ?>
+
+<script>
+    routes.content_vote = '<?= cve_route('content_vote'); ?>';
+    routes.content_like = '<?= cve_route('content_like'); ?>';
+    routes.content_favorite = '<?= cve_route('content_favorite'); ?>';
+</script>
 
 <script src="<?= base_url(PUBLIC_ADMIN_JS_PATH . 'theme.js') ?>"></script>
 <script src="<?= base_url(PUBLIC_ADMIN_JS_PATH . 'uikit.min.js'); ?>"></script>

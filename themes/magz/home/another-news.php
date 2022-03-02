@@ -27,6 +27,14 @@
                         <?= cve_post_description($content); ?>
                     </p>
                     <footer>
+                        <a data-count=".cve-<?= cve_post_id($content); ?>-content-like_count"
+                           data-content="<?= cve_post_id($content); ?>"
+                           href="#" class="love <?= is_liked() ? 'active' : ''; ?>">
+                            <i class="ion-android-favorite<?= is_liked() ? '' : '-outline'; ?>"></i>
+                            <div class="cve-<?= cve_post_id($content); ?>-content-like_count">
+                                <?= cve_post_liked($content); ?>
+                            </div>
+                        </a>
                         <a class="btn btn-primary more" href="<?= cve_post_link($content); ?>">
                             <div>More</div>
                             <div><i class="ion-ios-arrow-thin-right"></i></div>

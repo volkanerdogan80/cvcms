@@ -18,10 +18,11 @@ class Like extends BaseController
         $this->likeModel = new LikeModel();
     }
 
-    public function liked($content_id)
+    public function liked()
     {
         if ($this->request->getMethod() == 'post'){
 
+            $content_id = $this->request->getPost('id');
             $remote_addr = $this->request->getIPAddress();
 
             if ($this->likeModel->getUserLikeControl($content_id, $remote_addr)){

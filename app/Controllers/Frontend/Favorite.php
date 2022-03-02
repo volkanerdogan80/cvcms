@@ -18,12 +18,14 @@ class Favorite extends BaseController
         $this->favoriteModel = new FavoriteModel();
     }
 
-    public function favorite($content_id)
+    public function favorite()
     {
         if(!is_logged_in()){
             return $this->response(['status' => false, 'message' => 'Lütfen giriş yaparak tekrar deneyiniz.']);
         }
         if ($this->request->getMethod() == 'post'){
+
+            $content_id = $this->request->getPost('id');
 
             if ($favorite = $this->favoriteModel->getUserFavoriteControl($content_id)){
                 $this->favoriteModel->delete($favorite->id);

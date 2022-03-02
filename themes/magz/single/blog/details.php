@@ -4,8 +4,8 @@
         <h1><?= cve_post_title() ?></h1>
         <ul class="details">
             <li><?= cve_post_created_at(null,true) ?></li>
-            <li><a><?= cve_cat_title($category) ?></a></li>
-            <li>By <a href="<?= cve_cat_link($category) ?>"><?= cve_post_author(null,'full_name') ?></a></li>
+            <li><a href="<?= cve_cat_link($category) ?>"><?= cve_cat_title($category) ?></a></li>
+            <li>By <a href="#"><?= cve_post_author(null,'full_name') ?></a></li>
         </ul>
     </header>
     <div class="main">
@@ -23,9 +23,18 @@
             </ul>
         </div>
         <div class="col">
-            <?= cmp_like_button() ?>
-            <?= cmp_favorite_button() ?>
+            <div class="col">
+                <a data-count=".cve-<?= cve_post_id(); ?>-content-like-count"
+                   data-content="<?= cve_post_id(); ?>"
+                   href="#" class="love <?= is_liked() ? 'active' : ''; ?>">
+                    <i class="ion-android-favorite<?= is_liked() ? '' : '-outline'; ?>"></i>
+                    <div class="cve-<?= cve_post_id(); ?>-content-like-count">
+                        <?= cve_post_liked(); ?>
+                    </div>
+                </a>
+            </div>
         </div>
+        <div class="col"><?= cmp_favorite_button() ?></div>
     </footer>
     <footer>
         <?= cmp_user_score_panel() ?>

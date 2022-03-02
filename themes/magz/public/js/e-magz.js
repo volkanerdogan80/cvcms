@@ -85,9 +85,9 @@ $(function(){
 		$(".love").each(function(){
 			$(this).find("div").html($.number($(this).find("div").html()));
 			$(this).click(function(){
+				cve_liked($(this).data('content'))
 				var countNow = $(this).find("div").html().replace(',', '');
 				if(!$(this).hasClass("active")) {
-					$('.cve-liked').trigger('click')
 					$(this).find(".animated").remove();
 					$(this).addClass("active");
 					$(this).find("i").removeClass("ion-android-favorite-outline");
@@ -97,9 +97,8 @@ $(function(){
 					$(this).append($(this).find("i").clone().addClass("animated"));
 					$(this).find("i.animated").on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(e){
 						$(this).remove();
-					  $(this).off(e);
+						$(this).off(e);
 					});
-					// add some code ("love")
 				}
 				return false;
 			});
