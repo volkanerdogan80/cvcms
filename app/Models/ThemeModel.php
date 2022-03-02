@@ -37,32 +37,33 @@ class ThemeModel extends Model
         'settings'  => 'permit_empty'
     ];
 
-    public function getTheme($params)
+    public function getTheme($params, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where($params);
+        $builder = $withDeleted ? $builder->withDeleted() : $builder;
         return $builder->first();
     }
 
-    public function getThemeById($theme_id, $status = null)
+    public function getThemeById($theme_id, $status = null, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('id', $theme_id);
-        if (!is_null($status))
-            $builder = $builder->where('status', $status);
+        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $withDeleted ? $builder->withDeleted() : $builder;
 
         return $builder->first();
     }
 
-    public function getThemeByFolder($theme_folder, $status = null)
+    public function getThemeByFolder($theme_folder, $status = null, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('folder', $theme_folder);
-        if (!is_null($status))
-            $builder = $builder->where('status', $status);
+        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $withDeleted ? $builder->withDeleted() : $builder;
 
         return $builder->first();
     }

@@ -3,7 +3,7 @@
 
 namespace App\Database\Seeds;
 
-use App\Models\UserRoleModel;
+use App\Models\GroupModel;
 use \CodeIgniter\Database\Seeder;
 
 class AdminSeeder extends Seeder
@@ -12,7 +12,7 @@ class AdminSeeder extends Seeder
     {
         helper('text');
 
-        $groupModel = new UserRoleModel();
+        $groupModel = new GroupModel();
         $group = $groupModel->where('slug', DEFAULT_ADMIN_GROUP)->first();
 
         $data = [

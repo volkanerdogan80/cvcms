@@ -43,10 +43,11 @@ return [
         'language_option'    => 'Language Option',
 
         'image'                     => 'Image',
+        'upload_image'              => 'Upload Image',
         'single_modal_button_title' => 'Select Image',
         'multi_modal_button_title'  => 'Select Images',
-        'single_modal_title'        => 'Select the Image You Want to Use ',
-        'multi_modal_title'         => 'Select the Images You Want to Use ',
+        'single_modal_title'        => 'You can choose the image you want to use from the list or upload a new image from your device.',
+        'multi_modal_title'         => 'You can choose the images you want to use from the list or upload new images from your device.',
 
         'go_to_login_page'  => "Go To Login Page",
         'go_to_dashboard'   => 'Go To Dashboard',

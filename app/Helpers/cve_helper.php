@@ -224,7 +224,7 @@ function cve_module_list()
 
         foreach ($modules as $module) {
             if ($module === '.' || $module === '..') continue;
-            $module_list[] = $module;
+            $module_list[] = mb_strtolower($module);
         }
         return $module_list;
     }

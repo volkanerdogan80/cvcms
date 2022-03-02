@@ -44,30 +44,33 @@ class UserModel extends Model
     ];
 
 
-    public function getUser($params)
+    public function getUser($params, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where($params);
+        $builder = $withDeleted ? $builder->withDeleted() : $builder;
         return $builder->first();
     }
 
-    public function getUserById($group_id, $status = null)
+    public function getUserById($group_id, $status = null, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('id', $group_id);
-        if (!is_null($status))
-            $builder = $builder->where('status', $status);
+        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $withDeleted ? $builder->withDeleted() : $builder;
 
         return $builder->first();
     }
 
-    public function getUsersByGroupId($group_id, $per_page = null, $status = null)
+    public function getUsersByGroupId($group_id, $per_page = null, $status = null, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('group_id', $group_id);
+        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->orderBy('id', 'DESC');
 
         if(is_null($per_page)){
@@ -80,21 +83,23 @@ class UserModel extends Model
         ];
     }
 
-    public function getUserByVerifyKey($verify_key, $status = null){
+    public function getUserByVerifyKey($verify_key, $status = null, $withDeleted = false)
+    {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('verify_key', $verify_key);
-        if (!is_null($status))
-            $builder = $builder->where('status', $status);
+        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $withDeleted ? $builder->withDeleted() : $builder;
 
         return $builder->first();
     }
 
-    public function getUsersByStatus($status, $per_page = null)
+    public function getUsersByStatus($status, $per_page = null, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('status', $status);
+        $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->orderBy('id', 'DESC');
 
         if(is_null($per_page)){

@@ -83,3 +83,22 @@ $(document).on('click', '.image-picker-use', function (){
 $(document).on('click', '.gallery-item-delete', function (){
     $(this).closest('.gallery-item').remove();
 });
+
+$(document).on('change', '.image-listing-status', function (){
+    let status = $('.image-listing-status option:selected').val();
+    $('.all-image').hide();
+    $('.' + status).show()
+});
+
+$(document).on('keyup', '.image-search', function (){
+    let image_list = $('#single-image-list .all-image');
+    let filter = $(this).val().toUpperCase();
+    image_list.each(function (index, item){
+        let name = $(item).data('name').toUpperCase();
+        if (name.indexOf(filter) > -1){
+            $(item).removeClass('display-none');
+        }else{
+            $(item).addClass('display-none');
+        }
+    })
+});

@@ -3150,3 +3150,12 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 .display-none{
   display: none !important;
 }
+
+.image-picker-name-three-dots{
+  text-overflow: ellipsis;
+  overflow: hidden !important;
+  width: 190px;
+  white-space: nowrap;
+  border-radius: 0;
+  display: inline-block;
+}

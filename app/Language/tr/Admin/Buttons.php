@@ -43,10 +43,11 @@ return [
         'language_option' => 'Dil Seçenekli',
 
         'image'                     => 'Görsel',
+        'upload_image'              => 'Görsel Yükle',
         'single_modal_button_title' => 'Görsel Seç',
         'multi_modal_button_title'  => 'Görselleri Seç',
-        'single_modal_title'        => 'Kullanmak İstediğiniz görseli Seçiniz',
-        'multi_modal_title'         => 'Kullanmak İstediğiniz görselleri Seçiniz',
+        'single_modal_title'        => 'Kullanmak istediğiniz görseli listeden seçebilir ya da cihazınızdan yeni bir görsel yükleyebilirsiniz.',
+        'multi_modal_title'         => 'Kullanmak istediğiniz görselleri listeden seçebilir ya da cihazınızdan yeni görseller yükleyebilirsiniz.',
 
         'go_to_login_page'  => "Giriş Sayfasına Git",
         'go_to_dashboard'   => 'Panel\'e Git',

@@ -3,7 +3,7 @@
 
 namespace App\Entities;
 
-use App\Models\UserRoleModel;
+use App\Models\GroupModel;
 use \CodeIgniter\Entity;
 use CodeIgniter\I18n\Time;
 
@@ -167,7 +167,7 @@ class UserEntity extends Entity
 
     public function withGroup(): object
     {
-        $model = new UserRoleModel();
+        $model = new GroupModel();
         return $model->withDeleted()->find($this->attributes['group_id']);
     }
 

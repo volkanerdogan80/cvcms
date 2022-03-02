@@ -51,8 +51,7 @@ class Contents extends Migration
                 'null' => true,
             ],
             'gallery' => [
-                'type' => 'VARCHAR',
-                'constraint' => 100,
+                'type' => 'TEXT',
                 'null' => true,
             ],
             'views' => [

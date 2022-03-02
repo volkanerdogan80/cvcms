@@ -118,6 +118,7 @@ class Images extends BaseController
                 'id' => $insert,
                 'src' => $this->imageEntity->getUrl('187x134'),
                 'original' => $this->imageEntity->getUrl(),
+                'name' => $this->imageEntity->getName(),
             ]);
         }
 

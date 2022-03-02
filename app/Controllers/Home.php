@@ -7,7 +7,7 @@ class Home extends BaseController
     public function index()
     {
 
-        print_r(config('theme'));
+        print_r(cve_theme_setting('top_week_module'));
 
 
         /*$model->insert([

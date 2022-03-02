@@ -5,7 +5,7 @@ namespace App\Controllers\Backend;
 
 use \App\Controllers\BaseController;
 use App\Entities\GroupEntity;
-use App\Models\UserRoleModel;
+use App\Models\GroupModel;
 use App\Models\UserModel;
 
 class Groups extends BaseController
@@ -16,7 +16,7 @@ class Groups extends BaseController
 
     public function __construct()
     {
-        $this->groupModel = new UserRoleModel();
+        $this->groupModel = new GroupModel();
         $this->userModel = new UserModel();
         $this->groupEntity = new GroupEntity();
     }

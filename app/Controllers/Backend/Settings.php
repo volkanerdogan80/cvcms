@@ -6,7 +6,7 @@ use \App\Controllers\BaseController;
 use App\Entities\SettingEntity;
 use App\Libraries\Facebook;
 use App\Libraries\LinkedIn;
-use App\Models\UserRoleModel;
+use App\Models\GroupModel;
 use App\Models\SettingModel;
 
 class Settings extends BaseController
@@ -19,7 +19,7 @@ class Settings extends BaseController
     {
         $this->settingModel = new SettingModel();
         $this->settingEntity = new SettingEntity();
-        $this->groupModel = new UserRoleModel();
+        $this->groupModel = new GroupModel();
     }
 
     public function home()

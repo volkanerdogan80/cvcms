@@ -33,41 +33,43 @@ class LanguageModel extends Model
         'title' => 'required'
     ];
 
-    public function getLanguage($params)
+    public function getLanguage($params, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
+        $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->where($params);
         return $builder->first();
     }
 
-    public function getLanguageById($lang_id, $status = null)
+    public function getLanguageById($lang_id, $status = null, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('id', $lang_id);
-        if (!is_null($status))
-            $builder = $builder->where('status', $status);
+        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $withDeleted ? $builder = $builder->withDeleted() : $builder;
 
         return $builder->first();
     }
 
-    public function getLanguageByCode($lang_code, $status = null)
+    public function getLanguageByCode($lang_code, $status = null, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('code', $lang_code);
-        if (!is_null($status))
-            $builder = $builder->where('status', $status);
+        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $withDeleted ? $builder->withDeleted() : $builder;
 
         return $builder->first();
     }
 
-    public function getLanguagesByStatus($status, $per_page = null)
+    public function getLanguagesByStatus($status, $per_page = null, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('status', $status);
+        $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->orderBy('id', 'DESC');
 
         if(is_null($per_page)){

@@ -3,7 +3,7 @@
 
 namespace App\Database\Seeds\Demo;
 
-use App\Models\UserRoleModel;
+use App\Models\GroupModel;
 use \CodeIgniter\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
         helper('text');
         $faker = \Faker\Factory::create('tr_TR');
 
-        $groupModel = new UserRoleModel();
+        $groupModel = new GroupModel();
         $group = $groupModel->where('slug', DEFAULT_REGISTER_USER)->first();
 
         for ($i=0; $i<100; $i++){

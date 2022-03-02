@@ -84,7 +84,7 @@ class Validation
 
     public $imageUpload = [
         'file' => [
-            'rules' => 'uploaded[file]|mime_in[file,image/png,image/jpg,image/jpeg]|max_size[file,10240]',
+            'rules' => 'uploaded[file]|mime_in[file,image/png,image/jpg,image/jpeg,image/webp,image/svg+xml]|max_size[file,10240]',
         ]
     ];
 

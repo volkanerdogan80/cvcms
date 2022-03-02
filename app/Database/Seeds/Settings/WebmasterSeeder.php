@@ -5,7 +5,7 @@ namespace App\Database\Seeds\Settings;
 
 
 use App\Entities\SettingEntity;
-use App\Models\UserRoleModel;
+use App\Models\GroupModel;
 use App\Models\SettingModel;
 use CodeIgniter\Database\Seeder;
 

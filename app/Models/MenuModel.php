@@ -30,31 +30,32 @@ class MenuModel extends Model
         'skey' => 'required|is_unique[menus.skey,id,{id}]',
     ];
 
-    public function getMenu($params)
+    public function getMenu($params, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where($params);
+        $builder = $withDeleted ? $builder->withDeleted() : $builder;
         return $builder->first();
     }
 
-    public function getMenuByKey($key, $status = null)
+    public function getMenuByKey($key, $status = null, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('skey', $key);
-        if (!is_null($status))
-            $builder = $builder->where('status', $status);
+        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $withDeleted ? $builder->withDeleted() : $builder;
         return $builder->first();
     }
 
-    public function getMenuById($id, $status = null)
+    public function getMenuById($id, $status = null, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('id', $id);
-        if (!is_null($status))
-            $builder = $builder->where('status', $status);
+        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $withDeleted ? $builder->withDeleted() : $builder;
         return $builder->first();
     }
 }

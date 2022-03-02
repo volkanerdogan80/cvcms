@@ -5,7 +5,7 @@ namespace App\Database\Seeds\Settings;
 
 
 use App\Entities\SettingEntity;
-use App\Models\UserRoleModel;
+use App\Models\GroupModel;
 use App\Models\SettingModel;
 use CodeIgniter\Database\Seeder;
 
@@ -15,7 +15,7 @@ class SystemSeeder extends Seeder
     {
         $entity = new SettingEntity();
         $model = new SettingModel();
-        $groupModel = new UserRoleModel();
+        $groupModel = new GroupModel();
 
         $default = config('system');
         $group = $groupModel->where('slug', DEFAULT_REGISTER_USER)->first();
