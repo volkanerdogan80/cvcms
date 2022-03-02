@@ -44,7 +44,7 @@
                     <br>
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
-                            <form class="row contact cve-contact-form" id="contact-form">
+                            <form class="row contact cve-contact-form">
                                 <?= csrf_field() ?>
                                 <div class="col-md-6">
                                     <div class="form-group">

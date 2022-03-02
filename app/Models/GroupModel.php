@@ -40,36 +40,34 @@ class GroupModel extends Model
         return $builder->first();
     }
 
-    public function getGroupById($group_id, $status = null)
+    public function getGroupById($group_id, $status = STATUS_ACTIVE)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('id', $group_id);
-        if (!is_null($status))
-            $builder = $builder->where('status', $status);
+        $builder = $status ? $builder->where('status', $status) : $builder;
 
         return $builder->first();
     }
 
-    public function getGroupBySlug($group_slug, $status = null)
+    public function getGroupBySlug($group_slug, $status = STATUS_ACTIVE)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('slug', $group_slug);
-        if (!is_null($status))
-            $builder = $builder->where('status', $status);
+        $builder = $status ? $builder->where('status', $status) : $builder;
 
         return $builder->first();
     }
 
-    public function getGroupsByStatus($status, $per_page = null)
+    public function getGroupsByStatus($status, $per_page = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('status', $status);
         $builder = $builder->orderBy('id', 'DESC');
 
-        if(is_null($per_page)){
+        if(!$per_page){
             return $builder->findAll();
         }
 

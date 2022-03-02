@@ -42,29 +42,29 @@ class LanguageModel extends Model
         return $builder->first();
     }
 
-    public function getLanguageById($lang_id, $status = null, $withDeleted = false)
+    public function getLanguageById($lang_id, $status = STATUS_ACTIVE, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('id', $lang_id);
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
-        $builder = $withDeleted ? $builder = $builder->withDeleted() : $builder;
-
-        return $builder->first();
-    }
-
-    public function getLanguageByCode($lang_code, $status = null, $withDeleted = false)
-    {
-        $builder = $this->setTable($this->table);
-        $builder = $builder->select('*');
-        $builder = $builder->where('code', $lang_code);
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
 
         return $builder->first();
     }
 
-    public function getLanguagesByStatus($status, $per_page = null, $withDeleted = false)
+    public function getLanguageByCode($lang_code, $status = STATUS_ACTIVE, $withDeleted = false)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('code', $lang_code);
+        $builder = $status ? $builder->where('status', $status) : $builder;
+        $builder = $withDeleted ? $builder->withDeleted() : $builder;
+
+        return $builder->first();
+    }
+
+    public function getLanguagesByStatus($status, $per_page = false, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
@@ -72,7 +72,7 @@ class LanguageModel extends Model
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->orderBy('id', 'DESC');
 
-        if(is_null($per_page)){
+        if(!$per_page){
             return $builder->findAll();
         }
 

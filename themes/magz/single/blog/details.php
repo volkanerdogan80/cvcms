@@ -18,7 +18,7 @@
         <div class="col">
             <ul class="tags">
                 <?php foreach (cve_post_keywords(null, true) as $keyword): ?>
-                    <li><a href="<?= cve_tag_link($keyword) ?>"><?= $keyword ?></a></li>
+                    <li><a href="<?= cve_keyword_link($keyword) ?>"><?= $keyword ?></a></li>
                 <?php endforeach; ?>
             </ul>
         </div>

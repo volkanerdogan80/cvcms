@@ -19,11 +19,13 @@
                                 <div class="col-sm-12 col-md-8">
                                     <div class="selectgroup w-100">
                                         <label class="selectgroup-item">
-                                            <input <?= $setting->getValue('maintenance') ? 'checked' : ''; ?> type="radio" name="maintenance" value="1" class="selectgroup-input">
+                                            <input <?= $setting->getValue('maintenance') ? 'checked' : ''; ?>
+                                                    type="radio" name="maintenance" value="1" class="selectgroup-input">
                                             <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'active') ?></span>
                                         </label>
                                         <label class="selectgroup-item">
-                                            <input <?= !$setting->getValue('maintenance') ? 'checked' : ''; ?> type="radio" name="maintenance" value="0" class="selectgroup-input">
+                                            <input <?= !$setting->getValue('maintenance') ? 'checked' : ''; ?>
+                                                    type="radio" name="maintenance" value="0" class="selectgroup-input">
                                             <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'passive') ?></span>
                                         </label>
                                     </div>
@@ -34,41 +36,98 @@
                                 <div class="col-sm-12 col-md-8">
                                     <div class="selectgroup w-100">
                                         <label class="selectgroup-item">
-                                            <input <?= $setting->getValue('register') ? 'checked' : ''; ?> type="radio" name="register" value="1" class="selectgroup-input">
+                                            <input <?= $setting->getValue('register') ? 'checked' : ''; ?> type="radio"
+                                                                                                           name="register"
+                                                                                                           value="1"
+                                                                                                           class="selectgroup-input">
                                             <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'active') ?></span>
                                         </label>
                                         <label class="selectgroup-item">
-                                            <input <?= !$setting->getValue('register') ? 'checked' : ''; ?> type="radio" name="register" value="0" class="selectgroup-input">
+                                            <input <?= !$setting->getValue('register') ? 'checked' : ''; ?> type="radio"
+                                                                                                            name="register"
+                                                                                                            value="0"
+                                                                                                            class="selectgroup-input">
                                             <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'passive') ?></span>
                                         </label>
                                     </div>
                                 </div>
                             </div>
+                            <?php if (config('system')->register): ?>
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2">
+                                        <?= cve_admin_lang('SystemSettings', 'register_page') ?>
+                                    </label>
+                                    <div class="col-sm-12 col-md-8">
+                                        <select name="registerPage" class="form-control select2">
+                                            <?php foreach ($pages as $page): ?>
+                                                <option <?= $setting->getValue('registerPage') == $page->id ? 'selected' : ''; ?>
+                                                        value="<?= $page->id; ?>"><?= $page->getTitle(); ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('SystemSettings', 'login_system') ?></label>
                                 <div class="col-sm-12 col-md-8">
                                     <div class="selectgroup w-100">
                                         <label class="selectgroup-item">
-                                            <input <?= $setting->getValue('login') ? 'checked' : ''; ?> type="radio" name="login" value="1" class="selectgroup-input">
+                                            <input <?= $setting->getValue('login') ? 'checked' : ''; ?> type="radio"
+                                                                                                        name="login"
+                                                                                                        value="1"
+                                                                                                        class="selectgroup-input">
                                             <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'active') ?></span>
                                         </label>
                                         <label class="selectgroup-item">
-                                            <input <?= !$setting->getValue('login') ? 'checked' : ''; ?> type="radio" name="login" value="0" class="selectgroup-input">
+                                            <input <?= !$setting->getValue('login') ? 'checked' : ''; ?> type="radio"
+                                                                                                         name="login"
+                                                                                                         value="0"
+                                                                                                         class="selectgroup-input">
                                             <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'passive') ?></span>
                                         </label>
                                     </div>
                                 </div>
                             </div>
+                            <?php if (config('system')->login): ?>
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2">
+                                        <?= cve_admin_lang('SystemSettings', 'login_page') ?>
+                                    </label>
+                                    <div class="col-sm-12 col-md-8">
+                                        <select name="loginPage" class="form-control select2">
+                                            <?php foreach ($pages as $page): ?>
+                                                <option <?= $setting->getValue('loginPage') == $page->id ? 'selected' : ''; ?>
+                                                        value="<?= $page->id; ?>"><?= $page->getTitle(); ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2">
+                                        <?= cve_admin_lang('SystemSettings', 'forgot_page') ?>
+                                    </label>
+                                    <div class="col-sm-12 col-md-8">
+                                        <select name="forgotPage" class="form-control select2">
+                                            <?php foreach ($pages as $page): ?>
+                                                <option <?= $setting->getValue('forgotPage') == $page->id ? 'selected' : ''; ?>
+                                                        value="<?= $page->id; ?>"><?= $page->getTitle(); ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('SystemSettings', 'email_verify') ?></label>
                                 <div class="col-sm-12 col-md-8">
                                     <div class="selectgroup w-100">
                                         <label class="selectgroup-item">
-                                            <input <?= $setting->getValue('emailVerify') ? 'checked' : ''; ?> type="radio" name="emailVerify" value="1" class="selectgroup-input">
+                                            <input <?= $setting->getValue('emailVerify') ? 'checked' : ''; ?>
+                                                    type="radio" name="emailVerify" value="1" class="selectgroup-input">
                                             <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'active') ?></span>
                                         </label>
                                         <label class="selectgroup-item">
-                                            <input <?= !$setting->getValue('emailVerify') ? 'checked' : ''; ?> type="radio" name="emailVerify" value="0" class="selectgroup-input">
+                                            <input <?= !$setting->getValue('emailVerify') ? 'checked' : ''; ?>
+                                                    type="radio" name="emailVerify" value="0" class="selectgroup-input">
                                             <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'passive') ?></span>
                                         </label>
                                     </div>
@@ -79,8 +138,9 @@
                                 <div class="col-sm-12 col-md-8">
                                     <select name="defaultGroup" class="form-control select2">
                                         <?php foreach ($groups as $group): ?>
-                                            <?php if($setting->getValue('defaultGroup') == $group->id): ?>
-                                                <option selected value="<?= $group->id; ?>"><?= $group->getTitle(); ?></option>
+                                            <?php if ($setting->getValue('defaultGroup') == $group->id): ?>
+                                                <option selected
+                                                        value="<?= $group->id; ?>"><?= $group->getTitle(); ?></option>
                                             <?php else: ?>
                                                 <option value="<?= $group->id; ?>"><?= $group->getTitle(); ?></option>
                                             <?php endif; ?>
@@ -91,18 +151,23 @@
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2">
                                     <?= cve_admin_lang('SystemSettings', 'per_page_list') ?>
-                                    <a href="javascript:;" data-toggle="popover" title="<?= cve_admin_lang('SystemSettings', 'per_page_list') ?>" data-content="<?= lang('Help.text.settings_per_page') ?>" data-trigger="focus" data-original-title="<?= lang('Input.text.per_page_select'); ?>">
+                                    <a href="javascript:;" data-toggle="popover"
+                                       title="<?= cve_admin_lang('SystemSettings', 'per_page_list') ?>"
+                                       data-content="<?= lang('Help.text.settings_per_page') ?>" data-trigger="focus"
+                                       data-original-title="<?= lang('Input.text.per_page_select'); ?>">
                                         <i class="fas fa-question-circle"></i>
                                     </a>
                                 </label>
 
                                 <div class="col-sm-12 col-md-8">
-                                    <input name="perPageList" value="<?= $setting->getValue('perPageList') ?>" type="text" class="form-control inputtags">
+                                    <input name="perPageList" value="<?= $setting->getValue('perPageList') ?>"
+                                           type="text" class="form-control inputtags">
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer text-right">
-                            <button type="submit" class="btn btn-success btn-block btn-lg"><?= cve_admin_lang('Buttons', 'update') ?></button>
+                            <button type="submit"
+                                    class="btn btn-success btn-block btn-lg"><?= cve_admin_lang('Buttons', 'update') ?></button>
                         </div>
 
                     </div>
@@ -114,8 +179,8 @@
 
 <?php $this->section('script'); ?>
 
-<script>
-    $(".inputtags").tagsinput('items');
-</script>
+    <script>
+        $(".inputtags").tagsinput('items');
+    </script>
 
 <?php $this->endSection(); ?>

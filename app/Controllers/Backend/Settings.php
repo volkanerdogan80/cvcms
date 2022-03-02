@@ -6,6 +6,7 @@ use \App\Controllers\BaseController;
 use App\Entities\SettingEntity;
 use App\Libraries\Facebook;
 use App\Libraries\LinkedIn;
+use App\Models\ContentModel;
 use App\Models\GroupModel;
 use App\Models\SettingModel;
 
@@ -14,12 +15,14 @@ class Settings extends BaseController
     protected $settingModel;
     protected $settingEntity;
     protected $groupModel;
+    protected $contentModel;
 
     public function __construct()
     {
         $this->settingModel = new SettingModel();
         $this->settingEntity = new SettingEntity();
         $this->groupModel = new GroupModel();
+        $this->contentModel = new ContentModel();
     }
 
     public function home()
@@ -66,6 +69,9 @@ class Settings extends BaseController
                 'emailVerify' => $this->request->getPost('emailVerify'),
                 'defaultGroup' => $this->request->getPost('defaultGroup'),
                 'perPageList' => $this->request->getPost('perPageList'),
+                'registerPage' => $this->request->getPost('registerPage'),
+                'loginPage' => $this->request->getPost('loginPage'),
+                'forgotPage' => $this->request->getPost('forgotPage'),
                 'install' => true,
             ];
 
@@ -84,7 +90,8 @@ class Settings extends BaseController
 
         return view(PANEL_FOLDER . '/pages/setting/system', [
             'groups' => $this->groupModel->findAll(),
-            'setting' => $this->settingModel->where('skey', 'system')->first()
+            'setting' => $this->settingModel->where('skey', 'system')->first(),
+            'pages' => $this->contentModel->getContentsByModule('page')
         ]);
     }
 

@@ -5,7 +5,7 @@ namespace App\Models;
 
 use App\Entities\CategoryEntity;
 use CodeIgniter\Database\BaseBuilder;
-use \CodeIgniter\Model;
+use CodeIgniter\Model;
 
 class CategoryModel extends Model
 {
@@ -61,15 +61,15 @@ class CategoryModel extends Model
     /**
      * Slug değeri ile işleşen bir tane kategori getirir
      * @param $category_slug
-     * @param null $status
+     * @param string $status
      * @param bool $withDeleted
      * @return array|object|null
      */
-    public function getCategoryBySlug($category_slug, $status = null, $withDeleted = false)
+    public function getCategoryBySlug($category_slug, string $status = STATUS_ACTIVE, bool $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->where('slug', $category_slug);
         return $builder->first();
@@ -78,14 +78,15 @@ class CategoryModel extends Model
     /**
      * ID değeri ile eşleşen bir tane kategori getirir
      * @param $category_id
-     * @param null $status
+     * @param string $status
+     * @param bool $withDeleted
      * @return array|object|null
      */
-    public function getCategoryById($category_id, $status = null, $withDeleted = false)
+    public function getCategoryById($category_id, string $status = STATUS_ACTIVE, bool $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->where('id', $category_id);
         return $builder->first();
@@ -94,11 +95,11 @@ class CategoryModel extends Model
     /**
      * Status durumu ile eşleşen kategorileri getirir
      * @param $status
-     * @param null $per_page
+     * @param bool|null $per_page
      * @param bool $withDeleted
      * @return array
      */
-    public function getCategoriesByStatus($status, $per_page = null, $withDeleted = false)
+    public function getCategoriesByStatus($status, ?bool $per_page = false, bool $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
@@ -106,7 +107,7 @@ class CategoryModel extends Model
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->orderBy('id', 'DESC');
 
-        if(is_null($per_page)){
+        if(!$per_page){
             return $builder->findAll();
         }
 
@@ -119,21 +120,21 @@ class CategoryModel extends Model
     /**
      * User ID değeri ile eşleşen kategorileri getirir
      * @param $user_id
-     * @param null $per_page
-     * @param null $status
+     * @param bool|null $per_page
+     * @param string $status
      * @param bool $withDeleted
      * @return array
      */
-    public function getCategoriesByUserId($user_id, $per_page = null, $status = null, $withDeleted = false)
+    public function getCategoriesByUserId($user_id, ?bool $per_page = false, string $status = STATUS_ACTIVE, bool $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->where('user_id', $user_id);
         $builder = $builder->orderBy('id', 'DESC');
 
-        if(is_null($per_page)){
+        if(!$per_page){
             return $builder->findAll();
         }
 
@@ -146,11 +147,11 @@ class CategoryModel extends Model
     /**
      * Bir içeriğin bağlı olduğu kategorileri getirir
      * @param $content_id
-     * @param null $status
+     * @param string $status
      * @param bool $withDeleted
      * @return array
      */
-    public function getCategoriesByContentId($content_id, $status = null, $withDeleted = false)
+    public function getCategoriesByContentId($content_id, string $status = STATUS_ACTIVE, bool $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
@@ -161,7 +162,7 @@ class CategoryModel extends Model
                 ->where('content_id', $content_id);
         });
 
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
 
         return $builder->findAll();
@@ -170,11 +171,11 @@ class CategoryModel extends Model
     /**
      * Bir içeriğin bağlı olduğu bir tane kategoriyi getirir
      * @param $content_id
-     * @param null $status
+     * @param string $status
      * @param bool $withDeleted
      * @return array|object|null
      */
-    public function getCategoryByContentId($content_id, $status = null, $withDeleted = false)
+    public function getCategoryByContentId($content_id, string $status = STATUS_ACTIVE, bool $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
@@ -185,7 +186,7 @@ class CategoryModel extends Model
                 ->where('content_id', $content_id);
         });
 
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
 
         return $builder->first();
@@ -194,23 +195,23 @@ class CategoryModel extends Model
     /**
      * Parent ID değeri ile eşleşen kategorileri getirir
      * @param $parent_id
-     * @param null $per_page
-     * @param null $status
+     * @param bool|null $per_page
+     * @param string $status
      * @param bool $withDeleted
      * @return array
      */
-    public function getCategoriesByParentId($parent_id, $per_page = null, $status = null, $withDeleted = false)
+    public function getCategoriesByParentId($parent_id, ?bool $per_page = false, string $status = STATUS_ACTIVE, bool $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
 
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
 
         $builder = $builder->where('parent_id', $parent_id);
         $builder = $builder->orderBy('id', 'DESC');
 
-        if(is_null($per_page)){
+        if(!$per_page){
             return $builder->findAll();
         }
 
@@ -223,15 +224,15 @@ class CategoryModel extends Model
     /**
      * Parent ID değeri ile eşleşen bir tane kategori getirir
      * @param $parent_id
-     * @param null $status
+     * @param string $status
      * @param bool $withDeleted
      * @return array|object|null
      */
-    public function getCategoryByParentId($parent_id, $status = null, $withDeleted = false)
+    public function getCategoryByParentId($parent_id, string $status = STATUS_ACTIVE, bool $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->where('parent_id', $parent_id);
         $builder = $builder->orderBy('id', 'DESC');
@@ -244,8 +245,8 @@ class CategoryModel extends Model
         ?string $user = null,
         ?string $module = null,
         ?string $search = null,
-        ?array $dateFilter = null,
-        ?int $perPage = 20
+        ?array  $dateFilter = null,
+        ?int    $perPage = 20
     )
     {
         $builder = $this->setTable($this->table);

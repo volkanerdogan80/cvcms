@@ -39,22 +39,22 @@ class MenuModel extends Model
         return $builder->first();
     }
 
-    public function getMenuByKey($key, $status = null, $withDeleted = false)
+    public function getMenuByKey($key, $status = STATUS_ACTIVE, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('skey', $key);
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         return $builder->first();
     }
 
-    public function getMenuById($id, $status = null, $withDeleted = false)
+    public function getMenuById($id, $status = STATUS_ACTIVE, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('id', $id);
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         return $builder->first();
     }

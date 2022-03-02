@@ -81,9 +81,10 @@ function cmp_like_button($type = '1', $content = null){
     ]);
 }
 
-function cmp_user_score_panel($content = null){
+function cmp_user_score_panel($content = null, $shadow = false){
     return view('components/rating/user-score-panel', [
-        'content' => $content
+        'content' => $content,
+        'shadow' => $shadow
     ]);
 }
 

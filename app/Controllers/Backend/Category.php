@@ -168,7 +168,7 @@ class Category extends BaseController
                 ]);
             }
 
-            $content_control = $this->contentModel->getContentsByCategoryIds($data);
+            $content_control = $this->contentModel->getContentsByCategoryIds($data, false, false, true);
             if($content_control){
                 return $this->response->setJSON([
                     'status' => false,

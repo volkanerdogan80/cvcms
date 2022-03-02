@@ -263,7 +263,7 @@ function cve_post_keywords($content = null, bool $is_array = false)
  * @param $keyword
  * @return string
  */
-function cve_tag_link($keyword): string
+function cve_keyword_link($keyword): string
 {
     return sprintf("%s?q=%s", base_url(route_to('search')), $keyword);
 }

@@ -42,13 +42,11 @@ class ImageModel extends Model
         return $builder->first();
     }
 
-    public function getImageById($image_id, $status = null)
+    public function getImageById($image_id)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('id', $image_id);
-        if (!is_null($status))
-            $builder = $builder->where('status', $status);
 
         return $builder->first();
     }

@@ -90,7 +90,7 @@ class ContentModel extends Model
 
     protected function uniqueSlug($slug)
     {
-        if($this->getContentBySlug($slug, null, true)){
+        if($this->getContentBySlug($slug, false, true)){
             $new_slug = increment_string($slug,'-');
             return $this->uniqueSlug($new_slug);
         }
@@ -103,7 +103,7 @@ class ContentModel extends Model
      * @param bool $withDeleted
      * @return array|object|null
      */
-    public function getContent($params, $withDeleted = false)
+    public function getContent($params, bool $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
@@ -118,7 +118,7 @@ class ContentModel extends Model
      * @param bool $withDeleted
      * @return array|object|null
      */
-    public function getContents($params, $withDeleted = false)
+    public function getContents($params, bool $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
@@ -130,15 +130,15 @@ class ContentModel extends Model
     /**
      * Slug değeri ile içerik bilgilerini getirir
      * @param $content_slug
-     * @param null $status
+     * @param string|null $status
      * @param bool $withDeleted
      * @return array|object|null
      */
-    public function getContentBySlug($content_slug, $status = null, $withDeleted = false)
+    public function getContentBySlug($content_slug, ?string $status = STATUS_ACTIVE, bool $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->where('slug', $content_slug);
         return $builder->first();
@@ -147,15 +147,15 @@ class ContentModel extends Model
     /**
      * ID değeri ile içerik bilgilerini getirir
      * @param $content_id
-     * @param null $status
+     * @param string|null $status
      * @param bool $withDeleted
      * @return array|object|null
      */
-    public function getContentById($content_id, $status = null, $withDeleted = false)
+    public function getContentById($content_id, ?string $status = STATUS_ACTIVE, bool $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->where('id', $content_id);
         return $builder->first();
@@ -165,23 +165,50 @@ class ContentModel extends Model
      * ID veya ID'leri olan içerikleri getirir
      * @param $content_ids
      * @param null $per_page
-     * @param null $status
+     * @param string|null $status
      * @param bool $withDeleted
      * @return array
      */
-    public function getContentByIds($content_ids, $per_page = null, $status = null, $withDeleted = false)
+    public function getContentsByIds($content_ids, ?bool $per_page = false, ?string $status = STATUS_ACTIVE, bool $withDeleted = false)
     {
         if (!is_array($content_ids))
             $content_ids = explode(',', $content_ids);
 
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->whereIn('id', $content_ids);
         $builder = $builder->orderBy('id', 'DESC');
 
-        if(is_null($per_page)){
+        if(!$per_page){
+            return $builder->findAll();
+        }
+
+        return [
+            'contents' => $builder->paginate($per_page),
+            'pager' => $builder->pager
+        ];
+    }
+
+    /**
+     * Module değeri ile eşleşen içerikleri geri dönen metot
+     * @param $module
+     * @param bool|null $per_page
+     * @param string|null $status
+     * @param bool $withDeleted
+     * @return array
+     */
+    public function getContentsByModule($module, ?bool $per_page = false, ?string $status = STATUS_ACTIVE, bool $withDeleted = false): array
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $status ? $builder->where('status', $status) : $builder;
+        $builder = $withDeleted ? $builder = $builder->withDeleted() : $builder;
+        $builder = $builder->where('module', $module);
+        $builder = $builder->orderBy('id', 'DESC');
+
+        if(!$per_page){
             return $builder->findAll();
         }
 
@@ -198,7 +225,7 @@ class ContentModel extends Model
      * @param bool $withDeleted
      * @return array
      */
-    public function getContentsByStatus($status, $per_page = null, $withDeleted = false)
+    public function getContentsByStatus($status, ?bool $per_page = false, bool $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
@@ -206,7 +233,7 @@ class ContentModel extends Model
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->orderBy('id', 'DESC');
 
-        if(is_null($per_page)){
+        if(!$per_page){
             return $builder->findAll();
         }
 
@@ -220,20 +247,20 @@ class ContentModel extends Model
      * Post Format değeri ile eşleşen içerikleri getirir
      * @param $post_format
      * @param null $per_page
-     * @param null $status
+     * @param string|null $status
      * @param bool $withDeleted
      * @return array
      */
-    public function getContentByPostFormat($post_format, $per_page = null, $status = null, $withDeleted = false)
+    public function getContentsByPostFormat($post_format, ?bool $per_page = false, ?string $status = STATUS_ACTIVE, bool $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->where('post_format', $post_format);
         $builder = $builder->orderBy('id', 'DESC');
 
-        if(is_null($per_page)){
+        if(!$per_page){
             return $builder->findAll();
         }
 
@@ -247,20 +274,20 @@ class ContentModel extends Model
      * Comment Status ile işleşen içerikleri getirir
      * @param $comment_status
      * @param null $per_page
-     * @param null $status
+     * @param string|null $status
      * @param bool $withDeleted
      * @return array
      */
-    public function getContentByCommentStatus($comment_status, $per_page = null, $status = null, $withDeleted = false)
+    public function getContentsByCommentStatus($comment_status, ?bool $per_page = false, ?string $status = STATUS_ACTIVE, bool $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->where('comment_status', $comment_status);
         $builder = $builder->orderBy('id', 'DESC');
 
-        if(is_null($per_page)){
+        if(!$per_page){
             return $builder->findAll();
         }
 
@@ -274,19 +301,20 @@ class ContentModel extends Model
      * Sayfa Türü ile işleşen içerikleri getirir
      * @param $page_type
      * @param null $per_page
-     * @param null $status
+     * @param string $status
+     * @param bool $withDeleted
      * @return array
      */
-    public function getContentByPageType($page_type, $per_page = null, $status = null, $withDeleted = false)
+    public function getContentsByPageType($page_type, ?bool $per_page = false, string $status = STATUS_ACTIVE, bool $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->where('page_type', $page_type);
         $builder = $builder->orderBy('id', 'DESC');
 
-        if(is_null($per_page)){
+        if(!$per_page){
             return $builder->findAll();
         }
 
@@ -300,19 +328,20 @@ class ContentModel extends Model
      * User ID değeri ile eşleşen içerikleri getirir
      * @param $user_id
      * @param null $per_page
-     * @param null $status
+     * @param string $status
+     * @param bool $withDeleted
      * @return array
      */
-    public function getContentsByUserId($user_id, $per_page = null, $status = null, $withDeleted = false)
+    public function getContentsByUserId($user_id, ?bool  $per_page = false, string $status = STATUS_ACTIVE, bool $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->where('user_id', $user_id);
         $builder = $builder->orderBy('id', 'DESC');
 
-        if (is_null($per_page)) {
+        if (!$per_page) {
             return $builder->findAll();
         }
 
@@ -322,14 +351,15 @@ class ContentModel extends Model
         ];
     }
 
-        /**
+    /**
      * Bir kategoride yer alan içerikleri getirir
      * @param $category_id
      * @param null $per_page
-     * @param null $status
+     * @param string $status
+     * @param bool $withDeleted
      * @return array
      */
-    public function getContentsByCategoryId($category_id, $per_page = null, $status = null, $withDeleted = false)
+    public function getContentsByCategoryId($category_id, ?bool  $per_page = false, string $status = STATUS_ACTIVE, bool $withDeleted = false): array
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
@@ -341,12 +371,12 @@ class ContentModel extends Model
                 ->distinct();
         });
 
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
 
         $builder = $builder->orderBy('id', 'DESC');
 
-        if(is_null($per_page)){
+        if(!$per_page){
             return $builder->findAll();
         }
 
@@ -360,10 +390,11 @@ class ContentModel extends Model
      * Birden fazla kategoriye ait içerikleri getirir
      * @param $category_ids
      * @param null $per_page
-     * @param null $status
+     * @param string $status
+     * @param bool $withDeleted
      * @return array
      */
-    public function getContentsByCategoryIds($category_ids, $per_page = null, $status = null, $withDeleted = false)
+    public function getContentsByCategoryIds($category_ids, ?bool $per_page = false, string $status = STATUS_ACTIVE, bool $withDeleted = false): array
     {
         if (!is_array($category_ids))
             $category_ids = explode(',', $category_ids);
@@ -378,12 +409,12 @@ class ContentModel extends Model
                 ->distinct();
         });
 
-        $builder = !is_null($status) ? $builder->where('status', $status) : $builder;
+        $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
 
         $builder = $builder->orderBy('id', 'DESC');
 
-        if(is_null($per_page)){
+        if(!$per_page){
             return $builder->findAll();
         }
 

@@ -21,11 +21,12 @@
                     <div class="help-block">
                         <div>Popular:</div>
                         <ul>
-                            <li><a href="<?= cve_tag_link('HTML5') ?>">HTML5</a></li>
-                            <li><a href="<?= cve_tag_link('CSS3') ?>">CSS3</a></li>
-                            <li><a href="<?= cve_tag_link('Bootstrap') ?>">Bootstrap 3</a></li>
-                            <li><a href="<?= cve_tag_link('jQuery') ?>">jQuery</a></li>
-                            <li><a href="<?= cve_tag_link('AnguarJS') ?>">AnguarJS</a></li>
+                            <!-- TODO: Çeviri videosunda burayı dinamikleştirmiş. Çevirileri yaparken bakılacak  -->
+                            <li><a href="<?= cve_keyword_link('HTML5') ?>">HTML5</a></li>
+                            <li><a href="<?= cve_keyword_link('CSS3') ?>">CSS3</a></li>
+                            <li><a href="<?= cve_keyword_link('Bootstrap') ?>">Bootstrap 3</a></li>
+                            <li><a href="<?= cve_keyword_link('jQuery') ?>">jQuery</a></li>
+                            <li><a href="<?= cve_keyword_link('AnguarJS') ?>">AnguarJS</a></li>
                         </ul>
                     </div>
                 </form>

@@ -4,7 +4,7 @@ $score_list = cve_post_rating_score($content);
 
 ?>
 
-<div class="uk-section uk-box-shadow-small">
+<div class="uk-section <?= $shadow ? 'uk-box-shadow-small' : ''; ?>">
     <div class="uk-container">
         <div class="uk-grid-match uk-child-width-1-2@s" uk-grid>
             <div>

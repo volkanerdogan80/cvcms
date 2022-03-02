@@ -1,3 +1,3 @@
 <?php
 
-print_r(cve_tag_link('belçim'));
+print_r(cve_keyword_link('belçim'));

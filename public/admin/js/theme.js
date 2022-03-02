@@ -106,7 +106,13 @@ function cveThemeRequest(url, data, callback, alert = true)
             ...data
         },
         success: function (response) {
-            if(alert){showSnackbar(response.status, response.message);}
+            if(alert){
+                if(typeof response.message === 'object'){
+                    showSnackbar(response.status, Object.values(response.message)[0]);
+                }else{
+                    showSnackbar(response.status, response.message);
+                }
+            }
             callback(response)
         },
         error: function (xhr, opt, error){
