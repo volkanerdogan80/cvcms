@@ -55,6 +55,7 @@ class CategoryModel extends Model
         $builder = $builder->select('*');
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->where($params);
+        $builder = $builder->orderBy('id', 'DESC');
         return $builder->first();
     }
 
@@ -72,6 +73,7 @@ class CategoryModel extends Model
         $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->where('slug', $category_slug);
+        $builder = $builder->orderBy('id', 'DESC');
         return $builder->first();
     }
 
@@ -89,6 +91,7 @@ class CategoryModel extends Model
         $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
         $builder = $builder->where('id', $category_id);
+        $builder = $builder->orderBy('id', 'DESC');
         return $builder->first();
     }
 
@@ -164,7 +167,7 @@ class CategoryModel extends Model
 
         $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
-
+        $builder = $builder->orderBy('id', 'DESC');
         return $builder->findAll();
     }
 
@@ -188,7 +191,7 @@ class CategoryModel extends Model
 
         $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
-
+        $builder = $builder->orderBy('id', 'DESC');
         return $builder->first();
     }
 

@@ -23,7 +23,6 @@ $random_contents_other = array_slice($random_contents, 1, 3);
     <div class="tab-content">
         <div class="tab-pane active" id="recent">
             <?php foreach ($recent_contents_first as $content): ?>
-                <?php $category = cve_post_category($content); ?>
                 <article class="article-fw">
                     <div class="inner">
                         <figure>
@@ -36,8 +35,8 @@ $random_contents_other = array_slice($random_contents, 1, 3);
                             <div class="detail">
                                 <div class="time"><?= cve_post_created_at($content) ?></div>
                                 <div class="category">
-                                    <a href="<?= cve_cat_link($category) ?>">
-                                        <?= cve_cat_title($category) ?>
+                                    <a href="<?= cve_cat_link($content, true) ?>">
+                                        <?= cve_cat_title($content, true) ?>
                                     </a>
                                 </div>
                             </div>
@@ -55,7 +54,6 @@ $random_contents_other = array_slice($random_contents, 1, 3);
             <?php endforeach; ?>
             <div class="line"></div>
             <?php foreach ($recent_contents_other as $content): ?>
-                <?php $category = cve_post_category($content); ?>
                 <article class="article-mini">
                     <div class="inner">
                         <figure>
@@ -72,8 +70,8 @@ $random_contents_other = array_slice($random_contents, 1, 3);
                             </h1>
                             <div class="detail">
                                 <div class="category">
-                                    <a href="<?= cve_cat_link($category) ?>">
-                                        <?= cve_cat_title($category) ?>
+                                    <a href="<?= cve_cat_link($content, true) ?>">
+                                        <?= cve_cat_title($content, true) ?>
                                     </a>
                                 </div>
                                 <div class="time"><?= cve_post_created_at($content) ?></div>
@@ -85,7 +83,6 @@ $random_contents_other = array_slice($random_contents, 1, 3);
         </div>
         <div class="tab-pane comments" id="random">
             <?php foreach ($random_contents_first as $content): ?>
-                <?php $category = cve_post_category($content); ?>
                 <article class="article-fw">
                     <div class="inner">
                         <figure>
@@ -98,8 +95,8 @@ $random_contents_other = array_slice($random_contents, 1, 3);
                             <div class="detail">
                                 <div class="time"><?= cve_post_created_at($content) ?></div>
                                 <div class="category">
-                                    <a href="<?= cve_cat_link($category) ?>">
-                                        <?= cve_cat_title($category) ?>
+                                    <a href="<?= cve_cat_link($content, true) ?>">
+                                        <?= cve_cat_title($content, true) ?>
                                     </a>
                                 </div>
                             </div>
@@ -117,7 +114,6 @@ $random_contents_other = array_slice($random_contents, 1, 3);
             <?php endforeach; ?>
             <div class="line"></div>
             <?php foreach ($random_contents_other as $content): ?>
-                <?php $category = cve_post_category($content); ?>
                 <article class="article-mini">
                     <div class="inner">
                         <figure>
@@ -134,8 +130,8 @@ $random_contents_other = array_slice($random_contents, 1, 3);
                             </h1>
                             <div class="detail">
                                 <div class="category">
-                                    <a href="<?= cve_cat_link($category) ?>">
-                                        <?= cve_cat_title($category) ?>
+                                    <a href="<?= cve_cat_link($content, true) ?>">
+                                        <?= cve_cat_title($content, true) ?>
                                     </a>
                                 </div>
                                 <div class="time"><?= cve_post_created_at($content) ?></div>

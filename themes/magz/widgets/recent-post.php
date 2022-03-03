@@ -7,7 +7,6 @@
     <h1 class="aside-title">Recent Post</h1>
     <div class="aside-body">
         <?php foreach ($sidebar_recent_posts_first as $content): ?>
-        <?php $category = cve_post_category($content); ?>
             <article class="article-fw">
                 <div class="inner">
                     <figure>
@@ -27,8 +26,8 @@
                         <div class="detail">
                             <div class="time"><?= cve_post_created_at($content) ?></div>
                             <div class="category">
-                                <a href="<?= cve_cat_link($category) ?>">
-                                    <?= cve_cat_title($category) ?>
+                                <a href="<?= cve_cat_link($content, true) ?>">
+                                    <?= cve_cat_title($content, true) ?>
                                 </a>
                             </div>
                         </div>
@@ -38,7 +37,6 @@
         <?php endforeach; ?>
         <div class="line"></div>
         <?php foreach ($sidebar_recent_posts_other as $content): ?>
-            <?php $category = cve_post_category($content); ?>
             <article class="article-mini">
                 <div class="inner">
                     <figure>
@@ -54,8 +52,8 @@
                         </h1>
                         <div class="detail">
                             <div class="category">
-                                <a href="<?= cve_cat_link($category) ?>">
-                                    <?= cve_cat_title($category) ?>
+                                <a href="<?= cve_cat_link($content, true) ?>">
+                                    <?= cve_cat_title($content, true) ?>
                                 </a>
                             </div>
                             <div class="time"><?= cve_post_created_at($content) ?></div>

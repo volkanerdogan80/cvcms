@@ -5,7 +5,6 @@
     $category = isset(config('theme')->slider_category) ? implode(',', config('theme')->slider_category) : null;
     ?>
     <?php foreach (cve_recent_post(['limit' => $limit, 'module' => $module, 'category' => $category]) as $content): ?>
-        <?php $category = cve_post_category($content); ?>
         <div class="item">
             <article class="featured">
                 <div class="overlay"></div>
@@ -14,8 +13,8 @@
                 </figure>
                 <div class="details">
                     <div class="category">
-                        <a href="<?= cve_cat_link($category); ?>">
-                            <?= cve_cat_title($category); ?>
+                        <a href="<?= cve_cat_link($content, true); ?>">
+                            <?= cve_cat_title($content, true); ?>
                         </a>
                     </div>
                     <h1>

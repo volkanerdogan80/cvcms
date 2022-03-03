@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Returns the requested content from the database
- * @param $params | Necessary conditions for where clause
+ * Veritabanından istenilen içeriği getirir
+ * @param $params | Where metotu için gerekli olan koşullar
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed
  */
 function get_post($params)
@@ -16,7 +16,7 @@ function get_post($params)
 
 /**
  * Belirtilen şartlarda birden fazla içerik geri döner
- * @param $params | Necessary conditions for where clause
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
 function get_posts($params)
@@ -29,8 +29,8 @@ function get_posts($params)
 }
 
 /**
- * Returns content info
- * @param null $content | Slug and id (related to content) or object state of the content
+ * İçerik ile ilgili bilgileri döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
 function cve_post($content = null)
@@ -59,6 +59,7 @@ function cve_post($content = null)
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
 function cve_posts($params = null){
+
     if (!is_null($params)){
         return get_posts($params);
     }
@@ -71,8 +72,8 @@ function cve_posts($params = null){
 }
 
 /**
- * Returns Content ID
- * @param null $content | Slug and id (related to content) or object state of the content
+ * İçeriğe ait ID döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
 function cve_post_id($content = null)
@@ -84,8 +85,8 @@ function cve_post_id($content = null)
 }
 
 /**
- * Returns Content Slug
- * @param null $content | Slug and id (related to content) or object state of the content
+ * İçeriğe ait Slug döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
 function cve_post_slug($content = null)
@@ -97,9 +98,8 @@ function cve_post_slug($content = null)
 }
 
 /**
- * Returns Content Title
- * @param null $content | Slug and id (related to content) or object state of the content
- * @param null $lang | Language code
+ * İçeriğe ait Başlık döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
 function cve_post_title($content = null, $lang = null)
@@ -111,8 +111,8 @@ function cve_post_title($content = null, $lang = null)
 }
 
 /**
- * Returns Content Summary
- * @param null $content | Slug and id (related to content) or object state of the content
+ * İçeriğe ait Özet döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
 function cve_post_description($content = null)
@@ -124,8 +124,8 @@ function cve_post_description($content = null)
 }
 
 /**
- * Returns Content content
- * @param null $content | Slug and id (related to content) or object state of the content
+ * İçeriğe ait İçerik alanını döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
 function cve_post_content($content = null)
@@ -137,8 +137,8 @@ function cve_post_content($content = null)
 }
 
 /**
- * Returns Content Thumbnail ID
- * @param null $content | Slug and id (related to content) or object state of the content
+ * İçeriğe ait öne çıkartılmış göresin ID değerini döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
 function cve_post_thumbnail_id($content = null)
@@ -150,16 +150,16 @@ function cve_post_thumbnail_id($content = null)
 }
 
 /**
- * Returns Content Thumbnail link
- * @param null $content | Slug and id (related to content) or object state of the content
- * @param null $size | aspect ratio of image | If there is no image in the public/image folder with received size value, it will be created and saved.
+ * İçeriğe ait öne çıkartılmış görselinin linkini döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
+ * @param null $size | resim'e ait en-boy oranları
  * @return mixed
  */
 function cve_post_thumbnail($content = null, $size = null)
 {
-    if (is_array($content)){
-        $size = $content['size'] ?? null;
-        $content = $content['content'] ?? null;
+    if (!is_null($content) && is_array($content)){
+        $size = isset($content['size']) ? $content['size'] : null;
+        $content = isset($content['content']) ? $content['content'] : null;
     }
 
     if ($data = cve_post($content)){
@@ -171,86 +171,12 @@ function cve_post_thumbnail($content = null, $size = null)
 }
 
 /**
- * Returns aspect ratio of Gallery Images
- * @param null $content | Slug and id (related to content) or object state of the content
+ * İçeriğe ait etiketleri döner
+ * @param null $content| İçerik ile ilgili slug, id veya içeriğin object hali
+ * @param false $is_array | etiketleri array olarak isteniliyorsa true ayarlanmalıdır
  * @return mixed
  */
-function cve_post_gallery($content = null)
-{
-    if ($data = cve_post($content)){
-        return $data->withGallery();
-    }
-    return null;
-}
-
-/**
- * İçerik yorum durumunu geri döner
- * @param null $content | Slug and id (related to content) or object state of the content
- * @return bool
- *
- */
-function cve_post_comment_status($content = null){
-    if ($data = cve_post($content)){
-        return $data->getCommentStatus();
-    }
-    return null;
-}
-
-/**
- * İçerik post format değerini getirir
- * @param null $content | Slug and id (related to content) or object state of the content
- * @return null
- */
-function cve_post_format($content = null){
-    if ($data = cve_post($content)){
-        return $data->getPostFormat();
-    }
-    return null;
-}
-
-/**
- * Returns a category information of the content
- * @param int|null $index | Determines which index among the categories it is in
- * @param null $content | Slug and id (related to content) or object state of the content
- * @return mixed
- */
-function cve_post_category($content = null, int $index = null)
-{
-    if ($data = cve_post($content)){
-        if ($categories = $data->withCategories()){
-            if (is_null($index)){
-                return end($categories);
-            }
-
-            if (!isset($categories[$index])){
-                return end($categories);
-            }
-
-            return $categories[$index];
-        }
-    }
-    return null;
-}
-
-/**
- * @param null $content | Slug and id (related to content) or object state of the content
- * @return mixed
- */
-function cve_post_categories($content = null)
-{
-    if ($data = cve_post($content)){
-        return $data->withCategories();
-    }
-    return null;
-}
-
-/**
- * Returns content Tags(Keywords)
- * @param null $content| Slug and id (related to content) or object state of the content
- * @param false $is_array | for array type  set to TRUE
- * @return mixed
- */
-function cve_post_keywords($content = null, bool $is_array = false)
+function cve_post_keywords($content = null, $is_array = false)
 {
     if ($data = cve_post($content)){
         return $data->getKeywords(null,$is_array);
@@ -258,19 +184,14 @@ function cve_post_keywords($content = null, bool $is_array = false)
     return null;
 }
 
-/**
- * Generates url for given tag
- * @param $keyword
- * @return string
- */
-function cve_keyword_link($keyword): string
+function cve_keyword_link($keyword)
 {
     return sprintf("%s?q=%s", base_url(route_to('search')), $keyword);
 }
 
 /**
- * Returns content Status
- * @param null $content | Slug and id (related to content) or object state of the content
+ * İçeriğin durumunu döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
 function cve_post_status($content = null)
@@ -282,8 +203,8 @@ function cve_post_status($content = null)
 }
 
 /**
- * Returns Content Views
- * @param null $content | Slug and id (related to content) or object state of the content
+ * İçeriğin görüntülenme sayısını döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
 function cve_post_view($content = null)
@@ -295,8 +216,8 @@ function cve_post_view($content = null)
 }
 
 /**
- * Returns page template if exist
- * @param null $content | Slug and id (related to content) or object state of the content
+ * İçeriğin sayfa şablonu var ise döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
 function cve_post_template($content = null)
@@ -308,8 +229,8 @@ function cve_post_template($content = null)
 }
 
 /**
- * Returns content module
- * @param null $content | Slug and id (related to content) or object state of the content
+ * İçeriğe ait modül değerini döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
 function cve_post_module($content = null)
@@ -321,18 +242,18 @@ function cve_post_module($content = null)
 }
 
 /**
- * Creates a link for content and returns
- * @param null $content | Slug and id (related to content) or object state of the content
- * @return string
+ * İçeriğe link oluşturur ve geri döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
+ * @return mixed
  */
-function cve_post_link($content = null): string
+function cve_post_link($content = null)
 {
     return base_url(route_to('content', cve_post_slug($content)));
 }
 
 /**
- * Returns author's id of content
- * @param null $content | Slug and id (related to content) or object state of the content
+ * İçeriği oluşturan kullanıcının ID değerini döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
 function cve_post_author_id($content = null)
@@ -344,15 +265,15 @@ function cve_post_author_id($content = null)
 }
 
 /**
- * Returns author of content
- * @param null $content | Slug and id (related to content) or object state of the content
+ * İçeriği oluşturan kullanıcının bilgilerini döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
 function cve_post_author($content = null, $key = null)
 {
-    if (is_array($content)){
-        $key = $content['key'] ?? null;
-        $content = $content['content'] ?? null;
+    if (!is_null($content) && is_array($content)){
+        $key = isset($content['key']) ? $content['key'] : null;
+        $content = isset($content['content']) ? $content['content'] : null;
     }
 
     if ($data = cve_post($content)){
@@ -365,9 +286,9 @@ function cve_post_author($content = null, $key = null)
 }
 
 /**
- * Returns specific extra field values of content
- * @param $key | key for extra field
- * @param null $content | Slug and id (related to content) or object state of the content
+ * İçeriğe ait özel alan bilgisini döner
+ * @param $key | hangi özel alan kullanılmak isteniyorsa o alanın anahtar değeri
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
 function cve_post_field($key, $content = null)
@@ -379,8 +300,8 @@ function cve_post_field($key, $content = null)
 }
 
 /**
- * Returns all extra field values of content
- * @param null $content | Slug and id (related to content) or object state of the content
+ * İçeriğe ait tüm özel alanları döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
 function cve_post_all_field($content = null)
@@ -392,8 +313,8 @@ function cve_post_all_field($content = null)
 }
 
 /**
- * Returns ids of related posts of content
- * @param null $content | Slug and id (related to content) or object state of the content
+ * İçeriğe ait benzer yazıların ID değerlerini döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
 function cve_post_similar_id($content = null)
@@ -405,8 +326,8 @@ function cve_post_similar_id($content = null)
 }
 
 /**
- *  Returns related posts of content
- * @param null $content | Slug and id (related to content) or object state of the content
+ * İçeriğe ait benzer yazıları döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
 function cve_post_similar($content = null)
@@ -418,31 +339,102 @@ function cve_post_similar($content = null)
 }
 
 /**
- * Returns comments for content
- * @param null $content | Slug and id (related to content) or object state of the content
- * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
+ * İçeriğe ait gallery resimlerini döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
+ * @return mixed
  */
-function cve_post_comments($content = null)
+function cve_post_gallery($content = null)
 {
-    if (cve_post_id($content)){
-        return cve_comments_level($content);
+    if ($data = cve_post($content)){
+        return $data->withGallery();
+    }
+    return null;
+}
+
+/**
+ * İçerik yorum durumunu geri döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
+ * @return bool
+ *
+ */
+function cve_post_comment_status($content = null){
+    if ($data = cve_post($content)){
+        return $data->getComment();
     }
     return null;
 }
 
 
 /**
- * Returns the number of likes of the content.
+ * İçerik post format değerini getirir
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
+ * @return null
+ */
+function cve_post_format($content = null){
+    if ($data = cve_post($content)){
+        return $data->getPostFormat();
+    }
+    return null;
+}
+
+/**
+ * İçeriğe ait 1 adet kategori bilgisini döner
+ * @param int $index | kategoriler arasından kaçın index'deki olduğunu belirler
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
+ * @return mixed
+ */
+function cve_post_category($content = null, $index = null)
+{
+    if ($data = cve_post($content)){
+
+        $model = new \App\Models\CategoryModel();
+        $content_id = cve_post_id($content);
+
+        return cve_cache('post_category', function () use($model, $content_id){
+            return $model->getCategoryByContentId($content_id);
+        });
+    }
+    return null;
+}
+
+/**
+ * İçerik kategorilerini getirir
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
+ * @return mixed
+ */
+function cve_post_categories($content = null)
+{
+    if ($data = cve_post($content)){
+        return $data->withCategories();
+    }
+    return null;
+}
+
+/**
+ * İçeriğe ait yorumları getirir
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
+ * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
+ */
+function cve_post_comments($content = null)
+{
+    if ($data = cve_post_id($content)){
+        return cve_comments_level($content);
+    }
+    return null;
+}
+
+/**
+ * İçerikte kaç adet beğeni varsa onu döner
  * @return int
  */
-function cve_post_comment_count(): int
+function cve_post_comment_count()
 {
     return count(cve_post_comments());
 }
 
 /**
- * Returns the number of likes a content has
- * @param null $content | Slug and id (related to content) or object state of the content
+ * Bir içeriğin kaç adet beğeni aldığını getirir
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return \CodeIgniter\Cache\CacheInterface|false|int|mixed
  */
 function cve_post_liked($content = null){
@@ -457,8 +449,8 @@ function cve_post_liked($content = null){
 }
 
 /**
- * Returns how many times a content has been favorited
- * @param null $content | Slug and id (related to content) or object state of the content
+ * Bir içeriğin kaç adet favoriye aldındığını getirir
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return \CodeIgniter\Cache\CacheInterface|false|int|mixed
  */
 function cve_post_favorite($content = null){
@@ -473,8 +465,8 @@ function cve_post_favorite($content = null){
 }
 
 /**
- * Returns average rating of a content
- * @param null $content | Slug and id (related to content) or object state of the content
+ * Bir içeriğer verilen toplam puanı getirir.
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return \CodeIgniter\Cache\CacheInterface|false|int|mixed
  */
 function cve_post_rating_avg($content = null){
@@ -489,8 +481,8 @@ function cve_post_rating_avg($content = null){
 }
 
 /**
- * Returns how many people voted on a content based on points. (Ex: 1 point => 5 people, 2 points => 10 people etc.)
- * @param null $content | Slug and id (related to content) or object state of the content
+ * Bir içeriğin hangi derecede kaç puan aldığını getirir
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return \CodeIgniter\Cache\CacheInterface|false|int|mixed
  */
 function cve_post_rating_score($content = null){
@@ -515,11 +507,12 @@ function cve_post_rating_score($content = null){
     }
 
     return $vote_list;
+
 }
 
 /**
- * Returns next post information
- * @param null $content | Slug and id (related to content) or object state of the content
+ * Bir sonraki yazı bilgilerini getirir
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed
  */
 function cve_post_next($content = null)
@@ -533,8 +526,8 @@ function cve_post_next($content = null)
 }
 
 /**
- * Returns previous post information
- * @param null $content | Slug and id (related to content) or object state of the content
+ * Bir önceki yazı bilgilerini getirir
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed
  */
 function cve_post_prev($content = null)
@@ -546,13 +539,13 @@ function cve_post_prev($content = null)
         return $model->getPrevContent($content_id);
     });
 }
+
 /**
- * Returns created time of content
- * @param null $content | Slug and id (related to content) or object state of the content
- * @param false $humanize | TRUE => for human readable type, FALSE => for formatted DATETIME
+ * İçeriğin oluşturulma tarihini döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
-function cve_post_created_at($content = null, bool $humanize = false)
+function cve_post_created_at($content = null, $humanize = false)
 {
     if ($data = cve_post($content)){
         return $data->getCreatedAt($humanize);
@@ -561,12 +554,11 @@ function cve_post_created_at($content = null, bool $humanize = false)
 }
 
 /**
- * Returns last updated time of content
- * @param null $content | Slug and id (related to content) or object state of the content
- * @param false $humanize | TRUE => for human readable type, FALSE => for formatted DATETIME
+ * İçeriğin güncellenme tarihini döner
+ * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
-function cve_post_updated_at($content = null, bool $humanize = false)
+function cve_post_updated_at($content = null, $humanize = false)
 {
     if ($data = cve_post($content)){
         return $data->getUpdatedAt($humanize);

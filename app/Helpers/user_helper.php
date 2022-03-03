@@ -25,7 +25,7 @@ function cve_user($user = null)
             return $render->getData()['user'];
         }elseif($post = cve_post_author()){
             return $post;
-        }elseif($category = cve_cat_user()) {
+        }elseif($category = cve_cat_author()) {
             return $category;
         }
     }

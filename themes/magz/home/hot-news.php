@@ -12,7 +12,6 @@
     </h1>
     <div class="body-col vertical-slider" data-max="4" data-nav="#hot-news-nav" data-item="article">
         <?php foreach (cve_month_top_post(6,'blog') as $content): ?>
-            <?php $category = cve_post_category($content); ?>
             <article class="article-mini">
                 <div class="inner">
                     <figure>
@@ -28,8 +27,8 @@
                         </h1>
                         <div class="detail">
                             <div class="category">
-                                <a href="<?= cve_cat_link($category); ?>">
-                                    <?= cve_cat_title($category); ?>
+                                <a href="<?= cve_cat_link($content, true); ?>">
+                                    <?= cve_cat_title($content, true); ?>
                                 </a>
                             </div>
                             <div class="time"><?= cve_post_created_at($content); ?></div>

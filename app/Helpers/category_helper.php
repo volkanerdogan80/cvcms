@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Returns the requested category from the database
- * @param $params | Query conditions to add in Where
+ * Veritabanında kategori verilerini getirir
+ * @param $params | Where içerisinde eklenecek sorgu koşulları
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed
  */
 function get_category($params)
@@ -14,8 +14,8 @@ function get_category($params)
 }
 
 /**
- * Returns the requested categories from the database
- * @param $params | Query conditions to add in Where
+ * Veritabanında kategorileri verilerini getirir
+ * @param $params | Where içerisinde eklenecek sorgu koşulları
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed
  */
 function get_categories($params)
@@ -27,7 +27,7 @@ function get_categories($params)
 }
 
 /**
- * Checks the parameter sent as content, if there is, it gets it from the render, if not, it gets it from the DB.
+ * Content olarak gönderilmiş olan parametreyi kontrol eder varsa render dan alır yoksa DB'den getirir
  * @param null $category | slug, id, CategoryEntity Object
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
@@ -54,144 +54,225 @@ function cve_category($category = null)
 }
 
 /**
- * These methods are created for get used by developers. They send requests to the get_categories method.
- * @param $module
+ * Bu metotlar geliştiriciler tarafından kullanılması için yazılmıştır get_categories metotuna istek atar.
+ * @param null $module
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
-function cve_categories($module)
+function cve_categories($module = null)
 {
     $params = !is_array($module) ? ['module' => $module] : $module;
-    return get_categories($params);}
+    return get_categories($params);
+}
 
 /**
- * Returns the ID value of the category sent in the parameter
- * @param null $category | slug, id, CategoryEntity Object
+ * Parametrede gönderilen kategoriye ait ID değerini döner
+ * @param null $params | slug, id, CategoryEntity Object
+ * @param false $isContent | $param ile gelen verinin bir içerik olup olmadığını kontrol eder.
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
-function cve_cat_id($category = null)
+function cve_cat_id($params = null, bool $isContent = false)
 {
-    if ($data = cve_category($category)){
+    if (!$isContent){
+        if ($data = cve_category($params)){
+            return $data->id;
+        }
+        return null;
+    }
+
+    if ($data = cve_post_category($params)){
         return $data->id;
     }
     return null;
 }
 
 /**
- * Returns the Parent ID value of the category sent in the parameter
- * @param null $category | slug, id, CategoryEntity Object
+ * Parametrede gönderilen kategoriye ait Parent ID değerini döner
+ * @param null $params | slug, id, CategoryEntity Object
+ *  @param false $isContent | $param ile gelen verinin bir içerik olup olmadığını kontrol eder.
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
-function cve_cat_parent_id($category = null)
+function cve_cat_parent_id($params = null, bool $isContent = false)
 {
-    if ($data = cve_category($category)){
+    if (!$isContent){
+        if ($data = cve_category($params)){
+            return $data->getParentId();
+        }
+        return null;
+    }
+
+    if ($data = cve_post_category($params)){
         return $data->getParentId();
     }
     return null;
 }
 
 /**
- * Returns Parent Information to the category sent in the parameter
- * @param null $category | slug, id, CategoryEntity Object
+ * Parametrede gönderilen kategoriye Parent Bilgilerini döner
+ * @param null $params | slug, id, CategoryEntity Object
+ * @param false $isContent | $param ile gelen verinin bir içerik olup olmadığını kontrol eder.
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
-function cve_cat_parent($category = null, $key = null)
+function cve_cat_parent($params = null, bool $isContent = false)
 {
-    if ($data = cve_category($category)){
-        if (!is_null($key)){
-            return $data->withParent()->$key;
+    if (!$isContent){
+        if ($data = cve_category($params)){
+            $parent_id = $data->getParentId();
+            if ($parent_id !== 0){
+                return cve_category($parent_id);
+            }
+            return null;
         }
-        return $data->withParent();
-    }else{
+    }
+
+    if ($data = cve_post_category($params)){
+        $parent_id = $data->getParentId();
+        if ($parent_id !== 0){
+            return cve_category($parent_id);
+        }
         return null;
     }
+    return null;
 }
 
 /**
- * Returns the children of the category sent in the parameter
+ * Parametrede gönderilen kategoriye ait çocukları döner
  * @param null $category | slug, id, CategoryEntity Object
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
 function cve_cat_child($category = null)
 {
-    return get_categories(['parent_id' => cve_cat_id($category)]);
+    $model = new \App\Models\CategoryModel();
+    $category_id = cve_cat_id($category);
+    return cve_cache(cve_cache_name('cve_cat_child_', $category_id), function () use ($model, $category_id){
+        return $model->getCategoriesByParentId($category_id);
+    });
 }
 
 /**
- * Returns the slug value of the category sent in the parameter
- * @param null $category | slug, id, CategoryEntity Object
+ * Parametrede gönderilen kategoriye ait slug değerini döner
+ * @param null $params | slug, id, CategoryEntity Object
+ * @param false $isContent | $param ile gelen verinin bir içerik olup olmadığını kontrol eder.
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
-function cve_cat_slug($category = null)
+function cve_cat_slug($params = null, bool $isContent = false)
 {
-    if ($data = cve_category($category)){
+    if (!$isContent){
+        if ($data = cve_category($params)){
+            return $data->getSlug();
+        }
+        return null;
+    }
+
+    if ($data = cve_post_category($params)){
         return $data->getSlug();
     }
     return null;
 }
 
 /**
- * Returns the Title of the category sent in the parameter
- * @param null $category | slug, id, CategoryEntity Object
- * @param null $lang | Language code
+ * Parametrede gönderilen kategoriye ait Başlığı döner
+ * @param null $params | slug, id, CategoryEntity Object
+ * @param false $isContent | $param ile gelen verinin bir içerik olup olmadığını kontrol eder.
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
-function cve_cat_title($category = null, $lang = null)
+function cve_cat_title($params = null, bool $isContent = false, $lang = null)
 {
-    if ($data = cve_category($category)){
+    if (!$isContent){
+        if ($data = cve_category($params)){
+            return $data->getTitle($lang);
+        }
+        return null;
+    }
+
+    if ($data = cve_post_category($params)){
         return $data->getTitle($lang);
     }
     return null;
 }
 
 /**
- * Returns the Description of the category sent in the parameter
- * @param null $category | slug, id, CategoryEntity Object
+ * Parametrede gönderilen kategoriye ait Açıklamayı döner
+ * @param null $params | slug, id, CategoryEntity Object
+ * @param false $isContent | $param ile gelen verinin bir içerik olup olmadığını kontrol eder.
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
-function cve_cat_description($category = null)
+function cve_cat_description($params = null, bool $isContent = false)
 {
-    if ($data = cve_category($category)){
+    if (!$isContent){
+        if ($data = cve_category($params)){
+            return $data->getDescription();
+        }
+        return null;
+    }
+
+    if ($data = cve_post_category($params)){
         return $data->getDescription();
     }
     return null;
 }
 
 /**
- * Returns the Keywords of the category sent in the parameter
- * @param null $category | slug, id, CategoryEntity Object
+ * Parametrede gönderilen kategoriye ait Anahtar kelimeleri döner
+ * @param null $params | slug, id, CategoryEntity Object
+ * @param false $isContent | $param ile gelen verinin bir içerik olup olmadığını kontrol eder.
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
-function cve_cat_keywords($category = null)
+function cve_cat_keywords($params = null, bool $isContent = false)
 {
-    if ($data = cve_category($category)){
+    if (!$isContent){
+        if ($data = cve_category($params)){
+            return $data->getKeywords();
+        }
+        return null;
+    }
+
+    if ($data = cve_post_category($params)){
         return $data->getKeywords();
     }
     return null;
 }
 
 /**
- * Returns the Image ID of the category sent in the parameter
- * @param null $category | slug, id, CategoryEntity Object
+ * Parametrede gönderilen kategoriye ait resim ID değerini döner
+ * @param null $params | slug, id, CategoryEntity Object
+ * @param false $isContent | $param ile gelen verinin bir içerik olup olmadığını kontrol eder.
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
-function cve_cat_image_id($category = null)
+function cve_cat_image_id($params = null, bool $isContent = false)
 {
-    if ($data = cve_category($category)){
+    if (!$isContent){
+        if ($data = cve_category($params)){
+            return $data->getImage();
+        }
+        return null;
+    }
+
+    if ($data = cve_post_category($params)){
         return $data->getImage();
     }
     return null;
 }
 
 /**
- * Returns the Image Info of the category sent in the parameter
- * @param null $category | slug, id, CategoryEntity Object
+ * Parametrede gönderilen kategoriye ait resim bilgilerini döner
+ * @param null $params | slug, id, CategoryEntity Object
+ * @param false $isContent | $param ile gelen verinin bir içerik olup olmadığını kontrol eder.
  * @param null $size | Getirilecek olan resim boyutları
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
-function cve_cat_image($category = null, $size = null)
+function cve_cat_image($params = null, bool $isContent = false, $size = null)
 {
-    if ($data = cve_category($category)){
-        if($image = $data->withImage()){
+    if (!$isContent){
+        if ($data = cve_category($params)){
+            if($image = $data->withImage()){    // TODO: withImage'den kurtul
+                return $image->getUrl($size);
+            }
+        }
+        return null;
+    }
+
+    if ($data = cve_post_category($params)){
+        if($image = $data->withImage()){       // TODO: withImage'den kurtul
             return $image->getUrl($size);
         }
     }
@@ -199,61 +280,92 @@ function cve_cat_image($category = null, $size = null)
 }
 
 /**
- * Creates a link for the category sent in the parameter
- * @param null $category | slug, id, CategoryEntity Object
+ * Parametrede gönderilen kategoriye ait link oluşturur
+ * @param null $params | slug, id, CategoryEntity Object
+ * @param false $isContent | $param ile gelen verinin bir içerik olup olmadığını kontrol eder.
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
-function cve_cat_link($category = null)
+function cve_cat_link($params = null, bool $isContent = false)
 {
-    return base_url(route_to('category', cve_cat_slug($category)));
+    if (!$isContent){
+        if ($data = cve_category($params)){
+            return base_url(route_to('category', $data->getSlug()));
+        }
+        return null;
+    }
+
+    if ($data = cve_post_category($params)){
+        return base_url(route_to('category', $data->getSlug()));
+    }
+    return null;
 }
 
 /**
- * Returns the module value of the category sent in the parameter
- * @param null $category | slug, id, CategoryEntity Object
+ * Parametrede gönderilen kategoriye ait module değerini döner
+ * @param null $params | slug, id, CategoryEntity Object
+ * @param false $isContent | $param ile gelen verinin bir içerik olup olmadığını kontrol eder.
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
-function cve_cat_module($category = null)
+function cve_cat_module($params = null, bool $isContent = false)
 {
-    if ($data = cve_category($category)){
+    if (!$isContent){
+        if ($data = cve_category($params)){
+            return $data->getModule();
+        }
+        return null;
+    }
+
+    if ($data = cve_post_category($params)){
         return $data->getModule();
     }
     return null;
 }
 
 /**
- * Returns creator ID of the category sent in the parameter
- * @param null $category | slug, id, CategoryEntity Object
+ * Parametrede gönderilen kategoriyi oluşturan kişi ID değerini döner
+ * @param null $params | slug, id, CategoryEntity Object
+ * @param false $isContent | $param ile gelen verinin bir içerik olup olmadığını kontrol eder.
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
-function cve_cat_user_id($category = null)
+function cve_cat_author_id($params = null, bool $isContent = false)
 {
-    if ($data = cve_category($category)){
+    if (!$isContent){
+        if ($data = cve_category($params)){
+            return $data->getUserId();
+        }
+        return null;
+    }
+
+    if ($data = cve_post_category($params)){
         return $data->getUserId();
     }
     return null;
 }
 
 /**
- * Returns creator Info of the category sent in the parameter
- * @param null $category | slug, id, CategoryEntity Object
- * @param null $key | Data key value requested from contact information
+ * Parametrede gönderilen kategoriyi oluşturan kişi bilgilerini döner
+ * @param null $params | slug, id, CategoryEntity Object
+ * @param false $isContent | $param ile gelen verinin bir içerik olup olmadığını kontrol eder.
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
-function cve_cat_user($category = null, $key = null)
+function cve_cat_author($params = null, bool $isContent = false)
 {
-    if ($data = cve_category($category)){
-        if (!is_null($key)){
-            return $data->withUser()->$key;
+    if (!$isContent){
+        if ($data = cve_category($params)){
+            $user_id = $data->getUserId();
+            return cve_user($user_id);
         }
-        return $data->withUser();
-    }else{
-        return null;
     }
+
+    if ($data = cve_post_category($params)){
+        $user_id = $data->getUserId();
+        return cve_user($user_id);
+    }
+    return null;
 }
 
 /**
- * Returns category creation date
+ * Parametrede gönderilen kategori oluşturulma tarihini döner
  * @param null $category | slug, id, CategoryEntity Object
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
@@ -266,7 +378,7 @@ function cve_cat_created_at($category = null, $humanize = false)
 }
 
 /**
- * Returns category update date
+ * Parametrede gönderilen kategori göncellenme tarihini döner
  * @param null $category | slug, id, CategoryEntity Object
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
@@ -279,7 +391,7 @@ function cve_cat_updated_at($category = null, $humanize = false)
 }
 
 /**
- * Returns the contents of the category sent in the parameter
+ * Parametrede gönderilen kategoriye ait içerikleri döner
  * @param null $category | slug, id, CategoryEntity Object
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
@@ -294,9 +406,9 @@ function cve_cat_posts($category, $limit = 10, $pager = false)
     }
 
     $model = new \App\Models\ContentModel();
-
-    $posts = cve_cache(cve_cache_name('cat_posts', $params), function () use ($model, $category, $limit){
-        return $model->getCategoryContent(cve_cat_id($category), $limit);
+    $category_id = cve_cat_id($category);
+    $posts = cve_cache(cve_cache_name('cat_posts', $params), function () use ($model, $category_id, $limit){
+        return $model->getContentsByCategoryId($category_id, $limit);
     });
 
     if ($pager){
@@ -307,11 +419,11 @@ function cve_cat_posts($category, $limit = 10, $pager = false)
 }
 
 /**
- * It returns the categories in the database as an array in accordance with the tree structure.
- * @param null $module | Specifies the module to fetch the categories
- * @param int $parent_id | Initial category ID value
- * @param string $add | Indicates parent category(s) status. Returns the parent category by placing this separator in front of the category titles.
- * @param array $data | Array to which category information is added
+ * Veritabanında ki kategorileri array olarak ağaç yapısına uygun olarak döner
+ * @param null $module | Hangi module ait kategoriler getirilecekse modül belirtilir
+ * @param int $parent_id | Başlangıç kategori ID değeri
+ * @param string $add | Kategori başlıklarını ötemek için kullanılan ayraç
+ * @param array $data | Kategori bilgilerinin eklendiği dizi
  * @return array|mixed
  */
 function cve_cat_tree($module = null, $parent_id = 0, $add = '-', $data = [])
@@ -337,7 +449,7 @@ function cve_cat_tree($module = null, $parent_id = 0, $add = '-', $data = [])
 }
 
 /**
- * Returns the categories in the database as a select box
+ * Veritabanında ki kategorileri selectbox içersiinde döner
  * @param array $params | name, class, id, module, parent_id, add değeri yer alabilir
  */
 function cve_cat_selectbox(array $params = [])

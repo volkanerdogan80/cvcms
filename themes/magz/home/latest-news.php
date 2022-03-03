@@ -3,7 +3,6 @@
 </div>
 <div class="row">
     <?php foreach (cve_recent_post(3, 'blog', null, 4) as $content): ?>
-        <?php $category = cve_post_category($content); ?>
         <article class="col-md-12 article-list">
             <div class="inner">
                 <?php if(cve_post_field('sponsored', $content)): ?>
@@ -19,7 +18,7 @@
                 <div class="details">
                     <div class="detail">
                         <div class="category">
-                            <a href="<?= cve_cat_link($category); ?>"><?= cve_cat_title($category); ?></a>
+                            <a href="<?= cve_cat_link($content, true); ?>"><?= cve_cat_title($content, true); ?></a>
                         </div>
                         <div class="time"><?= cve_post_created_at($content); ?></div>
                     </div>
