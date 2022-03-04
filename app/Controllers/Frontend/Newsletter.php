@@ -32,8 +32,9 @@ class Newsletter extends BaseController
             }
 
             $subscriber = $this->newsletterModel->find($insert);
-
-            $this->emailTo->setEmail($subscriber)
+            $this->emailTo
+                ->setData(['user' => $subscriber])
+                ->setEmail($subscriber->email)
                 ->setTemplate('newsletterSubscribeSuccess')
                 ->send();
 

@@ -359,7 +359,7 @@ function cve_post_gallery($content = null)
  */
 function cve_post_comment_status($content = null){
     if ($data = cve_post($content)){
-        return $data->getComment();
+        return $data->getCommentStatus();
     }
     return null;
 }
@@ -562,6 +562,23 @@ function cve_post_updated_at($content = null, $humanize = false)
 {
     if ($data = cve_post($content)){
         return $data->getUpdatedAt($humanize);
+    }
+    return null;
+}
+
+function cve_post_pager($contents = null, $group = 'default', $template = 'cms_pager')
+{
+    if (!is_null($contents)){
+        if (isset($contents['pager'])){
+            $pager = $contents['pager'];
+            return $pager->links($group, $template);
+        }
+    }
+
+    $render = \Config\Services::themeRenderer();
+    if (isset($render->getData()['pager'])){
+        $pager = $render->getData()['pager'];
+        return $pager->links($group, $template);
     }
     return null;
 }

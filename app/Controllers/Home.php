@@ -7,7 +7,7 @@ class Home extends BaseController
     public function index()
     {
 
-        print_r(cve_cat_posts(1));
+        print_r(cve_theme_setting('slider_module'));
 
 
         /*$model->insert([

@@ -27,7 +27,7 @@ class SystemSeeder extends Seeder
             'emailVerify' => $default->emailVerify,
             'defaultGroup' => $group->id,
             'install' => true,
-            'perPageList' => implode(',', $default->perPageList),
+            'perPageList' => '10',
         ];
 
         $entity->setKey('system');

@@ -89,6 +89,8 @@ return [
         'page_purge_delete_failure'    => 'You are not allowed to permanently delete a page that does not belong to you.',
 
         'notification_send_failure'   => 'An error occurred while sending notification. Please try again.',
-        'realtime_visitors_failure'   => 'The instant visitor count information on your site cannot be accessed. The daily usage limit may have been reached.'
+        'realtime_visitors_failure'   => 'The instant visitor count information on your site cannot be accessed. The daily usage limit may have been reached.',
+
+        'data_not_found' => 'Data not found!'
     ]
 ];

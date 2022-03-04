@@ -17,7 +17,7 @@ class ImageSeeder extends Seeder
         $default = config('images');
         $data = [
             'defaultHandler' => $default->defaultHandler,
-            'thumbnail' => implode(',', $default->defaultThumbnail),
+            'thumbnail' => '187x134',
             'compressor' => $default->compressor,
             'delete' => $default->delete,
             'watermark' => $default->watermark,

@@ -1,6 +1,8 @@
 <?php namespace Config;
 
 use CodeIgniter\Config\BaseConfig;
+use CodeIgniter\Images\Handlers\GDHandler;
+use CodeIgniter\Images\Handlers\ImageMagickHandler;
 
 class Images extends BaseConfig
 {
@@ -8,9 +10,9 @@ class Images extends BaseConfig
 
 	public $libraryPath = '/usr/local/bin/convert';
 
-    public $defaultThumbnail = ['187x134'];
+    public $thumbnail = [];
 
-    public $compressor = 50;
+    public $compressor = 70;
 
     public $delete = 'all'; // all, original, db Seçenekler gelebilir.
 
@@ -26,8 +28,8 @@ class Images extends BaseConfig
     ];
 
     public $handlers = [
-		'gd'      => \CodeIgniter\Images\Handlers\GDHandler::class,
-		'imagick' => \CodeIgniter\Images\Handlers\ImageMagickHandler::class,
+		'gd'      => GDHandler::class,
+		'imagick' => ImageMagickHandler::class,
 	];
 
     public static $registrars = [

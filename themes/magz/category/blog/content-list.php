@@ -8,7 +8,8 @@
     </div>
     <div class="line"></div>
     <div class="row">
-        <?php foreach (cve_posts()['contents'] as $content): ?>
+        <?php $contents = cve_cat_posts(10); ?>
+        <?php foreach ($contents['contents'] as $content): ?>
             <article class="col-md-12 article-list">
                 <div class="inner">
                     <?php if(cve_post_field('sponsored', $content)): ?>
@@ -55,7 +56,7 @@
             </article>
         <?php endforeach; ?>
         <div class="col-md-12 text-center">
-            <?= cve_posts()['pager']->links('default', 'cms_pager') ?>
+            <?= cve_post_pager($contents); ?>
         </div>
     </div>
 </div>

@@ -55,6 +55,9 @@ class Config extends BaseController
                     'login' => $setting->getValue('login'),
                     'emailVerify' => $setting->getValue('emailVerify'),
                     'defaultGroup' => $setting->getValue('defaultGroup'),
+                    'registerPage' => $setting->getValue('registerPage'),
+                    'loginPage' => $setting->getValue('loginPage'),
+                    'forgotPage' => $setting->getValue('forgotPage'),
                     'perPageList' => explode(',', $setting->getValue('perPageList')),
                     'install' => $setting->getValue('install'),
                 ];

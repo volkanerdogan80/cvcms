@@ -1,8 +1,7 @@
 $(document).on('click', '.contact-phone-add', function (e){
     let clone = $('#contact-phone-field').clone();
     let name = $(this).data('name');
-    let count = $(this).closest('.card-body').find('.phone-field').length;
-    let number = count+1;
+    let number = $(this).closest('.card-body').find('.phone-field').length;
     clone = $(clone).css('display', 'flex');
     clone.removeAttr( "id" );
     clone.find('#phone-name').attr('name', 'contact['+name+'][phones][phone'+number+'][name]');
@@ -13,8 +12,7 @@ $(document).on('click', '.contact-phone-add', function (e){
 $(document).on('click', '.contact-email-add', function (e){
     let clone = $('#contact-email-field').clone();
     let name = $(this).data('name');
-    let count = $(this).closest('.card-body').find('.email-field').length;
-    let number = count+1;
+    let number = $(this).closest('.card-body').find('.email-field').length;
     clone = $(clone).css('display', 'flex');
     clone = clone.removeAttr( "id" );
     clone.find('#email-name').attr('name',  'contact['+name+'][emails][email'+number+'][name]');

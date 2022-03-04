@@ -260,7 +260,7 @@ function cve_cat_image_id($params = null, bool $isContent = false)
  * @param null $size | Getirilecek olan resim boyutları
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
-function cve_cat_image($params = null, bool $isContent = false, $size = null)
+function cve_cat_image($params = null, $isContent = false, $size = null)
 {
     if (!$isContent){
         if ($data = cve_category($params)){
@@ -393,29 +393,18 @@ function cve_cat_updated_at($category = null, $humanize = false)
 /**
  * Parametrede gönderilen kategoriye ait içerikleri döner
  * @param null $category | slug, id, CategoryEntity Object
+ * @param $limit | Limits number of contents as int or an array which includes parameters [limit, module,category,pager]
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed|null
  */
-function cve_cat_posts($category, $limit = 10, $pager = false)
+function cve_cat_posts($limit = false, $category = null)
 {
-    $params = func_get_args();
-    if (is_array($category)) {
-        $params = $category;
-        $limit = $params['limit'] ?? 10;
-        $category = $params['category'] ?? null;
-        $pager = $params['pager'] ?? false;
-    }
-
     $model = new \App\Models\ContentModel();
     $category_id = cve_cat_id($category);
-    $posts = cve_cache(cve_cache_name('cat_posts', $params), function () use ($model, $category_id, $limit){
+    $params = ['limit' => $limit, 'category' => $category_id];
+    return  cve_cache(cve_cache_name('cat_posts', $params), function () use ($model, $category_id, $limit){
         return $model->getContentsByCategoryId($category_id, $limit);
     });
 
-    if ($pager){
-        return $posts;
-    }
-
-    return $posts['contents'];
 }
 
 /**

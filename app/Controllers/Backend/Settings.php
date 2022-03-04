@@ -68,10 +68,10 @@ class Settings extends BaseController
                 'login' => $this->request->getPost('login'),
                 'emailVerify' => $this->request->getPost('emailVerify'),
                 'defaultGroup' => $this->request->getPost('defaultGroup'),
-                'perPageList' => $this->request->getPost('perPageList'),
                 'registerPage' => $this->request->getPost('registerPage'),
                 'loginPage' => $this->request->getPost('loginPage'),
                 'forgotPage' => $this->request->getPost('forgotPage'),
+                'perPageList' => $this->request->getPost('perPageList'),
                 'install' => true,
             ];
 

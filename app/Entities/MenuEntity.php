@@ -39,14 +39,18 @@ class MenuEntity extends Entity
     {
         if ($item->module == 'content'){
             $model = new ContentModel();
-            return $model->find($item->id);
+            if ($result = $model->withDeleted()->find($item->id)){
+                return $result;
+            }
         }elseif ($item->module == 'category'){
             $model = new CategoryModel();
-            return $model->find($item->id);
+            if ($result = $model->withDeleted()->find($item->id)){
+                return $result;
+            }
         }elseif($item->module == 'custom'){
             return $this;
         }
-        return null;
+        return $this;
     }
 
     public function getTitle($item = null, $lang = null)
@@ -58,8 +62,12 @@ class MenuEntity extends Entity
             $key = $locale . 'title';
         }
 
-        return $item->$key;
+        if (isset($item->$key)){
+            return $item->$key;
+        }
+        return cve_admin_lang('Errors', 'data_not_found');
     }
+
     public function getValue()
     {
         return json_decode($this->attributes['svalue']);

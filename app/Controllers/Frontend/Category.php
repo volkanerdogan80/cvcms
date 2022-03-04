@@ -22,10 +22,7 @@ class Category extends BaseController
             return redirect('homepage');
         }
 
-        return  cve_theme_view('category/' . cve_cat_module($category), [
-            'category' => $category,
-            'contents' => cve_cat_posts($category, 10, true)
-        ]);
+        return  cve_theme_view('category/' . cve_cat_module($category), ['category' => $category]);
     }
 }
 
