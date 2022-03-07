@@ -29,7 +29,7 @@ class RatingModel extends Model
         'vote' => 'required|numeric|less_than_equal_to[10]',
     ];
 
-    public function getContentVoteAvg($content_id)
+    public function getRatingAvgByContentId($content_id)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->where('content_id', $content_id);
@@ -37,7 +37,7 @@ class RatingModel extends Model
         return $builder->first()->vote;
     }
 
-    public function getContentIpControl($content_id, $remote_addr)
+    public function getRatingControlByRemoteAddr($content_id, $remote_addr)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->where('content_id', $content_id);
@@ -45,7 +45,7 @@ class RatingModel extends Model
         return $builder->first();
     }
 
-    public function getContentVoteCount($content_id)
+    public function getRatingCountByContentID($content_id): array
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->where('content_id', $content_id);

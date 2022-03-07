@@ -25,7 +25,7 @@ class Like extends BaseController
             $content_id = $this->request->getPost('id');
             $remote_addr = $this->request->getIPAddress();
 
-            if ($this->likeModel->getUserLikeControl($content_id, $remote_addr)){
+            if ($this->likeModel->getLikeControlByRemoteAddr($content_id, $remote_addr)){
                 return $this->response(['status' => false, 'message' => 'Daha önce bu içeriği beğenmişsiniz.']);
             }
 
@@ -42,7 +42,7 @@ class Like extends BaseController
                 'status' => true,
                 'message' => 'İçerik başarılı bir şekilde beğenildi.',
                 'data' => [
-                    'likeCount' => $this->likeModel->getContentLikeControl($content_id)
+                    'likeCount' => $this->likeModel->getLikeCountByContentId($content_id)
                 ]
             ]);
         }

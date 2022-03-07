@@ -326,15 +326,22 @@ class ContentEntity extends Entity
 
     public function withUser(): ?object
     {
-        $model = new UserModel();
-        return $model->withDeleted()->find($this->attributes['user_id']);
+        if ($this->attributes['user_id']){
+            $model = new UserModel();
+            if($user = $model->withDeleted()->find($this->attributes['user_id'])){
+                return $user;
+            }
+        }
+        return null;
     }
 
     public function withThumbnail()
     {
         if($this->attributes['thumbnail']){
             $model = new ImageModel();
-            return $model->find($this->attributes['thumbnail']);
+            if($thumbnail = $model->find($this->attributes['thumbnail'])){
+                return $thumbnail;
+            }
         }
         return null;
     }
@@ -352,10 +359,7 @@ class ContentEntity extends Entity
     public function withCategories()
     {
         $model = new CategoryModel();
-        if(count($this->getCategories()) > 0) {
-            return $model->withDeleted()->find($this->getCategories());
-        }
-        return null;
+        return $model->getCategoriesByContentId($this->attributes['id'], STATUS_ACTIVE, true);
     }
 
     public function withShare()

@@ -10,7 +10,7 @@ function get_comment(array $params)
     $model = new \App\Models\CommentModel();
 
     return cve_cache(cve_cache_name('get_comment', $params), function () use ($model, $params){
-        return $model->where('status', STATUS_ACTIVE)->where($params)->first();
+        return $model->getComment($params);
     });
 }
 
@@ -23,7 +23,7 @@ function get_comments(array $params)
 {
     $model = new \App\Models\CommentModel();
     return cve_cache(cve_cache_name('get_comments', $params), function () use ($model, $params){
-        return $model->where('status', STATUS_ACTIVE)->where($params)->findAll();
+        return $model->getComments($params);
     });
 }
 
@@ -227,7 +227,7 @@ function cve_comments_level($content = null, $comment = null, int $level = 0, ar
     $comments = get_comments(['content_id' => $content_id, 'comment_id' => $comment_id]);
     $level++;
     foreach ($comments as $comment) {
-        $comment->level = $level-1;
+        $comment->level--;
         $data[] = $comment;
         $data = cve_comments_level($content, $comment, $level, $data);
     }

@@ -27,7 +27,7 @@ class LikeModel extends Model
         'remote_addr' => 'required|valid_ip'
     ];
 
-    public function getUserLikeControl($content_id, $remote_addr)
+    public function getLikeControlByRemoteAddr($content_id, $remote_addr)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->where('content_id', $content_id);
@@ -35,18 +35,10 @@ class LikeModel extends Model
         return $builder->first();
     }
 
-    public function getContentLikeControl($content_id)
+    public function getLikeCountByContentId($content_id)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->where('content_id', $content_id);
         return $builder->countAllResults();
-    }
-
-    public function getContentLikeCount($content_id)
-    {
-        $builder = $this->setTable($this->table);
-        $builder = $builder->where('content_id', $content_id);
-        $builder = $builder->selectCount('content_id', 'like');
-        return $builder->first()->like;
     }
 }

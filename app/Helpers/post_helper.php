@@ -157,9 +157,9 @@ function cve_post_thumbnail_id($content = null)
  */
 function cve_post_thumbnail($content = null, $size = null)
 {
-    if (!is_null($content) && is_array($content)){
-        $size = isset($content['size']) ? $content['size'] : null;
-        $content = isset($content['content']) ? $content['content'] : null;
+    if (is_array($content)){
+        $size = $content['size'] ?? null;
+        $content = $content['content'] ?? null;
     }
 
     if ($data = cve_post($content)){
@@ -271,16 +271,17 @@ function cve_post_author_id($content = null)
  */
 function cve_post_author($content = null, $key = null)
 {
-    if (!is_null($content) && is_array($content)){
-        $key = isset($content['key']) ? $content['key'] : null;
-        $content = isset($content['content']) ? $content['content'] : null;
+    if (is_array($content)){
+        $key = $content['key'] ?? null;
+        $content = $content['content'] ?? null;
     }
 
     if ($data = cve_post($content)){
-        if (!is_null($key)){
-            return $data->withUser()->$key;
+        $user = $data->withUser();
+        if (!is_null($key) && !is_null($user)){
+            return $user->$key;
         }
-        return $data->withUser();
+        return $user;
     }
     return null;
 }
@@ -330,10 +331,28 @@ function cve_post_similar_id($content = null)
  * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
-function cve_post_similar($content = null)
+function cve_post_similar($content = null, $limit = 3, $type = false)
 {
     if ($data = cve_post($content)){
-        return $data->withSimilar();
+        if ($similar_id = cve_post_similar_id($data)){
+            $model = new \App\Models\ContentModel();
+            return cve_cache('cve_post_similar_' . cve_post_id($data), function () use($model, $similar_id, $limit) {
+                return $model->getContentsByIds($similar_id, $limit)['contents'];
+            });
+        }
+
+        if ($type && $type == 'category'){
+            $category_id = cve_cat_id($data, true);
+            $model = new \App\Models\ContentModel();
+            return cve_cache('cve_post_similar_' . cve_post_id($data), function () use($model, $category_id, $limit) {
+                return $model->getContentsByCategoryId($category_id, $limit)['contents'];
+            });
+        }
+
+        if ($type && $type == 'random'){
+            $category_id = cve_cat_id($data, true);
+            return cve_random_post(['category' => $category_id, 'limit' => $limit]);
+        }
     }
     return null;
 }
@@ -383,14 +402,14 @@ function cve_post_format($content = null){
  * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return mixed
  */
-function cve_post_category($content = null, $index = null)
+function cve_post_category($content = null)
 {
     if ($data = cve_post($content)){
 
         $model = new \App\Models\CategoryModel();
         $content_id = cve_post_id($content);
 
-        return cve_cache('post_category', function () use($model, $content_id){
+        return cve_cache('post_category_' . $content_id, function () use($model, $content_id){
             return $model->getCategoryByContentId($content_id);
         });
     }
@@ -405,7 +424,13 @@ function cve_post_category($content = null, $index = null)
 function cve_post_categories($content = null)
 {
     if ($data = cve_post($content)){
-        return $data->withCategories();
+
+        $model = new \App\Models\CategoryModel();
+        $content_id = cve_post_id($content);
+
+        return cve_cache('post_categories_' . $content_id, function () use($model, $content_id){
+            return $model->getCategoriesByContentId($content_id);
+        });
     }
     return null;
 }
@@ -427,9 +452,15 @@ function cve_post_comments($content = null)
  * İçerikte kaç adet beğeni varsa onu döner
  * @return int
  */
-function cve_post_comment_count()
+function cve_post_comment_count($content = null)
 {
-    return count(cve_post_comments());
+    if ($content_id = cve_post_id($content)){
+        $model = new \App\Models\CommentModel();
+        return cve_cache('cve_post_comment_count_' . $content_id, function () use ($model, $content_id){
+            return $model->getCommentsCountByContentId($content_id);
+        });
+    }
+    return null;
 }
 
 /**
@@ -437,15 +468,15 @@ function cve_post_comment_count()
  * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return \CodeIgniter\Cache\CacheInterface|false|int|mixed
  */
-function cve_post_liked($content = null){
-    $model = new \App\Models\LikeModel();
-    $content_id = cve_post_id($content);
-    if(is_null($content_id)){
-        return 0;
+function cve_post_liked($content = null)
+{
+    if ($content_id = cve_post_id($content)){
+        $model = new \App\Models\LikeModel();
+        return cve_cache('content_like_count_' . $content_id, function () use($model, $content_id){
+            return $model->getLikeCountByContentId($content_id);
+        });
     }
-    return cve_cache('content_like_' . $content_id, function () use($model, $content_id){
-        return $model->getContentLikeCount($content_id);
-    });
+    return 0;
 }
 
 /**
@@ -453,15 +484,15 @@ function cve_post_liked($content = null){
  * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return \CodeIgniter\Cache\CacheInterface|false|int|mixed
  */
-function cve_post_favorite($content = null){
-    $model = new \App\Models\FavoriteModel();
-    $content_id = cve_post_id($content);
-    if(is_null($content_id)){
-        return 0;
+function cve_post_favorite($content = null)
+{
+    if ($content_id = cve_post_id($content)){
+        $model = new \App\Models\FavoriteModel();
+        return cve_cache('content_favorite_count_' . $content_id, function () use($model, $content_id){
+            return $model->getFavoriteCountByContentId($content_id);
+        });
     }
-    return cve_cache('content_favorite_' . $content_id, function () use($model, $content_id){
-        return $model->getContentFavoriteCount($content_id);
-    });
+    return 0;
 }
 
 /**
@@ -469,15 +500,15 @@ function cve_post_favorite($content = null){
  * @param null $content | İçerik ile ilgili slug, id veya içeriğin object hali
  * @return \CodeIgniter\Cache\CacheInterface|false|int|mixed
  */
-function cve_post_rating_avg($content = null){
-    $model = new \App\Models\RatingModel();
-    $content_id = cve_post_id($content);
-    if(is_null($content_id)){
-        return 3;
+function cve_post_rating_avg($content = null)
+{
+    if ($content_id = cve_post_id($content)){
+        $model = new \App\Models\RatingModel();
+        return cve_cache('content_vote_' . $content_id, function () use($model, $content_id){
+            return $model->getRatingAvgByContentId($content_id);
+        });
     }
-    return cve_cache('content_vote_' . $content_id, function () use($model, $content_id){
-        return $model->getContentVoteAvg($content_id);
-    });
+    return 3;
 }
 
 /**
@@ -486,28 +517,21 @@ function cve_post_rating_avg($content = null){
  * @return \CodeIgniter\Cache\CacheInterface|false|int|mixed
  */
 function cve_post_rating_score($content = null){
-    $model = new \App\Models\RatingModel();
-    $content_id = cve_post_id($content);
     $vote_list = ['5' => 0, '4' => 0, '3' => 0, '2' => 0, '1' => 0];
-
-    if(is_null($content_id)){
-        return $vote_list;
-    }
-
-    $score_list =  cve_cache('content_score_' . $content_id, function () use($model, $content_id){
-        return $model->getContentVoteCount($content_id);
-    });
-
-    foreach ($vote_list as $key => $vote) {
-        foreach ($score_list as $score){
-            if ($key == $score->vote){
-                $vote_list[$key] = $score->count;
+    if ($content_id = cve_post_id($content)){
+        $model = new \App\Models\RatingModel();
+        $score_list =  cve_cache('content_score_' . $content_id, function () use($model, $content_id){
+            return $model->getRatingCountByContentID($content_id);
+        });
+        foreach ($vote_list as $key => $vote) {
+            foreach ($score_list as $score){
+                if ($key == $score->vote){
+                    $vote_list[$key] = $score->count;
+                }
             }
         }
     }
-
     return $vote_list;
-
 }
 
 /**

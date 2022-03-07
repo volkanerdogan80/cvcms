@@ -278,7 +278,7 @@ function is_favorite($content = null){
         'user_id' => $user_id,
         'content_id' => $content_id,
     ]), function () use($model, $content_id){
-        return $model->getUserFavoriteControl($content_id);
+        return $model->getFavoriteControlByUserId($content_id);
     });
 
     if ($control){
@@ -296,7 +296,7 @@ function is_liked($content = null){
         'remote_addr' => $remote_addr,
         'content_id' => $content_id,
     ]), function () use($model, $content_id, $remote_addr){
-        return $model->getUserLikeControl($content_id, $remote_addr);
+        return $model->getLikeControlByRemoteAddr($content_id, $remote_addr);
     });
 
     if ($control){
@@ -314,7 +314,7 @@ function is_rating($content = null){
         'remote_addr' => $remote_addr,
         'content_id' => $content_id,
     ]), function () use($model, $content_id, $remote_addr){
-        return $model->getContentIpControl($content_id, $remote_addr);
+        return $model->getRatingControlByRemoteAddr($content_id, $remote_addr);
     });
 
     if ($control){

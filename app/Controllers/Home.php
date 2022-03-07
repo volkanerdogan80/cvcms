@@ -1,13 +1,16 @@
 <?php namespace App\Controllers;
 
-use App\Models\GroupModel;
+use App\Models\ContentModel;
 
 class Home extends BaseController
 {
     public function index()
     {
 
-        print_r(cve_theme_setting('slider_module'));
+       // $model = new ContentModel();
+        //$content = $model->find(1);
+        print_r(cve_post_favorite(2));
+
 
 
         /*$model->insert([

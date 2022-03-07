@@ -36,9 +36,71 @@ class CommentModel extends Model
         'status'     => 'required|string'
     ];
 
+    public function getComment($params, $withDeleted = false){
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where($params);
+        $builder = $withDeleted ? $builder = $builder->withDeleted() : $builder;
+
+        return $builder->first();
+    }
+
+    public function getComments($params, $withDeleted = false){
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where($params);
+        $builder = $withDeleted ? $builder = $builder->withDeleted() : $builder;
+        $builder = $builder->orderBy('id', 'DESC');
+
+        return $builder->findAll();
+    }
+
+    public function getCommentsByStatus($status = STATUS_ACTIVE, $withDeleted = false){
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('status', $status);
+        $builder = $withDeleted ? $builder = $builder->withDeleted() : $builder;
+        $builder = $builder->orderBy('id', 'DESC');
+
+        return $builder->findAll();
+    }
+
+    public function getCommentsByContentId($content_id, $status = STATUS_ACTIVE, $withDeleted = false){
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('content_id', $content_id);
+        $builder = $status ? $builder->where('status', $status) : $builder;
+        $builder = $withDeleted ? $builder = $builder->withDeleted() : $builder;
+        $builder = $builder->orderBy('id', 'DESC');
+
+        return $builder->findAll();
+    }
+
+    public function getCommentsByCommentId($comment_id, $status = STATUS_ACTIVE, $withDeleted = false){
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('comment_id', $comment_id);
+        $builder = $status ? $builder->where('status', $status) : $builder;
+        $builder = $withDeleted ? $builder = $builder->withDeleted() : $builder;
+        $builder = $builder->orderBy('id', 'DESC');
+
+        return $builder->findAll();
+    }
+
+    public function getCommentsCountByContentId($content_id, $status = STATUS_ACTIVE, $withDeleted = false){
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('content_id', $content_id);
+        $builder = $status ? $builder->where('status', $status) : $builder;
+        $builder = $withDeleted ? $builder = $builder->withDeleted() : $builder;
+        $builder = $builder->orderBy('id', 'DESC');
+
+        return $builder->countAllResults();
+    }
+
     public function getListing(
-        ?string $status     = null,
-        ?int $content       = null,
+        ?string $status,
+        ?int $content,
         ?array $content_list,
         ?string $search     = null,
         ?array $dateFilter  = null,

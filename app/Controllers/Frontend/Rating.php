@@ -25,7 +25,7 @@ class Rating extends BaseController
             $vote = $this->request->getPost('vote');
             $remote_addr = $this->request->getIPAddress();
 
-            if ($this->ratingModel->getContentIpControl($content_id, $remote_addr)){
+            if ($this->ratingModel->getRatingControlByRemoteAddr($content_id, $remote_addr)){
                 return $this->response([
                     'status' => false,
                     'message' => 'Bu içeriğe daha önce oy vermişsiniz.'
@@ -49,8 +49,8 @@ class Rating extends BaseController
                 'status' => true,
                 'message' => 'Derecelendirme başarılı bir şekilde yapıldı.',
                 'data' => [
-                    'ratingAvg' => $this->ratingModel->getContentVoteAvg($content_id),
-                    'voteList' => $this->ratingModel->getContentVoteCount($content_id),
+                    'ratingAvg' => $this->ratingModel->getRatingAvgByContentId($content_id),
+                    'voteList' => $this->ratingModel->getRatingCountByContentID($content_id),
                 ]
             ]);
         }

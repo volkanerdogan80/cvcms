@@ -27,7 +27,7 @@ class FavoriteModel extends Model
         'user_id' => 'required|numeric'
     ];
 
-    public function getUserFavoriteControl($content_id)
+    public function getFavoriteControlByUserId($content_id)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->where('user_id',session('userData.id'));
@@ -35,18 +35,10 @@ class FavoriteModel extends Model
         return $builder->first();
     }
 
-    public function getFavoriteCount($content_id)
+    public function getFavoriteCountByContentId($content_id)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->where('content_id', $content_id);
         return $builder->countAllResults();
-    }
-
-    public function getContentFavoriteCount($content_id)
-    {
-        $builder = $this->setTable($this->table);
-        $builder = $builder->where('content_id', $content_id);
-        $builder = $builder->selectCount('content_id', 'favorite');
-        return $builder->first()->favorite;
     }
 }
