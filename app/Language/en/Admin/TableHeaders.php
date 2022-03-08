@@ -25,5 +25,7 @@ return [
         'language_title' => 'Language Title',
         'language_code' => 'Language Code',
         'flag' => 'Flag',
+
+        'slider_title' => 'Slider Title'
     ]
 ];

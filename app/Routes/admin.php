@@ -155,6 +155,17 @@ $routes->group('analytics', function ($routes) {
     $routes->post('realtime/visitors', 'Backend\Analytics::getRealTimeVisitors', ['as' => 'admin_realtime_visitors']);
 });
 
+$routes->group('slider', function ($routes) {
+    $routes->get('listing(:any)', 'Backend\Slider::listing$1', ['as' => 'admin_slider_listing']);
+    $routes->post('create', 'Backend\Slider::create', ['as' => 'admin_slider_create']);
+    $routes->match(['get', 'post'], 'edit/(:num)', 'Backend\Slider::edit/$1', ['as' => 'admin_slider_edit']);
+    $routes->post('delete', 'Backend\Slider::delete', ['as' => 'admin_slider_delete']);
+    $routes->post('undo-delete', 'Backend\Slider::undoDelete', ['as' => 'admin_slider_undo_delete']);
+    $routes->post('purge-delete', 'Backend\Slider::purgeDelete', ['as' => 'admin_slider_purge_delete']);
+    $routes->get('new-card', 'Backend\Slider::newCard', ['as' => 'admin_slider_new_card']);
+    $routes->get('new-text', 'Backend\Slider::newText', ['as' => 'admin_slider_new_text']);
+    $routes->get('new-button', 'Backend\Slider::newButton', ['as' => 'admin_slider_new_button']);
+});
 
 
 

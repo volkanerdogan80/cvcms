@@ -108,5 +108,12 @@ class Permissions extends BaseConfig
 
         'analytics_realtime' => 'Admin/Permissions.text.analytics_realtime',
         'analytics_metrics' => 'Admin/Permissions.text.analytics_metrics',
+
+        'slider_listing' => 'Admin/Permissions.text.slider_listing',
+        'slider_create' => 'Admin/Permissions.text.slider_create',
+        'slider_edit' => 'Admin/Permissions.text.slider_edit',
+        'slider_delete' => 'Admin/Permissions.text.slider_delete',
+        'slider_undo-delete' => 'Admin/Permissions.text.slider_undo-delete',
+        'slider_purge-delete' => 'Admin/Permissions.text.slider_purge-delete',
     ];
 }

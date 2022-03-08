@@ -35,7 +35,7 @@ class Menus extends BaseController
             'pager' => $this->menuModel->pager
         ]);
     }
-    //TODO: Yeni menü eklenince svalue boş geliyor bu nedenle hata veriyor. Ayrıca kategori ya da içerik boş olunca da hata veriyor. Kontrol eklenecek
+
     public function create()
     {
         $name = $this->request->getPost('name');

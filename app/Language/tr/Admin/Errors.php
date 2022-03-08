@@ -91,6 +91,7 @@ return [
         'notification_send_failure'   => 'Bildirim gönderimi esnasında bir hata meydana geldi. Lütfen tekrar deneyiniz.',
         'realtime_visitors_failure'   => 'Sitenizdeki anlık ziyaretçi sayısı bilgisine erişilemiyor. Günlük kullanım limiti dolmuş olabilir.',
 
-        'data_not_found' => 'Böyle bir veri bulunamadı!'
+        'data_not_found' => 'Böyle bir veri bulunamadı!',
+        'empty_slider_failure' => 'Slider en az bir eleman içermek zorundadır. Bu sliderı tamamen kaldırmak istiyorsanız sliderlar menüsüne giderek bu işlemi gerçekleştirebilirsiniz.'
     ]
 ];

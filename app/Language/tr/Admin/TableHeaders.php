@@ -25,5 +25,7 @@ return [
         'language_title' => 'Dil Başlığı',
         'language_code' => 'Dil Kodu',
         'flag' => 'Bayrak',
+
+        'slider_title' => 'Slider Başlığı'
     ]
 ];

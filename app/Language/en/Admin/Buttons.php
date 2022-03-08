@@ -56,5 +56,7 @@ return [
         'analytics' => 'Statistics',
         'instant_visitors' => 'Instant Visitors',
         'visitor_history' => 'Visitor History',
+
+        'add_new_item' => 'Add New Item to Slider',
     ]
 ];

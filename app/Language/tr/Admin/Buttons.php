@@ -57,5 +57,7 @@ return [
         'instant_visitors' => 'Anlık Ziyaretçiler',
         'visitor_history' => 'Ziyaretçi Geçmişi',
 
+        'add_new_item' => 'Slidera Yeni Eleman Ekle',
+
     ]
 ];

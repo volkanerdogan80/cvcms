@@ -64,5 +64,7 @@ return [
         'filter_social'   => 'Filter Social Media...',
         'currently_uploaded_img'   => 'Currently Uploaded Images',
         'all_uploaded_img'   => 'All Uploaded Images',
+
+        'slider_title' => 'Slider Title'
     ]
 ];

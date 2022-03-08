@@ -64,7 +64,7 @@
                                                      aria-labelledby="<?= $random; ?>-<?= $lang->getCode(); ?>-tab"
                                                      style="padding: 0px">
                                                     <div class="form-group mt-3">
-                                                        <input name="field[<?= $random ?>][value][<?= $lang->getCode(); ?>]" value="<?= $blog->getField($fKey, $lang->getCode()); ?>" type="text" class="form-control">
+                                                        <input name="field[<?= $random ?>][value][<?= $lang->getCode(); ?>]" value="<?= $content->getField($fKey, $lang->getCode()); ?>" type="text" class="form-control">
                                                     </div>
                                                 </div>
                                             <?php endforeach; ?>

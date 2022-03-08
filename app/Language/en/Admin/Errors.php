@@ -91,6 +91,8 @@ return [
         'notification_send_failure'   => 'An error occurred while sending notification. Please try again.',
         'realtime_visitors_failure'   => 'The instant visitor count information on your site cannot be accessed. The daily usage limit may have been reached.',
 
-        'data_not_found' => 'Data not found!'
+        'data_not_found' => 'Data not found!',
+        'empty_slider_failure' => 'The slider must contain at least one element. If you want to remove this slider completely, you can do this by going to the sliders menu.'
+
     ]
 ];

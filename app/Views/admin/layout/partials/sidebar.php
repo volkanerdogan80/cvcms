@@ -16,7 +16,12 @@
             </li>
 
             <li class="nav-item dropdown" id="group">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span><?= cve_admin_lang('Sidebar', 'groups') ?></span></a>
+                <a href="#" class="nav-link has-dropdown">
+                    <i class="fas fa-users-cog"></i>
+                    <span>
+                        <?= cve_admin_lang('Sidebar', 'groups') ?>
+                    </span>
+                </a>
                 <ul class="dropdown-menu">
                     <li>
                         <a class="nav-link" href="<?= base_url(route_to('admin_group_listing', null)) ?>">
@@ -31,7 +36,7 @@
             </li>
             <li class="nav-item dropdown" id="user">
                 <a href="#" class="nav-link has-dropdown">
-                    <i class="fas fa-fire"></i><span><?= cve_admin_lang('Sidebar', 'users') ?></span>
+                    <i class="fas fa-users"></i><span><?= cve_admin_lang('Sidebar', 'users') ?></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li>
@@ -56,7 +61,7 @@
 
             <li class="nav-item dropdown" id="category">
                 <a href="#" class="nav-link has-dropdown">
-                    <i class="fas fa-fire"></i>
+                    <i class="fas fa-th-list"></i>
                     <span>
                         <?= cve_admin_lang('Sidebar', 'categories') ?>
                     </span>
@@ -76,7 +81,7 @@
             </li>
             <li class="nav-item dropdown" id="media">
                 <a href="#" class="nav-link has-dropdown">
-                    <i class="fas fa-fire"></i>
+                    <i class="fas fa-folder-open"></i>
                     <span>
                         <?= cve_admin_lang('Sidebar', 'media') ?>
                     </span>
@@ -133,10 +138,17 @@
                     </li>
                 </ul>
             </li>
-
+            <li class="clear-storage">
+                <a class="nav-link" href="<?= base_url(route_to('admin_slider_listing', null)); ?>">
+                    <i class="far fa-images"></i>
+                    <span>
+                        <?= cve_admin_lang('Sidebar', 'sliders'); ?>
+                    </span>
+                </a>
+            </li>
             <li class="clear-storage">
                 <a class="nav-link" href="<?= base_url(route_to('admin_theme_listing')); ?>">
-                    <i class="fas fa-tools"></i>
+                    <i class="fab fa-gripfire"></i>
                     <span>
                         <?= cve_admin_lang('Sidebar', 'themes')?>
                     </span>

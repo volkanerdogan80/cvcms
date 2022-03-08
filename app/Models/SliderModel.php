@@ -3,16 +3,15 @@
 
 namespace App\Models;
 
-use App\Entities\MenuEntity;
+use App\Entities\SliderEntity;
 use \CodeIgniter\Model;
 
-class MenuModel extends Model
+class SliderModel extends Model
 {
-
-    protected $table = 'menus';
+    protected $table = 'sliders';
     protected $primaryKey = 'id';
 
-    protected $returnType = MenuEntity::class;
+    protected $returnType = SliderEntity::class;
     protected $useSoftDeletes = true;
 
     protected $allowedFields = [
@@ -30,32 +29,30 @@ class MenuModel extends Model
         'skey' => 'required|is_unique[menus.skey,id,{id}]',
     ];
 
-    public function getMenu($params, $withDeleted = false)
+    public function getSlider($params, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where($params);
-        $builder = $withDeleted ? $builder->withDeleted() : $builder;
+        $builder = $withDeleted ? $builder = $builder->withDeleted() : $builder;
         return $builder->first();
     }
 
-    public function getMenuByKey($key,$withDeleted = false)
+    public function getSliderByKey($key, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('skey', $key);
-        //$builder = $status ? $builder->where('status', $status) : $builder;
-        $builder = $withDeleted ? $builder->withDeleted() : $builder;
+        $builder = $withDeleted ? $builder = $builder->withDeleted() : $builder;
         return $builder->first();
     }
 
-    public function getMenuById($id, $withDeleted = false)
+    public function getSliderById($id, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
         $builder = $builder->where('id', $id);
-        //$builder = $status ? $builder->where('status', $status) : $builder;
-        $builder = $withDeleted ? $builder->withDeleted() : $builder;
+        $builder = $withDeleted ? $builder = $builder->withDeleted() : $builder;
         return $builder->first();
     }
 }

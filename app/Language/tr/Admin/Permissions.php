@@ -165,5 +165,12 @@ return [
         'admin_report_delete_all' => 'Tüm raporları silme yetkisi',
         'admin_report_undo_delete_all' => 'Silinmiş tüm raporları geri getirme yetkisi',
         'admin_report_purge_delete_all' => 'Tüm raporları kalıcı olarak silme yetkisi',
+
+        'slider_listing' => 'Sliderları listeleme yetkisi',
+        'slider_create' => 'Yeni slider ekleme yetkisi',
+        'slider_edit' => 'Slider içeriğini düzenleme yetkisi',
+        'slider_delete' => 'Slider silme yetkisi',
+        'slider_undo-delete' => 'Silinmiş sliderları geri getirme yetkisi',
+        'slider_purge-delete' => 'Silinmiş sliderları kalıcı olarak silme yetkisi',
     ]
 ];

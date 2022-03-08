@@ -64,5 +64,7 @@ return [
         'filter_social'   => 'Sosyal Medya Ara...',
         'currently_uploaded_img'   => 'Şu An Yüklenenler Görseller',
         'all_uploaded_img'   => 'Tüm Yüklenen Görseller',
+
+        'slider_title' => 'Slider Başlığı'
     ]
 ];

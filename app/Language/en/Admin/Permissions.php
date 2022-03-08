@@ -164,5 +164,12 @@ return [
         'admin_report_delete_all' => 'Authorization to delete all reports',
         'admin_report_undo_delete_all' => 'Authorization to delete all deleted reports',
         'admin_report_purge_delete_all' => 'Permission to permanently delete all reports',
+
+        'slider_listing' => 'Authorization to list  sliders',
+        'slider_create' => 'Authorization to add new slider',
+        'slider_edit' => 'Authorization to edit sliders',
+        'slider_delete' => 'Authorization to delete sliders',
+        'slider_undo-delete' => 'Authorization to restore deleted sliders',
+        'slider_purge-delete' => 'Authorization to permanently delete sliders',
     ]
 ];

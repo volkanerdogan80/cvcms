@@ -7,7 +7,7 @@
             <?php if (isset($item['child']) && count($item['child']) > 0): ?>
                 <li class="nav-item dropdown" id="<?= $module . '_menu'; ?>">
                     <a href="#" class="nav-link has-dropdown">
-                        <i class="fas fa-fire"></i>
+                        <i class="fas fa-text-height"></i>
                         <span>
                         <?= cve_admin_lang($module, 'module') ?>
                     </span>
