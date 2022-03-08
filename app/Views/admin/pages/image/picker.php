@@ -78,6 +78,9 @@
             </div>
         </div>
     </div>
+    <div id="image-pager">
+        <?= $pager->links('default', 'cms_pager'); ?>
+    </div>
     <?php if ($type == 'editor'): ?>
         <button type="button" class="btn btn-primary image-picker-use"><?= cve_admin_lang('Buttons', 'save') ?></button>
     <?php elseif ($type == 'single'): ?>

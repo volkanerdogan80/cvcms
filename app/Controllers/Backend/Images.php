@@ -48,22 +48,42 @@ class Images extends BaseController
         return view(PANEL_FOLDER . '/pages/image/listing', $data);
     }
 
+
     public function picker()
     {
+
+        $data = $this->imageModel->getListing(null, null, 18);
+
+        if ($this->request->getGet('page')){
+            return $this->pickerAjax($data);
+        }
+
         $src_id = $this->request->getGet('src');
         $area = $this->request->getGet('area');
         $input_id = $this->request->getGet('input');
         $type = $this->request->getGet('type');
-        $images = $this->imageModel->orderBy('id','DESC')->findAll();
 
-        return view(PANEL_FOLDER . '/pages/image/picker', [
+        return view('admin/pages/image/picker', [
             'src_id' => $src_id ? $src_id : null,
             'input_id' => $input_id ? $input_id : null,
             'area' => $area ? $area : null,
             'variable' => random_string('alpha', 16),
             'divId' => random_string('alpha', 16),
-            'images' => $images,
+            'images' => $data['images'],
+            'pager' => $data['pager'],
             'type' => $type,
+        ]);
+    }
+
+    public function pickerAjax($data){
+        return $this->response->setJSON([
+            'status' => true,
+            'message' => cve_admin_lang('Success','create_success'),
+            'view' => view(PANEL_FOLDER . '/pages/image/picker-pager', [
+                'images' => $data['images'],
+                'type' => $this->request->getGet('type')
+            ]),
+            'pager' => $data['pager']->links('default', 'cms_pager')
         ]);
     }
 

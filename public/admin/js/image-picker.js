@@ -102,3 +102,12 @@ $(document).on('keyup', '.image-search', function (){
         }
     })
 });
+
+$(document).on('click', '#image-pager .page-link', function (){
+    let href = $(this).attr('href');
+    cve_request.get(href, {}, function (response) {
+        $('#single-image-list').html(response.view);
+        $('#image-pager').html(response.pager);
+    }, false)
+    return false;
+});
