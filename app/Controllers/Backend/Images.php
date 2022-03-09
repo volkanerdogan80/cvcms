@@ -39,6 +39,8 @@ class Images extends BaseController
             'perPage' => $perPage,
             'dateFilter' => $getDateFilter,
             'search' => $search,
+            'divId' => "image-listing-dropzone",
+            'image_groups' => $this->imageModel->getImageGroupByDistinct(),
         ];
 
         $getModel = $this->imageModel->getListing($search, $dateFilter, $perPage);
@@ -71,6 +73,7 @@ class Images extends BaseController
             'divId' => random_string('alpha', 16),
             'images' => $data['images'],
             'pager' => $data['pager'],
+            'image_groups' => $this->imageModel->getImageGroupByDistinct(),
             'type' => $type,
         ]);
     }
@@ -116,7 +119,19 @@ class Images extends BaseController
             ]);
         }
 
+        $group = $this->request->getGet('group');
+        $group_name = $this->request->getGet('group_name');
+
+        if (!$group && !$group_name){
+            $group = 'default';
+            $group_name = 'Default';
+        }elseif(!$group && $group_name){
+            $group = cve_slug_creator($group_name);
+        }
+
         $this->imageEntity->setName($file->getClientName());
+        $this->imageEntity->setGroup($group);
+        $this->imageEntity->setGroupName($group_name);
         $this->imageEntity->setSlug($file->getName());
         $this->imageEntity->setUrl($file->getName());
         $this->imageEntity->setSize($file->getSize());

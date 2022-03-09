@@ -27,6 +27,7 @@ return [
         'menu_title' => 'Menu Title',
         'group_title' => 'Group Title',
         'group_select' => 'Select Group',
+        'group_add' => 'Add Group',
         'category' => 'Category',
         'categories' => 'Categories',
         'category_select' => 'Select Category',

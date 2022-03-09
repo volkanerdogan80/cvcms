@@ -111,3 +111,38 @@ $(document).on('click', '#image-pager .page-link', function (){
     }, false)
     return false;
 });
+
+$(document).on('change', '.image-group-select', function () {
+    let selected_val = $(this).find('option:selected').val();
+    let selected_text = $(this).find('option:selected').text();
+
+    $('.image-group-name').hide();
+    $('.image-group-btn').hide();
+
+    if (selected_val === 'new-group'){
+        $('.image-group-name').show();
+        $('.image-group-btn').show();
+    }else{
+        let new_form_action = admin_image_upload + '?group=' + selected_val + '&group_name=' + selected_text;
+        $('.cve-image-upload-form').attr('action', new_form_action);
+    }
+});
+
+$(document).on('keyup', '.image-group-name input', function () {
+    let name = $(this).val();
+    let new_form_action = admin_image_upload + '?group_name=' + name;
+    $('.cve-image-upload-form').attr('action', new_form_action);
+})
+
+$(document).on('click', '.image-delete', function (){
+    $('.chocolat-wrapper').remove();
+    let id = $(this).data('id');
+    let url = $(this).data('url');
+
+    cve_request.post(url, {id: id}, function (response){
+        if(response.status){
+            $('div[data-id='+id+']').remove();
+        }
+    })
+    return false;
+});

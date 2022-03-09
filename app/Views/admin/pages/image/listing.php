@@ -12,11 +12,7 @@
             <div class="section-body">
                 <div class="card">
                     <div class="card-body">
-                        <form action="<?= base_url(route_to('admin_image_upload')); ?>" id="image-listing-dropzone" class="dropzone">
-                            <div class="fallback">
-                                <input name="file" type="file" multiple />
-                            </div>
-                        </form>
+                        <?= $this->include(PANEL_FOLDER . '/pages/image/partials/upload-form'); ?>
                     </div>
                 </div>
                 <div class="card">
@@ -94,8 +90,11 @@
 <script>
     $(document).ready(function (){
         Dropzone.autoDiscover = true;
-        let test = new Dropzone("#image-listing-dropzone");
-        test.on("complete", function(file) {
+        let listingUpload = new Dropzone("#<?= $divId; ?>");
+        listingUpload.on('processing', function () {
+            this.options.url = $('.cve-image-upload-form').attr('action');
+        })
+        listingUpload.on("complete", function(file) {
             let image = JSON.parse(file.xhr.response);
             if(!image.status){
                 iziToast.error({message: image.message.file, position: 'topRight'});
@@ -120,21 +119,6 @@
 <script>
     $("input[name=dateFilter]").val('<?= $dateFilter?>');
     $("select[name=per_page]").val('<?= $perPage?>');
-</script>
-
-<script>
-    $(document).on('click', '.image-delete', function (){
-        $('.chocolat-wrapper').remove();
-        let id = $(this).data('id');
-        let url = $(this).data('url');
-
-        cve_request.post(url, {id: id}, function (response){
-            if(response.status){
-                $('div[data-id='+id+']').remove();
-            }
-        })
-        return false;
-    });
 </script>
 
 <?php $this->endSection(); ?>

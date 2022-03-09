@@ -13,6 +13,18 @@ class Images extends Migration
                 'unsigned' => true,
                 'auto_increment' => true
             ],
+            'group' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+                'null' => false,
+                'default' => 'default'
+            ],
+            'group_name' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+                'null' => false,
+                'default' => 'Default'
+            ],
             'name' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
@@ -30,7 +42,7 @@ class Images extends Migration
             ],
             'type' => [
                 'type' => 'VARCHAR',
-                'constraint' => 255,
+                'constraint' => 50,
                 'null' => false,
             ],
             'size' => [

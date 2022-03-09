@@ -10,6 +10,8 @@ class ImageEntity extends Entity
 {
     protected $id;
     protected $name;
+    protected $group;
+    protected $group_name;
     protected $url;
     protected $type;
     protected $size;
@@ -24,6 +26,16 @@ class ImageEntity extends Entity
     public function setName(string $name): void
     {
         $this->attributes['name'] = $name;
+    }
+
+    public function setGroup($group = null)
+    {
+        $this->attributes['group'] = $group;
+    }
+
+    public function setGroupName($group_name = null)
+    {
+        $this->attributes['group_name'] = $group_name;
     }
 
     public function setSlug(string $name): void
@@ -50,6 +62,16 @@ class ImageEntity extends Entity
     public function getName(): string
     {
         return $this->attributes['name'];
+    }
+
+    public function getGroup(): string
+    {
+        return $this->attributes['group'];
+    }
+
+    public function getGroupName(): string
+    {
+        return $this->attributes['group_name'];
     }
 
     public function getSlug(): string

@@ -15,6 +15,8 @@ class ImageModel extends Model
     protected $useSoftDeletes = false;
 
     protected $allowedFields = [
+        'group',
+        'group_name',
         'name',
         'url',
         'slug',
@@ -27,12 +29,23 @@ class ImageModel extends Model
     protected $updatedField = 'updated_at';
 
     protected $validationRules = [
+        'group' => 'required',
+        'group_name' => 'required',
         'name' => 'required',
         'url'  => 'required',
         'slug' => 'required',
         'type' => 'required',
         'size' => 'required',
     ];
+
+
+    public function getImageGroupByDistinct(): array
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select(['group', 'group_name']);
+        $builder = $builder->distinct();
+        return $builder->findAll();
+    }
 
     public function getImage($params)
     {

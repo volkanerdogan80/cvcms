@@ -73,6 +73,7 @@
         }
     }*/
     let adminImagePicker = '<?= base_url(route_to('admin_image_picker')); ?>';
+    let admin_image_upload = '<?= base_url(route_to('admin_image_upload')); ?>';
     let admin_message_listing = '<?= base_url(route_to('admin_message_listing', null)); ?>';
     let daterange = {
         today: '<?=cve_admin_lang('General', 'today') ?>',

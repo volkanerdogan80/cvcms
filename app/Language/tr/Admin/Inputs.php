@@ -27,6 +27,7 @@ return [
         'menu_title' => 'Menü Başlığı',
         'group_title' => 'Grup Başlığı',
         'group_select' => 'Grup Seç',
+        'group_add' => 'Grup Ekle',
         'category' => 'Kategori',
         'categories' => 'Kategoriler',
         'category_select' => 'Kategori Seç',

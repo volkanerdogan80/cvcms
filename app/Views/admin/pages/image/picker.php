@@ -32,17 +32,20 @@
     </div>
     <div class="form-group">
         <div class="collapse" id="collapseDropzone">
-            <form action="<?= base_url(route_to('admin_image_upload')); ?>" id="<?= $divId; ?>" class="dropzone">
-                <div class="fallback">
-                    <input name="file" type="file" multiple/>
-                </div>
-            </form>
+            <?= $this->include(PANEL_FOLDER . '/pages/image/partials/upload-form'); ?>
         </div>
         <hr>
         <div class="row gutters-sm" id="single-image-list">
             <?php foreach ($images as $image): ?>
-                <div data-name="<?= $image->getName() ?>" class="all-image col-6 col-sm-2">
+                <div data-id="<?= $image->id; ?>"  data-name="<?= $image->getName() ?>" class="all-image col-6 col-sm-2">
                     <label class="imagecheck mb-4">
+                        <button class="btn btn-danger btn-sm m-2 image-delete"
+                                data-id="<?= $image->id; ?>"
+                                data-url="<?= base_url(route_to('admin_image_delete')) ?>"
+                                style="position: absolute; right: 0; z-index: 10000"
+                        >
+                            <i class="fas fa-trash"></i>
+                        </button>
                         <input data-id="<?= $image->id; ?>"
                                data-original="<?= $image->getUrl(); ?>"
                                data-src="<?= $image->getUrl('187x134'); ?>"
@@ -103,21 +106,33 @@
 <script>
     Dropzone.autoDiscover = false;
     let <?= $variable; ?> = new Dropzone("#<?= $divId; ?>");
-    <?= $variable; ?>.on("complete", function (file) {
+
+    <?= $variable; ?>.on('processing', function () {
+        this.options.url = $('.cve-image-upload-form').attr('action');
+    })
+
+    <?= $variable; ?>.on("complete", function(file) {
         let image = JSON.parse(file.xhr.response);
-        if (!image.status) {
+        if(!image.status){
             iziToast.error({message: image.message.file, position: 'topRight'});
-        } else {
-            $('#single-image-list').prepend('<div data-name="' + image.name + '" class="new-image all-image col-6 col-sm-2">\n' +
+        }else{
+            $('#single-image-list').prepend('<div data-id="'+image.id+'"  data-name="'+image.name+'" class="new-image all-image col-6 col-sm-2">\n' +
                 '<label class="imagecheck mb-4">\n' +
-                '<input data-original="' + image.original + '" data-id="' + image.id + '" data-src="' + image.src + '" name="imagecheck" type="radio" value="6" class="imagecheck-input"  />\n' +
+                '<button class="btn btn-danger btn-sm m-2 image-delete"'+
+                'data-id="'+image.id+'"'+
+                'data-url="<?= base_url(route_to('admin_image_delete')) ?>"'+
+                'style="position: absolute; right: 0px; z-index: 10000">'+
+                '<i class="fas fa-trash"></i>'+
+                '</button>'+
+                '<input data-original="'+image.original+'" data-id="'+image.id+'" data-src="'+image.src+'" name="imagecheck" type="radio" value="6" class="imagecheck-input"  />\n' +
                 '<figure class="imagecheck-figure">\n' +
-                '<img src="' + image.src + '" style="width: 187px; height: 134px" alt="" class="imagecheck-image">\n' +
+                '<img src="'+image.src+'" style="width: 187px; height: 134px" alt="" class="imagecheck-image lazyload">\n' +
+                '<span class="badge badge-light image-picker-name-three-dots">'+image.name+'</span>'+
                 '</figure>\n' +
-                '<span class="badge badge-light image-picker-name-three-dots">' + image.name + '</span>' +
                 '</label>\n' +
                 '</div>');
         }
     });
+
     $("img.lazyload").lazyload();
 </script>
