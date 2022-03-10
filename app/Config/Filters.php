@@ -12,6 +12,7 @@ class Filters extends BaseConfig
 		'honeypot' => \CodeIgniter\Filters\Honeypot::class,
         'IsLoggedIn' => \App\Filters\IsLoggedIn::class,
         'IsPermission' => \App\Filters\IsPermission::class,
+        'ApiAuth' => \App\Filters\ApiAuth::class,
         'ReCaptcha' => \App\Filters\ReCaptcha::class,
         'ThemeJavascript' => \App\Filters\ThemeJavascript::class,
         'ThemeStyle' => \App\Filters\ThemeStyle::class,
@@ -31,12 +32,13 @@ class Filters extends BaseConfig
             ],
 			'csrf' => [
                 'except' => [
-                    '*/' . PANEL_FOLDER . '/image/upload'
+                    '*/' . PANEL_FOLDER . '/image/upload',
+                    '*/api/*'
                 ]
             ]
 		],
 		'after'  => [
-            'toolbar',
+            //'toolbar',
             'honeypot' => [
                 'except' => [
                     '*/' . PANEL_FOLDER . '/*'
@@ -98,6 +100,11 @@ class Filters extends BaseConfig
         'IsPermission' => [
             'before' => [
                 '*/' . PANEL_FOLDER . '/*'
+            ]
+        ],
+        'ApiAuth' => [
+            'before' => [
+                '*/api/*',
             ]
         ],
         'ReCaptcha' => [

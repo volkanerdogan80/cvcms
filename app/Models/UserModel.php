@@ -128,7 +128,15 @@ class UserModel extends Model
         return $builder->findAll($limit);
     }
 
+    public function getUserByApiKey($api_key)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select(['users.*', 'groups.slug', 'groups.permissions']);
+        $builder = $builder->where('api_key', $api_key);
+        $builder = $builder->join('groups', 'groups.id = users.group_id');
+        return $builder->first();
 
+    }
     public function getListing(
         ?string $status = null,
         ?string $search = null,
