@@ -16,7 +16,7 @@ class FirebaseToken extends Migration
                 'auto_increment' => true
             ],
             'token' => [
-                'type' => 'TEXT',
+                'type' => 'text',
                 'null' => false,
             ],
             'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
@@ -28,6 +28,6 @@ class FirebaseToken extends Migration
 
     public function down()
     {
-        //
+        $this->forge->dropTable('firebase_token');
     }
 }

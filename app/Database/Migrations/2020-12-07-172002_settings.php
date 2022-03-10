@@ -4,8 +4,8 @@ use CodeIgniter\Database\Migration;
 
 class Settings extends Migration
 {
-	public function up()
-	{
+    public function up()
+    {
         $this->forge->addField([
             'id' => [
                 'type' => 'INT',
@@ -29,12 +29,10 @@ class Settings extends Migration
 
         $this->forge->addKey('id', true);
         $this->forge->createTable('settings');
-	}
+    }
 
-	//--------------------------------------------------------------------
-
-	public function down()
-	{
-		//
-	}
+    public function down()
+    {
+        $this->forge->dropTable('settings');
+    }
 }

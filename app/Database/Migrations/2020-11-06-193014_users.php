@@ -4,11 +4,11 @@ use CodeIgniter\Database\Migration;
 
 class Users extends Migration
 {
-	public function up()
-	{
-	    $this->forge->addField([
-	        'id' => [
-	            'type' => 'INT',
+    public function up()
+    {
+        $this->forge->addField([
+            'id' => [
+                'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
                 'auto_increment' => true
@@ -20,19 +20,31 @@ class Users extends Migration
             ],
             'first_name' => [
                 'type' => 'VARCHAR',
-                'constraint' => 155,
+                'constraint' => 100,
                 'null' => false,
             ],
             'sur_name' => [
                 'type' => 'VARCHAR',
-                'constraint' => 155,
+                'constraint' => 100,
                 'null' => false,
             ],
             'email' => [
                 'type' => 'VARCHAR',
-                'constraint' => 155,
+                'constraint' => 100,
                 'null' => false,
                 'unique' => true
+            ],
+            'phone' => [
+                'type' => 'VARCHAR',
+                'constraint' => 30,
+                'null' => true,
+                'unique' => false
+            ],
+            'identification_number' => [
+                'type' => 'VARCHAR',
+                'constraint' => 50,
+                'null' => true,
+                'unique' => false
             ],
             'password' => [
                 'type' => 'VARCHAR',
@@ -49,11 +61,12 @@ class Users extends Migration
                 'constraint' => 6,
                 'null' => true
             ],
-            'bio' => [
-                'type' => 'TEXT',
-                'null' => true
+            'api_key' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => false
             ],
-            'firebase' => [
+            'bio' => [
                 'type' => 'TEXT',
                 'null' => true
             ],
@@ -70,12 +83,12 @@ class Users extends Migration
             ]
         ]);
 
-	    $this->forge->addKey('id', true);
-	    $this->forge->createTable('users');
-	}
+        $this->forge->addKey('id', true);
+        $this->forge->createTable('users');
+    }
 
-	public function down()
-	{
-		$this->forge->dropTable('users');
-	}
+    public function down()
+    {
+        $this->forge->dropTable('users');
+    }
 }

@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Database\Migrations;
+<?php namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
@@ -31,7 +29,6 @@ class Newsletters extends Migration
                 'constraint' => 100,
                 'null' => false,
             ],
-
             'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
         ]);
 
@@ -41,6 +38,6 @@ class Newsletters extends Migration
 
     public function down()
     {
-        //
+        $this->forge->dropTable('newsletters');
     }
 }

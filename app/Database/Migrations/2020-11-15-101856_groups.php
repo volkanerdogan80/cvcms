@@ -4,8 +4,8 @@ use CodeIgniter\Database\Migration;
 
 class Groups extends Migration
 {
-	public function up()
-	{
+    public function up()
+    {
         $this->forge->addField([
             'id' => [
                 'type' => 'INT',
@@ -37,10 +37,10 @@ class Groups extends Migration
 
         $this->forge->addKey('id', true);
         $this->forge->createTable('groups');
-	}
+    }
 
-	public function down()
-	{
-
-	}
+    public function down()
+    {
+        $this->forge->dropTable('groups');
+    }
 }

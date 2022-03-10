@@ -16,7 +16,7 @@ class ThemeSeeder extends Seeder
             'web' => 'https://cvmuhendislik.com',
             'email' => 'volkanerdogan80@gmail.com',
             'status' => STATUS_ACTIVE,
-            'settings' => null
+            'settings' => json_encode(['default' => 'cve'], JSON_UNESCAPED_UNICODE)
         ]);
     }
 }

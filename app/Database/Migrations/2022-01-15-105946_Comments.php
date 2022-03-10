@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Database\Migrations;
+<?php namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
@@ -8,6 +6,7 @@ class Comments extends Migration
 {
     public function up()
     {
+        $this->db->disableForeignKeyChecks();
         $this->forge->addField([
             'id' => [
                 'type' => 'INT',
@@ -18,6 +17,7 @@ class Comments extends Migration
             'content_id' => [
                 'type' => 'INT',
                 'constraint' => 11,
+                'unsigned' => true,
                 'null' => false,
             ],
             'comment_id' => [
@@ -53,11 +53,13 @@ class Comments extends Migration
         ]);
 
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('content_id', 'contents', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('comments');
+        $this->db->enableForeignKeyChecks();
     }
 
     public function down()
     {
-        //
+        $this->forge->dropTable('comments');
     }
 }

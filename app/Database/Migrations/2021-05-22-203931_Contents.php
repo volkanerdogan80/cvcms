@@ -100,10 +100,8 @@ class Contents extends Migration
         $this->forge->createTable('contents');
     }
 
-    //--------------------------------------------------------------------
-
     public function down()
     {
-        //
+        $this->forge->dropTable('contents');
     }
 }

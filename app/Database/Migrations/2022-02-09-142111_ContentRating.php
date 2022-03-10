@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Database\Migrations;
+<?php namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
@@ -8,6 +6,7 @@ class ContentRating extends Migration
 {
     public function up()
     {
+        $this->db->disableForeignKeyChecks();
         $this->forge->addField([
             'id' => [
                 'type' => 'INT',
@@ -18,6 +17,7 @@ class ContentRating extends Migration
             'content_id' => [
                 'type' => 'INT',
                 'constraint' => 11,
+                'unsigned' => true,
                 'null' => false,
             ],
             'vote' => [
@@ -34,11 +34,13 @@ class ContentRating extends Migration
         ]);
 
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('content_id', 'contents', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('content_rating');
+        $this->db->enableForeignKeyChecks();
     }
 
     public function down()
     {
-        //
+        $this->forge->dropTable('content_rating');
     }
 }

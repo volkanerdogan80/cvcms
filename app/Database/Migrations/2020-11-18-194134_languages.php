@@ -45,8 +45,8 @@ class Languages extends Migration
         $this->forge->createTable('languages');
     }
 
-	public function down()
-	{
-
-	}
+    public function down()
+    {
+        $this->forge->dropTable('languages');
+    }
 }

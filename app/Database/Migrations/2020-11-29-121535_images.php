@@ -4,8 +4,8 @@ use CodeIgniter\Database\Migration;
 
 class Images extends Migration
 {
-	public function up()
-	{
+    public function up()
+    {
         $this->forge->addField([
             'id' => [
                 'type' => 'INT',
@@ -56,12 +56,10 @@ class Images extends Migration
 
         $this->forge->addKey('id', true);
         $this->forge->createTable('images');
-	}
+    }
 
-	//--------------------------------------------------------------------
-
-	public function down()
-	{
-
-	}
+    public function down()
+    {
+        $this->forge->dropTable('images');
+    }
 }

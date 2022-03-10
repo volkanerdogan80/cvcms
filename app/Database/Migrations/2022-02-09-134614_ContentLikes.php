@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Database\Migrations;
+<?php namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
@@ -8,6 +6,7 @@ class ContentLikes extends Migration
 {
     public function up()
     {
+        $this->db->disableForeignKeyChecks();
         $this->forge->addField([
             'id' => [
                 'type' => 'INT',
@@ -18,6 +17,7 @@ class ContentLikes extends Migration
             'content_id' => [
                 'type' => 'INT',
                 'constraint' => 11,
+                'unsigned' => true,
                 'null' => false,
             ],
             'remote_addr' => [
@@ -29,11 +29,14 @@ class ContentLikes extends Migration
         ]);
 
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('content_id', 'contents', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('content_likes');
+        $this->db->enableForeignKeyChecks();
     }
 
     public function down()
     {
-        //
+        //TODO: Bu satır eklenince spark refresh yaptığımız zaman hata veriyor.
+        //$this->forge->dropTable('content_likes');
     }
 }

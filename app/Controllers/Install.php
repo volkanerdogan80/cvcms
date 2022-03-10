@@ -37,5 +37,7 @@ class Install extends BaseController
     {
         $seeder = \Config\Database::seeder();
         $seeder->call('App\Database\Seeds\Demo\UserSeeder');
+        $seeder->call('App\Database\Seeds\Demo\CategorySeeder');
+        $seeder->call('App\Database\Seeds\Demo\ContentSeeder');
     }
 }

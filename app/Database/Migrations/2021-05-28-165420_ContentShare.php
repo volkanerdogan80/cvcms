@@ -6,6 +6,7 @@ class ContentShare extends Migration
 {
     public function up()
     {
+        $this->db->disableForeignKeyChecks();
         $this->forge->addField([
             'id' => [
                 'type' => 'INT',
@@ -16,6 +17,7 @@ class ContentShare extends Migration
             'content_id' => [
                 'type' => 'INT',
                 'constraint' => 11,
+                'unsigned' => true,
                 'null' => false,
             ],
             'social' => [
@@ -33,11 +35,13 @@ class ContentShare extends Migration
         ]);
 
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('content_id', 'contents', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('content_share');
+        $this->db->enableForeignKeyChecks();
     }
 
     public function down()
     {
-        //
+        $this->forge->dropTable('content_share');
     }
 }
