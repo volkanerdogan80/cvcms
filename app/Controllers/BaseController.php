@@ -56,7 +56,8 @@ class BaseController extends Controller
                 'menu',
                 'language',
                 'module',
-                'slider'
+                'slider',
+                'image'
             ]);
         }
         //--------------------------------------------------------------------

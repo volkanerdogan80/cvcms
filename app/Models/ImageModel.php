@@ -55,6 +55,16 @@ class ImageModel extends Model
         return $builder->first();
     }
 
+    public function getImages($params = null): array
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        if(!is_null($params)){
+            $builder = $builder->where($params);
+        }
+        return $builder->findAll();
+    }
+
     public function getImageById($image_id)
     {
         $builder = $this->setTable($this->table);
@@ -64,9 +74,11 @@ class ImageModel extends Model
         return $builder->first();
     }
 
+
     public function getListing(
         ?string $search = null,
         ?array $dateFilter = null,
+        ?string $group = null,
         ?int $perPage = 20)
     {
         $builder = $this->setTable($this->table);
@@ -74,6 +86,10 @@ class ImageModel extends Model
 
         if(!is_null($search)){
             $builder = $builder->like('name', $search);
+        }
+
+        if(!is_null($group)){
+            $builder = $builder->where('group', $group);
         }
 
         if (!is_null($dateFilter)){

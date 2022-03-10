@@ -143,7 +143,7 @@ function showSnackbar(status, message) {
     );
 }
 
-$.fn.serializeObject = function () {
+/*$.fn.serializeObject = function () {
     var o = {};
     var a = this.serializeArray();
     $.each(a, function () {
@@ -157,7 +157,7 @@ $.fn.serializeObject = function () {
         }
     });
     return o;
-};
+};*/
 
 $(document).ready(function() {
     $(document).on('click', '.cve-bootstrap-dropdown-menu', function (e) {

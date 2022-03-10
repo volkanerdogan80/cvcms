@@ -6,7 +6,6 @@ namespace App\Controllers\Backend;
 use \App\Controllers\BaseController;
 use App\Entities\ImageEntity;
 use App\Models\ImageModel;
-use PHPUnit\Exception;
 
 class Images extends BaseController
 {
@@ -30,20 +29,24 @@ class Images extends BaseController
         $dateFilter = count($dateFilter) > 1 ? $dateFilter : null;
 
         $perPage = $this->request->getGet('per_page');
-        $perPage = !empty($perPage) ? $perPage : 24;
+        $perPage = !empty($perPage) ? $perPage : 60;
 
         $search = $this->request->getGet('search');
         $search = !empty($search) ? $search : null;
+
+        $group = $this->request->getGet('group');
+        $group = !empty($group) ? $group : null;
 
         $data = [
             'perPage' => $perPage,
             'dateFilter' => $getDateFilter,
             'search' => $search,
             'divId' => "image-listing-dropzone",
+            'group' => $group,
             'image_groups' => $this->imageModel->getImageGroupByDistinct(),
         ];
 
-        $getModel = $this->imageModel->getListing($search, $dateFilter, $perPage);
+        $getModel = $this->imageModel->getListing($search, $dateFilter, $group,  $perPage);
 
         $data = array_merge($data, $getModel);
 
@@ -54,7 +57,7 @@ class Images extends BaseController
     public function picker()
     {
 
-        $data = $this->imageModel->getListing(null, null, 18);
+        $data = $this->imageModel->getListing(null, null, null, 60);
 
         if ($this->request->getGet('page')){
             return $this->pickerAjax($data);
@@ -65,7 +68,7 @@ class Images extends BaseController
         $input_id = $this->request->getGet('input');
         $type = $this->request->getGet('type');
 
-        return view('admin/pages/image/picker', [
+        return view(PANEL_FOLDER . '/pages/image/picker', [
             'src_id' => $src_id ? $src_id : null,
             'input_id' => $input_id ? $input_id : null,
             'area' => $area ? $area : null,
@@ -81,10 +84,30 @@ class Images extends BaseController
     public function pickerAjax($data){
         return $this->response->setJSON([
             'status' => true,
-            'message' => cve_admin_lang('Success','create_success'),
             'view' => view(PANEL_FOLDER . '/pages/image/picker-pager', [
                 'images' => $data['images'],
                 'type' => $this->request->getGet('type')
+            ]),
+            'pager' => $data['pager']->links('default', 'cms_pager')
+        ]);
+    }
+
+    public function filterAjax()
+    {
+        $search = $this->request->getGet('search');
+        $search = !empty($search) ? $search : null;
+
+        $group = $this->request->getGet('group');
+        $group = !empty($group) ? $group : null;
+
+        $type = $this->request->getGet('type');
+        $data = $this->imageModel->getListing($search, null, $group, 60);
+
+        return $this->response->setJSON([
+            'status' => true,
+            'view' => view(PANEL_FOLDER . '/pages/image/picker-pager', [
+                'images' => $data['images'],
+                'type' => $type
             ]),
             'pager' => $data['pager']->links('default', 'cms_pager')
         ]);

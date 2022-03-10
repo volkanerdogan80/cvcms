@@ -29,7 +29,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -42,17 +42,28 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <select name="group" class="form-control select2 image-listing-group">
+                                            <option value=""><?= cve_admin_lang('Inputs', 'group_select') ?></option>
+                                            <?php foreach ($image_groups as $fgroup): ?>
+                                                <?php if ($fgroup->getGroup() == 'default'){continue;} ?>
+                                                <option <?= $group == $fgroup->getGroup() ? 'selected' : ''; ?> value="<?= $fgroup->getGroup(); ?>">
+                                                    <?= $fgroup->getGroupName(); ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
                                     <div class="input-group">
                                         <input value="<?= $search ?>" name="search" type="text" class="form-control" placeholder="<?= cve_admin_lang('Inputs', 'search') ?>...">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>

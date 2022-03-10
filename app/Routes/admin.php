@@ -36,6 +36,7 @@ $routes->group('image', function ($routes){
     $routes->post('upload', 'Backend\Images::upload', ['as' => 'admin_image_upload']);
     $routes->get('listing', 'Backend\Images::listing', ['as' => 'admin_image_listing']);
     $routes->post('delete', 'Backend\Images::delete', ['as' => 'admin_image_delete']);
+    $routes->get('filter', 'Backend\Images::filterAjax', ['as' => 'admin_image_filter']);
 });
 
 $routes->group('setting', function ($routes){
