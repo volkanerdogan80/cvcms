@@ -4,6 +4,8 @@ return [
     'title' => 'Successful Status Messages Translation File',
     'description' => 'The data in this field contains success messages used in the panel.',
     'text' => [
+        'general_success' => 'Operation completed successfully.',
+
         'register_success'      => 'Registration has been completed successfully. The verification mail has been sent to you.',
         'email_send_success'    => 'Email Sent Successfully!',
         'reset_email_success'   => 'Password reset link has been successfully sent to your email address. ',

@@ -4,6 +4,8 @@ return [
     'title' => 'Error Messages Translation File',
     'description' => 'The data in this field contains error messages used in the panel.',
     'text' => [
+        'general_failure' => 'An error occurred while processing the operation.',
+
         'email_send_failure'         => 'An error occurred while sending mail. Please try again.',
         'user_info_failure'          => 'Login Failed.Please try again by checking your login information.',
         'password_update_failure'    => 'An error occurred while updating the password. Please try again.',

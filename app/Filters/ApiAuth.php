@@ -13,6 +13,8 @@ class ApiAuth implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
+        $request->type = REQUEST_API;
+
         $api_key = $request->getVar("apiKey");
         if (empty($api_key)){
             echo "API Key Göndermediniz";

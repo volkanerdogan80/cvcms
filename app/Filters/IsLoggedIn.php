@@ -8,6 +8,8 @@ class IsLoggedIn implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
+        $request->type = REQUEST_WEB;
+
         $supportLocale = $request->config->supportedLocales;
         $segment  = $request->uri->getSegments();
         $isUriLocale = in_array($segment[0], $supportLocale);

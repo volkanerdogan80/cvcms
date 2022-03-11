@@ -4,6 +4,8 @@ return [
     'title' => 'Başarılı Durum Mesajları Çeviri Dosyası',
     'description' => 'Bu alanda bulunan veriler panelde kullanılan başarı mesajlarını içermektedir.',
     'text' => [
+        'general_success' => 'İşlem başarılı bir şekilde tamamlandı.',
+
         'register_success'      => 'Kayıt işlemi başarılı bir şekilde gerçekleştirildi. Doğrulama maili tarafınıza gönderildi.',
         'email_send_success'    => 'Eposta Başarıyla Gönderildi!',
         'reset_email_success'   => 'Şifre sıfırılama linki eposta adresinize başarılı bir şekilde gönderildi.',

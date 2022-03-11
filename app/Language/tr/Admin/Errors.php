@@ -4,6 +4,8 @@ return [
     'title' => 'Hata Mesajları Çeviri Dosyası',
     'description' => 'Bu alanda bulunan veriler panelde kullanılan hata mesajlarını içermektedir.',
     'text' => [
+        'general_failure' => 'İşlem yapılırken bir hata meydana geldi.',
+
         'email_send_failure'         => 'Email gönderimi esnasında bir hata meydana geldi. Lütfen tekrar deneyiniz.',
         'user_info_failure'          => 'Giriş Başarısız. Lütfen giriş bilgilerinizi kontrol ederek tekrar deneyiniz.',
         'password_update_failure'    => 'Şifre güncelleme esnasında bir hata meydana geldi. Lütfen tekrar deneyiniz.',

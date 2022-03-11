@@ -84,6 +84,9 @@ defined('STATUS_DRAFT')             || define('STATUS_DRAFT', 'DRAFT');
 defined('STATUS_READ')          || define('STATUS_READ', 'READ');
 defined('STATUS_UNREAD')          || define('STATUS_UNREAD', 'UNREAD');
 
+defined('REQUEST_WEB')          || define('REQUEST_WEB', 'WEB');
+defined('REQUEST_API')          || define('REQUEST_API', 'API');
+
 defined('PANEL_FOLDER')      || define('PANEL_FOLDER', 'admin'); //  Admin panel klasör ismi
 
 defined('DEFAULT_ADMIN_GROUP')      || define('DEFAULT_ADMIN_GROUP', 'admin');
