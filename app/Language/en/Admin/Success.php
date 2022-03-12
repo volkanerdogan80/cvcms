@@ -6,6 +6,7 @@ return [
     'text' => [
         'general_success' => 'Operation completed successfully.',
 
+        'login_success'         => 'Successfully Logged In. Welcome ',
         'register_success'      => 'Registration has been completed successfully. The verification mail has been sent to you.',
         'email_send_success'    => 'Email Sent Successfully!',
         'reset_email_success'   => 'Password reset link has been successfully sent to your email address. ',

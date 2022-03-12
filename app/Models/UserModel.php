@@ -64,6 +64,16 @@ class UserModel extends Model
         return $builder->first();
     }
 
+    public function getUserByEmail($email, $status = STATUS_ACTIVE, $withDeleted = false)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+        $builder = $builder->where('email', $email);
+        $builder = $status ? $builder->where('status', $status) : $builder;
+        $builder = $withDeleted ? $builder = $builder->withDeleted() : $builder;
+        return $builder->first();
+    }
+
     public function getUsersByGroupId($group_id, $per_page = false, $status = STATUS_ACTIVE, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);

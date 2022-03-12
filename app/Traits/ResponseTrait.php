@@ -9,7 +9,7 @@ trait ResponseTrait
     protected $response_status = false;
     protected $response_message = null;
     protected $response_data = [];
-    protected $response_redirect;
+    protected $response_redirect = null;
 
     public function response($status = null, $message = null, $data = null, $redirect = null)
     {
@@ -20,10 +20,10 @@ trait ResponseTrait
         $this->setMessage();
         $this->setStatus();
 
-        if ($this->request->type == REQUEST_WEB){
-            return $this->webResponse();
-        }else{
+        if ($this->request->type == REQUEST_API){
             return $this->apiResponse();
+        }else{
+            return $this->webResponse();
         }
     }
 

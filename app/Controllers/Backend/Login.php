@@ -3,20 +3,14 @@
 namespace App\Controllers\Backend;
 
 use \App\Controllers\BaseController;
-use App\Controllers\Traits\AuthTrait;
+use App\Traits\LoginTrait;
+use App\Traits\ResponseTrait;
 use CodeIgniter\I18n\Time;
 
 class Login extends BaseController
 {
-
-    use AuthTrait{
-        AuthTrait::__construct as private __traitConstruct;
-    }
-
-    public function __construct()
-    {
-        $this->__traitConstruct();
-    }
+    use ResponseTrait;
+    use LoginTrait;
 
     public function index()
     {
@@ -24,18 +18,18 @@ class Login extends BaseController
             return $this->login();
         }
 
-        return view(PANEL_FOLDER . '/pages/auth/login', [
+        return view('admin/pages/auth/login', [
             'time' => new Time('now')
         ]);
     }
 
-    public function loginSuccess()
+    public function success($user = null)
     {
-        return redirect()->to(route_to('admin_dashboard'));
+        return $this->response([
+            'status' => true,
+            'message' => cve_admin_lang('Auth', 'welcome') . ' ' . $user->full_name,
+            'redirect' => route_to('admin_dashboard')
+        ]);
     }
 
-    public function logoutSuccess()
-    {
-        return redirect()->to(route_to('admin_login'));
-    }
 }

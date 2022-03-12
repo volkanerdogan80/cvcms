@@ -6,6 +6,7 @@ return [
     'text' => [
         'general_success' => 'İşlem başarılı bir şekilde tamamlandı.',
 
+        'login_success'         => 'Giriş işlemi başarılı bir şekilde gerçekleştirildi. Hoşgeldiniz ',
         'register_success'      => 'Kayıt işlemi başarılı bir şekilde gerçekleştirildi. Doğrulama maili tarafınıza gönderildi.',
         'email_send_success'    => 'Eposta Başarıyla Gönderildi!',
         'reset_email_success'   => 'Şifre sıfırılama linki eposta adresinize başarılı bir şekilde gönderildi.',

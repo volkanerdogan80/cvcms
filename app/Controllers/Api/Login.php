@@ -1,12 +1,11 @@
 <?php
 
 
-namespace App\Controllers\Frontend;
+namespace App\Controllers\Api;
 
 use App\Controllers\BaseController;
 use App\Traits\LoginTrait;
 use App\Traits\ResponseTrait;
-
 
 class Login extends BaseController
 {
@@ -22,9 +21,8 @@ class Login extends BaseController
     {
         return $this->response([
             'status' => true,
-            'message' => cve_admin_lang('Success', 'login_success') . ' ' . $user->full_name,
-            'redirect' => route_to('homepage')
+            'message' => cve_admin_lang('Success', 'login_success'),
+            'data' => $user
         ]);
     }
-
 }
