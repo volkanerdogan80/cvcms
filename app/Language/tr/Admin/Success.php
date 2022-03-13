@@ -46,7 +46,11 @@ return [
         'theme_setting_updated'     => 'Tema ayarları başarılı bir şekilde kayıt edildi.',
         'theme_activated_success'   => 'Seçtiğiniz tema başarılı bir şekilde aktif edildi.',
 
+        'success' => 'Başarılı',
+        'subscribe_success'     => 'Başarılı bir şekilde abone oldunuz.',
         'unsubscribe_success'   => 'Eposta aboneliği başarıyla sonlandırıldı.',
+        'unsubscribe_success_message' => 'Eposta aboneliği başarılı bir şekilde iptal edildi. Gittiğin için çok üzgünüz. :( Seni tekrardan aramızda görmeyi dört gözle bekliyoruz.',
+
         'notification_success'  => 'Bildirim Başarıyla Gönderildi!',
     ]
 ];

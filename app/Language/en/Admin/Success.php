@@ -47,7 +47,11 @@ return [
         'theme_setting_updated'     => 'Theme settings saved successfully.',
         'theme_activated_success'   => 'The theme you have just selected has been successfully activated.',
 
-        'unsubscribe_success' => 'Email subscription has been terminated successfully.',
+        'success' => 'Success',
+        'subscribe_success'     => 'You have successfully subscribed.',
+        'unsubscribe_success'   => 'Email subscription has been terminated successfully.',
+        'unsubscribe_success_message' => 'Email subscription was successfully canceled. We are so sorry you are gone :( We look forward to seeing you among us again. ',
+
         'notification_success'  => 'Notification Sent Successfully!',
 
     ]

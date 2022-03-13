@@ -4,8 +4,11 @@
 namespace App\Controllers\Frontend;
 
 use App\Controllers\BaseController;
-use App\Controllers\Traits\NewsletterTrait;
+use App\Libraries\EmailTo;
+use App\Models\NewsletterModel;
+use App\Traits\NewsletterTrait;
 use App\Traits\ResponseTrait;
+
 
 class Newsletter extends BaseController
 {
@@ -18,30 +21,37 @@ class Newsletter extends BaseController
             $name = $this->request->getPost('name');
             $email = $this->request->getPost('email');
 
-            $insert = $this->newsletterModel->insert([
+            $newsletter_model = new NewsletterModel();
+            $insert = $newsletter_model->insert([
                 'name' => $name ? $name : null,
                 'email' => $email,
                 'token' => random_string('alpha', 64)
             ]);
 
-            if ($this->newsletterModel->errors()){
+            if ($newsletter_model->errors()){
                 return $this->response([
                     'status' => false,
-                    'message' => $this->newsletterModel->errors()
+                    'message' => $newsletter_model->errors()
                 ]);
             }
 
-            $subscriber = $this->newsletterModel->find($insert);
-            $this->emailTo
-                ->setData(['user' => $subscriber])
+            $email_to = new EmailTo();
+            $subscriber = $newsletter_model->find($insert);
+            $email_to->setData(['user' => $subscriber])
                 ->setEmail($subscriber->email)
                 ->setTemplate('newsletterSubscribeSuccess')
                 ->send();
 
-            return $this->response(['status' => true, 'message' => 'Başarılı bir şekilde abone oldunuz.']);
+            return $this->response([
+                'status' => true,
+                'message' => cve_admin_lang('Success','subscribe_success')
+            ]);
         }
 
-        return $this->response(['status' => false, 'message' => 'Geçersiz istek türü']);
+        return $this->response([
+            'status' => false,
+            'message' => cve_admin_lang('Errors','invalid_request_type')
+        ]);
     }
 
 }

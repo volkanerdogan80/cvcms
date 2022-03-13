@@ -4,11 +4,13 @@
 namespace App\Controllers\Backend;
 
 use App\Controllers\BaseController;
-use App\Controllers\Traits\NewsletterTrait;
+use App\Models\NewsletterModel;
+use App\Traits\NewsletterTrait;
+use App\Traits\ResponseTrait;
 
 class Newsletter extends BaseController
 {
-
+    use ResponseTrait;
     use NewsletterTrait;
 
     public function listing()
@@ -17,7 +19,7 @@ class Newsletter extends BaseController
         $dateFilter = explode(' - ', $getDateFilter);
         $dateFilter = count($dateFilter) > 1 ? $dateFilter : null;
 
-        $perPage = $this->request->getGet('per_page');
+        $perPage = $this->request->getGet('perPage');
         $perPage = !empty($perPage) ? $perPage : 20;
 
         $search = $this->request->getGet('search');
@@ -29,11 +31,13 @@ class Newsletter extends BaseController
             'search' => $search,
         ];
 
-        $getModel = $this->newsletterModel->getListing($search, $dateFilter, $perPage);
+        $newsletter_model = new NewsletterModel();
+        $getModel = $newsletter_model->getListing($search, $dateFilter, $perPage);
 
         $data = array_merge($data, $getModel);
 
         return view(PANEL_FOLDER . '/pages/newsletter/listing', $data);
     }
+
 
 }
