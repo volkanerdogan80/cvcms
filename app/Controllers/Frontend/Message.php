@@ -4,9 +4,9 @@
 namespace App\Controllers\Frontend;
 
 use App\Controllers\BaseController;
-use App\Controllers\Traits\ResponseTrait;
 use App\Entities\MessageEntity;
 use App\Models\MessageModel;
+use App\Traits\ResponseTrait;
 
 class Message extends BaseController
 {

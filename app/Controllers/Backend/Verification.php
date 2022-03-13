@@ -32,20 +32,21 @@ class Verification extends BaseController
         $userID = $explode[0];
         $verifyKey = $explode[1];
 
-        $user = $this->userModel->where([
+        $user_model = new UserModel();
+        $user = $user_model->getUser([
             'id' => $userID,
             'verify_key' => $verifyKey,
             'status' => STATUS_PENDING
-        ])->first();
+        ]);
 
         if(!$user){
             return view(PANEL_FOLDER . '/pages/verify/account-error');
         }
+        $user_entity = new UserEntity();
+        $user_entity->setStatus(STATUS_ACTIVE);
+        $user_entity->setVerifyKey();
 
-        $this->userEntity->setStatus(STATUS_ACTIVE);
-        $this->userEntity->setVerifyKey();
-
-        $update = $this->userModel->update($userID, $this->userEntity);
+        $update = $user_model->update($user->id, $user_entity);
         if (!$update){
             return view(PANEL_FOLDER . '/pages/verify/account-error');
         }

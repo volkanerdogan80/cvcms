@@ -82,9 +82,24 @@ class Validation
         ]
     ];
 
-    public $groups = [
-        'title' => [
-            'rules' => 'required',
+    public $api_account_verify = [
+        'email' => [
+            'rules' => 'required|valid_email',
+        ],
+        'code' => [
+            'rules' => 'required|numeric',
+        ]
+    ];
+
+    public $api_reset_password = [
+        'email' => [
+            'rules' => 'required|valid_email',
+        ],
+        'code' => [
+            'rules' => 'required|numeric',
+        ],
+        'password' => [
+            'rules' => 'required|min_length[3]',
         ]
     ];
 

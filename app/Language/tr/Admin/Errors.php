@@ -5,31 +5,31 @@ return [
     'description' => 'Bu alanda bulunan veriler panelde kullanılan hata mesajlarını içermektedir.',
     'text' => [
         'general_failure' => 'İşlem yapılırken bir hata meydana geldi.',
-
+        'something_went_wrong' => 'Bir şeyler ters gitti!',
         'email_send_failure'         => 'Email gönderimi esnasında bir hata meydana geldi. Lütfen tekrar deneyiniz.',
+
         'user_info_failure'          => 'Giriş Başarısız. Lütfen giriş bilgilerinizi kontrol ederek tekrar deneyiniz.',
-        'password_update_failure'    => 'Şifre güncelleme esnasında bir hata meydana geldi. Lütfen tekrar deneyiniz.',
         'user_not_found'             => 'Böyle bir kullanıcı bulunamadı. Lütfen tekrar deneyiniz.',
         'user_login_pending_failure' => 'Hesabınızı onaylamanız gerekmektedir. Lütfen eposta adresinizi kontrol ederek tekrar deneyiniz.',
         'user_login_passive_failure' => 'Hesabınıza giriş yapamazsınız. Lütfen sistem yöneticisi ile iletişime geçiniz.',
         'no_login_permit'            => 'Giriş yapma yetkiniz bulunmamaktadır.',
         'registry_system_inactive'   => 'Kayıt sistemi şuan aktif değildir. Lütfen daha sonra tekrar deneyiniz.',
         'login_system_inactive'      => 'Giriş sistemi şuan aktif değildir. Lütfen daha sonra tekrar deneyiniz.',
+        'success_register_failed_email' => 'Kayıt işlemi başarılı bir şekilde tamamlandı ancak doğrulama emaili gönderimi esnasında bir hata meydana geldi.',
 
         'verification_failure'       => 'Doğrulama İşlemi Başarısız',
-        'verification_failure_msg'   => 'Doğrulama işlemi esnasında bir hata meydana geldi.',
+        'verification_failure_msg'   => 'Doğrulama işlemi esnasında bir hata meydana geldi. Lütfen tekrar deneyiniz.',
+        'verification_code_failure'  => 'Doğrulama işlemi esnasında bir hata meydana geldi. Lütfen doğrulama kodunuzu kontrol ederek tekrar deneyiniz.',
         'reset_email_failure'        => 'Şifre sıfırlama maili gönderilirken bir hata meydana geldi. Lütfen tekrar deneyiniz.',
         'reset_verification_failure' => 'Hesap doğrulama işlemi başarısız olduğu için şifrenizi sıfırlayamazsınız. <br> Lütfen şifremi unuttum sayfasına giderek tekrar şifre sıfırlama talebinde bulununuz.',
         'reset_verify_failure_sep_1' => 'Hesap doğrulama işlemi başarısız olduğu için şifrenizi sıfırlayamazsınız.',
         'reset_verify_failure_sep_2' => 'Lütfen şifremi unuttum sayfasına giderek tekrar şifre sıfırlama talebinde bulununuz.',
-
-        'something_went_wrong'          => 'Bir şeyler ters gitti!',
         'reset_password_failure'        => 'Şifre sıfırlama işlemi gerçekleştirilemiyor. <br> Lütfen şifre sıfırlama mailinizdeki linke tıkladığınızdan emin olun.',
-        'success_register_failed_email' => 'Kayıt işlemi başarılı bir şekilde tamamlandı ancak doğrulama emaili gönderimi esnasında bir hata meydana geldi.',
+        'password_update_failure'    => 'Şifre güncelleme esnasında bir hata meydana geldi. Lütfen tekrar deneyiniz.',
 
         'delete_admin_group_failure'  => 'Root Sistem Yöneticisi Grubunu silemezsiniz. Lütfen tekrar deneyiniz.',
         'delete_group_with_user'    => 'Bu kullanıcı grubuna bağımlı kullanıcılar bulunduğu için bu kayıt silinemez.',
-        'delete_admin_user_failure'   => 'Root Sistem Yöneticisi silinemez.',
+        'delete_admin_user_failure' => 'Root Sistem Yöneticisi silinemez.',
         'delete_empty_fields'       => 'Silme işlemi yapabilmek için en az bir öğe seçmeniz gerekir. Lütfen tekrar deneyiniz.',
         'restore_empty_fields'      => 'Geri getirme işlemi yapabilmek için en az bir öğe seçmeniz gerekir. Lütfen tekrar deneyiniz.',
         'purge_delete_empty_fields' => 'Kalıcı olarak silme işlemi yapabilmek için en az bir öğe seçmeniz gerekir. Lütfen tekrar deneyiniz.',

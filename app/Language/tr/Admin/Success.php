@@ -11,7 +11,7 @@ return [
         'register_email_success' => 'Kayıt işlemi başarılı bir şekilde gerçekleştirildi. Doğrulama maili tarafınıza gönderildi.',
         'register_success_email_failure'  => 'Kayıt işlemi başarılı bir şekilde gerçekleştirildi. Ancak doğrulama maili gönderilirken bir hata meydana geldi.',
         'email_send_success'    => 'Eposta Başarıyla Gönderildi!',
-        'reset_email_success'   => 'Şifre sıfırılama linki eposta adresinize başarılı bir şekilde gönderildi.',
+        'reset_email_success'   => 'Şifre sıfırlama linki eposta adresinize başarılı bir şekilde gönderildi.',
 
         'verification_success'  => 'Doğrulama İşlemi Başarılı.',
         'verify_success_msg_1'  => 'Teşekkür ederiz. Hesabınızı başarılı bir şekilde doğrulanız.',

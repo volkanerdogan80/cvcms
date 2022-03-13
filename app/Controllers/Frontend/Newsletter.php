@@ -5,7 +5,7 @@ namespace App\Controllers\Frontend;
 
 use App\Controllers\BaseController;
 use App\Controllers\Traits\NewsletterTrait;
-use App\Controllers\Traits\ResponseTrait;
+use App\Traits\ResponseTrait;
 
 class Newsletter extends BaseController
 {

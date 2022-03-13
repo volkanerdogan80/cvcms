@@ -18,7 +18,7 @@
                                         <tbody>
                                         <tr>
                                             <td>
-                                                <a href="#" target="_blank">
+                                                <a href="<?= base_url(route_to('admin_login')) ?>" target="_blank">
                                                     <?= cve_admin_lang('Buttons', 'go_to_login_page') ?>
                                                 </a>
                                             </td>

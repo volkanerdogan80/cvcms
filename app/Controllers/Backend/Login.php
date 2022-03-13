@@ -32,4 +32,13 @@ class Login extends BaseController
         ]);
     }
 
+    public function logout()
+    {
+        session()->destroy();
+        return $this->response([
+            'status' => true,
+            'message' => '',
+            'redirect' => route_to('admin_login')
+        ]);
+    }
 }

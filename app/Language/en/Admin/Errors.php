@@ -5,27 +5,27 @@ return [
     'description' => 'The data in this field contains error messages used in the panel.',
     'text' => [
         'general_failure' => 'An error occurred while processing the operation.',
-
+        'something_went_wrong' => 'Something went wrong!',
         'email_send_failure'         => 'An error occurred while sending mail. Please try again.',
+
         'user_info_failure'          => 'Login Failed.Please try again by checking your login information.',
-        'password_update_failure'    => 'An error occurred while updating the password. Please try again.',
         'user_not_found'             => 'No such user found. Please try again',
         'user_login_pending_failure' => 'You must confirm your account. Please check your email address.',
         'user_login_passive_failure' => 'You cannot login to your account. Please contact the administrator.',
         'no_login_permit'          => 'You are not authorized to login.',
         'registry_system_inactive'  => 'The registration system is currently inactive. Please try again later.',
         'login_system_inactive'     => 'The login system is currently inactive. Please try again later.',
+        'success_register_failed_email' => 'Registration completed successfully, but an error occurred while sending the verification email.',
 
         'verification_failure'       => 'Verification Failed! ',
-        'verification_failure_msg'   => 'An error occurred during the validation process. ',
-        'reset_email_failure'        => 'An error occurred while sending the password reset email. Please try again. ',
+        'verification_failure_msg'   => 'An error occurred during the validation process. Please try again.',
+        'verification_code_failure'  => 'An error occurred during the validation process. Please check your verification code and try again.',
+        'reset_email_failure'        => 'An error occurred while sending the password reset email. Please try again.',
         'reset_verification_failure' => 'You cannot reset your password because the account verification failed. <br> Please go to the forgot password page and request a reset password again.',
         'reset_verify_failure_sep_1' => 'You cannot reset your password because the account verification failed.',
         'reset_verify_failure_sep_2' => 'Please go to the forgot password page and request a reset password again.',
-
-        'something_went_wrong'          => 'Something went wrong! ',
         'reset_password_failure'        => 'Unable to perform password reset.  <br> Please make sure you click on the link in your password reset email.',
-        'success_register_failed_email' => 'Registration completed successfully, but an error occurred while sending the verification email. ',
+        'password_update_failure'    => 'An error occurred while updating the password. Please try again.',
 
         'delete_admin_group_failure'  => 'You cannot delete the Root Admin group. Please try again.',
         'delete_group_with_user'    => 'This record cannot be deleted, as there are dependent users in this user group.',
@@ -65,7 +65,7 @@ return [
 
         'default_language_delete_failure' => 'You cannot delete default language.',
         'default_language_status_failure' => 'You cannot change default language status.',
-        'default_language_change_failure' => 'An error has occurred while changing the default language. ',
+        'default_language_change_failure' => 'An error has occurred while changing the default language.',
         'default_language_inactive'     => 'Default language status must be active. ',
 
         'image_upload_failure'            => 'An error has occurred while uploading image. Please try again.',

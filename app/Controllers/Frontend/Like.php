@@ -4,8 +4,8 @@
 namespace App\Controllers\Frontend;
 
 use App\Controllers\BaseController;
-use App\Controllers\Traits\ResponseTrait;
 use App\Models\LikeModel;
+use App\Traits\ResponseTrait;
 
 class Like extends BaseController
 {

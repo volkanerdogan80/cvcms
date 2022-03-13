@@ -4,8 +4,8 @@
 namespace App\Controllers\Frontend;
 
 use App\Controllers\BaseController;
-use App\Controllers\Traits\ResponseTrait;
 use App\Models\RatingModel;
+use App\Traits\ResponseTrait;
 
 class Rating extends BaseController
 {

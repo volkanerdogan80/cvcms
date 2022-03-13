@@ -20,7 +20,7 @@ return [
         'reset_password' => 'Reset Password',
         'verify_time_limit' => 'You can reset your password within 5 minutes with your verification code. Codes not used during this period will expire',
 
-        'why_title'             => 'Probable Causes:',
+        'why_title'             => 'Possible Causes:',
         'why_verify_key'        => 'Your verification key may be invalid or expired. ',
         'why_verify_already'    => 'Your account may have been previously verified. ',
         'why_account_suspend'   => 'Your account may have been suspended by the administrator ',

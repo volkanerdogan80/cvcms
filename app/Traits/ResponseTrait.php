@@ -6,7 +6,7 @@ namespace App\Traits;
 
 trait ResponseTrait
 {
-    protected $response_status = false;
+    protected $response_status = null;
     protected $response_message = null;
     protected $response_data = [];
     protected $response_redirect = null;
@@ -15,7 +15,7 @@ trait ResponseTrait
     {
         $this->setArgs($status, $message, $data, $redirect);
 
-        if ($this->request->type == REQUEST_API){
+        if (cve_request_type_api()){
             return $this->apiResponse();
         }else{
             return $this->webResponse();
@@ -99,8 +99,14 @@ trait ResponseTrait
 
     private function setStatus($status = null)
     {
-        if ($status){
-            $this->response_status = $status;
+        if (!is_null($status)){
+            if ($status){
+                $this->response_status = 'success';
+            }else{
+                $this->response_status = 'error';
+            }
+        }else{
+            $this->response_status = 'error';
         }
     }
 

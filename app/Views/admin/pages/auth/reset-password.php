@@ -16,7 +16,7 @@
                     <div class="card-body">
                         <?= $this->include(PANEL_FOLDER . '/layout/partials/errors'); ?>
                         <p class="text-muted"><?= cve_admin_lang('Auth', 'verify_time_limit') ?></p>
-                        <form method="POST">
+                        <form method="POST" action="<?= current_url() ?>">
                             <?= csrf_field() ?>
                             <div class="form-group">
                                 <label for="password"><?= cve_admin_lang('Inputs', 'new_password') ?></label>

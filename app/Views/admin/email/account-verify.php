@@ -18,9 +18,16 @@
                                         <tbody>
                                         <tr>
                                             <td>
-                                                <a href="<?= base_url(route_to('admin_account_verify', $user->getVerifyToken())); ?>" target="_blank">
-                                                    <?= cve_admin_lang('EmailTemplate', 'account_verify_button') ?>
-                                                </a>
+                                                <?php if (cve_request_type_api()): ?>
+                                                    <a href="javascript:void(0)">
+                                                        <?= $user->getVerifyCode(); ?>
+                                                    </a>
+                                                <?php else: ?>
+                                                    <a href="<?= base_url(route_to('admin_account_verify', $user->getVerifyToken())); ?>"
+                                                       target="_blank">
+                                                        <?= cve_admin_lang('EmailTemplate', 'account_verify_button') ?>
+                                                    </a>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                         </tbody>

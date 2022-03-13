@@ -280,6 +280,13 @@ function cve_email_template($template = null)
     return $template_list;
 }
 
+function cve_request_type_api(){
+    if (isset(\Config\Services::request()->type) && \Config\Services::request()->type == REQUEST_API){
+        return true;
+    }
+    return false;
+}
+
 function cve_content_format(){
 
     $default = [
