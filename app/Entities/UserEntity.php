@@ -13,7 +13,10 @@ class UserEntity extends Entity
     protected $first_name;
     protected $sur_name;
     protected $email;
+    protected $phone;
+    protected $identification_number;
     protected $password;
+    protected $api_key;
     protected $verify_key;
     protected $verify_code;
     protected $bio;
@@ -44,6 +47,16 @@ class UserEntity extends Entity
     public function setEmail(string $email): void
     {
         $this->attributes['email'] = $email;
+    }
+
+    public function setPhone($phone = null)
+    {
+        $this->attributes['phone'] = $phone;
+    }
+
+    public function setIdentity($identity = null)
+    {
+        $this->attributes['identification_number'] = $identity;
     }
 
     public function setVerifyKey(): void
@@ -77,6 +90,11 @@ class UserEntity extends Entity
         $this->attributes['password'] = password_hash($password, PASSWORD_DEFAULT);
     }
 
+    public function setApiKey()
+    {
+        $this->attributes['api_key'] = cve_api_key_creator();
+    }
+
     public function getGroupID(): int
     {
         return $this->attributes['group_id'];
@@ -102,6 +120,16 @@ class UserEntity extends Entity
         return $this->attributes['email'];
     }
 
+    public function getPhone()
+    {
+        return $this->attributes['phone'];
+    }
+
+    public function getIdentity()
+    {
+        return $this->attributes['identification_number'];
+    }
+
     public function getVerifyKey(): string
     {
         return $this->attributes['verify_key'];
@@ -110,6 +138,11 @@ class UserEntity extends Entity
     public function getVerifyCode(): int
     {
         return $this->attributes['verify_code'];
+    }
+
+    public function getApiKey()
+    {
+        return $this->attributes['api_key'];
     }
 
     public function getBio(): string

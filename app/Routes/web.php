@@ -13,9 +13,9 @@ $routes->get('newsletter/unsubscribe/(:any)', 'Frontend\Newsletter::unsubscribe/
 
 $routes->get('language/change/(:alpha)', 'Frontend\Language::change/$1', ['as' => 'language_change']);
 
-$routes->post('register', 'Frontend\Register::register', ['as' => 'register']);
+$routes->post('register', 'Frontend\Register::index', ['as' => 'register']);
 $routes->post('login', 'Frontend\Login::index', ['as' => 'login']);
-$routes->post('forgot-password', 'Frontend\Forgot::forgot', ['as' => 'forgot-password']);
+$routes->post('forgot-password', 'Frontend\Forgot::index', ['as' => 'forgot-password']);
 $routes->get('logout', 'Frontend\Login::logout', ['as' => 'logout']);
 
 $routes->get('(:any)', 'Frontend\Content::index/$1', ['as' => 'content']);

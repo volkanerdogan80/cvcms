@@ -215,6 +215,11 @@ function cve_slug_creator($str, $options = array())
     //return $slug;
 }
 
+function cve_api_key_creator()
+{
+    return implode('.', str_split(md5(uniqid()), rand(4,28)));
+}
+
 function cve_module_list()
 {
     $module_list = [];

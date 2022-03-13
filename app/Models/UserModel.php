@@ -19,7 +19,10 @@ class UserModel extends Model
         'first_name',
         'sur_name',
         'email',
+        'phone',
+        'identification_number',
         'password',
+        'api_key',
         'verify_key',
         'verify_code',
         'bio',
@@ -53,11 +56,11 @@ class UserModel extends Model
         return $builder->first();
     }
 
-    public function getUserById($group_id, $status = STATUS_ACTIVE, $withDeleted = false)
+    public function getUserById($user_id, $status = STATUS_ACTIVE, $withDeleted = false)
     {
         $builder = $this->setTable($this->table);
         $builder = $builder->select('*');
-        $builder = $builder->where('id', $group_id);
+        $builder = $builder->where('id', $user_id);
         $builder = $status ? $builder->where('status', $status) : $builder;
         $builder = $withDeleted ? $builder->withDeleted() : $builder;
 

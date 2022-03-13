@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Controllers\Frontend;
+
+namespace App\Controllers\Api;
 
 use App\Controllers\BaseController;
 use App\Traits\RegisterTrait;
@@ -13,12 +14,11 @@ class Register extends BaseController
 
     public function index()
     {
-        $this->register();
+        return $this->register();
     }
 
     public function success()
     {
         return $this->response(true);
     }
-
 }

@@ -13,12 +13,7 @@ trait ResponseTrait
 
     public function response($status = null, $message = null, $data = null, $redirect = null)
     {
-        if (!is_null($status)){
-            $this->setArgs($status, $message, $data, $redirect);
-        }
-
-        $this->setMessage();
-        $this->setStatus();
+        $this->setArgs($status, $message, $data, $redirect);
 
         if ($this->request->type == REQUEST_API){
             return $this->apiResponse();
@@ -65,35 +60,61 @@ trait ResponseTrait
     private function setArgs($status, $message, $data, $redirect)
     {
         if (is_array($status)){
-            $this->response_status = $status['status'];
-            $this->response_message = $status['message'] ?? null;
-            $this->response_data = $status['data'] ?? [];
-            $this->response_redirect = $status['redirect'] ?? null;
-        }else{
-            $this->response_status = $status;
-            $this->response_message = $message;
-            $this->response_data = !is_null($data) ? $data : [];
-            $this->response_redirect = $redirect;
+            $message = $status['message'] ?? null;
+            $data = $status['data'] ?? [];
+            $redirect = $status['redirect'] ?? null;
+            $status = $status['status'];
+        }
+
+        if (!$this->response_status){
+            $this->setStatus($status);
+        }
+
+        if (!$this->response_message){
+            $this->setMessage($message);
+        }
+
+        if (!$this->response_data){
+            $this->setData($data);
+        }
+
+        if (!$this->response_redirect){
+            $this->setRedirect($redirect);
         }
     }
 
-    private function setMessage()
+    private function setMessage($message = null)
     {
-        if (!$this->response_message){
+        if ($message){
+            $this->response_message = $message;
+        }else{
             if ($this->response_status){
                 $this->response_message = cve_admin_lang('Success', 'general_success');
             }else{
                 $this->response_message = cve_admin_lang('Errors', 'general_failure');
             }
         }
+
     }
 
-    private function setStatus()
+    private function setStatus($status = null)
     {
-        if (!$this->response_status){
-            $this->response_status = 'error';
-        }else{
-            $this->response_status = 'success';
+        if ($status){
+            $this->response_status = $status;
+        }
+    }
+
+    private function setData($data = null)
+    {
+        if ($data){
+            $this->response_data = $data;
+        }
+    }
+
+    private function setRedirect($redirect = null)
+    {
+        if ($redirect){
+            $this->response_redirect = $redirect;
         }
     }
 }

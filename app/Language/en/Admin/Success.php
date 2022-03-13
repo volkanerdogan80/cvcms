@@ -7,7 +7,10 @@ return [
         'general_success' => 'Operation completed successfully.',
 
         'login_success'         => 'Successfully Logged In. Welcome ',
-        'register_success'      => 'Registration has been completed successfully. The verification mail has been sent to you.',
+        'register_success'      => 'Registration has been completed successfully.',
+        'register_email_success' => 'Registration has been completed successfully. The verification mail has been sent to you.',
+        'register_success_email_failure'  => 'Registration has been completed successfully. However an error occurred while sending verification email.',
+
         'email_send_success'    => 'Email Sent Successfully!',
         'reset_email_success'   => 'Password reset link has been successfully sent to your email address. ',
 

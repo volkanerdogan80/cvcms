@@ -42,13 +42,19 @@ class Validation
             'rules' => 'required|string|min_length[3]',
         ],
         'email' => [
-            'rules' => 'required|valid_email',
+            'rules' => 'required|valid_email|is_unique[users.email,id,{id}]',
         ],
         'password' => [
             'rules' => 'required|min_length[3]',
         ],
         'password2' => [
             'rules' => 'required|min_length[3]|matches[password]',
+        ],
+        'phone' => [
+            'rules' => 'if_exist|is_unique[users.phone,id,{id}]',
+        ],
+        'identity' => [
+            'rules' => 'if_exist|is_unique[users.identification_number,id,{id}]',
         ]
     ];
 

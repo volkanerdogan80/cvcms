@@ -7,7 +7,9 @@ return [
         'general_success' => 'İşlem başarılı bir şekilde tamamlandı.',
 
         'login_success'         => 'Giriş işlemi başarılı bir şekilde gerçekleştirildi. Hoşgeldiniz ',
-        'register_success'      => 'Kayıt işlemi başarılı bir şekilde gerçekleştirildi. Doğrulama maili tarafınıza gönderildi.',
+        'register_success'      => 'Kayıt işlemi başarılı bir şekilde gerçekleştirildi.',
+        'register_email_success' => 'Kayıt işlemi başarılı bir şekilde gerçekleştirildi. Doğrulama maili tarafınıza gönderildi.',
+        'register_success_email_failure'  => 'Kayıt işlemi başarılı bir şekilde gerçekleştirildi. Ancak doğrulama maili gönderilirken bir hata meydana geldi.',
         'email_send_success'    => 'Eposta Başarıyla Gönderildi!',
         'reset_email_success'   => 'Şifre sıfırılama linki eposta adresinize başarılı bir şekilde gönderildi.',
 

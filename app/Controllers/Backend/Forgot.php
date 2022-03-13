@@ -1,28 +1,34 @@
 <?php
 
+
 namespace App\Controllers\Backend;
 
 use \App\Controllers\BaseController;
-use App\Controllers\Traits\AuthTrait;
+use App\Traits\ForgotTrait;
+use App\Traits\ResponseTrait;
 
 class Forgot extends BaseController
 {
-    use AuthTrait{
-        AuthTrait::__construct as private __traitConstruct;
-    }
+    use ResponseTrait;
+    use ForgotTrait;
 
-    public function __construct()
-    {
-        $this->__traitConstruct();
-    }
 
     public function index()
     {
         if($this->request->getMethod() == 'post'){
-            return $this->forgot();
+            return $this->forgotPassword();
         }
         return view(PANEL_FOLDER . '/pages/auth/forgot-password');
     }
+
+    public function success()
+    {
+        return $this->response([
+            'status' => true,
+            'message' => cve_admin_lang('Success', 'reset_email_success'),
+        ]);
+    }
+
 
     public function resetPassword()
     {
@@ -63,6 +69,4 @@ class Forgot extends BaseController
 
         return view(PANEL_FOLDER . '/pages/verify/reset-password-error');
     }
-
-
 }
