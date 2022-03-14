@@ -240,7 +240,7 @@ function cve_module_view_path($module, $path): string
     return '\Modules/'. ucfirst($module) . '/Views/' . $path;
 }
 
-function cve_module_view($module, $path, $data): string
+function cve_module_view($module, $path, $data = []): string
 {
     return view(cve_module_view_path($module, $path), $data);
 }

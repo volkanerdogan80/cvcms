@@ -47,12 +47,6 @@ return [
         'invalid_request_type'  => 'Geçersiz istek türü. Lütfen tekrar deneyiniz.',
         'unauthorized_request'  => 'Bu işlemi gerçekleştirmek için yetkiniz bulunmuyor!',
 
-        'blog_edit_auth_failure'      => 'Bu yazıyı düzenleme yetkisine sahip değilsiniz.',
-        'blog_edit_failure'           => 'Size ait olmayan bir yazının durumunu değiştiremezsiniz.',
-        'blog_delete_failure'         => 'Size ait olmayan bir yazıyı silemezsiniz.',
-        'blog_undo_delete_failure'    => 'Size ait olmayan bir yazıyı geri getiremezsiniz.',
-        'blog_purge_delete_failure'   => 'Size ait olmayan bir yazıyı kalıcı olarak silemezsiniz.',
-
         'content_id_valid_failure'  => 'İçerik ID boş bırakılamaz. Lütfen tekrar deneyiniz.',
         'content_absent_failure'    => 'Böyle bir içerik bulunamadı.',
         'content_status_inactive'   => 'İçeriği yayınlabilmeniz için içerik aktif durumda olmalıdır.',

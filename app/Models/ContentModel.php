@@ -443,6 +443,25 @@ class ContentModel extends Model
         }
     }
 
+    public function updateContentCategories($content_id = null, $categories = null)
+    {
+        if (!is_null($content_id) && !is_null($categories)){
+            $db = \Config\Database::connect();
+            $builder = $db->table('content_categories');
+            if (is_array($content_id)){
+                $builder->whereIn('content_id', $content_id)->delete();
+            }else{
+                $builder->where('content_id', $content_id)->delete();
+            }
+            foreach ($categories as $category){
+                $builder->insert([
+                    'content_id' => $content_id,
+                    'category_id' => $category
+                ]);
+            }
+        }
+    }
+
     public function getListing(array $filter = [])
     {
         $builder = $this->setTable($this->table);

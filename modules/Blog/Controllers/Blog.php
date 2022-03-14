@@ -17,6 +17,7 @@ class Blog extends BaseController implements ContentInterface
 
     private $module = 'blog';
     private $listing_all_permit = 'admin_blog_listing_all';
+    private $edit_all_permit = 'admin_blog_edit_all';
 
     public function listing($status = null)
     {
@@ -27,21 +28,41 @@ class Blog extends BaseController implements ContentInterface
     public function create()
     {
         if ($this->request->getMethod() == 'post') {
-            $insert_id = $this->contentCreate();
+            $content_id = $this->contentCreate();
             return $this->response([
                 'status' => true,
                 'message' => cve_admin_lang('Success', 'create_success'),
-                'redirect' => route_to('admin_blog_edit', $insert_id)
+                'redirect' => route_to('admin_blog_edit', $content_id)
             ]);
         }
         $category_model = new CategoryModel();
         $content_model = new ContentModel();
 
         return cve_module_view($this->module, 'create/index', [
-            'categories' => $category_model->getCategoriesByModule($this->module),
-            'similar' => $content_model->getContentsByModule($this->module),
+            'categories' => $category_model->getCategoriesByModule($this->module,false, false),
+            'similar' => $content_model->getContentsByModule($this->module,false, false),
         ]);
     }
+
+    public function edit($id)
+    {
+        if ($this->request->getMethod() == 'post') {
+            $content_id = $this->contentEdit($id);
+            return $this->response([
+                'status' => true,
+                'message' => cve_admin_lang('Success', 'update_success'),
+                'redirect' => route_to('admin_blog_edit', $content_id) //Bu redirect'i vermezsek back olarak döner.
+            ]);
+        }
+        $category_model = new CategoryModel();
+        $content_model = new ContentModel();
+        return cve_module_view($this->module, 'edit/index', [
+            'categories' => $category_model->getCategoriesByModule($this->module,false, false),
+            'similar' => $content_model->getContentsByModule($this->module, false, false),
+            'content' => $content_model->getContentById($id,false)
+        ]);
+    }
+
     /*protected $module;
     protected $listing_all_permit;
     protected $edit_all_permit;

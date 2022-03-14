@@ -47,12 +47,6 @@ return [
         'invalid_request_type'  => 'Invalid request type. Please try again.',
         'unauthorized_request'  => 'You are not authorized to perform this operation!',
 
-        'blog_edit_auth_failure'      => 'You are not authorized to edit this post. ',
-        'blog_edit_failure'           => 'You cannot change the status of an article that does not belong to you.',
-        'blog_delete_failure'         => 'You cannot delete an article that does not belong to you.',
-        'blog_undo_delete_failure'    => 'You cannot restore an article that does not belong to you.',
-        'blog_purge_delete_failure'   => 'You cannot permanently delete an article that does not belong to you.',
-
         'content_id_valid_failure'  => 'Content ID is required. Please try again.',
         'content_absent_failure'    => 'No such content was found. Please try again.',
         'content_status_inactive'   => 'Content must be active in order for you to post content.',

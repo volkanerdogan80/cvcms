@@ -13,7 +13,8 @@ use App\Models\UserModel;
 trait ContentTrait
 {
     public $view_data = [];
-    public $insert_id = null;
+    public $content_id = null;
+    public $content = null;
 
     public function contentListing($status = null)
     {
@@ -60,7 +61,7 @@ trait ContentTrait
         $content_entity->setStatus($this->request->getPost('status'));
 
         $content_model = new ContentModel();
-        $this->insert_id = $content_model->insert($content_entity);
+        $this->content_id = $content_model->insert($content_entity);
         if($content_model->errors()){
             return $this->response([
                 'status' => false,
@@ -70,8 +71,58 @@ trait ContentTrait
 
         $this->shareOnSocialMedia();
         $this->sendNotification();
-        $content_model->insertContentCategories($this->insert_id, $this->request->getPost('categories'));
-        return $this->insert_id;
+        $content_model->insertContentCategories($this->content_id, $this->request->getPost('categories'));
+        return $this->content_id;
+    }
+
+    public function contentEdit($id = null)
+    {
+        if (!is_null($id)){
+            $this->content_id = $id;
+        }
+
+        $content_model = new ContentModel();
+        $this->content = $content_model->getContentById($this->content_id, false);
+        if ($this->content->getUserId() != auth_user_id()){
+            if(!cve_permit_control($this->edit_all_permit)){
+                $this->response([
+                    'status' => false,
+                    'message' => cve_admin_lang($this->module, 'edit_auth_failure')
+                ]);
+            }
+        }
+
+        $content_entity = new ContentEntity();
+        $content_entity->setModule($this->module);
+        $content_entity->setUserId();
+        $content_entity->setTitle($this->request->getPost('title'));
+        $content_entity->setSlug();
+        $content_entity->setDescription($this->request->getPost('description'));
+        $content_entity->setContent($this->request->getPost('content'));
+        $content_entity->setKeywords($this->request->getPost('keywords'));
+        $content_entity->setThumbnail($this->request->getPost('thumbnail'));
+        $content_entity->setGallery($this->request->getPost('gallery'));
+        $content_entity->setViews();
+        $content_entity->setField($this->request->getPost('field'));
+        $content_entity->setPageType($this->request->getPost('page_type'));
+        $content_entity->setPostFormat($this->request->getPost('post_format'));
+        $content_entity->setSimilar($this->request->getPost('similar'));
+        $content_entity->setCommentStatus($this->request->getPost('comment'));
+        $content_entity->setStatus($this->request->getPost('status'));
+
+        $content_model->update($id, $content_entity);
+
+        if($content_model->errors()){
+            $this->response([
+                'status' => false,
+                'message' => $content_model->errors()
+            ]);
+        }
+
+        $this->shareOnSocialMedia();
+        $this->sendNotification();
+        $content_model->updateContentCategories($this->content_id, $this->request->getPost('categories'));
+        return $this->content_id;
     }
 
     public function dataFilter($item)
@@ -87,7 +138,7 @@ trait ContentTrait
         $social = $this->request->getPost('social');
         $status = $this->request->getPost('status');
         if ($social == STATUS_ACTIVE && $status == STATUS_ACTIVE){
-            cve_autoshare($this->insert_id);
+            cve_autoshare($this->content_id);
         }
     }
 
@@ -97,7 +148,7 @@ trait ContentTrait
         $notification = $this->request->getPost('notification');
         $status = $this->request->getPost('status');
         if (cve_firebase_setting('status') && $notification == STATUS_ACTIVE && $status == STATUS_ACTIVE){
-            $firebase->setContent($this->insert_id)->setToken()->send();
+            $firebase->setContent($this->content_id)->setToken()->send();
         }
     }
 }
