@@ -4,15 +4,24 @@
 namespace Modules\Blog\Controllers;
 
 use App\Controllers\BaseController;
-use App\Controllers\Traits\ContentTrait;
+use App\Interfaces\ContentInterface;
+use App\Traits\ContentTrait;
+use App\Traits\ResponseTrait;
 
-class Blog extends BaseController
+class Blog extends BaseController implements ContentInterface
 {
-    use ContentTrait{
-        ContentTrait::__construct as private __traitConstruct;
-    }
+    use ResponseTrait;
+    use ContentTrait;
 
-    protected $module;
+    private $module = 'blog';
+    private $listing_all_permit = 'admin_blog_listing_all';
+
+    public function listing($status = null)
+    {
+        $data = $this->contentListing($status);
+        return cve_module_view($this->module, 'listing', $data);
+    }
+    /*protected $module;
     protected $listing_all_permit;
     protected $edit_all_permit;
     protected $status_all_permit;
@@ -52,5 +61,5 @@ class Blog extends BaseController
             ])->findAll(),
             'content' => $content
         ];
-    }
+    }*/
 }

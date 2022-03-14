@@ -4,15 +4,25 @@
 namespace Modules\Service\Controllers;
 
 use App\Controllers\BaseController;
-use App\Controllers\Traits\ContentTrait;
+use App\Interfaces\ContentInterface;
+use App\Traits\ContentTrait;
+use App\Traits\ResponseTrait;
 
-class Service extends BaseController
+class Service extends BaseController implements ContentInterface
 {
-    use ContentTrait{
-        ContentTrait::__construct as private __traitConstruct;
+    use ResponseTrait;
+    use ContentTrait;
+
+    private $module = 'service';
+    private $listing_all_permit = 'admin_service_listing_all';
+
+    public function listing($status = null)
+    {
+        $data = $this->contentListing($status);
+        return cve_module_view($this->module, 'listing', $data);
     }
 
-    protected $module;
+    /*protected $module;
     protected $listing_all_permit;
     protected $edit_all_permit;
     protected $status_all_permit;
@@ -52,6 +62,6 @@ class Service extends BaseController
             ])->findAll(),
             'content' => $content
         ];
-    }
+    }*/
 
 }

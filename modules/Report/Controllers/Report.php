@@ -4,15 +4,25 @@
 namespace Modules\Report\Controllers;
 
 use App\Controllers\BaseController;
-use App\Controllers\Traits\ContentTrait;
+use App\Interfaces\ContentInterface;
+use App\Traits\ContentTrait;
+use App\Traits\ResponseTrait;
 
-class Report extends BaseController
+class Report extends BaseController implements ContentInterface
 {
-    use ContentTrait{
-        ContentTrait::__construct as private __traitConstruct;
+    use ResponseTrait;
+    use ContentTrait;
+
+    private $module = 'report';
+    private $listing_all_permit = 'admin_report_listing_all';
+
+    public function listing($status = null)
+    {
+        $data = $this->contentListing($status);
+        return cve_module_view($this->module, 'listing', $data);
     }
 
-    protected $module;
+    /*protected $module;
     protected $listing_all_permit;
     protected $edit_all_permit;
     protected $status_all_permit;
@@ -54,5 +64,5 @@ class Report extends BaseController
         return view(cve_module_view($this->module, 'detail/index'), [
             'content' => $this->contentModel->where('id', $content)->find($content),
         ]);
-    }
+    }*/
 }

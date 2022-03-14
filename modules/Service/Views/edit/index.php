@@ -13,11 +13,11 @@
             <form action="<?= current_url(); ?>" method="post">
                 <?= csrf_field();  ?>
                 <div class="row">
-                    <?= $this->include(cve_module_view('Service','edit/content')); ?>
-                    <?= $this->include(cve_module_view('Service','edit/general')); ?>
-                    <?= $this->include(cve_module_view('Service','edit/custom-field')); ?>
-                    <?= $this->include(cve_module_view('Service','edit/gallery')); ?>
-                    <?= $this->include(cve_module_view('Service','edit/comments')); ?>
+                    <?= $this->include(cve_module_view_path('Service','edit/content')); ?>
+                    <?= $this->include(cve_module_view_path('Service','edit/general')); ?>
+                    <?= $this->include(cve_module_view_path('Service','edit/custom-field')); ?>
+                    <?= $this->include(cve_module_view_path('Service','edit/gallery')); ?>
+                    <?= $this->include(cve_module_view_path('Service','edit/comments')); ?>
                 </div>
             </form>
         </div>

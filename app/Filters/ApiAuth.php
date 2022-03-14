@@ -33,7 +33,7 @@ class ApiAuth implements FilterInterface
             }
 
             $request->user = new \stdClass();
-            $request->user->isLogin = true;
+            $request->user->is_login = true;
             $request->user->id = $user->id;
             $request->user->name = $user->getFullName();
             $request->user->email = $user->getEmail();

@@ -37,8 +37,8 @@
                     <button type="submit" class="btn btn-primary btn-lg"><?= cve_admin_lang('Buttons', 'send'); ?></button>
                 </div>
             </form>
-            <?= $this->include(cve_module_view('Report','detail/comments')); ?>
-            <?= $this->include(cve_module_view('Report','detail/gallery')); ?>
+            <?= $this->include(cve_module_view_path('Report','detail/comments')); ?>
+            <?= $this->include(cve_module_view_path('Report','detail/gallery')); ?>
         </div>
     </div>
 </div>

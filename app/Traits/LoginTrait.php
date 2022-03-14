@@ -81,11 +81,14 @@ trait LoginTrait
 
         session()->set([
             'isLogin' => true,
+            //TODO: auth_helper => auth_user içerisine alsak daha iyi olur mu?
             'userData' => [
                 'id' => $user->id,
                 'email' => $user->getEmail(),
                 'name'  => $user->getFullName(),
-                'group'  => $group->getSlug()
+                'group'  => $group->getSlug(),
+                'phone'  => $user->getPhone(),
+                'identity'  => $user->getIdentity(),
             ],
             'permissions' => $group->getPermit()
         ]);

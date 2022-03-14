@@ -6,7 +6,7 @@
  */
 function is_logged_in(): bool
 {
-    if (session('isLogin')){
+    if (auth_user('is_login')){
         return true;
     }
     return false;

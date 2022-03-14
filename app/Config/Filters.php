@@ -13,6 +13,7 @@ class Filters extends BaseConfig
         'IsLoggedIn' => \App\Filters\IsLoggedIn::class,
         'IsPermission' => \App\Filters\IsPermission::class,
         'ApiAuth' => \App\Filters\ApiAuth::class,
+        'UserData' => \App\Filters\UserData::class,
         'ReCaptcha' => \App\Filters\ReCaptcha::class,
         'ThemeJavascript' => \App\Filters\ThemeJavascript::class,
         'ThemeStyle' => \App\Filters\ThemeStyle::class,
@@ -33,6 +34,11 @@ class Filters extends BaseConfig
 			'csrf' => [
                 'except' => [
                     '*/' . PANEL_FOLDER . '/image/upload',
+                    '*/api/*'
+                ]
+            ],
+            'UserData' => [
+                'except' => [
                     '*/api/*'
                 ]
             ]

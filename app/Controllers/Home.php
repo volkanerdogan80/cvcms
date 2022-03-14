@@ -9,7 +9,7 @@ class Home extends BaseController
     public function index()
     {
 
-        print_r(cve_image_size(1));
+        print_r(auth_user_permissions());
     }
 
 }

@@ -30,11 +30,11 @@ function cve_autoshare($content_id)
 
 function cve_permit_control($permit): bool
 {
-    if (session('userData.group') == DEFAULT_ADMIN_GROUP){
+    if (auth_user_group() == DEFAULT_ADMIN_GROUP){
         return true;
     }
 
-    if (in_array($permit,session('permissions'))){
+    if (in_array($permit, auth_user_permissions())){
         return true;
     }
 
@@ -235,9 +235,14 @@ function cve_module_list()
     }
 }
 
-function cve_module_view($module, $path): string
+function cve_module_view_path($module, $path): string
 {
     return '\Modules/'. ucfirst($module) . '/Views/' . $path;
+}
+
+function cve_module_view($module, $path, $data): string
+{
+    return view(cve_module_view_path($module, $path), $data);
 }
 
 function cve_email_template($template = null)

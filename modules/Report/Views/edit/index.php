@@ -13,10 +13,10 @@
             <form action="<?= current_url(); ?>" method="post">
                 <?= csrf_field();  ?>
                 <div class="row">
-                    <?= $this->include(cve_module_view('Report', 'edit/content')); ?>
-                    <?= $this->include(cve_module_view('Report', 'edit/general')); ?>
-                    <?= $this->include(cve_module_view('Report', 'edit/custom-field')); ?>
-                    <?= $this->include(cve_module_view('Report', 'edit/gallery')); ?>
+                    <?= $this->include(cve_module_view_path('Report', 'edit/content')); ?>
+                    <?= $this->include(cve_module_view_path('Report', 'edit/general')); ?>
+                    <?= $this->include(cve_module_view_path('Report', 'edit/custom-field')); ?>
+                    <?= $this->include(cve_module_view_path('Report', 'edit/gallery')); ?>
                 </div>
             </form>
         </div>

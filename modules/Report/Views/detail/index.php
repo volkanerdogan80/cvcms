@@ -11,8 +11,8 @@
 
         <div class="section-body">
             <div class="row">
-                <?= $this->include(cve_module_view('Report','detail/content')); ?>
-                <?= $this->include(cve_module_view('Report','detail/aside')); ?>
+                <?= $this->include(cve_module_view_path('Report','detail/content')); ?>
+                <?= $this->include(cve_module_view_path('Report','detail/aside')); ?>
             </div>
         </div>
     </section>
