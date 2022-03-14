@@ -39,7 +39,24 @@ class Report extends BaseController implements ContentInterface
 
         return cve_module_view($this->module, 'create/index', [
             'categories' => $category_model->getCategoriesByModule($this->module),
-            'similar' => $content_model->getContentsByModule($this->module),
+        ]);
+    }
+
+    public function edit($id)
+    {
+        if ($this->request->getMethod() == 'post') {
+            $content_id = $this->contentEdit($id);
+            return $this->response([
+                'status' => true,
+                'message' => cve_admin_lang('Success', 'update_success'),
+                'redirect' => route_to('admin_report_edit', $content_id) //Bu redirect'i vermezsek back olarak döner.
+            ]);
+        }
+        $category_model = new CategoryModel();
+        $content_model = new ContentModel();
+        return cve_module_view($this->module, 'edit/index', [
+            'categories' => $category_model->getCategoriesByModule($this->module,false, false),
+            'content' => $content_model->getContentById($id,false)
         ]);
     }
 

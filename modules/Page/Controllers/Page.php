@@ -34,14 +34,26 @@ class Page extends BaseController implements ContentInterface
                 'redirect' => route_to('admin_page_edit', $insert_id)
             ]);
         }
-        $category_model = new CategoryModel();
-        $content_model = new ContentModel();
+        return cve_module_view($this->module, 'create/index');
+    }
 
-        return cve_module_view($this->module, 'create/index', [
-            'categories' => $category_model->getCategoriesByModule($this->module),
-            'similar' => $content_model->getContentsByModule($this->module),
+
+    public function edit($id)
+    {
+        if ($this->request->getMethod() == 'post') {
+            $content_id = $this->contentEdit($id);
+            return $this->response([
+                'status' => true,
+                'message' => cve_admin_lang('Success', 'update_success'),
+                'redirect' => route_to('admin_page_edit', $content_id) //Bu redirect'i vermezsek back olarak döner.
+            ]);
+        }
+        $content_model = new ContentModel();
+        return cve_module_view($this->module, 'edit/index', [
+            'content' => $content_model->getContentById($id,false)
         ]);
     }
+
     /*protected $module;
     protected $listing_all_permit;
     protected $edit_all_permit;

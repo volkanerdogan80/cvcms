@@ -140,7 +140,7 @@ class CategoryEntity extends Entity
         return $keywords->$locale;
     }
 
-    public function getImage(): int
+    public function getImage()
     {
         return $this->attributes['image'];
     }
