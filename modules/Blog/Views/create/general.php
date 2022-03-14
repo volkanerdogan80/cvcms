@@ -9,11 +9,11 @@
                         <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'active') ?></span>
                     </label>
                     <label class="selectgroup-item">
-                        <input type="radio" name="status" value="<?= STATUS_PENDING ?>" class="selectgroup-input" required>
+                        <input checked  type="radio" name="status" value="<?= STATUS_PENDING ?>" class="selectgroup-input" required>
                         <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'pending') ?></span>
                     </label>
                     <label class="selectgroup-item">
-                        <input checked type="radio" name="status" value="<?= STATUS_PASSIVE ?>" class="selectgroup-input" required>
+                        <input type="radio" name="status" value="<?= STATUS_PASSIVE ?>" class="selectgroup-input" required>
                         <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'passive') ?></span>
                     </label>
                 </div>
@@ -74,7 +74,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label class="col-form-label">Post Format</label>
+                <label class="col-form-label"><?= cve_admin_lang('Inputs', 'post_format') ?></label>
                 <select data-url="<?= base_url(route_to('admin_post_format_add')) ?>" name="post_format" class="form-control select2 post_format">
                     <?php foreach (cve_content_format() as $key => $format): ?>
                         <option value="<?= $key ?>"><?= $format['name'] ?></option>

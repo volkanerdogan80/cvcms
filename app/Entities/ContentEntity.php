@@ -104,13 +104,20 @@ class ContentEntity extends Entity
         $this->attributes['views'] = $view;
     }
 
-    public function setField($field = null): void
+    public function setField($field = [])
     {
-        if (is_null($field)){
-            $this->attributes['field'] = $field;
-        }else{
-            $this->attributes['field'] = json_encode($field, JSON_UNESCAPED_UNICODE);
+        $custom_field = [];
+        $field = is_null($field) ? [] : $field;
+        if (count($field) > 0) {
+            foreach ($field as $key => $value) {
+                if (isset($value['key'])) {
+                    $custom_field[$value['key']] = $value['value'];
+                } else {
+                    $custom_field[$key] = $value['value'];
+                }
+            }
         }
+        $this->attributes['field'] = json_encode($custom_field, JSON_UNESCAPED_UNICODE);
     }
 
     public function setPageType($type = null): void
@@ -120,8 +127,7 @@ class ContentEntity extends Entity
 
     public function setPostFormat($format = null): void
     {
-        $format = is_null($format) ? 'standard' : $format;
-        $this->attributes['post_format'] = $format;
+        $this->attributes['post_format'] = is_null($format) ? 'standard' : $format;
     }
 
     public function setSimilar($similar = null): void
@@ -135,14 +141,12 @@ class ContentEntity extends Entity
 
     public function setCommentStatus($comment_status = null)
     {
-        $comment_status = is_null($comment_status) ? STATUS_PASSIVE : $comment_status;
-        $this->attributes['comment_status'] = $comment_status;
+        $this->attributes['comment_status'] = is_null($comment_status) ? STATUS_PASSIVE : $comment_status;
     }
 
     public function setStatus($status = null)
     {
-        $status = is_null($status) ? STATUS_PENDING : $status;
-        $this->attributes['status'] = $status;
+        $this->attributes['status'] = is_null($status) ? STATUS_PENDING : $status;
     }
 
     public function getModule(): string

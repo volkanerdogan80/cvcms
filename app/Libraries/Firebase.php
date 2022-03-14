@@ -55,7 +55,7 @@ class Firebase
 
     public function setToken()
     {
-        $tokens = $this->firebaseModel->getTokens(0);
+        $tokens = $this->firebaseModel->getTokens();
         foreach ($tokens as $key => $value){
             $this->registration_ids[] = $value->token;
         }

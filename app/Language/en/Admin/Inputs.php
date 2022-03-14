@@ -37,6 +37,7 @@ return [
         'related_content' => 'Related Content',
         'module' => 'Modle',
         'module_select' => 'Select Module',
+        'post_format' => 'Post Format',
         'status' => 'Status',
         'status_select' => 'Select Status',
         'type_select' => 'Select Type',

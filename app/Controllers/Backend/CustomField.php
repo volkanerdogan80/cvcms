@@ -29,11 +29,17 @@ class CustomField extends BaseController
             foreach ($format['custom_field'] as $item) {
                 if ($item['lang']){
                     $view = $view . view('admin/pages/field/translation', [
-                            'random' => $item['key'], 'value' => $item['value'], 'key' => $item['key']
+                            'random' => $item['key'],
+                            'value' => $item['value'],
+                            'key' => $item['key'],
+                            'disabled' => true
                         ]);
                 }else{
                     $view = $view . view('admin/pages/field/standard', [
-                            'random' => $item['key'], 'value' => $item['value'], 'key' => $item['key']
+                            'random' => $item['key'],
+                            'value' => $item['value'],
+                            'key' => $item['key'],
+                            'disabled' => true
                         ]);
                 }
             }

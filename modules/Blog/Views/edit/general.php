@@ -74,7 +74,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label class="col-form-label">Post Format</label>
+                <label class="col-form-label"><?= cve_admin_lang('Inputs', 'post_format') ?></label>
                 <select data-url="<?= base_url(route_to('admin_post_format_add')) ?>" name="post_format" class="form-control select2 post_format">
                     <?php foreach (cve_content_format() as $key => $format): ?>
                         <option <?= $content->getPostFormat() == $key ? 'selected' : '' ?> value="<?= $key ?>"><?= $format['name'] ?></option>

@@ -18,7 +18,7 @@
     <div class="row mb-4">
         <div class="col-md-3">
             <div class="form-group mt-3">
-                <input name="field[<?= $random ?>][key]" value="<?= @$key ?>" placeholder="<?= cve_admin_lang('Inputs', 'extra_field_key') ?>" type="text" class="form-control">
+                <input <?= isset($disabled) && $disabled ? 'disabled' : null; ?>  name="field[<?= $random ?>][key]" value="<?= @$key ?>" placeholder="<?= cve_admin_lang('Inputs', 'extra_field_key') ?>" type="text" class="form-control">
             </div>
         </div>
         <div class="col-md-8">

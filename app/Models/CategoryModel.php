@@ -243,6 +243,27 @@ class CategoryModel extends Model
         return $builder->first();
     }
 
+    public function getCategoriesByModule($module, $per_page = false, $status = STATUS_ACTIVE, $withDeleted = false)
+    {
+        $builder = $this->setTable($this->table);
+        $builder = $builder->select('*');
+
+        $builder = $status ? $builder->where('status', $status) : $builder;
+        $builder = $withDeleted ? $builder = $builder->withDeleted() : $builder;
+
+        $builder = $builder->where('module', $module);
+        $builder = $builder->orderBy('id', 'DESC');
+
+        if(!$per_page){
+            return $builder->findAll();
+        }
+
+        return [
+            'contents' => $builder->paginate($per_page),
+            'pager' => $builder->pager
+        ];
+    }
+
     public function getListing(
         ?string $status = null,
         ?string $user = null,

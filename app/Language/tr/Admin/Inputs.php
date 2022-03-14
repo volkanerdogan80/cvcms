@@ -37,6 +37,7 @@ return [
         'related_content' => 'Benzer İçerik',
         'module' => 'Modül',
         'module_select' => 'Modül Seç',
+        'post_format' => 'Post Format',
         'status' => 'Durum',
         'status_select' => 'Durum Seç',
         'type_select' => 'Tür Seç',

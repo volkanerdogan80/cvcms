@@ -424,6 +424,25 @@ class ContentModel extends Model
         ];
     }
 
+    /**
+     * İçeriğe ait kategorileri ekler.
+     * @param null $content_id
+     * @param null $categories
+     */
+    public function insertContentCategories($content_id = null, $categories = null)
+    {
+        if (!is_null($content_id) && !is_null($categories)){
+            $db = \Config\Database::connect();
+            $builder = $db->table('content_categories');
+            foreach ($categories as $category){
+                $builder->insert([
+                    'content_id' => $content_id,
+                    'category_id' => $category
+                ]);
+            }
+        }
+    }
+
     public function getListing(array $filter = [])
     {
         $builder = $this->setTable($this->table);

@@ -5,6 +5,8 @@ namespace Modules\Service\Controllers;
 
 use App\Controllers\BaseController;
 use App\Interfaces\ContentInterface;
+use App\Models\CategoryModel;
+use App\Models\ContentModel;
 use App\Traits\ContentTrait;
 use App\Traits\ResponseTrait;
 
@@ -22,6 +24,24 @@ class Service extends BaseController implements ContentInterface
         return cve_module_view($this->module, 'listing', $data);
     }
 
+    public function create()
+    {
+        if ($this->request->getMethod() == 'post') {
+            $insert_id = $this->contentCreate();
+            return $this->response([
+                'status' => true,
+                'message' => cve_admin_lang('Success', 'create_success'),
+                'redirect' => route_to('admin_service_edit', $insert_id)
+            ]);
+        }
+        $category_model = new CategoryModel();
+        $content_model = new ContentModel();
+
+        return cve_module_view($this->module, 'create/index', [
+            'categories' => $category_model->getCategoriesByModule($this->module),
+            'similar' => $content_model->getContentsByModule($this->module),
+        ]);
+    }
     /*protected $module;
     protected $listing_all_permit;
     protected $edit_all_permit;
