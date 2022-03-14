@@ -83,13 +83,12 @@ trait ContentTrait
 
         $content_model = new ContentModel();
         $this->content = $content_model->getContentById($this->content_id, false);
-        if ($this->content->getUserId() != auth_user_id()){
-            if(!cve_permit_control($this->edit_all_permit)){
-                $this->response([
-                    'status' => false,
-                    'message' => cve_admin_lang($this->module, 'edit_auth_failure')
-                ]);
-            }
+
+        if (!$this->controlPermit($this->edit_all_permit)) {
+            return $this->response([
+                'status' => false,
+                'message' => cve_admin_lang($this->module, 'edit_auth_failure')
+            ]);
         }
 
         $content_entity = new ContentEntity();
@@ -113,7 +112,7 @@ trait ContentTrait
         $content_model->update($id, $content_entity);
 
         if($content_model->errors()){
-            $this->response([
+            return $this->response([
                 'status' => false,
                 'message' => $content_model->errors()
             ]);
@@ -125,6 +124,136 @@ trait ContentTrait
         return $this->content_id;
     }
 
+    public function contentStatus()
+    {
+        $this->content_id = $this->request->getPost('id');
+        if (!$this->content_id){
+            return $this->response->setJSON([
+                'status' => false,
+                'message' => cve_admin_lang('Errors', 'change_status_empty_fields')
+            ]);
+        }
+        $status = $this->request->getPost('status');
+
+        $content_model = new ContentModel();
+        $this->content = $content_model->getContentById($this->content_id, false);
+        if (!$this->controlPermit($this->status_all_permit)) {
+            return $this->response([
+                'status' => false,
+                'message' => cve_admin_lang($this->module, 'status_change_failure')
+            ]);
+        }
+
+        $update = $content_model->update($this->content_id, ['status' => $status]);
+        if(!$update){
+            return $this->response([
+                'status' => false,
+                'message' => cve_admin_lang('Errors', 'update_failure')
+            ]);
+        }
+
+        return $this->response([
+            'status' => true,
+            'message' => cve_admin_lang('Success', 'status_change_success')
+        ]);
+    }
+
+    public function contentDelete()
+    {
+        $this->content_id = $this->request->getPost('id');
+        if (!$this->content_id){
+            return $this->response->setJSON([
+                'status' => false,
+                'message' => cve_admin_lang('Errors', 'delete_empty_fields')
+            ]);
+        }
+        $content_model = new ContentModel();
+        $this->content = $content_model->getContentById($this->content_id, false);
+        if (!$this->controlPermit($this->delete_all_permit)) {
+            return $this->response([
+                'status' => false,
+                'message' => cve_admin_lang($this->module, 'delete_failure')
+            ]);
+        }
+
+        $delete = $content_model->delete($this->content_id);
+        if (!$delete){
+            return $this->response([
+                'status' => false,
+                'message' => cve_admin_lang('Errors', 'delete_failure')
+            ]);
+        }
+
+        return $this->response([
+            'status' => true,
+            'message' => cve_admin_lang('Success', 'delete_success')
+        ]);
+    }
+
+    public function contentUndoDelete()
+    {
+        $this->content_id = $this->request->getPost('id');
+        if (!$this->content_id){
+            return $this->response->setJSON([
+                'status' => false,
+                'message' => cve_admin_lang('Errors', 'restore_empty_fields')
+            ]);
+        }
+        $content_model = new ContentModel();
+        $this->content = $content_model->getContentById($this->content_id, false);
+        if (!$this->controlPermit($this->undo_delete_all)) {
+            return $this->response([
+                'status' => false,
+                'message' => cve_admin_lang($this->module, 'undo_delete_failure')
+            ]);
+        }
+
+        $update = $content_model->update($this->content_id, ['deleted_at' => null]);
+        if(!$update){
+            return $this->response([
+                'status' => false,
+                'message' => cve_admin_lang('Errors', 'undo_delete_failure')
+            ]);
+        }
+
+        return $this->response([
+            'status' => true,
+            'message' => cve_admin_lang('Success', 'undo_delete_success')
+        ]);
+    }
+
+    public function contentPurgeDelete()
+    {
+        $this->content_id = $this->request->getPost('id');
+        if (!$this->content_id){
+            return $this->response->setJSON([
+                'status' => false,
+                'message' => cve_admin_lang('Errors', 'purge_delete_empty_fields')
+            ]);
+        }
+        $content_model = new ContentModel();
+        $this->content = $content_model->getContentById($this->content_id, false);
+        if (!$this->controlPermit($this->purge_delete_all)) {
+            return $this->response([
+                'status' => false,
+                'message' => cve_admin_lang($this->module, 'purge_delete_failure')
+            ]);
+        }
+
+        $purgeDelete = $content_model->delete($this->content_id, true);
+        if(!$purgeDelete){
+            return $this->response([
+                'status' => false,
+                'message' => cve_admin_lang('Errors', 'purge_delete_failure')
+            ]);
+        }
+
+        return $this->response([
+            'status' => true,
+            'message' => cve_admin_lang('Success', 'purge_delete_success')
+        ]);
+    }
+
     public function dataFilter($item)
     {
         if (is_null($item) || $item == '' || $item == false){
@@ -133,7 +262,7 @@ trait ContentTrait
         return $item;
     }
 
-    protected function shareOnSocialMedia()
+    public function shareOnSocialMedia()
     {
         $social = $this->request->getPost('social');
         $status = $this->request->getPost('status');
@@ -142,7 +271,7 @@ trait ContentTrait
         }
     }
 
-    protected function sendNotification()
+    public function sendNotification()
     {
         $firebase = new Firebase();
         $notification = $this->request->getPost('notification');
@@ -151,4 +280,13 @@ trait ContentTrait
             $firebase->setContent($this->content_id)->setToken()->send();
         }
     }
+
+    public function controlPermit($permit)
+    {
+        if ($this->content && $this->content->getUserId() != auth_user_id() && !cve_permit_control($permit)) {
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -18,6 +18,10 @@ class Blog extends BaseController implements ContentInterface
     private $module = 'blog';
     private $listing_all_permit = 'admin_blog_listing_all';
     private $edit_all_permit = 'admin_blog_edit_all';
+    private $status_all_permit = 'admin_blog_status_all';
+    private $delete_all_permit = 'admin_blog_delete_all';
+    private $undo_delete_all = 'admin_blog_undo-delete_all';
+    private $purge_delete_all = 'admin_blog_purge-delete_all';
 
     public function listing($status = null)
     {
@@ -47,11 +51,11 @@ class Blog extends BaseController implements ContentInterface
     public function edit($id)
     {
         if ($this->request->getMethod() == 'post') {
-            $content_id = $this->contentEdit($id);
+            $this->contentEdit($id);
             return $this->response([
                 'status' => true,
                 'message' => cve_admin_lang('Success', 'update_success'),
-                'redirect' => route_to('admin_blog_edit', $content_id) //Bu redirect'i vermezsek back olarak döner.
+                'redirect' => route_to('admin_blog_edit', $this->content_id) //Bu redirect'i vermezsek back olarak döner.
             ]);
         }
         $category_model = new CategoryModel();
@@ -62,6 +66,28 @@ class Blog extends BaseController implements ContentInterface
             'content' => $content_model->getContentById($id,false)
         ]);
     }
+
+    public function status()
+    {
+        return $this->contentStatus();
+    }
+
+    public function delete()
+    {
+        return $this->contentDelete();
+    }
+
+    public function undoDelete()
+    {
+        return $this->contentUndoDelete();
+    }
+
+    public function purgeDelete()
+    {
+        return $this->contentPurgeDelete();
+    }
+
+
 
     /*protected $module;
     protected $listing_all_permit;

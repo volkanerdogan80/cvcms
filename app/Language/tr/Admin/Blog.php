@@ -12,7 +12,7 @@ return [
         'post_categories'       => 'Yazı Kategorileri',
 
         'edit_auth_failure'      => 'Bu yazıyı düzenleme yetkisine sahip değilsiniz.',
-        'edit_failure'           => 'Size ait olmayan bir yazıyı düzenleme yetkisine sahip değilsiniz.',
+        'update_failure'         => 'Size ait olmayan bir yazıyı düzenleme yetkisine sahip değilsiniz.',
         'status_change_failure'  => 'Size ait olmayan bir yazının durumunu değiştirme yetkisine sahip değilsiniz. .',
         'delete_failure'         => 'Size ait olmayan bir yazıyı silme yetkisine sahip değilsiniz..',
         'undo_delete_failure'    => 'Size ait olmayan bir yazıyı geri getirme yetkisine sahip değilsiniz..',

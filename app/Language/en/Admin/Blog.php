@@ -12,7 +12,7 @@ return [
         'post_categories'    => 'Post Categories',
 
         'edit_auth_failure'      => 'You are not authorized to edit this post.',
-        'edit_failure'           => 'You are not authorized to edit a post that has not posted by you.',
+        'update_failure'         => 'You are not authorized to edit a post that has not posted by you.',
         'status_change_failure'  => 'You are not authorized to change the status of a post that has not posted by you.',
         'delete_failure'         => 'You  are not authorized to delete a post that has not posted by you.',
         'undo_delete_failure'    => 'You  are not authorized to restore a post that has not posted by you.',

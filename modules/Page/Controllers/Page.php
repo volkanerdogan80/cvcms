@@ -17,6 +17,11 @@ class Page extends BaseController implements ContentInterface
 
     private $module = 'page';
     private $listing_all_permit = 'admin_page_listing_all';
+    private $edit_all_permit = 'admin_page_edit_all';
+    private $status_all_permit = 'admin_page_status_all';
+    private $delete_all_permit = 'admin_page_delete_all';
+    private $undo_delete_all = 'admin_page_undo-delete_all';
+    private $purge_delete_all = 'admin_page_purge-delete_all';
 
     public function listing($status = null)
     {
@@ -41,17 +46,37 @@ class Page extends BaseController implements ContentInterface
     public function edit($id)
     {
         if ($this->request->getMethod() == 'post') {
-            $content_id = $this->contentEdit($id);
+            $this->contentEdit($id);
             return $this->response([
                 'status' => true,
                 'message' => cve_admin_lang('Success', 'update_success'),
-                'redirect' => route_to('admin_page_edit', $content_id) //Bu redirect'i vermezsek back olarak döner.
+                'redirect' => route_to('admin_page_edit', $this->content_id) //Bu redirect'i vermezsek back olarak döner.
             ]);
         }
         $content_model = new ContentModel();
         return cve_module_view($this->module, 'edit/index', [
             'content' => $content_model->getContentById($id,false)
         ]);
+    }
+
+    public function status()
+    {
+        return $this->contentStatus();
+    }
+
+    public function delete()
+    {
+        return $this->contentDelete();
+    }
+
+    public function undoDelete()
+    {
+        return $this->contentUndoDelete();
+    }
+
+    public function purgeDelete()
+    {
+        return $this->contentPurgeDelete();
     }
 
     /*protected $module;
@@ -72,7 +97,7 @@ class Page extends BaseController implements ContentInterface
         $this->status_all_permit = 'admin_page_status_all';
         $this->delete_all_permit = 'admin_page_delete_all';
         $this->undo_delete_all = 'admin_page_undo-delete_all';
-        $this->purge_delete_all = 'admin_blog_purge-delete_all';
+        $this->purge_delete_all = 'admin_page_purge-delete_all';
         $this->add_category = false;
     }
 

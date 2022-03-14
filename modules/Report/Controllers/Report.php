@@ -17,6 +17,11 @@ class Report extends BaseController implements ContentInterface
 
     private $module = 'report';
     private $listing_all_permit = 'admin_report_listing_all';
+    private $edit_all_permit = 'admin_report_edit_all';
+    private $status_all_permit = 'admin_report_status_all';
+    private $delete_all_permit = 'admin_report_delete_all';
+    private $undo_delete_all = 'admin_report_undo-delete_all';
+    private $purge_delete_all = 'admin_report_purge-delete_all';
 
     public function listing($status = null)
     {
@@ -35,8 +40,6 @@ class Report extends BaseController implements ContentInterface
             ]);
         }
         $category_model = new CategoryModel();
-        $content_model = new ContentModel();
-
         return cve_module_view($this->module, 'create/index', [
             'categories' => $category_model->getCategoriesByModule($this->module),
         ]);
@@ -45,21 +48,49 @@ class Report extends BaseController implements ContentInterface
     public function edit($id)
     {
         if ($this->request->getMethod() == 'post') {
-            $content_id = $this->contentEdit($id);
+            $this->contentEdit($id);
             return $this->response([
                 'status' => true,
                 'message' => cve_admin_lang('Success', 'update_success'),
-                'redirect' => route_to('admin_report_edit', $content_id) //Bu redirect'i vermezsek back olarak döner.
+                'redirect' => route_to('admin_report_edit', $this->content_id) //Bu redirect'i vermezsek back olarak döner.
             ]);
         }
         $category_model = new CategoryModel();
         $content_model = new ContentModel();
+
         return cve_module_view($this->module, 'edit/index', [
             'categories' => $category_model->getCategoriesByModule($this->module,false, false),
             'content' => $content_model->getContentById($id,false)
         ]);
     }
 
+    public function status()
+    {
+        return $this->contentStatus();
+    }
+
+    public function delete()
+    {
+        return $this->contentDelete();
+    }
+
+    public function undoDelete()
+    {
+        return $this->contentUndoDelete();
+    }
+
+    public function purgeDelete()
+    {
+        return $this->contentPurgeDelete();
+    }
+    public function detail($content){
+
+        $content_model = new ContentModel();
+        return view(cve_module_view($this->module, 'detail/index'), [
+            //TODO: Burayı değiştircez.
+            'content' => $content_model->where('id', $content)->find($content),
+        ]);
+    }
         /*protected $module;
         protected $listing_all_permit;
         protected $edit_all_permit;
