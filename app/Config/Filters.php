@@ -14,6 +14,7 @@ class Filters extends BaseConfig
         'IsPermission' => \App\Filters\IsPermission::class,
         'ApiAuth' => \App\Filters\ApiAuth::class,
         'UserData' => \App\Filters\UserData::class,
+        'LanguageControl' => \App\Filters\LanguageControl::class,
         'ReCaptcha' => \App\Filters\ReCaptcha::class,
         'ThemeJavascript' => \App\Filters\ThemeJavascript::class,
         'ThemeStyle' => \App\Filters\ThemeStyle::class,
@@ -26,64 +27,91 @@ class Filters extends BaseConfig
 	// Always applied before every request
 	public $globals = [
 		'before' => [
+            'LanguageControl' => [
+                'except' => [
+                    'install/*',
+                    '*sitemap*',
+                    '*firebase*'
+                ]
+            ],
             'honeypot' => [
 			    'except' => [
-                    '*/' . PANEL_FOLDER . '/*'
+                    '*/' . PANEL_FOLDER . '/*',
+                    '*sitemap*',
+                    '*firebase*'
                 ]
             ],
 			'csrf' => [
                 'except' => [
                     '*/' . PANEL_FOLDER . '/image/upload',
-                    '*/api/*'
+                    '*/api/*',
+                    '*sitemap*',
+                    '*firebase*'
                 ]
             ],
             'UserData' => [
                 'except' => [
-                    '*/api/*'
+                    '*/api/*',
+                    '*sitemap*',
+                    '*firebase*'
                 ]
             ]
 		],
 		'after'  => [
-            //'toolbar',
+            'toolbar',
             'honeypot' => [
                 'except' => [
-                    '*/' . PANEL_FOLDER . '/*'
+                    '*/' . PANEL_FOLDER . '/*',
+                    '*sitemap*',
+                    '*firebase*'
                 ]
             ],
             'ThemeJavascript' => [
                 'except' => [
                     '*/' . PANEL_FOLDER . '/*',
                     'install/*',
+                    '*sitemap*',
+                    '*firebase*'
                 ]
             ],
             'ThemeStyle' => [
                 'except' => [
                     '*/' . PANEL_FOLDER . '/*',
                     'install/*',
+                    '*sitemap*',
+                    '*firebase*'
                 ]
             ],
             'ThemeWebmaster' => [
                 'except' => [
                     '*/' . PANEL_FOLDER . '/*',
                     'install/*',
+                    '*sitemap*',
+                    '*firebase*'
                 ]
             ],
             'ThemeFirebase' => [
                 'except' => [
                     '*/' . PANEL_FOLDER . '/*',
                     'install/*',
+                    '*sitemap*',
+                    '*firebase*'
                 ]
             ],
             'ThemeMeta' => [
                 'except' => [
                     '*/' . PANEL_FOLDER . '/*',
                     'install/*',
+                    '*sitemap*',
+                    '*firebase*'
                 ]
             ],
             'ThemeRichSnippet' => [
                 'except' => [
                     '*/' . PANEL_FOLDER . '/*',
                     'install/*',
+                    '*sitemap*',
+                    '*firebase*'
                 ]
             ]
         ]

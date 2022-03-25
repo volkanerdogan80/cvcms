@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Backend;
+namespace App\Controllers\Api;
 
 use \App\Controllers\BaseController;
 use App\Traits\CacheTrait;
@@ -20,5 +20,4 @@ class Cache extends BaseController
             'message' => cve_admin_lang('Success', 'cache_clean')
         ]);
     }
-
 }

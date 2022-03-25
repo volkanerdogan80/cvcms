@@ -3,13 +3,11 @@
 namespace App\Controllers\Backend;
 
 use \App\Controllers\BaseController;
-use App\Controllers\Traits\LanguageTrait;
 use App\Entities\LanguageEntity;
 use App\Models\LanguageModel;
 
 class Language extends BaseController
 {
-    use LanguageTrait;
 
     protected $languageModel;
     protected $languageEntity;

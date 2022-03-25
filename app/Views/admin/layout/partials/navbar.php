@@ -62,7 +62,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <?php foreach (cve_language() as $lang): ?>
-                        <a href="<?= base_url(route_to('admin_language_change', $lang->getCode())); ?>" class="dropdown-item has-icon">
+                        <a href="<?= $lang->getChange(); ?>" class="dropdown-item has-icon">
                             <img width="25" alt="" src="<?= $lang->getFlag() ?>"> <?= $lang->getTitle() ?>
                         </a>
                     <?php endforeach; ?>

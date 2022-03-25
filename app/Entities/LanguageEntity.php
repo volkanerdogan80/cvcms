@@ -74,6 +74,23 @@ class LanguageEntity extends Entity
         return $this->attributes['status'];
     }
 
+    public function getChange()
+    {
+        $uri = new \CodeIgniter\HTTP\URI(current_url());
+        $segments = $uri->getSegments();
+
+        if (in_array($segments[0], config('app')->supportedLocales)){
+            $segments[0] = $this->attributes['code'];
+        }else{
+            array_unshift($segments, $this->attributes['code']);
+        }
+
+        $query = $uri->getQuery();
+        $new_uri = implode('/', $segments);
+        $new_uri = $query ? $new_uri . '?'. $query : $new_uri;
+        return base_url($new_uri);
+    }
+
     public function getCreatedAt($humanize = false): ?string
     {
         if($humanize){

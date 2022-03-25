@@ -12,6 +12,7 @@
     <div class="row">
         <div class="col-md-12">
             <?= cmp_bootstrap_multilevel_menu('eticaret-baslik') ?>
+            <?= cmp_language_dropdown() ?>
         </div>
     </div>
 

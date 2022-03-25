@@ -10,7 +10,7 @@
             <ul>
                 <?php foreach (cve_language() as $lang): ?>
                     <li>
-                        <a href="<?= base_url(route_to('language_change', $lang->getCode())); ?>"
+                        <a href="<?= $lang->getChange(); ?>"
                            class="uk-link-reset">
                             <i class="cve-lang-dropdown-flag"
                                style="background: url('<?= $lang->getFlag(); ?>');background-size: cover;background-position: center center;">

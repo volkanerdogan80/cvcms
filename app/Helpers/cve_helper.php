@@ -57,12 +57,13 @@ function cve_cache($key, $callback)
         if($key == 'segment'){
             $key = implode('_', $request->uri->getSegments());
         }
+        
+        if ($page = $request->getGet('page')){
+            $key .= '_' . $page;
+        }
 
         if (is_array($key)){
             $key = implode('_', $key);
-            if ($page = $request->getGet('page')){
-                $key .= '_' . $page;
-            }
         }
 
         if(!$result = cache(cve_slug_creator($key))){
