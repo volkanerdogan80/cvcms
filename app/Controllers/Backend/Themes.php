@@ -20,8 +20,6 @@ class Themes extends BaseController
 
     public function listing()
     {
-        helper('filesystem');
-
         return view(PANEL_FOLDER . "/pages/theme/listing", [
             'themes' => directory_map(ROOTPATH . 'themes'),
             'active' => $this->themeModel->where('status', STATUS_ACTIVE)->first()

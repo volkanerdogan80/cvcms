@@ -171,5 +171,11 @@ return [
         'slider_delete' => 'Authorization to delete sliders',
         'slider_undo-delete' => 'Authorization to restore deleted sliders',
         'slider_purge-delete' => 'Authorization to permanently delete sliders',
+
+        'component_listing' => 'Authorization to list components',
+        'component_delete' => 'Authorization to delete components',
+        'component_active' => 'Authorization to change component status',
+        'component_setting' => 'Authorization to display component settings',
+        'admin_component_setting_update' => 'Authorization to change component settings',
     ]
 ];

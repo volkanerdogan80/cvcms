@@ -165,6 +165,13 @@ $routes->group('slider', function ($routes) {
     $routes->get('new-button', 'Backend\Slider::newButton', ['as' => 'admin_slider_new_button']);
 });
 
+$routes->group('component', function ($routes) {
+    $routes->get('listing', 'Backend\Component::listing', ['as' => 'admin_component_listing']);
+    $routes->get('active/(:any)', 'Backend\Component::active/$1', ['as' => 'admin_component_active']);
+    $routes->get('passive/(:any)', 'Backend\Component::passive/$1', ['as' => 'admin_component_passive']);
+    $routes->get('delete/(:any)', 'Backend\Component::delete/$1', ['as' => 'admin_component_delete']);
+    $routes->match(['get', 'post'], 'setting/(:any)', 'Backend\Component::setting/$1', ['as' => 'admin_component_setting']);
+});
 
 
 

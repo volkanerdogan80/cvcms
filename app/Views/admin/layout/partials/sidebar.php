@@ -156,6 +156,15 @@
             </li>
 
             <li class="clear-storage">
+                <a class="nav-link" href="<?= base_url(route_to('admin_component_listing')); ?>">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <span>
+                       Componentler
+                    </span>
+                </a>
+            </li>
+
+            <li class="clear-storage">
                 <a class="nav-link" href="<?= base_url(route_to('admin_setting_home')); ?>">
                     <i class="fas fa-tools"></i><span><?= cve_admin_lang('Sidebar', 'settings')?></span>
                 </a>

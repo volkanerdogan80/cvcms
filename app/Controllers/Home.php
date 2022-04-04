@@ -9,7 +9,7 @@ class Home extends BaseController
     public function index()
     {
 
-        print_r(auth_user_permissions());
+        fly_whatsapp_button();
     }
 
 }

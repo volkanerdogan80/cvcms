@@ -71,7 +71,7 @@ function cve_theme_author()
  */
 function cve_theme_public($path = null): string
 {
-    return base_url('themes/' . cve_theme_folder() . '/public/' . $path);
+    return base_url(THEMES_FOLDER . cve_theme_folder() . '/public/' . $path);
 }
 
 /**

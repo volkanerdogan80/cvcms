@@ -5,9 +5,9 @@ namespace Config;
 
 use CodeIgniter\Config\BaseConfig;
 
-class Theme extends BaseConfig
+class Component extends BaseConfig
 {
     public static $registrars = [
-        //'App\Controllers\Config'
+        'App\Controllers\Config'
     ];
 }

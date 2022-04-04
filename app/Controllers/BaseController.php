@@ -40,7 +40,8 @@ class BaseController extends Controller
             helper([
                 'form',
                 'html',
-                'sdc',
+                'filesystem',
+                'cve',
                 'text',
                 'theme',
                 'list',

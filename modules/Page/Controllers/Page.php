@@ -115,7 +115,6 @@ class Page extends BaseController implements ContentInterface
 
     protected function getPageTemplate()
     {
-        helper('filesystem');
         $themeModel = new ThemeModel();
         $active_theme = $themeModel->where('status', STATUS_ACTIVE)->first();
 

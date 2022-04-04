@@ -26,8 +26,6 @@ class Translation extends BaseController
 
             $lang = $this->request->getPost('lang');
 
-            helper('filesystem');
-
             $folder = directory_map(APPPATH . 'Language/' . $lang);
 
             return $this->response->setJSON([
@@ -49,7 +47,6 @@ class Translation extends BaseController
 
     public function files($lang, $folder)
     {
-        helper('filesystem');
         $files = directory_map(APPPATH . 'Language/' . $lang . '/' .$folder);
 
         return view(PANEL_FOLDER . "/pages/translation/files", [

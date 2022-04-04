@@ -115,5 +115,11 @@ class Permissions extends BaseConfig
         'slider_delete' => 'Admin/Permissions.text.slider_delete',
         'slider_undo-delete' => 'Admin/Permissions.text.slider_undo-delete',
         'slider_purge-delete' => 'Admin/Permissions.text.slider_purge-delete',
+
+        'component_listing' => 'Admin/Permissions.text.component_listing',
+        'component_delete' => 'Admin/Permissions.text.component_delete',
+        'component_active' => 'Admin/Permissions.text.component_active',
+        'component_setting' => 'Admin/Permissions.text.component_setting',
+        'admin_component_setting_update' => 'Admin/Permissions.text.admin_component_setting_update',
     ];
 }

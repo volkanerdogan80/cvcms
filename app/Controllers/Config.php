@@ -4,6 +4,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\ComponentModel;
 use App\Models\SettingModel;
 use App\Models\ThemeModel;
 use CodeIgniter\Cache\Handlers\FileHandler;
@@ -321,14 +322,34 @@ class Config extends BaseController
             $model = new ThemeModel();
 
             helper('cve');
-            $setting = cve_cache('theme_setting', function () use($model){
+            $theme = cve_cache('theme_setting', function () use($model){
                 return $model->where('status', STATUS_ACTIVE)->first();
             });
 
-            if($setting){
-                return $setting->getSetting(null, true);
+            if($theme){
+                return $theme->getSetting(null, true);
             }
             return [];
+        }catch (\Exception $exception){
+            return [];
+        }
+    }
+
+    public static function Component()
+    {
+        try {
+            $model = new ComponentModel();
+
+            helper('cve');
+            $components = cve_cache('component_setting', function () use($model){
+                return $model->where('status', STATUS_ACTIVE)->findAll();
+            });
+
+            $settings = [];
+            foreach ($components as $key => $value){
+                $settings = array_merge($settings, $value->getSetting(null, true));
+            }
+            return $settings;
         }catch (\Exception $exception){
             return [];
         }

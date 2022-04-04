@@ -172,5 +172,11 @@ return [
         'slider_delete' => 'Slider silme yetkisi',
         'slider_undo-delete' => 'Silinmiş sliderları geri getirme yetkisi',
         'slider_purge-delete' => 'Silinmiş sliderları kalıcı olarak silme yetkisi',
+
+        'component_listing' => 'Bileşenleri listeleme yetkisi',
+        'component_delete' => 'Bileşenleri silme yetkisi',
+        'component_active' => 'Bileşenlerin durumunu değiştirme yetkisi',
+        'component_setting' => 'Bileşenleri ayarları görüntüleme yetkisi',
+        'admin_component_setting_update' => 'Bileşen ayarları değiştirme yetkisi',
     ]
 ];

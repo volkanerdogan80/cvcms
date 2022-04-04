@@ -107,4 +107,11 @@ defined('DEFAULT_FILE_SELECT_ICON')    || define('DEFAULT_FILE_SELECT_ICON', PUB
 defined('LOADING_GIF') || define('LOADING_GIF', PUBLIC_ADMIN_IMAGE_PATH . 'loading.gif');
 
 defined('LANGUAGE_PATH')        || define('LANGUAGE_PATH', APPPATH . 'Language/');
-defined('THEMES_PATH')          || define('THEMES_PATH', ROOTPATH . 'themes/');
+defined('THEMES_FOLDER')          || define('THEMES_FOLDER', 'themes/');
+defined('THEMES_PATH')          || define('THEMES_PATH', ROOTPATH . THEMES_FOLDER . '/');
+
+defined('COMPONENTS_FOLDER')          || define('COMPONENTS_FOLDER', 'components/');
+defined('COMPONENTS_PATH')          || define('COMPONENTS_PATH', ROOTPATH . COMPONENTS_FOLDER . '/');
+
+defined('PANEL_NAME')          || define('PANEL_NAME', 'CVECMS');
+defined('PANEL_SHORT_NAME')          || define('PANEL_SHORT_NAME', 'CVE');

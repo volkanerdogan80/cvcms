@@ -1,4 +1,40 @@
 <?php
+function cve_active_components()
+{
+    $model = new \App\Models\ComponentModel();
+    return cve_cache('active_components', function () use($model){
+        return $model->getComponentsByStatus();
+    });
+}
+
+function cve_component_include($path)
+{
+    require_once (cve_component_file($path));
+}
+
+function cve_component_public($path = null): string
+{
+    return base_url(COMPONENTS_FOLDER . $path);
+}
+
+function cve_component_file($path = null, $folder = false): string
+{
+    $file_path = COMPONENTS_PATH . $path;
+    if (!$folder){
+        $file_ext = pathinfo($path, PATHINFO_EXTENSION);
+        $file_path = empty($file_ext) ? $file_path . '.php' : $file_path;
+    }
+    return $file_path;
+}
+
+foreach (cve_active_components() as $comp_key => $comp_value){
+    if (is_dir(cve_component_file($comp_value->getFolder(), true))){
+        $file = cve_component_file($comp_value->getFolder() . '/helper');
+        if (file_exists($file)){
+            require_once $file;
+        }
+    }
+}
 
 function cmp_comment_list($form = false): string
 {

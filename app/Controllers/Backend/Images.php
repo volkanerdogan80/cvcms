@@ -187,8 +187,6 @@ class Images extends BaseController
 
     public function delete()
     {
-        helper('filesystem');
-
         if($this->request->isAJAX()){
             $id = $this->request->getPost('id');
             $image = $this->imageModel->find($id);
