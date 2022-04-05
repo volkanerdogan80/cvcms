@@ -150,11 +150,28 @@
                             </div>
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2">
+                                    Oto Dosya Dahil Etme
+                                </label>
+                                <div class="col-sm-12 col-md-8">
+                                    <div class="selectgroup w-100">
+                                        <label class="selectgroup-item">
+                                            <input <?= $setting->getValue('autoPublic') ? 'checked' : ''; ?> type="radio" name="autoPublic" value="1" class="selectgroup-input">
+                                            <span class="selectgroup-button"><?= cve_admin_lang('General', 'active'); ?></span>
+                                        </label>
+                                        <label class="selectgroup-item">
+                                            <input <?= !$setting->getValue('autoPublic') ? 'checked' : ''; ?> type="radio" name="autoPublic" value="0" class="selectgroup-input">
+                                            <span class="selectgroup-button"><?= cve_admin_lang('General', 'passive'); ?></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2">
                                     <?= cve_admin_lang('SystemSettings', 'per_page_list') ?>
                                     <a href="javascript:;" data-toggle="popover"
                                        title="<?= cve_admin_lang('SystemSettings', 'per_page_list') ?>"
                                        data-content="<?= lang('Help.text.settings_per_page') ?>" data-trigger="focus"
-                                       data-original-title="<?= lang('Input.text.per_page_select'); ?>">
+                                       data-original-title="<?= lang('Inputs.text.per_page_select'); ?>">
                                         <i class="fas fa-question-circle"></i>
                                     </a>
                                 </label>

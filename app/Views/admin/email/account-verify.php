@@ -18,7 +18,7 @@
                                         <tbody>
                                         <tr>
                                             <td>
-                                                <?php if (cve_request_type_api()): ?>
+                                                <?php if (is_request_type(REQUEST_API)): ?>
                                                     <a href="javascript:void(0)">
                                                         <?= $user->getVerifyCode(); ?>
                                                     </a>

@@ -72,6 +72,7 @@ class Settings extends BaseController
                 'loginPage' => $this->request->getPost('loginPage'),
                 'forgotPage' => $this->request->getPost('forgotPage'),
                 'perPageList' => $this->request->getPost('perPageList'),
+                'autoPublic' => $this->request->getPost('autoPublic'),
                 'install' => true,
             ];
 

@@ -24,5 +24,13 @@
 <script src="<?= base_url(PUBLIC_ADMIN_JS_PATH . 'theme.js') ?>"></script>
 <script src="<?= base_url(PUBLIC_ADMIN_JS_PATH . 'uikit.min.js'); ?>"></script>
 <script src="<?= base_url(PUBLIC_ADMIN_JS_PATH . 'uikit-icons.min.js'); ?>"></script>
-
+<?php foreach (cve_component_footer() as $key => $value): ?>
+<?php if (is_file_extension($value, 'css')): ?>
+<link rel="stylesheet" href="<?= $value; ?>">
+<?php elseif (is_file_extension($value, 'js')): ?>
+<script src="<?= $value; ?>"></script>
+<?php elseif (is_file_extension($value, 'php')): ?>
+<?php include_once($value); ?>
+<?php endif; ?>
+<?php endforeach; ?>
 <div id="cve-snackbar"></div>

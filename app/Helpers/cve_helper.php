@@ -286,13 +286,6 @@ function cve_email_template($template = null)
     return $template_list;
 }
 
-function cve_request_type_api(){
-    if (isset(\Config\Services::request()->type) && \Config\Services::request()->type == REQUEST_API){
-        return true;
-    }
-    return false;
-}
-
 function cve_content_format(){
 
     $default = [
@@ -311,7 +304,8 @@ function cve_content_format(){
     return array_merge($default,$theme_post_format);
 }
 
-function cve_page_template(){
+function cve_page_template()
+{
     if (!function_exists('page_template')){
         return [
             'default' => [
@@ -330,4 +324,20 @@ function cve_theme_view($path, $data = []): string
     $viewPath = THEMES_PATH . cve_theme_folder();
     $renderer = \Config\Services::themeRenderer($viewPath, null, true);
     return $renderer->setData($data)->render($path);
+}
+
+function cve_head()
+{
+    $style = view('theme-autoload/style');
+    $meta = view('theme-autoload/meta');
+    $webmaster = view('theme-autoload/webmaster');
+    $rich = view('theme-autoload/rich-snippet');
+    return $style.$meta.$webmaster.$rich;
+}
+
+function cve_footer()
+{
+    $firebase = view('theme-autoload/firebase');
+    $javascript = view('theme-autoload/javascript');
+    return $firebase.$javascript;
 }

@@ -7,6 +7,15 @@ function cve_active_components()
     });
 }
 
+function cve_component_setting($params = null)
+{
+    $setting = json_decode(json_encode(config('component')), true);
+    if (is_null($params)) {
+        return $setting;
+    }
+    return dot_array_search($params, $setting);
+}
+
 function cve_component_include($path)
 {
     require_once (cve_component_file($path));
@@ -25,6 +34,46 @@ function cve_component_file($path = null, $folder = false): string
         $file_path = empty($file_ext) ? $file_path . '.php' : $file_path;
     }
     return $file_path;
+}
+
+function cve_component_head()
+{
+    $head = [];
+    foreach (cve_active_components() as $comp_key => $comp_value){
+        if (is_dir(cve_component_file($comp_value->getFolder(), true))){
+            $file = cve_component_file($comp_value->getFolder() . '/info');
+            if (file_exists($file)){
+                $info = include($file);
+                if (isset($info['style'])){
+                    $head = array_merge($head, $info['style']);
+                }
+                if (isset($info['head'])){
+                    $head = array_merge($head, $info['head']);
+                }
+            }
+        }
+    }
+    return $head;
+}
+
+function cve_component_footer()
+{
+    $footer = [];
+    foreach (cve_active_components() as $comp_key => $comp_value){
+        if (is_dir(cve_component_file($comp_value->getFolder(), true))){
+            $file = cve_component_file($comp_value->getFolder() . '/info');
+            if (file_exists($file)){
+                $info = include($file);
+                if (isset($info['script'])){
+                    $footer = array_merge($footer, $info['script']);
+                }
+                if (isset($info['footer'])){
+                    $footer = array_merge($footer, $info['footer']);
+                }
+            }
+        }
+    }
+    return $footer;
 }
 
 foreach (cve_active_components() as $comp_key => $comp_value){

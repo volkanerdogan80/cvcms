@@ -291,12 +291,3 @@ function cve_theme_setting($params = null)
     }
     return dot_array_search($params, $setting);
 }
-
-function cve_component_setting($params = null)
-{
-    $setting = json_decode(json_encode(config('component')), true);
-    if (is_null($params)) {
-        return $setting;
-    }
-    return dot_array_search($params, $setting);
-}

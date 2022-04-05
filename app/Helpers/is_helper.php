@@ -330,3 +330,25 @@ function is_product_post(): bool
     }
     return false;
 }
+
+function is_request_type($type = REQUEST_API): bool
+{
+    if (isset(\Config\Services::request()->type) && \Config\Services::request()->type == $type){
+        return true;
+    }
+    return false;
+}
+
+function is_file_extension($file, $ext = null)
+{
+    $parse = parse_url($file, PHP_URL_PATH);
+    $extension = pathinfo($parse, PATHINFO_EXTENSION);
+    if (is_null($ext)){
+        return $extension;
+    }
+
+    if ($ext == $extension){
+        return true;
+    }
+    return false;
+}

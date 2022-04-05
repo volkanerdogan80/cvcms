@@ -2,16 +2,16 @@
 
 <script type="text/javascript">
     $('#fly-whatsapp-button').flyWhatsappButton({
-        phone: '5521990000000',
-        popupMessage: 'Size nasıl yardımcı olabilirim ?',
-        message: "xxxxx ile ilgili bilgi almak istiyorum.",
+        phone: '<?= cve_component_setting('whatsappPhone') ?>',
+        popupMessage: '<?= cve_component_setting('whatsappPopupMessage') ?>',
+        message: "<?= cve_component_setting('whatsappMessage') ?>",
         showPopup: true,
-        position: "right",
+        position: "<?= cve_component_setting('whatsappPosition') ?>",
         linkButton: false,
         showOnIE: false,
-        headerTitle: 'Whatsapp Destek!',
+        headerTitle: '<?= cve_component_setting('whatsappTitle') ?>',
         headerColor: '#25d366',
         backgroundColor: '#25d366',
-        buttonImage: '<img src="<?= cve_component_public('fly-whatsapp-button/public/whatsapp.svg'); ?>" />'
+        buttonImage: '<img src="<?= cve_image_url(cve_component_setting('whatsappImage')); ?>" />'
     });
 </script>

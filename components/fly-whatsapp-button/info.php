@@ -7,10 +7,13 @@ return [
     'web' => 'https://cvmuhendislik.com',
     'email' => 'volkanerdogan80@gmail.com',
     'description' => 'CVCMS için geliştirilmiş whatsapp mesaj butonu.',
-    'style' => [
-        'fly-whatsapp-button' => cve_component_public('fly-whatsapp-button/public/fly-whatsapp-button.css')
+    'head' => [
+        'fly-whatsapp-button-css' => cve_component_public('fly-whatsapp-button/public/fly-whatsapp-button.css'),
+        'fly-whatsapp-button-js' => cve_component_public('fly-whatsapp-button/public/fly-whatsapp-button.js'),
     ],
-    'script' => [
-        'fly-whatsapp-button' => cve_component_public('fly-whatsapp-button/public/fly-whatsapp-button.js')
-    ]
+    'footer' => [
+        'fly-whatsapp-button-code' => cve_component_file('fly-whatsapp-button/index.php')
+    ],
+    'style' => [],
+    'script' => [],
 ];

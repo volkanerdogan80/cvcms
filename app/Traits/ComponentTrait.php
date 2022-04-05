@@ -20,6 +20,7 @@ trait ComponentTrait
         $components = directory_map(COMPONENTS_PATH);
         foreach ($components as $ckey => $cvalue){
             $components[$ckey]['status'] = STATUS_PASSIVE;
+            $components[$ckey]['setting'] = array_search('setting.php', $cvalue) ? STATUS_ACTIVE : STATUS_PASSIVE;
             $folder = str_replace('\\', '', $ckey);
             foreach ($actives as $akey => $avalue){
                 if ($avalue->getFolder() == $folder){

@@ -11,11 +11,11 @@ trait ResponseTrait
     protected $response_data = [];
     protected $response_redirect = null;
 
-    public function response($status = null, $message = null, $data = null, $redirect = null)
+    public function response($status = null, $message = null, $data = null, $view = null, $redirect = null)
     {
-        $this->setArgs($status, $message, $data, $redirect);
+        $this->setArgs($status, $message, $data, $view, $redirect);
 
-        if (cve_request_type_api()){
+        if (is_request_type(REQUEST_API)){
             return $this->apiResponse();
         }else{
             return $this->webResponse();

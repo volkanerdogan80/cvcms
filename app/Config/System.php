@@ -15,6 +15,7 @@ class System extends BaseConfig
     public $registerPage = null;
     public $loginPage = null;
     public $forgotPage = null;
+    public $autoPublic = false;
 
     public $install =false;
 

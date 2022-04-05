@@ -9,7 +9,7 @@ class Home extends BaseController
     public function index()
     {
 
-        fly_whatsapp_button();
+        print_r(cve_component_style());
     }
 
 }

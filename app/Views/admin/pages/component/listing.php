@@ -41,8 +41,8 @@
                                                     <div style="<?= $value['status'] == STATUS_PASSIVE ? '': 'display: none'; ?>" class="bullet"></div>
                                                     <a style="<?= $value['status'] == STATUS_PASSIVE ? 'display: none': ''; ?>" href="<?= base_url(route_to('admin_component_passive', $key)); ?>">Pasifleştir</a>
                                                     <div style="<?= $value['status'] == STATUS_PASSIVE ? 'display: none': ''; ?>" class="bullet"></div>
-                                                    <a href="<?= base_url(route_to('admin_component_setting', $key)); ?>">Ayarlar</a>
-                                                    <div class="bullet"></div>
+                                                    <a style="<?= $value['setting'] == STATUS_PASSIVE ? 'display: none': ''; ?>" href="<?= base_url(route_to('admin_component_setting', $key)); ?>">Ayarlar</a>
+                                                    <div style="<?= $value['setting'] == STATUS_PASSIVE ? 'display: none': ''; ?>"  class="bullet"></div>
                                                     <a href="<?= base_url(route_to('admin_component_delete', $key)); ?>" class="text-danger">Sil</a>
                                                 </div>
                                             </div>

@@ -17,6 +17,5 @@
     </div>
 
 </div>
-<?php fly_whatsapp_button(); ?>
 </body>
 </html>
