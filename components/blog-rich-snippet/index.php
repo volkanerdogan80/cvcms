@@ -1,4 +1,4 @@
-<?php if (is_blog() || is_page() || is_service()): ?>
+<?php if (is_blog()): ?>
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -12,13 +12,13 @@
                 <?php if (cve_post_gallery()): ?>
                     "<?= cve_thumbnail(); ?>",
                     <?php
-                $schema_gallery_list = [];
-                foreach (cve_post_gallery() as $gallery):
-                    ?>
-                    <?php $schema_gallery_list[] = sprintf('"%s"', $gallery->getUrl()); ?>
-                <?php endforeach; ?>
-                <?= implode(',', $schema_gallery_list); ?>
-                <?php else: ?>
+            $schema_gallery_list = [];
+            foreach (cve_post_gallery() as $gallery):
+                ?>
+                <?php $schema_gallery_list[] = sprintf('"%s"', $gallery->getUrl()); ?>
+            <?php endforeach; ?>
+            <?= implode(',', $schema_gallery_list); ?>
+        <?php else: ?>
                         "<?= cve_thumbnail(); ?>"
                 <?php endif; ?>
             ],

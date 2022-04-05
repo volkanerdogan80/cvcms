@@ -243,12 +243,8 @@ class Config extends BaseController
 
             if($setting){
                 return [
-                    'googleVerify'      => $setting->getValue('googleVerify'),
-                    'googleAnalytics'   => $setting->getValue('googleAnalytics'),
-                    'accountId'         => $setting->getValue('accountId'),
                     'reCaptchaKey'      => $setting->getValue('reCaptchaKey'),
-                    'yandexVerify'      => $setting->getValue('yandexVerify'),
-                    'yandexMetrika'     => $setting->getValue('yandexMetrika'),
+                    'accountId'         => $setting->getValue('accountId'),
                     'code'              => $setting->getValue('code'),
                 ];
             }

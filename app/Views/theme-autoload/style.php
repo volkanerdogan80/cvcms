@@ -1,3 +1,4 @@
+<?= csrf_meta() ?>
 <link rel="stylesheet" href="<?= base_url(PUBLIC_ADMIN_CSS_PATH . 'theme.css'); ?>">
 <link rel="stylesheet" href="<?= base_url(PUBLIC_ADMIN_CSS_PATH . 'uikit.min.css'); ?>">
 <?php foreach (cve_component_head() as $key => $value): ?>

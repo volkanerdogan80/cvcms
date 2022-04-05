@@ -224,13 +224,9 @@ class Settings extends BaseController
     {
         if($this->request->getMethod() == 'post'){
             $settings = [
-                'googleVerify' => $this->request->getPost('googleVerify'),
-                'googleAnalytics' => $this->request->getPost('googleAnalytics'),
-                'accountId' => $this->request->getPost('accountId'),
                 'reCaptchaKey' => $this->request->getPost('reCaptchaKey'),
-                'yandexVerify' => $this->request->getPost('yandexVerify'),
-                'yandexMetrika' => $this->request->getPost('yandexMetrika'),
-                'code' => $this->request->getPost('code'),
+                'accountId' => $this->request->getPost('accountId'),
+                'code' => $this->request->getPost('code')
             ];
 
             $this->settingEntity->setKey('webmaster');

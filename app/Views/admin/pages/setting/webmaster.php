@@ -18,27 +18,15 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('WebmasterSettings', 'verify_key') ?></label>
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('WebmasterSettings', 'google_recaptcha') ?></label>
                                 <div class="col-sm-12 col-md-8">
-                                    <input name="googleVerify" value="<?= $setting->getValue('googleVerify'); ?>" type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('WebmasterSettings', 'tracking_code') ?></label>
-                                <div class="col-sm-12 col-md-8">
-                                    <input name="googleAnalytics" value="<?= $setting->getValue('googleAnalytics'); ?>" type="text" class="form-control">
+                                    <input name="reCaptchaKey" value="<?= $setting->getValue('reCaptchaKey'); ?>" type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('WebmasterSettings', 'view_id') ?></label>
                                 <div class="col-sm-12 col-md-8">
                                     <input name="accountId" value="<?= $setting->getValue('accountId'); ?>" type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('WebmasterSettings', 'google_recaptcha') ?></label>
-                                <div class="col-sm-12 col-md-8">
-                                    <input name="reCaptchaKey" value="<?= $setting->getValue('reCaptchaKey'); ?>" type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
@@ -49,25 +37,6 @@
                                 </div>
                             </div>
 
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h4><?= cve_admin_lang('WebmasterSettings', 'yandex_settings') ?></h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('WebmasterSettings', 'verify_key') ?></label>
-                                <div class="col-sm-12 col-md-8">
-                                    <input name="yandexVerify" value="<?= $setting->getValue('yandexVerify'); ?>" type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('WebmasterSettings', 'tracking_code') ?></label>
-                                <div class="col-sm-12 col-md-8">
-                                    <input name="yandexMetrika" value="<?= $setting->getValue('yandexMetrika'); ?>" type="text" class="form-control">
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="card">

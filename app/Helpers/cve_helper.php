@@ -328,11 +328,7 @@ function cve_theme_view($path, $data = []): string
 
 function cve_head()
 {
-    $style = view('theme-autoload/style');
-    $meta = view('theme-autoload/meta');
-    $webmaster = view('theme-autoload/webmaster');
-    $rich = view('theme-autoload/rich-snippet');
-    return $style.$meta.$webmaster.$rich;
+    return view('theme-autoload/style');
 }
 
 function cve_footer()

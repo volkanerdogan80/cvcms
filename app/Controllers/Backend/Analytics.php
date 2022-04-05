@@ -22,7 +22,7 @@ class Analytics extends BaseController
         $this->client->setAuthConfig(WRITEPATH . 'uploads/google-analytics-account.json');
         $this->client->setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
         $this->analytics = new \Google_Service_Analytics($this->client);
-        $this->pageTitle = cve_admin_lang('Analytics', 'last_30_days');
+        $this->pageTitle = 'Son 30 Gün';//cve_admin_lang('Analytics', 'last_thirty_days');
 
     }
 

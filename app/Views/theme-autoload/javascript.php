@@ -33,4 +33,8 @@
 <?php include_once($value); ?>
 <?php endif; ?>
 <?php endforeach; ?>
+<?php //TODO: Sayfanın en altında görüntülenmesi gerek ama gelmiyor. ?>
+<?php if (cve_webmaster_setting('code')): ?>
+    <?php  cve_webmaster_setting('code'); ?>
+<?php endif; ?>
 <div id="cve-snackbar"></div>
