@@ -31,6 +31,22 @@
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2">
+                                    <?= cve_admin_lang('Inputs', 'phone'); ?>
+                                </label>
+                                <div class="col-sm-12 col-md-8">
+                                    <input value="<?= $user->getPhone(); ?>" name="phone" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2">
+                                    <?= cve_admin_lang('Inputs', 'identity'); ?>
+                                </label>
+                                <div class="col-sm-12 col-md-8">
+                                    <input value="<?= $user->getIdentity(); ?>" name="identity" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('Inputs', 'password') ?></label>
                                 <div class="col-sm-12 col-md-8">
                                     <input value="" name="password" type="password" class="form-control">

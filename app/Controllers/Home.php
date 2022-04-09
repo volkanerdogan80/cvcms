@@ -9,7 +9,7 @@ class Home extends BaseController
     public function index()
     {
 
-        print_r(cve_component_style());
+        return view('admin/pages/blank');
     }
 
 }

@@ -54,12 +54,15 @@ trait UserTrait
         $user_entity->setFirstName($this->request->getPost('first_name'));
         $user_entity->setSurName($this->request->getPost('sur_name'));
         $user_entity->setEmail($this->request->getPost('email'));
+        $user_entity->setPhone($this->request->getPost('phone'));
+        $user_entity->setIdentity($this->request->getPost('identity'));
         $user_entity->setPassword($this->request->getPost('password'));
         $user_entity->setGroupID($this->request->getPost('group_id'));
         $user_entity->setBio($this->request->getPost('bio'));
         $user_entity->setStatus($this->request->getPost('status'));
         $user_entity->setVerifyKey();
         $user_entity->setVerifyCode();
+        $user_entity->setApiKey();
 
         $this->user_id = $user_model->save($user_entity);
         if ($user_model->errors()) {
@@ -79,6 +82,8 @@ trait UserTrait
         $user_entity->setFirstName($this->request->getPost('first_name'));
         $user_entity->setSurName($this->request->getPost('sur_name'));
         $user_entity->setEmail($this->request->getPost('email'));
+        $user_entity->setPhone($this->request->getPost('phone'));
+        $user_entity->setIdentity($this->request->getPost('identity'));
         $user_entity->setPassword($this->request->getPost('password'));
         $user_entity->setGroupID($this->request->getPost('group_id'));
         $user_entity->setBio($this->request->getPost('bio'));

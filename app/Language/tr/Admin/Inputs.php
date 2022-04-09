@@ -12,6 +12,8 @@ return [
         'first_name' => 'İsim',
         'last_name' => 'Soyisim',
         'full_name' => 'İsim & Soyisim',
+        'phone' => 'Telefon',
+        'identity' => 'TC Kimlik No',
         'user_select' => 'Kullanıcı Seç',
         'author' => 'Yazar',
         'author_select' => 'Yazar Seç',

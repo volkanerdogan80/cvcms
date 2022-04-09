@@ -12,6 +12,8 @@ return [
         'first_name' => 'First Name',
         'last_name' => 'Last Name',
         'full_name' => 'Full Name',
+        'phone' => 'Phone',
+        'identity' => 'Identity No',
         'user_select' => 'Select User',
         'author' => 'Author',
         'author_select' => 'Select Author',

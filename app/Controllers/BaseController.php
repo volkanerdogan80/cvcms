@@ -59,7 +59,8 @@ class BaseController extends Controller
                 'module',
                 'slider',
                 'image',
-                'auth'
+                'auth',
+                'admin'
             ]);
         }
         //--------------------------------------------------------------------
