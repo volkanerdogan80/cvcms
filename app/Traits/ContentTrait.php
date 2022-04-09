@@ -106,7 +106,7 @@ trait ContentTrait
         $content_entity->setPageType($this->request->getPost('page_type'));
         $content_entity->setPostFormat($this->request->getPost('post_format'));
         $content_entity->setSimilar($this->request->getPost('similar'));
-        $content_entity->setCommentStatus($this->request->getPost('comment'));
+        $content_entity->setCommentStatus($this->request->getPost('comment_status'));
         $content_entity->setStatus($this->request->getPost('status'));
 
         $content_model->update($id, $content_entity);
@@ -118,6 +118,7 @@ trait ContentTrait
             ]);
         }
 
+        //TODO: Social ve Notification active durumları kaydedilmediği için aktif yapsak dahi butonlarda aktif-pasif durumu değişmiyor.
         $this->shareOnSocialMedia();
         $this->sendNotification();
         $content_model->updateContentCategories($this->content_id, $this->request->getPost('categories'));

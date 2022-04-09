@@ -16,27 +16,27 @@
     <div class="jumbotron">
         <h1><?= cve_post_title() ?></h1>
         <p><?= cve_post_description() ?></p>
-        <?= cmp_language_dropdown() ?>
+        <?= language_change_dropdown(); ?>
     </div>
-    <?= cmp_alert_message() ?>
+    <?php uikit_alert_message() ?>
     <div class="row">
         <div class="col-md-12">
-            <?= cmp_favorite_button('1') ?>
-            <?= cmp_like_button('1') ?>
-            <?= cmp_comment_modal() ?>
-            <?= cmp_login_modal() ?>
-            <?= cmp_register_modal() ?>
+            <?= uikit_favorite_button() ?>
+            <?= uikit_like_button() ?>
+            <?= uikit_comment_modal() ?>
+            <?= uikit_login_modal() ?>
+            <?= uikit_register_modal() ?>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-9" style="margin: 10px 0px 10px">
-            <?= cmp_user_score_panel() ?>
+        <div class="col-md-9" style="margin: 10px 0 10px">
+            <?= uikit_user_score_panel() ?>
         </div>
     </div>
     <div class="row">
         <div class="col-md-9">
-
-            <p><?= cmp_comment_list(true) ?></p>
+            <?= uikit_comment_form(); ?>
+            <?= uikit_comment_list(); ?>
         </div>
     </div>
 

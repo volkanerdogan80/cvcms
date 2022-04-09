@@ -4,192 +4,68 @@
 namespace App\Controllers\Backend;
 
 use \App\Controllers\BaseController;
-use App\Entities\GroupEntity;
 use App\Models\GroupModel;
-use App\Models\UserModel;
+use App\Traits\GroupTrait;
+use App\Traits\ResponseTrait;
 
 class Groups extends BaseController
 {
-    protected $groupModel;
-    protected $userModel;
-    protected $groupEntity;
+    use GroupTrait;
+    use ResponseTrait;
 
-    public function __construct()
+    public function listing($status = null)
     {
-        $this->groupModel = new GroupModel();
-        $this->userModel = new UserModel();
-        $this->groupEntity = new GroupEntity();
-    }
-
-    public function listing(string $type = null)
-    {
-        $search = $this->request->getGet('search');
-        $data = $this->groupModel->getListing($type, $search, 20);
-        return view(PANEL_FOLDER . '/pages/group/listing', $data);
+        return $this->response([
+            'status' => true,
+            'message' => '',
+            'data' => $this->groupListing($status),
+            'view' => PANEL_FOLDER . '/pages/group/listing'
+        ]);
     }
 
     public function create()
     {
         if($this->request->getMethod() == 'post'){
-            $title = $this->request->getPost('title');
-            $permissions = $this->request->getPost('permission');
-
-            $this->groupEntity->setSlug($title);
-            $this->groupEntity->setTitle($title);
-            $this->groupEntity->setPermit($permissions);
-
-            $this->groupModel->insert($this->groupEntity);
-
-            if($this->groupModel->errors()){
-                return redirect()->back()->with('error', $this->groupModel->errors());
-            }
-
-            return redirect()->back()->with('success', cve_admin_lang('Success', 'create_success'));
-
+            $this->groupCreate();
+            return $this->response([
+                'status' => true,
+                'message' => cve_admin_lang('Success', 'create_success'),
+            ]);
         }
+
         return view(PANEL_FOLDER . '/pages/group/create');
     }
 
-    public function edit(int $id)
+    public function edit($id)
     {
         if($this->request->getMethod() == 'post'){
-            $title = $this->request->getPost('title');
-            $permissions = $this->request->getPost('permission');
-
-            $this->groupEntity->setId($id);
-            $this->groupEntity->setSlug($title);
-            $this->groupEntity->setTitle($title);
-            $this->groupEntity->setPermit($permissions);
-
-            $this->groupModel->update($id, $this->groupEntity);
-
-            if($this->groupModel->errors()){
-                return redirect()->back()->with('error', $this->groupModel->errors());
-            }
-
-            return redirect()->back()->with('success', cve_admin_lang('Success', 'update_success'));
+            $this->groupEdit($id);
+            return $this->response([
+                'status' => true,
+                'message' => cve_admin_lang('Success', 'update_success'),
+            ]);
         }
 
-        $data = [
-            'group' => $this->groupModel->find($id)
-        ];
-        return view(PANEL_FOLDER . '/pages/group/edit', $data);
+        $group_model = new GroupModel();
+        return view(PANEL_FOLDER . '/pages/group/edit', [
+            'group' => $group_model->find($id)
+        ]);
+
     }
 
     public function delete()
     {
-        if($this->request->isAJAX()){
-            $data = $this->request->getPost('id');
-            if (!$data){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'delete_empty_fields')
-                ]);
-            }
-
-            $data = !is_array($data) ? [$data] : $data;
-
-            $adminGroup = $this->groupModel->whereIn('id', $data)->where('slug', DEFAULT_ADMIN_GROUP)->first();
-            if($adminGroup){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'delete_admin_group_failure')
-                ]);
-            }
-
-            $userList = $this->userModel->whereIn('group_id', $data)->first();
-            if($userList){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'delete_group_with_user')
-                ]);
-            }
-
-            $delete = $this->groupModel->delete($data);
-
-            if(!$delete){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'delete_failure')
-                ]);
-            }
-
-            return $this->response->setJSON([
-                'status' => true,
-                'message' => cve_admin_lang('Success', 'delete_success')
-            ]);
-        }
-
-        return $this->response->setJSON([
-            'status' => false,
-            'message' => cve_admin_lang('Errors', 'delete_failure')
-        ]);
+        return $this->groupDelete();
     }
 
     public function undoDelete()
     {
-        if($this->request->isAJAX()){
-            $data = $this->request->getPost('id');
-            if (!$data){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'restore_empty_fields')
-                ]);
-            }
-
-            $update = $this->groupModel->update($data, ['deleted_at' => null]);
-
-            if(!$update){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'undo_delete_failure')
-                ]);
-            }
-
-            return $this->response->setJSON([
-                'status' => true,
-                'message' => cve_admin_lang('Success', 'undo_delete_success')
-            ]);
-
-        }
-
-        return $this->response->setJSON([
-            'status' => false,
-            'message' => cve_admin_lang('Errors', 'undo_delete_failure')
-        ]);
-
+        return $this->groupUndoDelete();
     }
 
     public function purgeDelete()
     {
-        if($this->request->isAJAX()){
-            $data = $this->request->getPost('id');
-            if (!$data){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'purge_delete_empty_fields')
-                ]);
-            }
-            $delete = $this->groupModel->delete($data, true);
-
-            if(!$delete){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'delete_failure')
-                ]);
-            }
-
-            return $this->response->setJSON([
-                'status' => true,
-                'message' => cve_admin_lang('Success', 'purge_delete_success')
-            ]);
-
-        }
-
-        return $this->response->setJSON([
-            'status' => false,
-            'message' => cve_admin_lang('Errors', 'purge_delete_failure')
-        ]);
+        return $this->groupPurgeDelete();
     }
 
 }

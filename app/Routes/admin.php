@@ -64,11 +64,10 @@ $routes->group('share', function ($routes){
     $routes->match(['get', 'post'],'linkedin/callback', 'Backend\AutoShare::linkedInCallback', ['as' => 'admin_linkedin_callback']);
     $routes->get('linkedin/test', 'Backend\AutoShare::linkedInTest', ['as' => 'admin_linkedin_test']);
 });
-
-$routes->group('category', function ($routes){
+$routes->group('category', function ($routes) {
     $routes->get('listing(:any)', 'Backend\Category::listing$1', ['as' => 'admin_category_listing']);
     $routes->match(['get', 'post'], 'create', 'Backend\Category::create', ['as' => 'admin_category_create']);
-    $routes->match(['get','post'], 'edit/(:num)', 'Backend\Category::edit/$1', ['as' => 'admin_category_edit']);
+    $routes->match(['get', 'post'], 'edit/(:num)', 'Backend\Category::edit/$1', ['as' => 'admin_category_edit']);
     $routes->post('status', 'Backend\Category::status', ['as' => 'admin_category_status']);
     $routes->post('delete', 'Backend\Category::delete', ['as' => 'admin_category_delete']);
     $routes->post('undo-delete', 'Backend\Category::undoDelete', ['as' => 'admin_category_undo_delete']);
@@ -93,15 +92,15 @@ $routes->group('language', function ($routes){
 });
 
 $routes->group('comment', function ($routes){
-    $routes->get('listing(:any)', 'Backend\Comments::listing$1', ['as' => 'admin_comment_listing']);
-    $routes->post('status', 'Backend\Comments::status', ['as' => 'admin_comment_status']);
-    $routes->post('delete', 'Backend\Comments::delete', ['as' => 'admin_comment_delete']);
-    $routes->get('reply-modal', 'Backend\Comments::replyModal', ['as' => 'admin_comment_reply_modal']);
-    $routes->post('reply', 'Backend\Comments::reply', ['as' => 'admin_comment_reply']);
-    $routes->get('edit-modal', 'Backend\Comments::editModal', ['as' => 'admin_comment_edit_modal']);
-    $routes->post('edit', 'Backend\Comments::edit', ['as' => 'admin_comment_edit']);
-    $routes->post('undo-delete', 'Backend\Comments::undoDelete', ['as' => 'admin_comment_undo_delete']);
-    $routes->post('purge-delete', 'Backend\Comments::purgeDelete', ['as' => 'admin_comment_purge_delete']);
+    $routes->get('listing(:any)', 'Backend\Comment::listing$1', ['as' => 'admin_comment_listing']);
+    $routes->post('status', 'Backend\Comment::status', ['as' => 'admin_comment_status']);
+    $routes->post('delete', 'Backend\Comment::delete', ['as' => 'admin_comment_delete']);
+    $routes->get('reply-modal', 'Backend\Comment::replyModal', ['as' => 'admin_comment_reply_modal']);
+    $routes->post('reply', 'Backend\Comment::reply', ['as' => 'admin_comment_reply']);
+    $routes->get('edit-modal', 'Backend\Comment::editModal', ['as' => 'admin_comment_edit_modal']);
+    $routes->post('edit', 'Backend\Comment::edit', ['as' => 'admin_comment_edit']);
+    $routes->post('undo-delete', 'Backend\Comment::undoDelete', ['as' => 'admin_comment_undo_delete']);
+    $routes->post('purge-delete', 'Backend\Comment::purgeDelete', ['as' => 'admin_comment_purge_delete']);
 });
 
 $routes->group('menu', function ($routes){

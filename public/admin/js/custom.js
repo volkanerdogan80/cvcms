@@ -48,3 +48,43 @@ $.fn.serializeObject = function () {
     });
     return o;
 };
+
+$(document).on('keyup', '#permit-filter', function (){
+    let permit_list = $('.permit-list').find('li');
+    let filter = $(this).val().toUpperCase();
+    permit_list.each(function (index, item){
+        let title = $(item).data('title').toUpperCase();
+        let key = $(item).data('key');
+        if (title.indexOf(filter) > -1){
+            $('.' + key).removeClass('display-none');
+        }else{
+            $('.' + key).addClass('display-none');
+        }
+    })
+})
+
+$(document).on('keyup', '#social-filter', function (){
+    let social_list = $('.social-list').find('.social-title');
+    let filter = $(this).val().toUpperCase();
+    social_list.each(function (index, item){
+        let title = $(item).data('title').toUpperCase();
+        if (title.indexOf(filter) > -1){
+            $(item).closest('.social-group').show();
+        }else{
+            $(item).closest('.social-group').hide();
+        }
+    })
+})
+
+$(document).on('keyup', '#component-filter', function (){
+    let social_list = $('.component-list').find('.component-title');
+    let filter = $(this).val().toUpperCase();
+    social_list.each(function (index, item){
+        let title = $(item).data('title').toUpperCase();
+        if (title.indexOf(filter) > -1){
+            $(item).closest('.component-item').show();
+        }else{
+            $(item).closest('.component-item').hide();
+        }
+    })
+})

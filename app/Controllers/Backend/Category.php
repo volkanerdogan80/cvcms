@@ -4,257 +4,75 @@
 namespace App\Controllers\Backend;
 
 use \App\Controllers\BaseController;
-use App\Entities\CategoryEntity;
 use App\Models\CategoryModel;
-use App\Models\ContentModel;
-use App\Models\UserModel;
+use App\Traits\CategoryTrait;
+use App\Traits\ResponseTrait;
 
 class Category extends BaseController
 {
-    protected $categoryModel;
-    protected $categoryEntity;
-    protected $contentModel;
-    protected $userModel;
+    use CategoryTrait;
+    use ResponseTrait;
 
-    public function __construct()
+    public function listing($status = null)
     {
-        $this->categoryModel = new CategoryModel();
-        $this->categoryEntity = new CategoryEntity();
-        $this->contentModel = new ContentModel();
-        $this->userModel = new UserModel();
-    }
-
-    public function listing(string $status = null)
-    {
-        $getDateFilter = $this->request->getGet('dateFilter');
-        $dateFilter = explode(' - ', $getDateFilter);
-        $dateFilter = count($dateFilter) > 1 ? $dateFilter : null;
-
-        $perPage = $this->request->getGet('per_page');
-        $perPage = !empty($perPage) ? $perPage : 20;
-
-        $search = $this->request->getGet('search');
-        $search = !empty($search) ? $search : null;
-
-        $user = $this->request->getGet('user');
-        $user = !empty($user) ? $user : null;
-
-        $module = $this->request->getGet('module');
-        $module = !empty($module) ? $module : null;
-
-        $data = [
-            'perPage' => $perPage,
-            'dateFilter' => $getDateFilter,
-            'search' => $search,
-            'user' => $user,
-            'module' => $module,
-            'groups' => $this->categoryModel->findAll(),
-            'users' => $this->userModel->findAll()
-        ];
-
-        $getModel = $this->categoryModel->getListing($status, $user, $module, $search, $dateFilter, $perPage);
-
-        $data = array_merge($data, $getModel);
-
-        return view(PANEL_FOLDER . '/pages/category/listing', $data);
+        return $this->response([
+            'status' => true,
+            'message' => '',
+            'data' => $this->categoryListing($status),
+            'view' => PANEL_FOLDER . '/pages/category/listing'
+        ]);
     }
 
     public function create()
     {
         if($this->request->getMethod() == 'post'){
-            $this->categoryEntity->setModule($this->request->getPost('module'));
-            $this->categoryEntity->setUserId();
-            $this->categoryEntity->setParentId($this->request->getPost('parent_id'));
-            $this->categoryEntity->setTitle($this->request->getPost('title'));
-            $this->categoryEntity->setSlug();
-            $this->categoryEntity->setDescription($this->request->getPost('description'));
-            $this->categoryEntity->setKeywords($this->request->getPost('keywords'));
-            $this->categoryEntity->setImage($this->request->getPost('image'));
-            $this->categoryEntity->setStatus($this->request->getPost('status'));
-
-            $this->categoryModel->insert($this->categoryEntity);
-
-            if($this->categoryModel->errors()){
-                return redirect()->back()->with('error', $this->categoryModel->errors());
-            }
-
-            return redirect()->back()->with('success', cve_admin_lang('Success', 'create_success'));
-
+            $this->categoryCreate();
+            return $this->response([
+                'status' => true,
+                'message' => cve_admin_lang('Success', 'create_success'),
+            ]);
         }
 
+        $category_model = new CategoryModel();
         return view(PANEL_FOLDER . '/pages/category/create', [
-            'categories' => $this->categoryModel->findAll()
+            'categories' => $category_model->findAll()
         ]);
     }
 
-    public function edit(int $id)
+    public function edit($id)
     {
         if($this->request->getMethod() == 'post'){
-            $this->categoryEntity->setId($id);
-            $this->categoryEntity->setModule($this->request->getPost('module'));
-            $this->categoryEntity->setParentId($this->request->getPost('parent_id'));
-            $this->categoryEntity->setTitle($this->request->getPost('title'));
-            $this->categoryEntity->setSlug();
-            $this->categoryEntity->setDescription($this->request->getPost('description'));
-            $this->categoryEntity->setKeywords($this->request->getPost('keywords'));
-            $this->categoryEntity->setImage($this->request->getPost('image'));
-            $this->categoryEntity->setStatus($this->request->getPost('status'));
-
-            $this->categoryModel->update($id,$this->categoryEntity);
-
-            if($this->categoryModel->errors()){
-                return redirect()->back()->with('error', $this->categoryModel->errors());
-            }
-
-            return redirect()->back()->with('success', cve_admin_lang('Success', 'update_success'));
-
+            $this->categoryEdit($id);
+            return $this->response([
+                'status' => true,
+                'message' => cve_admin_lang('Success', 'update_success'),
+            ]);
         }
 
+        $category_model = new CategoryModel();
         return view(PANEL_FOLDER . '/pages/category/edit', [
-            'categories' => $this->categoryModel->where('id !=', $id)->findAll(),
-            'category' => $this->categoryModel->find($id)
+            'categories' => $category_model->findAll(),
+            'category' => $category_model->find($id)
         ]);
     }
 
     public function status()
     {
-        if($this->request->isAJAX()){
-            $data = $this->request->getPost('id');
-            if (!$data){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'change_status_empty_fields')
-                ]);
-            }
-            $status = $this->request->getPost('status');
-
-            $update = $this->categoryModel->update($data, ['status' => $status]);
-            if(!$update){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'status_change_failure')
-                ]);
-            }
-
-            return $this->response->setJSON([
-                'status' => true,
-                'message' => cve_admin_lang('Success', 'status_change_success')
-            ]);
-        }
-
-        return $this->response->setJSON([
-            'status' => false,
-            'message' => cve_admin_lang('Errors', 'status_change_failure')
-        ]);
+        return $this->statusChange();
     }
 
     public function delete()
     {
-        if($this->request->isAJAX()){
-            $data = $this->request->getPost('id');
-            if (!$data){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'delete_empty_fields')
-                ]);
-            }
-
-            $data = !is_array($data) ? [$data] : $data;
-            $parent_control = $this->categoryModel->whereIn('parent_id', $data)->find();
-            if($parent_control){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'delete_category_with_subs')
-                ]);
-            }
-
-            $content_control = $this->contentModel->getContentsByCategoryIds($data, false, false, true);
-            if($content_control){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'delete_category_with_content')
-                ]);
-            }
-
-            $delete = $this->categoryModel->delete($data);
-            if (!$delete){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'delete_failure')
-                ]);
-            }
-
-            return $this->response->setJSON([
-                'status' => true,
-                'message' => cve_admin_lang('Success', 'delete_success')
-            ]);
-        }
-
-        return $this->response->setJSON([
-            'status' => false,
-            'message' => cve_admin_lang('Errors', 'delete_failure')
-        ]);
+        return $this->categoryDelete();
     }
 
     public function undoDelete()
     {
-        if($this->request->isAJAX()){
-            $data = $this->request->getPost('id');
-            if (!$data){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'restore_empty_fields')
-                ]);
-            }
-            $update = $this->categoryModel->update($data, ['deleted_at' => null]);
-            if(!$update){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'undo_delete_failure')
-                ]);
-            }
-
-            return $this->response->setJSON([
-                'status' => true,
-                'message' => cve_admin_lang('Success', 'undo_delete_success')
-            ]);
-
-        }
-
-        return $this->response->setJSON([
-            'status' => false,
-            'message' => cve_admin_lang('Errors', 'undo_delete_failure')
-        ]);
+        return $this->categoryUndoDelete();
     }
 
     public function purgeDelete()
     {
-        if($this->request->isAJAX()){
-            $data = $this->request->getPost('id');
-            if (!$data){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'purge_delete_empty_fields')
-                ]);
-            }
-
-            $purgeDelete = $this->categoryModel->delete($data, true);
-            if(!$purgeDelete){
-                return $this->response->setJSON([
-                    'status' => false,
-                    'message' => cve_admin_lang('Errors', 'purge_delete_failure')
-                ]);
-            }
-
-            return $this->response->setJSON([
-                'status' => true,
-                'message' => cve_admin_lang('Success', 'purge_delete_success')
-            ]);
-        }
-
-        return $this->response->setJSON([
-            'status' => false,
-            'message' => cve_admin_lang('Errors', 'purge_delete_failure')
-        ]);
+        $this->categoryPurgeDelete();
     }
 }

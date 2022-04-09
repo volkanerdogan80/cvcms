@@ -4,9 +4,9 @@ return [
     'title' => 'Error Messages Translation File',
     'description' => 'The data in this field contains error messages used in the panel.',
     'text' => [
-        'general_failure' => 'An error occurred while processing the operation.',
-        'something_went_wrong' => 'Something went wrong!',
-        'email_send_failure'         => 'An error occurred while sending mail. Please try again.',
+        'general_failure'           => 'An error occurred while processing the operation.',
+        'something_went_wrong'      => 'Something went wrong!',
+        'email_send_failure'        => 'An error occurred while sending mail. Please try again.',
 
         'user_info_failure'          => 'Login Failed.Please try again by checking your login information.',
         'user_not_found'             => 'No such user found. Please try again',
@@ -68,11 +68,13 @@ return [
 
         'comment_reply_failure'           => 'You are not allowed to reply to a comment that does not belong to you.',
         'comment_edit_failure'            => 'You are not allowed to edit a comment that does not belong to you.',
+        'comment_delete_failure'          => 'You are not allowed to delete a comment that does not belong to you.',
         'comment_reply_status_failure'    => 'You are not allowed to change the status of a comment that does not belong to you.',
         'comment_undo_delete_failure'     => 'You are not allowed to restore a deleted comment that does not belong to you.',
         'comment_purge_delete_failure'    => 'You are not allowed to permanently delete a comment that does not belong to you.',
 
         'message_not_found'         => 'No such message was found. Please try again.',
+        'message_reply_failure'     => 'An error occurred while replying the message. Please try again.',
         'message_auth_failure'      => 'You are not authorized to perform this action.',
         'message_mark_read_failure' => 'An error occurred while marking the messages as read. Please try again.',
         'message_send_db_failure'   => 'Your message was sent to the recipient. But an error occurred while saving it to the system. Please try again.',

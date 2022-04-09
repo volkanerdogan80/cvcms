@@ -13,6 +13,7 @@ return [
         'updated_at'  => 'Güncelleme Tarihi',
         'deleted_at'  => 'Silinme Tarihi',
         'status'      => 'Durumu',
+        'answer'      => 'YNT',
 
         'active'  => 'Aktif',
         'passive' => 'Pasif',

@@ -54,5 +54,8 @@ return [
 
         'notification_success'  => 'Notification Sent Successfully!',
 
+        'comment_create_success' => 'Comment Added Successfully!',
+        'comment_update_success' => 'Comment Updated Successfully!',
+
     ]
 ];

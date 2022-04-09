@@ -12,7 +12,7 @@ return [
         'fly-whatsapp-button-js' => cve_component_public('fly-whatsapp-button/public/fly-whatsapp-button.js'),
     ],
     'footer' => [
-        'fly-whatsapp-button-code' => cve_component_file('fly-whatsapp-button/index.php')
+        'fly-whatsapp-button-code' => cve_component_file('fly-whatsapp-button/index')
     ],
     'style' => [],
     'script' => [],

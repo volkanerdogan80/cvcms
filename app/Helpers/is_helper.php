@@ -103,7 +103,7 @@ function is_service($content = null)
  */
 function is_comment_status($content = null): bool
 {
-    if (is_post($content) && cve_post_comment_status($content)){
+    if (is_post($content) && cve_post_comment_status($content) == STATUS_ACTIVE){
         return true;
     }
     return false;

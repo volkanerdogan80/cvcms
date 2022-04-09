@@ -13,9 +13,10 @@
         <div class="jumbotron">
             <h1>Bootstrap Tutorial</h1>
         </div>
+        <?php uikit_alert_message(); ?>
         <div class="row">
             <div class="col-md-9">
-                <p><?= cmp_contact_form(true) ?></p>
+                <p><?php uikit_contact_form() ?></p>
             </div>
         </div>
 

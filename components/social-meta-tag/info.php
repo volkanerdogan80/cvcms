@@ -4,7 +4,7 @@ return [
     'version' => '1.0.0',
     'name' => 'Sosyal Medya Meta Etiketleri',
     'author' => 'Volkan Erdoğan',
-    'web' => 'https://cvmhendislik.com',
+    'web' => 'https://cvmuhendislik.com',
     'email' => 'volkanerdogan80@gmail.com',
     'description' => 'CVCMS için geliştirilmiş olan sosyal medya meta tagları',
     'head' => [

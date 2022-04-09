@@ -14,16 +14,12 @@
         routes.content_comment = '<?= base_url(route_to('content_comment', cve_post_id()))?>';
     </script>
 <?php endif; ?>
-
 <script>
     routes.content_vote = '<?= cve_route('content_vote'); ?>';
     routes.content_like = '<?= cve_route('content_like'); ?>';
     routes.content_favorite = '<?= cve_route('content_favorite'); ?>';
 </script>
-
 <script src="<?= base_url(PUBLIC_ADMIN_JS_PATH . 'theme.js') ?>"></script>
-<script src="<?= base_url(PUBLIC_ADMIN_JS_PATH . 'uikit.min.js'); ?>"></script>
-<script src="<?= base_url(PUBLIC_ADMIN_JS_PATH . 'uikit-icons.min.js'); ?>"></script>
 <?php foreach (cve_component_footer() as $key => $value): ?>
 <?php if (is_file_extension($value, 'css')): ?>
 <link rel="stylesheet" href="<?= $value; ?>">

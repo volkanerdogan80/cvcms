@@ -5,6 +5,7 @@ return [
     'description' => 'The data in this field contains the titles of the input fields. ',
     'text' => [
         'email' => 'Email Address',
+        'subject' => 'Subject',
         'password' => 'Password',
         'password2' => 'Retype Password',
         'new_password' => 'New Password',
@@ -23,6 +24,7 @@ return [
         'action' => 'Action',
         'slug' => 'Slug',
         'title' => 'Title',
+        'star' => 'Star',
         'language_title' => 'Language Title',
         'menu_title' => 'Menu Title',
         'group_title' => 'Group Title',

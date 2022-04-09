@@ -79,25 +79,3 @@
         </section>
     </div>
 <?php $this->endSection(); ?>
-
-<?php $this->section('script'); ?>
-
-<script>
-    $(document).on('keyup', '#permit-filter', function (){
-        let permit_list = $('.permit-list').find('li');
-        let filter = $(this).val().toUpperCase();
-        permit_list.each(function (index, item){
-            let title = $(item).data('title').toUpperCase();
-            let key = $(item).data('key');
-            if (title.indexOf(filter) > -1){
-                $('.' + key).removeClass('display-none');
-            }else{
-                $('.' + key).addClass('display-none');
-            }
-        })
-    })
-</script>
-
-<?php $this->endSection(); ?>
-
-

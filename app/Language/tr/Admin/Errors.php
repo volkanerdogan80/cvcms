@@ -4,9 +4,9 @@ return [
     'title' => 'Hata Mesajları Çeviri Dosyası',
     'description' => 'Bu alanda bulunan veriler panelde kullanılan hata mesajlarını içermektedir.',
     'text' => [
-        'general_failure' => 'İşlem yapılırken bir hata meydana geldi.',
-        'something_went_wrong' => 'Bir şeyler ters gitti!',
-        'email_send_failure'         => 'Email gönderimi esnasında bir hata meydana geldi. Lütfen tekrar deneyiniz.',
+        'general_failure'           => 'İşlem yapılırken bir hata meydana geldi.',
+        'something_went_wrong'      => 'Bir şeyler ters gitti!',
+        'email_send_failure'        => 'Email gönderimi esnasında bir hata meydana geldi. Lütfen tekrar deneyiniz.',
 
         'user_info_failure'          => 'Giriş Başarısız. Lütfen giriş bilgilerinizi kontrol ederek tekrar deneyiniz.',
         'user_not_found'             => 'Böyle bir kullanıcı bulunamadı. Lütfen tekrar deneyiniz.',
@@ -68,11 +68,13 @@ return [
 
         'comment_reply_failure'           => 'Kendinize ait olmayan bir yoruma cevap veremezsiniz.',
         'comment_edit_failure'            => 'Kendinize ait olmayan bir yorumu düzenleyemezsiniz.',
+        'comment_delete_failure'          => 'Kendinize ait olmayan bir yorumu silemezsiniz.',
         'comment_reply_status_failure'    => 'Kendinize ait olmayan bir yorumun durumunu değiştiremezsiniz.',
         'comment_undo_delete_failure'     => 'Kendinize ait olmayan silinmiş bir yorumu geri getiremezsiniz.',
         'comment_purge_delete_failure'    => 'Kendinize ait olmayan  bir yorumu kalıcı olarak silemezsiniz.',
 
         'message_not_found'         => 'Böyle bir mesaj bulunmadı. Lütfen tekrar deneyiniz.',
+        'message_reply_failure'     => 'Mesaj yanıtlanırken bir hata meydana geldi. Lütfen tekrar deneyin.',
         'message_auth_failure'      => 'Bu işlemi yapma yetkisine sahip değilsiniz.',
         'message_mark_read_failure' => 'Mesajlar okundu olarak işaretlendirken bir hata meydana geldi. Lütfen tekrar deneyiniz.',
         'message_send_db_failure'   => 'Mesajınız alıcıya gönderildi. Ancak sisteme kaydedilirken bir hata meydana geldi. Lütfen tekrar deneyiniz.',

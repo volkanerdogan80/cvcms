@@ -13,6 +13,7 @@ return [
         'updated_at' => 'Updated At',
         'deleted_at' => 'Deleted At',
         'status'     => 'Status',
+        'answer'     => 'RE',
 
         'active'  => 'Active',
         'passive' => 'Passive',

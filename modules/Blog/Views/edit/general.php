@@ -26,7 +26,7 @@
                         <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'active') ?></span>
                     </label>
                     <label class="selectgroup-item">
-                        <input <?= $content->getCommentStatus() == STATUS_PASSIVE ? 'checked': '' ?> type="radio" name="comment_status" value="<?= STATUS_PASSIVE?>" class="selectgroup-input" required>
+                        <input <?= $content->getCommentStatus() == STATUS_PASSIVE ? 'checked': '' ?> type="radio" name="comment_status" value="<?= STATUS_PASSIVE ?>" class="selectgroup-input" required>
                         <span class="selectgroup-button"><?= cve_admin_lang('Buttons', 'passive') ?></span>
                     </label>
                 </div>

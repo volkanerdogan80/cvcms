@@ -118,7 +118,7 @@
                 </a>
             </li>
             <li class="nav-item dropdown" id="language">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-globe"></i></i><span><?= cve_admin_lang('Sidebar', 'languages')?></span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-globe"></i><span><?= cve_admin_lang('Sidebar', 'languages')?></span></a>
                 <ul class="dropdown-menu">
                     <li>
                         <a class="nav-link" href="<?= base_url(route_to('admin_language_listing', null)) ?>">
@@ -159,7 +159,7 @@
                 <a class="nav-link" href="<?= base_url(route_to('admin_component_listing')); ?>">
                     <i class="fas fa-puzzle-piece"></i>
                     <span>
-                       Componentler
+                       <?= cve_admin_lang('Sidebar', 'components')?>
                     </span>
                 </a>
             </li>

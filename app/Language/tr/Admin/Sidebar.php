@@ -30,6 +30,7 @@ return [
         'language_create' => 'Yeni Dil Oluştur',
         'translation' => 'Çeviri',
         'themes' => 'Temalar',
+        'components' => 'Bileşenler',
         'settings' => 'Ayarlar',
         'document' => 'Dokümantasyon'
     ]

@@ -319,10 +319,17 @@ function cve_page_template()
     }
 }
 
-function cve_theme_view($path, $data = []): string
+function cve_theme_view($path, $data = [])
 {
     $viewPath = THEMES_PATH . cve_theme_folder();
     $renderer = \Config\Services::themeRenderer($viewPath, null, true);
+    return $renderer->setData($data)->render($path);
+}
+
+function cve_component_view($path, $data = [])
+{
+    $viewPath = COMPONENTS_PATH;
+    $renderer = \Config\Services::componentRenderer($viewPath, null, true);
     return $renderer->setData($data)->render($path);
 }
 

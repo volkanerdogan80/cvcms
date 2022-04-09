@@ -52,5 +52,8 @@ return [
         'unsubscribe_success_message' => 'Eposta aboneliği başarılı bir şekilde iptal edildi. Gittiğin için çok üzgünüz. :( Seni tekrardan aramızda görmeyi dört gözle bekliyoruz.',
 
         'notification_success'  => 'Bildirim Başarıyla Gönderildi!',
+
+        'comment_create_success' => 'Yorum Başarılı Bir Şekilde Eklendi!',
+        'comment_update_success' => 'Yorum Başarılı Bir Şekilde Güncellendi!',
     ]
 ];

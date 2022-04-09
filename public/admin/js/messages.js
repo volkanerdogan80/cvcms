@@ -33,15 +33,6 @@ $(document).on('click', '.message-send', function (){
     })
 });
 
-function getDetail(url, id){
-    cve_request.post(url, {
-        id: id
-    }, function (response){
-        if (response.status) {
-            $('.message-detail').html(response.data);
-        }
-    })
-}
 $('.message-item-area').hover(function (){
     $('.message-delete').show();
     $('.message-undo-delete').show();
@@ -53,14 +44,12 @@ $('.message-item-area').hover(function (){
 })
 
 $(document).on('click', '.message-delete', function (){
-
     let id = $(this).data('id');
     let url = $(this).data('url')
 
     cve_request.post(url, {id: id}, function (response){
         if (response.status) {
             $('.message-list-item[data-id='+id+']').remove();
-            $('.message-delete[data-id='+id+']').remove();
         }
     })
 
@@ -94,23 +83,32 @@ $('.message-purge-delete').click(function (){
             cve_request.post(url, {id: id}, function (response){
                 if(response.status){
                     $('.message-list-item[data-id='+id+']').remove();
-                    $('.message-purge-delete[data-id='+id+']').remove();
                 }
             })
         }
     });
 });
 
+function getDetail(url, id){
+    cve_request.post(url, {
+        id: id
+    }, function (response){
+        if (response.status) {
+            $('.message-detail').html(response.data.view);
+        }
+    }, false)
+}
+
 setInterval(function () {
     cve_request.get(admin_message_listing, {}, function (response){
         if (response.status) {
-            if (response.unread){
+            if (response.length){
                 $('.message-toggle').addClass('beep');
             }else{
                 $('.message-toggle').removeClass('beep');
             }
 
-            $('.navbar-message-list').html(response.data)
+            $('.navbar-message-list').html(response.data.view)
         }
     }, false)
 }, 300000)

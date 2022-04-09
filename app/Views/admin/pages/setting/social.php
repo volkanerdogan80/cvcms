@@ -41,21 +41,3 @@
         </section>
     </div>
 <?php $this->endSection(); ?>
-<?php $this->section('script'); ?>
-
-<script>
-    $(document).on('keyup', '#social-filter', function (){
-        let social_list = $('.social-list').find('.social-title');
-        let filter = $(this).val().toUpperCase();
-        social_list.each(function (index, item){
-            let title = $(item).data('title').toUpperCase();
-            if (title.indexOf(filter) > -1){
-                $(item).closest('.social-group').show();
-            }else{
-                $(item).closest('.social-group').hide();
-            }
-        })
-    })
-</script>
-
-<?php $this->endSection(); ?>

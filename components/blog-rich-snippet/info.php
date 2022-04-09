@@ -4,7 +4,7 @@ return [
     'version' => '1.0.0',
     'name' => 'Blog Rich Snippet',
     'author' => 'Volkan Erdoğan',
-    'web' => 'https://cvmhendislik.com',
+    'web' => 'https://cvmuhendislik.com',
     'email' => 'volkanerdogan80@gmail.com',
     'description' => 'Google’da karşımıza çıkan başlık, URL ve açıklama kısmı',
     'head' => [

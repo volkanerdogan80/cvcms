@@ -4,7 +4,7 @@ return [
     'version' => '1.0.0',
     'name' => 'Webmaster Araçları',
     'author' => 'Volkan Erdoğan',
-    'web' => 'https://cvmhendislik.com',
+    'web' => 'https://cvmuhendislik.com',
     'email' => 'volkanerdogan80@gmail.com',
     'description' => 'CVCMS için geliştirilmiş webmaster araçları componenti.',
     'head' => [

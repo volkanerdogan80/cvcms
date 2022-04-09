@@ -5,6 +5,7 @@ return [
     'description' => 'Bu alanda yer alan veriler input alanlarının başlıklarını içermektedir.',
     'text' => [
         'email' => 'Eposta Adresi',
+        'subject' => 'Konu',
         'password' => 'Şifre',
         'password2' => 'Şifre Tekrar',
         'new_password' => 'Yeni Şifre',
@@ -23,6 +24,7 @@ return [
         'action' => 'İşlem',
         'slug' => 'Ön Ek',
         'title' => 'Başlık',
+        'star' => 'Yıldız',
         'language_title' => 'Dil Başlığı',
         'menu_title' => 'Menü Başlığı',
         'group_title' => 'Grup Başlığı',

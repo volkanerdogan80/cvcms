@@ -21,7 +21,7 @@ class Content extends BaseController
 
         // TODO: İçerik bulunamadı için 404 sayfası hazırla
         if (!$content){
-            return redirect('homepage');
+            return redirect()->to(base_url(route_to('homepage')));
         }
 
         $this->viewIncrease($content);
@@ -37,12 +37,12 @@ class Content extends BaseController
     {
         // TODO: Kullanıcıyı anasayfa değilde hata mesajı sayfasına yönlendir
         if (!is_theme_folder('single')) {
-            return redirect('homepage');
+            return redirect()->to(base_url(route_to('homepage')));
         }
 
         // TODO: Kullanıcıyı anasayfa değilde hata mesajı sayfasına yönlendir
         if (!is_theme_file('single/' . cve_post_module($content))) {
-            return redirect('homepage');
+            return redirect()->to(base_url(route_to('homepage')));
         }
 
         return cve_theme_view('single/' . cve_post_module($content), [
@@ -55,14 +55,14 @@ class Content extends BaseController
         $page_template = cve_post_template($content);
         $page_template_list = page_template();
 
-        // TODO: Kullanıcıyı anasayfa yerine hata mesajı sayfasına yönlendir
+        // TODO: Kullanıcıyı anasayfa değilde hata mesajı sayfasına yönlendir
         if (!isset($page_template_list[$page_template])) {
-            return redirect('homepage');
+            return redirect()->to(base_url(route_to('homepage')));
         }
 
-        // TODO: Kullanıcıyı anasayfa yerine hata mesajı sayfasına yönlendir
+        // TODO: Kullanıcıyı anasayfa değilde hata mesajı sayfasına yönlendir
         if (!is_theme_file($page_template_list[$page_template]['path'])) {
-            return redirect('homepage');
+            return redirect()->to(base_url(route_to('homepage')));
         }
 
         return cve_theme_view($page_template_list[$page_template]['path'], [

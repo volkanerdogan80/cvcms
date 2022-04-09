@@ -30,6 +30,7 @@ return [
         'language_create' => 'Create New Language',
         'translation' => 'Translation',
         'themes' => 'Themes',
+        'components' => 'Components',
         'settings' => 'Settings',
         'document' => 'Documentation'
     ]

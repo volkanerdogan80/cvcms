@@ -213,21 +213,21 @@ function cve_comment_level($comment = null, $margin = null)
     return null;
 }
 /**
- * Returns comment list  and adds levels to the comments
- * @param null $content | ContentID or Content Entity Object
- * @param null $comment | CommentID or Comment Entity Object
- * @param int $level | Initial level
- * @param array $data | Array to which comments are added
+ * Yorum listesi döner ve yorumlara level ( derece ) ekler.
+ * @param null $content | ContentID veya Content Entity Objesi
+ * @param null $comment | CommentID veya Comment Entity Objesi
+ * @param int $level | Başlangıç level
+ * @param array $data | Yorumların eklendiği array dizisi
  * @return array|mixed
  */
-function cve_comments_level($content = null, $comment = null, int $level = 0, array $data = [])
+function cve_comments_level($content = null, $comment = null, $level = 0, $data = [])
 {
     $content_id = cve_post_id($content);
     $comment_id = cve_comment_id($comment);
     $comments = get_comments(['content_id' => $content_id, 'comment_id' => $comment_id]);
-    $level++;
+    $level = $level + 1;
     foreach ($comments as $comment) {
-        $comment->level--;
+        $comment->level = $level-1;
         $data[] = $comment;
         $data = cve_comments_level($content, $comment, $level, $data);
     }
