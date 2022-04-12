@@ -7,7 +7,7 @@
     >
         <?= dot_array_search('title', $label); ?>
     </label>
-    <div class="col-sm-12 col-md-9">
-        <?= admin_input($input); ?>
+    <div class="col-sm-12 col-md-8">
+        <?= admin_select($select); ?>
     </div>
 </div>

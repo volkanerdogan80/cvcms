@@ -21,9 +21,28 @@ function admin_input($options = [])
     }
 
     $options = !is_array($options) ? [] : $options;
-    $options = admin_default_input_data($options);
+    $options = admin_default_data($options);
 
-    return view('components/form/input', [
+    return view('components/form/elements/input/input', [
+        'options' => $options
+    ]);
+}
+
+function admin_select($options = [])
+{
+
+    if (isset($options[0]) && is_array($options[0])){
+        $select='';
+        foreach ($options as $key => $value){
+            $select .= admin_select($value);
+        }
+        return $select;
+    }
+
+    $options = !is_array($options) ? [] : $options;
+    $options = admin_default_data($options);
+
+    return view('components/form/elements/select-box/select', [
         'options' => $options
     ]);
 }
@@ -40,13 +59,7 @@ function admin_row_input($options = [])
         return $row;
     }
 
-    if (isset($options['label']) && is_array($options['label'])){
-        $label = $options['label'];
-        $label['data'] = admin_data_attr($options['label']);
-        $label['extra'] = admin_extra_attr($options['label']);
-    }else{
-        $label['title'] = $options['label'];
-    }
+    $label = admin_default_label_data($options);
 
     if (isset($options['input']) && is_array($options['input'])){
         $input = $options['input'];
@@ -56,18 +69,48 @@ function admin_row_input($options = [])
         $input['placeholder'] = $label['title'];
     }
 
-    return view('components/form/row_input', [
+    return view('components/form/elements/input/row_input', [
         'label' => $label,
         'input' => $input
     ]);
 }
 
-function admin_default_input_data($options)
+function admin_row_select($options = [])
+{
+    $label = [];
+    $select = [];
+
+    if (isset($options[0]) && is_array($options[0])){
+        $row = '';
+        foreach ($options as $key => $value){
+            $row .= admin_row_select($value);
+        }
+        return $row;
+    }
+
+    $label = admin_default_label_data($options);
+
+    if (isset($options['select']) && is_array($options['select'])){
+        $select = $options['select'];
+    }else{
+        $select['name'] = $options['select'];
+    }
+
+    return view('components/form/elements/select-box/row_select', [
+        'label' => $label,
+        'select' => $select
+    ]);
+}
+
+function admin_default_data($options)
 {
     $options['name'] = !isset($options['name']) ? 'undefined' : $options['name'];
     $options['required'] = isset($options['required']) && $options['required'] ? 'required' : '';
     $options['type'] = !isset($options['type']) ? 'text' : $options['type'];
     $options['value'] = !isset($options['value']) || empty($options['value']) ? old($options['name']) : $options['value'];
+    $options['value'] = old($options['name']) ? old($options['name']) : $options['value'];
+    $options['options'] = !isset($options['options']) ? [] : $options['options'];
+    $options['multiple'] = isset($options['multiple']) && $options['multiple'] ? 'multiple' : '';
     $options['data'] = admin_data_attr($options);
     $options['extra'] = admin_extra_attr($options);
     return $options;
@@ -93,4 +136,16 @@ function admin_data_attr($options)
         }
     }
     return $data;
+}
+
+function admin_default_label_data($options)
+{
+    if (isset($options['label']) && is_array($options['label'])){
+        $label = $options['label'];
+        $label['data'] = admin_data_attr($options['label']);
+        $label['extra'] = admin_extra_attr($options['label']);
+    }else{
+        $label['title'] = $options['label'];
+    }
+    return $label;
 }
