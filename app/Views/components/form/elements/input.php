@@ -1,5 +1,4 @@
-<input
-    name="<?= dot_array_search('name', $options); ?>"
+<input name="<?= dot_array_search('name', $options); ?>"
     value="<?= dot_array_search('value', $options); ?>"
     type="<?= dot_array_search('type', $options); ?>"
     class="form-control <?= dot_array_search('class', $options); ?>"

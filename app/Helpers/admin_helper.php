@@ -23,14 +23,13 @@ function admin_input($options = [])
     $options = !is_array($options) ? [] : $options;
     $options = admin_default_data($options);
 
-    return view('components/form/elements/input/input', [
+    return view('components/form/elements/input', [
         'options' => $options
     ]);
 }
 
 function admin_select($options = [])
 {
-
     if (isset($options[0]) && is_array($options[0])){
         $select='';
         foreach ($options as $key => $value){
@@ -42,63 +41,92 @@ function admin_select($options = [])
     $options = !is_array($options) ? [] : $options;
     $options = admin_default_data($options);
 
-    return view('components/form/elements/select-box/select', [
+    return view('components/form/elements/select', [
         'options' => $options
     ]);
 }
 
-function admin_row_input($options = [])
+function admin_textarea($options = [])
 {
-    $label = [];
-    $input = [];
     if (isset($options[0]) && is_array($options[0])){
-        $row = '';
+        $textarea = '';
         foreach ($options as $key => $value){
-            $row .= admin_row_input($value);
+            $textarea .= admin_textarea($value);
         }
-        return $row;
+        return $textarea;
     }
 
-    $label = admin_default_label_data($options);
+    $options = !is_array($options) ? [] : $options;
+    $options = admin_default_data($options);
 
-    if (isset($options['input']) && is_array($options['input'])){
-        $input = $options['input'];
-        $input['placeholder'] = !isset($input['placeholder']) ? $label['title'] : $input['placeholder'];
-    }else{
-        $input['name'] = $options['input'];
-        $input['placeholder'] = $label['title'];
-    }
-
-    return view('components/form/elements/input/row_input', [
-        'label' => $label,
-        'input' => $input
+    return view('components/form/elements/textarea', [
+        'options' => $options
     ]);
 }
 
-function admin_row_select($options = [])
+/**
+ * Label solda oluşturuluyor. Form grubu row ile oluşturuyor.
+ */
+function admin_form_group_row($options = [])
 {
-    $label = [];
-    $select = [];
-
     if (isset($options[0]) && is_array($options[0])){
-        $row = '';
+        $result = '';
         foreach ($options as $key => $value){
-            $row .= admin_row_select($value);
+            $result .= admin_form_group_row($value);
         }
-        return $row;
+        return $result;
     }
 
+    $html = '';
     $label = admin_default_label_data($options);
-
-    if (isset($options['select']) && is_array($options['select'])){
-        $select = $options['select'];
-    }else{
-        $select['name'] = $options['select'];
+    if (array_key_exists('input', $options)){
+        $html = admin_input($options['input']);
     }
 
-    return view('components/form/elements/select-box/row_select', [
+    if (array_key_exists('select', $options)){
+        $html = admin_select($options['select']);
+    }
+
+    if (array_key_exists('textarea', $options)){
+        $html = admin_textarea($options['textarea']);
+    }
+
+    return view('components/form/form-group-row', [
         'label' => $label,
-        'select' => $select
+        'html' => $html
+    ]);
+}
+
+/**
+ * Label üstte oluşturuluyor. Form grubu row olmadan oluşturuyor.
+ */
+function admin_form_group($options = [])
+{
+    if (isset($options[0]) && is_array($options[0])){
+        $result = '';
+        foreach ($options as $key => $value){
+            $result .= admin_form_group($value);
+        }
+        return $result;
+    }
+
+    $html = '';
+    $label = admin_default_label_data($options);
+    if (array_key_exists('input', $options)){
+        $html = admin_input($options['input']);
+    }
+
+    if (array_key_exists('select', $options)){
+        $html = admin_select($options['select']);
+    }
+
+    if (array_key_exists('textarea', $options)){
+        $html = admin_textarea($options['textarea']);
+    }
+
+    return view('components/form/form-group', [
+        'label' => $label,
+        'html' => $html
     ]);
 }
 

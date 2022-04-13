@@ -12,7 +12,7 @@
                     <?= csrf_field(); ?>
                     <div class="card author-box card-primary">
                         <div class="card-body">
-                            <?= admin_row_input([
+                            <?= admin_form_group_row([
                                 [
                                     'label' => cve_admin_lang('Inputs', 'first_name'),
                                     'input' => [
@@ -42,7 +42,6 @@
                                     'label' => cve_admin_lang('Inputs', 'phone'),
                                     'input' => [
                                         'name' => 'phone',
-                                        'class' => 'phone-number',
                                         'value' => $user->getPhone()
                                     ]
                                 ],
@@ -59,9 +58,7 @@
                                         'name' => 'password',
                                         'type' => 'password'
                                     ]
-                                ]
-                            ]); ?>
-                            <?= admin_row_select([
+                                ],
                                 [
                                     'label' => cve_admin_lang('Inputs', 'status'),
                                     'select' => [
@@ -86,6 +83,14 @@
                                             'value' => 'id',
                                             'title' => 'title'
                                         ]
+                                    ]
+                                ],
+                                [
+                                    'label' => cve_admin_lang('Inputs', 'bio'),
+                                    'textarea' => [
+                                        'name' => 'bio',
+                                        'style' => 'height:150px',
+                                        'value' => $user->getBio()
                                     ]
                                 ]
                             ]); ?>
@@ -133,14 +138,14 @@
                                 <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?php // cve_admin_lang('Inputs', 'status') ?></label>
                                 <div class="col-sm-12 col-md-8">
                                     <select name="status" class="form-control select2" required>
-                                        <option <?php // $user->getStatus() == STATUS_ACTIVE ? 'selected' : ''; ?> value="<?php // STATUS_ACTIVE ?>"><?= cve_admin_lang('Buttons', 'active') ?></option>
-                                        <option <?php // $user->getStatus() == STATUS_PASSIVE ? 'selected' : ''; ?> value="<?php // STATUS_PASSIVE ?>"><?= cve_admin_lang('Buttons', 'passive') ?></option>
-                                        <option <?php // $user->getStatus() == STATUS_PENDING ? 'selected' : ''; ?> value="<?php // STATUS_PENDING ?>"><?= cve_admin_lang('Buttons', 'pending') ?></option>
+                                        <option <?php // $user->getStatus() == STATUS_ACTIVE ? 'selected' : ''; ?> value="<?php // STATUS_ACTIVE ?>"><?php // cve_admin_lang('Buttons', 'active') ?></option>
+                                        <option <?php // $user->getStatus() == STATUS_PASSIVE ? 'selected' : ''; ?> value="<?php // STATUS_PASSIVE ?>"><?php // cve_admin_lang('Buttons', 'passive') ?></option>
+                                        <option <?php // $user->getStatus() == STATUS_PENDING ? 'selected' : ''; ?> value="<?php // STATUS_PENDING ?>"><?php // cve_admin_lang('Buttons', 'pending') ?></option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('Inputs', 'group_select') ?></label>
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?php // cve_admin_lang('Inputs', 'group_select') ?></label>
                                 <div class="col-sm-12 col-md-8">
                                     <select name="group_id" class="form-control select2" required>
                                         <?php //foreach ($groups as $group): ?>
@@ -148,14 +153,14 @@
                                         <?php // endforeach; ?>
                                     </select>
                                 </div>
-                            </div>-->
+                            </div>
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('Inputs', 'bio') ?></label>
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?php // cve_admin_lang('Inputs', 'bio') ?></label>
                                 <div class="col-sm-12 col-md-8">
-                                    <textarea name="bio" class="form-control" style="height: 150px"><?= $user->getBio(); ?></textarea>
+                                    <textarea name="bio" class="form-control" style="height: 150px"><?php // $user->getBio(); ?></textarea>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="card-footer">
                             <div class="form-group row " style="justify-content: center">
                                 <div class="col-sm-12 col-md-8">

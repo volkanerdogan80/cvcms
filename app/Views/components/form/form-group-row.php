@@ -8,6 +8,6 @@
         <?= dot_array_search('title', $label); ?>
     </label>
     <div class="col-sm-12 col-md-8">
-        <?= admin_select($select); ?>
+        <?= $html; ?>
     </div>
 </div>

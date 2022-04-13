@@ -30,7 +30,7 @@
                         id="<?= dot_array_search('id', $options['options']); ?>"
                         style="<?= dot_array_search('style', $options['options']); ?>"
                 >
-                    <?= $value->$opt_title ?? 'undefined'; ?>
+                <?= $value->$opt_title ?? 'undefined'; ?>
                 </option>
             <?php endif; ?>
         <?php endforeach; ?>

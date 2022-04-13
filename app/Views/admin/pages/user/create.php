@@ -12,7 +12,7 @@
                     <?= csrf_field(); ?>
                     <div class="card author-box card-primary">
                         <div class="card-body">
-                            <?= admin_row_input([
+                            <?= admin_form_group_row([
                                 [
                                     'label' => cve_admin_lang('Inputs', 'first_name'),
                                     'input' => [
@@ -50,16 +50,13 @@
                                         'type' => 'password',
                                         'required' => true
                                     ]
-                                ]
-                            ]) ?>
-                            <?= admin_row_select([
+                                ],
                                 [
                                     'label' => cve_admin_lang('Inputs', 'status'),
                                     'select' => [
                                         'name' => 'status',
                                         'required' => true,
                                         'options' => [
-                                            ['value' => '', 'title' => cve_admin_lang('Inputs', 'status_select')],
                                             ['value' => STATUS_ACTIVE, 'title' => cve_admin_lang('General', 'active')],
                                             ['value' => STATUS_PASSIVE, 'title' => cve_admin_lang('General', 'passive')],
                                             ['value' => STATUS_PENDING, 'title' => cve_admin_lang('General', 'pending')]
@@ -78,22 +75,29 @@
                                         ]
                                     ]
                                 ],
-
-                                /*[
-                                    'label' => cve_admin_lang('Inputs', 'group_select'),
-                                    'select' => [
-                                        'name' => 'group_id',
-                                        'required' => true,
-                                        'options' => [
-                                            'ajax' => base_url(route_to('admin_group_listing', null)),
-                                            'value' => 'id',
-                                            'title' => 'title',
-                                            'item' => 'groups'
-                                        ]
+                                [
+                                    'label' => cve_admin_lang('Inputs', 'bio'),
+                                    'textarea' => [
+                                        'name' => 'bio',
+                                        'style' => 'height:150px'
                                     ]
-                                ] */
+                                ]
+                            ])
+                            /*[
+                                'label' => cve_admin_lang('Inputs', 'group_select'),
+                                'select' => [
+                                    'name' => 'group_id',
+                                    'required' => true,
+                                    'options' => [
+                                        'ajax' => base_url(route_to('admin_group_listing', null)),
+                                        'value' => 'id',
+                                        'title' => 'title',
+                                        'item' => 'groups'
+                                    ]
+                                ]
+                            ] */                            
+                            ?>
 
-                            ]) ?>
                             <!-- <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?php // cve_admin_lang('Inputs', 'first_name') ?></label>
                                 <div class="col-sm-12 col-md-8">
@@ -156,14 +160,14 @@
                                         <?php // endforeach; ?>
                                     </select>
                                 </div>
-                            </div>-->
+                            </div>
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?= cve_admin_lang('Inputs', 'bio') ?></label>
+                                <label class="col-form-label text-md-right col-12 col-md-2 col-lg-2"><?php // cve_admin_lang('Inputs', 'bio') ?></label>
                                 <div class="col-sm-12 col-md-8">
                                     <textarea name="bio" class="form-control" style="height: 150px"></textarea>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="card-footer">
                             <div class="form-group row " style="justify-content: center">
                                 <div class="col-sm-12 col-md-8">
