@@ -23,13 +23,13 @@ class Site extends BaseConfig
         'en' => 'cms,blog,post,eng,ci4,codeigniter',
     ];
 
-    public $headerLogo = 'public/admin/img/default/header-logo.png';
+    public $headerLogo = PUBLIC_ADMIN_IMAGE_PATH . 'default/header-logo.png';
 
-    public $footerLogo = 'public/admin/img/default/footer-logo.png';
+    public $footerLogo = PUBLIC_ADMIN_IMAGE_PATH . 'default/footer-logo.png';
 
-    public $mobileLogo = 'public/admin/img/default/mobile-logo.png';
+    public $mobileLogo = PUBLIC_ADMIN_IMAGE_PATH . 'default/mobile-logo.png';
 
-    public $favicon    = 'public/admin/img/default/favicon.png';
+    public $favicon    = PUBLIC_ADMIN_IMAGE_PATH . 'default/favicon.png';
 
     public static $registrars = [
         'App\Controllers\Config'

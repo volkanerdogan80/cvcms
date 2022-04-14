@@ -138,7 +138,7 @@
 
 <?php $this->section('script'); ?>
 
-    <?= script_tag('public/admin/js/jquery.nestable.js'); ?>
-    <?= script_tag('public/admin/js/menu.js'); ?>
+    <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'jquery.nestable.js'); ?>
+    <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'menu.js'); ?>
 
 <?php $this->endSection(); ?>

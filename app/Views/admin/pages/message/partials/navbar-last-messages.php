@@ -1,7 +1,7 @@
 <?php foreach ($messages as $message): ?>
     <div class="dropdown-item dropdown-item-unread">
         <div class="dropdown-item-avatar">
-            <img alt="image" src="<?= base_url('public/admin/img/avatar/avatar-1.png') ?>" class="rounded-circle">
+            <img alt="image" src="<?= base_url(PUBLIC_ADMIN_IMAGE_PATH . 'avatar/avatar-1.png') ?>" class="rounded-circle">
             <div class="is-online"></div>
         </div>
         <div class="dropdown-item-desc">

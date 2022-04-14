@@ -15,52 +15,31 @@
         ?>
 
         <?php foreach ($options['options']['object'] as $key => $value): ?>
-            <?php if (isset($options['value']) && !empty($options['value']) && $options['value'] == $value->$opt_value): ?>
-                <option value="<?= $value->$opt_value ?? 'undefined'; ?>"
-                        class="<?= dot_array_search('class', $options['options']); ?>"
-                        id="<?= dot_array_search('id', $options['options']); ?>"
-                        style="<?= dot_array_search('style', $options['options']); ?>"
-                        selected
-                >
-                    <?= $value->$opt_title ?? 'undefined'; ?>
-                </option>
-            <?php else: ?>
-                <option value="<?= $value->$opt_value ?? 'undefined'; ?>"
-                        class="<?= dot_array_search('class', $options['options']); ?>"
-                        id="<?= dot_array_search('id', $options['options']); ?>"
-                        style="<?= dot_array_search('style', $options['options']); ?>"
-                >
+            <option value="<?= $value->$opt_value ?? 'undefined'; ?>"
+                    class="<?= dot_array_search('class', $options['options']); ?>"
+                    id="<?= dot_array_search('id', $options['options']); ?>"
+                    style="<?= dot_array_search('style', $options['options']); ?>"
+                <?= isset($options['value']) && $options['value'] == $value->$opt_value ? 'selected' : ''; ?>
+            >
                 <?= $value->$opt_title ?? 'undefined'; ?>
-                </option>
-            <?php endif; ?>
+            </option>
         <?php endforeach; ?>
     <?php elseif (isset($options['options']['ajax'])): ?>
 
     <?php else: ?>
 
         <?php foreach ($options['options'] as $key => $value): ?>
-            <?php if (isset($options['value']) && !empty($options['value']) && $options['value'] == $value['value']): ?>
-                <option id="<?= dot_array_search('id', $value); ?>"
-                        class="<?= dot_array_search('class', $value); ?>"
-                        value="<?= $value['value'] ?? 'undefined'; ?>"
-                        style="<?= dot_array_search('style', $value); ?>"
-                        selected
-                >
-                    <?= $value['title'] ?? 'undefined'; ?>
-                </option>
-            <?php else: ?>
-                <option id="<?= dot_array_search('id', $value); ?>"
-                        class="<?= dot_array_search('class', $value); ?>"
-                        value="<?= $value['value'] ?? 'undefined'; ?>"
-                        style="<?= dot_array_search('style', $value); ?>"
-                >
-                    <?= $value['title'] ?? 'undefined'; ?>
-                </option>
-            <?php endif; ?>
+            <option id="<?= dot_array_search('id', $value); ?>"
+                    class="<?= dot_array_search('class', $value); ?>"
+                    value="<?= $value['value'] ?? 'undefined'; ?>"
+                    style="<?= dot_array_search('style', $value); ?>"
+                <?= isset($options['value']) && $options['value'] == $value['value'] ? 'selected' : ''; ?>
+            >
+                <?= $value['title'] ?? 'undefined'; ?>
+            </option>
         <?php endforeach; ?>
 
     <?php endif; ?>
-
 </select>
 
 
@@ -79,7 +58,7 @@
             let items = response.data[key];
             let options = '';
             items.forEach(function (entry) {
-                options += '<option class="'+opt_class+'" id="'+opt_id+'" style="'+opt_style+'" value="' + entry[opt_value] + '">' + entry[opt_title] + '</option>';
+                options += '<option class="' + opt_class + '" id="' + opt_id + '" style="' + opt_style + '" value="' + entry[opt_value] + '">' + entry[opt_title] + '</option>';
             });
             $('select[name=<?= dot_array_search('name', $options); ?>]').html(options);
         },

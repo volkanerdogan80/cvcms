@@ -58,13 +58,13 @@
 <?php $this->endSection(); ?>
 
 <?php $this->section('script'); ?>
-<?= script_tag('public/admin/js/countries.js') ?>
-<?= script_tag('public/admin/js/jquery.sparkline.min.js') ?>
-<?= script_tag('public/admin/js/chart.min.js') ?>
-<?= script_tag('public/admin/js/jquery.vmap.min.js') ?>
-<?= script_tag('public/admin/js/jquery.vmap.world.js') ?>
-<?= script_tag('public/admin/js/analytics.js') ?>
-<?= script_tag('public/admin/js/statistic.js') ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'countries.js') ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'jquery.sparkline.min.js') ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'chart.min.js') ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'jquery.vmap.min.js') ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'jquery.vmap.world.js') ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'analytics.js') ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'statistic.js') ?>
 <script>
     let admin_realtime_visitors = '<?= base_url(route_to('admin_realtime_visitors')); ?>'
 </script>

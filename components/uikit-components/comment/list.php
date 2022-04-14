@@ -6,7 +6,7 @@
                     <div class="uk-grid-medium uk-flex-middle" uk-grid>
                         <div class="uk-width-auto">
                             <img class="uk-comment-avatar"
-                                 src="<?= base_url('public/admin/img/avatar/comment-icon.png'); ?>" width="80"
+                                 src="<?= base_url(PUBLIC_ADMIN_IMAGE_PATH . 'avatar/comment-icon.png'); ?>" width="80"
                                  height="80" alt="">
                         </div>
                         <div class="uk-width-expand">

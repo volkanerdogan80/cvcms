@@ -33,7 +33,7 @@
                                     </div>
                                     <p><?= $theme['description'] ?? ''; ?></p>
                                     <div class="article-user">
-                                        <img alt="image" src="<?= base_url('public/admin/img/avatar/avatar-1.png') ?>">
+                                        <img alt="image" src="<?= base_url(PUBLIC_ADMIN_IMAGE_PATH . 'avatar/avatar-1.png') ?>">
                                         <div class="article-user-details">
                                             <div class="user-detail-name">
                                                 <a target="_blank" href="<?= $theme['web'] ?? '#'; ?>">

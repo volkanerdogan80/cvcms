@@ -64,6 +64,62 @@ function admin_textarea($options = [])
     ]);
 }
 
+function admin_radio($options = [])
+{
+    if (isset($options[0]) && is_array($options[0])){
+        $radio='';
+        foreach ($options as $key => $value){
+            $radio .= admin_radio($value);
+        }
+        return $radio;
+    }
+
+    $options = !is_array($options) ? [] : $options;
+    $options = admin_default_data($options);
+
+    return view('components/form/elements/radio', [
+        'options' => $options
+    ]);
+}
+
+function admin_color($options = [])
+{
+    if (isset($options[0]) && is_array($options[0])){
+        $color = '';
+        foreach ($options as $key => $value){
+            $color .= admin_color($value);
+        }
+        return $color;
+    }
+
+    $options = !is_array($options) ? [] : $options;
+    $options['color'] = true;
+    $options = admin_default_data($options);
+
+    return view('components/form/elements/input', [
+        'options' => $options
+    ]);
+}
+
+function admin_tags($options = [])
+{
+    if (isset($options[0]) && is_array($options[0])){
+        $tags = '';
+        foreach ($options as $key => $value){
+            $tags .= admin_tags($value);
+        }
+        return $tags;
+    }
+
+    $options = !is_array($options) ? [] : $options;
+    $options['tags'] = true;
+    $options = admin_default_data($options);
+
+    return view('components/form/elements/input', [
+        'options' => $options
+    ]);
+}
+
 /**
  * Label solda oluşturuluyor. Form grubu row ile oluşturuyor.
  */
@@ -89,6 +145,18 @@ function admin_form_group_row($options = [])
 
     if (array_key_exists('textarea', $options)){
         $html = admin_textarea($options['textarea']);
+    }
+
+    if (array_key_exists('radio', $options)){
+        $html = admin_radio($options['radio']);
+    }
+
+    if (array_key_exists('color', $options)){
+        $html = admin_color($options['color']);
+    }
+
+    if (array_key_exists('tags', $options)){
+        $html = admin_tags($options['tags']);
     }
 
     return view('components/form/form-group-row', [
@@ -124,6 +192,18 @@ function admin_form_group($options = [])
         $html = admin_textarea($options['textarea']);
     }
 
+    if (array_key_exists('radio', $options)){
+        $html = admin_radio($options['radio']);
+    }
+
+    if (array_key_exists('color', $options)){
+        $html = admin_color($options['color']);
+    }
+
+    if (array_key_exists('tags', $options)){
+        $html = admin_tags($options['tags']);
+    }
+
     return view('components/form/form-group', [
         'label' => $label,
         'html' => $html
@@ -139,6 +219,9 @@ function admin_default_data($options)
     $options['value'] = old($options['name']) ? old($options['name']) : $options['value'];
     $options['options'] = !isset($options['options']) ? [] : $options['options'];
     $options['multiple'] = isset($options['multiple']) && $options['multiple'] ? 'multiple' : '';
+    $options['format'] = !isset($options['format']) ? 'hex' : $options['format'];
+    $options['color'] = $options['color'] ?? false;
+    $options['tags'] = $options['tags'] ?? false;
     $options['data'] = admin_data_attr($options);
     $options['extra'] = admin_extra_attr($options);
     return $options;

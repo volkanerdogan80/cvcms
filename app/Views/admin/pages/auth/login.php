@@ -6,7 +6,7 @@
         <div class="d-flex flex-wrap align-items-stretch">
             <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
                 <div class="p-4 m-3">
-                    <img src="<?= base_url('public/admin/img/stisla-fill.svg') ?>" alt="logo" width="80" class="shadow-light rounded-circle mb-5 mt-2">
+                    <img src="<?= base_url(PUBLIC_ADMIN_IMAGE_PATH . 'stisla-fill.svg') ?>" alt="logo" width="80" class="shadow-light rounded-circle mb-5 mt-2">
                     <h4 class="text-dark font-weight-normal"><?= cve_admin_lang('Auth', 'welcome') ?></h4>
                     <p class="text-muted"><?= cve_admin_lang('Auth', 'start') ?></p>
 
@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="<?= base_url('public/admin/img/unsplash/login-bg.jpg'); ?>">
+            <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="<?= base_url(PUBLIC_ADMIN_IMAGE_PATH . 'unsplash/login-bg.jpg'); ?>">
                 <div class="absolute-bottom-left index-2">
                     <div class="text-light p-5 pb-2">
                         <div class="mb-5 pb-3">

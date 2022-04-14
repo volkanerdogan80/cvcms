@@ -2,7 +2,7 @@
     <?php foreach ($content->withComment() as $comment): ?>
         <li class="media comment-<?= $comment->id ?>" data-id="<?= $comment->id ?>">
             <img alt="image" class="mr-3 rounded-circle" width="70"
-                 src="<?= base_url('public/admin/img/avatar/avatar-1.png') ?>">
+                 src="<?= base_url(PUBLIC_ADMIN_IMAGE_PATH . 'avatar/avatar-1.png') ?>">
             <div class="media-body">
                 <div class="media-right">
                     <div style="<?= $comment->getStatus() == STATUS_ACTIVE ? '' : 'display: none' ?>"

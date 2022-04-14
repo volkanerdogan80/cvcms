@@ -49,6 +49,6 @@
 
 <?php $this->section('script'); ?>
 
-<?= script_tag('public/admin/js/translation.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'translation.js'); ?>
 
 <?php $this->endSection(); ?>

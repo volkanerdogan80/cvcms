@@ -61,7 +61,7 @@
                                 <ul class="list-unstyled list-unstyled-border list-unstyled-noborder comment-list">
                                     <?php foreach ($comments as $comment): ?>
                                         <li class="media comment-<?= $comment->id ?>" data-level="<?= $comment->level; ?>" data-id="<?= $comment->id ?>" style="margin-left: <?= $comment->level*50; ?>px">
-                                            <img alt="image" class="mr-3 rounded-circle" width="70" src="<?= base_url('public/admin/img/avatar/avatar-1.png') ?>">
+                                            <img alt="image" class="mr-3 rounded-circle" width="70" src="<?= base_url(PUBLIC_ADMIN_IMAGE_PATH . 'avatar/avatar-1.png') ?>">
                                             <div class="media-body">
                                                 <div class="media-right">
                                                     <div style="<?= $comment->getStatus() == STATUS_ACTIVE ? '' : 'display: none' ?>" class="text-primary comment-status-active comment-status"><?= cve_admin_lang('Comments', 'approved') ?></div>

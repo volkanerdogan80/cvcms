@@ -85,7 +85,7 @@
                                     <?php foreach ($users as $user): ?>
                                         <div class="col-6 col-sm-1 col-lg-1 mb-4 mb-md-0">
                                             <div class="avatar-item mb-0">
-                                                <img alt="image" src="<?= base_url('public/admin/img/avatar/avatar-3.png') ?>"
+                                                <img alt="image" src="<?= base_url(PUBLIC_ADMIN_IMAGE_PATH . 'avatar/avatar-3.png') ?>"
                                                      class="img-fluid"
                                                      data-toggle="tooltip"
                                                      title="<?= $user->getFullName(); ?>">
@@ -153,7 +153,7 @@
                             <div class="card-body">
                                 <ul class="list-unstyled list-unstyled-border">
                                     <li class="media">
-                                        <img class="mr-3 rounded-circle" width="50" src="<?= base_url('public/admin/img/avatar/avatar-1.png'); ?>" alt="avatar">
+                                        <img class="mr-3 rounded-circle" width="50" src="<?= base_url(PUBLIC_ADMIN_IMAGE_PATH . 'avatar/avatar-1.png'); ?>" alt="avatar">
                                         <div class="media-body">
                                             <div class="float-right text-primary">Şimdi</div>
                                             <div class="media-title">Volkan Erdoğan</div>
@@ -161,7 +161,7 @@
                                         </div>
                                     </li>
                                     <li class="media">
-                                        <img class="mr-3 rounded-circle" width="50" src="<?= base_url('public/admin/img/avatar/avatar-2.png'); ?>" alt="avatar">
+                                        <img class="mr-3 rounded-circle" width="50" src="<?= base_url(PUBLIC_ADMIN_IMAGE_PATH . 'avatar/avatar-2.png'); ?>" alt="avatar">
                                         <div class="media-body">
                                             <div class="float-right">12dk önce</div>
                                             <div class="media-title">Volkan Erdoğan</div>
@@ -169,7 +169,7 @@
                                         </div>
                                     </li>
                                     <li class="media">
-                                        <img class="mr-3 rounded-circle" width="50" src="<?= base_url('public/admin/img/avatar/avatar-3.png'); ?>" alt="avatar">
+                                        <img class="mr-3 rounded-circle" width="50" src="<?= base_url(PUBLIC_ADMIN_IMAGE_PATH . 'avatar/avatar-3.png'); ?>" alt="avatar">
                                         <div class="media-body">
                                             <div class="float-right">21dk önce</div>
                                             <div class="media-title">Volkan Erdoğan</div>
@@ -177,7 +177,7 @@
                                         </div>
                                     </li>
                                     <li class="media">
-                                        <img class="mr-3 rounded-circle" width="50" src="<?= base_url('public/admin/img/avatar/avatar-4.png'); ?>" alt="avatar">
+                                        <img class="mr-3 rounded-circle" width="50" src="<?= base_url(PUBLIC_ADMIN_IMAGE_PATH . 'avatar/avatar-4.png'); ?>" alt="avatar">
                                         <div class="media-body">
                                             <div class="float-right">34dk önce</div>
                                             <div class="media-title">Volkan Erdoğan</div>
@@ -238,8 +238,8 @@
             }
         });
     </script>
-<?= script_tag('public/admin/js/countries.js') ?>
-<?= script_tag('public/admin/js/jquery.vmap.min.js') ?>
-<?= script_tag('public/admin/js/jquery.vmap.world.js') ?>
-<?= script_tag('public/admin/js/analytics.js') ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'countries.js') ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'jquery.vmap.min.js') ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'jquery.vmap.world.js') ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'analytics.js') ?>
 <?php $this->endSection(); ?>

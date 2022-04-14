@@ -7,29 +7,29 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link rel="icon shortcut" href="<?= base_url('public/admin/img/default/favicon.png');?>">
+    <link rel="icon shortcut" href="<?= base_url(PUBLIC_ADMIN_IMAGE_PATH . 'default/favicon.png');?>">
 
-    <?= link_tag('public/admin/css/daterangepicker.css'); ?>
-    <?= link_tag('public/admin/css/bootstrap-colorpicker.min.css'); ?>
-    <?= link_tag('public/admin/css/select2.min.css'); ?>
-    <?= link_tag('public/admin/css/selectric.css'); ?>
-    <?= link_tag('public/admin/css/bootstrap-timepicker.min.css'); ?>
-    <?= link_tag('public/admin/css/bootstrap-tagsinput.css'); ?>
-    <?= link_tag('public/admin/css/iziToast.min.css'); ?>
-    <?= link_tag('public/admin/css/prism.css'); ?>
-
-    <?= link_tag('public/admin/css/dropzone-basic.css'); ?>
-    <?= link_tag('public/admin/css/dropzone.css'); ?>
-    <?= link_tag('public/admin/css/codemirror.css'); ?>
-
-    <?= link_tag('public/admin/css/chocolat.css'); ?>
-
-    <?= link_tag('public/admin/css/style.css'); ?>
-    <?= link_tag('public/admin/css/components.css'); ?>
-
+    <?= link_tag(PUBLIC_ADMIN_CSS_PATH . 'daterangepicker.css'); ?>
+    <?= link_tag(PUBLIC_ADMIN_CSS_PATH . 'bootstrap-colorpicker.min.css'); ?>
+    <?= link_tag(PUBLIC_ADMIN_CSS_PATH . 'select2.min.css'); ?>
+    <?= link_tag(PUBLIC_ADMIN_CSS_PATH . 'selectric.css'); ?>
+    <?= link_tag(PUBLIC_ADMIN_CSS_PATH . 'bootstrap-timepicker.min.css'); ?>
+    <?= link_tag(PUBLIC_ADMIN_CSS_PATH . 'bootstrap-tagsinput.css'); ?>
+    <?= link_tag(PUBLIC_ADMIN_CSS_PATH . 'iziToast.min.css'); ?>
+    <?= link_tag(PUBLIC_ADMIN_CSS_PATH . 'prism.css'); ?>
+    <?= link_tag(PUBLIC_ADMIN_CSS_PATH . 'dropzone-basic.css'); ?>
+    <?= link_tag(PUBLIC_ADMIN_CSS_PATH . 'dropzone.css'); ?>
+    <?= link_tag(PUBLIC_ADMIN_CSS_PATH . 'codemirror.css'); ?>
+    <?= link_tag(PUBLIC_ADMIN_CSS_PATH . 'chocolat.css'); ?>
+    <?= link_tag(PUBLIC_ADMIN_CSS_PATH . 'style.css'); ?>
+    <?= link_tag(PUBLIC_ADMIN_CSS_PATH . 'components.css'); ?>
     <?= csrf_meta() ?>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'jquery.pwstrength.min.js'); ?>
+    <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'bootstrap-tagsinput.min.js'); ?>
+    <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'bootstrap-colorpicker.min.js'); ?>
     <?php $this->renderSection('style'); ?>
 </head>
 
@@ -84,38 +84,36 @@
         last_month: '<?=cve_admin_lang('General', 'last_month') ?>'
     }
 </script>
-<?= script_tag('public/admin/js/stisla.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'stisla.js'); ?>
 
-<?= script_tag('public/admin/js/cleave.min.js'); ?>
-<?= script_tag('public/admin/js/cleave-phone.us.js'); ?>
-<?= script_tag('public/admin/js/jquery.pwstrength.min.js'); ?>
-<?= script_tag('public/admin/js/daterangepicker.js'); ?>
-<?= script_tag('public/admin/js/bootstrap-colorpicker.min.js'); ?>
-<?= script_tag('public/admin/js/bootstrap-timepicker.min.js'); ?>
-<?= script_tag('public/admin/js/bootstrap-tagsinput.min.js'); ?>
-<?= script_tag('public/admin/js/select2.full.min.js'); ?>
-<?= script_tag('public/admin/js/jquery.selectric.min.js'); ?>
-<?= script_tag('public/admin/js/iziToast.min.js'); ?>
-<?= script_tag('public/admin/js/sweetalert.min.js'); ?>
-<?= script_tag('public/admin/js/prism.js'); ?>
-<?= script_tag('public/admin/js/dropzone.js'); ?>
-<?= script_tag('public/admin/js/jquery.chocolat.js'); ?>
-<?= script_tag('public/admin/js/jquery.uploadPreview.min.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'cleave.min.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'cleave-phone.us.js'); ?>
 
-<?= script_tag('public/admin/js/jquery-ui.min.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'daterangepicker.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'bootstrap-timepicker.min.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'select2.full.min.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'jquery.selectric.min.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'iziToast.min.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'sweetalert.min.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'prism.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'dropzone.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'jquery.chocolat.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'jquery.uploadPreview.min.js'); ?>
+
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'jquery-ui.min.js'); ?>
 
 <?= script_tag('public/admin/ckeditor/ckeditor.js'); ?>
-<?= script_tag('public/admin/js/codemirror.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'codemirror.js'); ?>
 
-<?= script_tag('public/admin/js/request.js'); ?>
-<?= script_tag('public/admin/js/scripts.js'); ?>
-<?= script_tag('public/admin/js/custom.js'); ?>
-<?= script_tag('public/admin/js/table-checkbox.js'); ?>
-<?= script_tag('public/admin/js/listing.js'); ?>
-<?= script_tag('public/admin/js/comments.js'); ?>
-<?= script_tag('public/admin/js/image-picker.js'); ?>
-<?= script_tag('public/admin/js/custom-field.js'); ?>
-<?= script_tag('public/admin/js/messages.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'request.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'scripts.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'custom.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'table-checkbox.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'listing.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'comments.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'image-picker.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'custom-field.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'messages.js'); ?>
 
 <?php $this->renderSection('script'); ?>
 </body>

@@ -14,5 +14,5 @@
         firebase.initializeApp(firebaseConfig);
         const messaging = firebase.messaging();
     </script>
-    <script src="<?= base_url('public/admin/js/fcm.js') ?>"></script>
+    <script src="<?= base_url(PUBLIC_ADMIN_JS_PATH . 'fcm.js') ?>"></script>
 <?php endif; ?>

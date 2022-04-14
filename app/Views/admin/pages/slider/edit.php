@@ -35,5 +35,5 @@
 <?php $this->endSection(); ?>
 
 <?php $this->section('script'); ?>
-<?= script_tag('public/admin/js/slider.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'slider.js'); ?>
 <?php $this->endSection(); ?>
