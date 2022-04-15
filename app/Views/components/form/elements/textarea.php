@@ -7,5 +7,5 @@
     <?= dot_array_search('data', $options); ?>
     <?= dot_array_search('required', $options); ?>
 >
-<?= dot_array_search('value', $options); ?>
+<?= dot_array_search('value.0', $options); ?>
 </textarea>

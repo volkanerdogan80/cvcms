@@ -26,10 +26,17 @@
     <?= csrf_meta() ?>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
     <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'jquery.pwstrength.min.js'); ?>
     <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'bootstrap-tagsinput.min.js'); ?>
     <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'bootstrap-colorpicker.min.js'); ?>
+    <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'daterangepicker.js'); ?>
+    <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'bootstrap-timepicker.min.js'); ?>
+    <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'cleave.min.js'); ?>
+    <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'cleave-phone.us.js'); ?>
+    <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'select2.full.min.js'); ?>
+    <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'jquery.selectric.min.js'); ?>
     <?php $this->renderSection('style'); ?>
 </head>
 
@@ -55,7 +62,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
 <script>
     let purgeDelete = {
@@ -86,13 +92,6 @@
 </script>
 <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'stisla.js'); ?>
 
-<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'cleave.min.js'); ?>
-<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'cleave-phone.us.js'); ?>
-
-<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'daterangepicker.js'); ?>
-<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'bootstrap-timepicker.min.js'); ?>
-<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'select2.full.min.js'); ?>
-<?= script_tag(PUBLIC_ADMIN_JS_PATH . 'jquery.selectric.min.js'); ?>
 <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'iziToast.min.js'); ?>
 <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'sweetalert.min.js'); ?>
 <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'prism.js'); ?>
@@ -102,7 +101,7 @@
 
 <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'jquery-ui.min.js'); ?>
 
-<?= script_tag('public/admin/ckeditor/ckeditor.js'); ?>
+<?= script_tag(PUBLIC_ADMIN_PATH . 'ckeditor/ckeditor.js'); ?>
 <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'codemirror.js'); ?>
 
 <?= script_tag(PUBLIC_ADMIN_JS_PATH . 'request.js'); ?>

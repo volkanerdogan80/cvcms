@@ -104,11 +104,11 @@ function admin_color($options = [])
 function admin_tags($options = [])
 {
     if (isset($options[0]) && is_array($options[0])){
-        $tags = '';
+        $color = '';
         foreach ($options as $key => $value){
-            $tags .= admin_tags($value);
+            $color .= admin_color($value);
         }
-        return $tags;
+        return $color;
     }
 
     $options = !is_array($options) ? [] : $options;
@@ -120,9 +120,99 @@ function admin_tags($options = [])
     ]);
 }
 
-/**
- * Label solda oluşturuluyor. Form grubu row ile oluşturuyor.
- */
+function admin_date($options = [])
+{
+    if (isset($options[0]) && is_array($options[0])){
+        $date = '';
+        foreach ($options as $key => $value){
+            $date .= admin_date($value);
+        }
+        return $date;
+    }
+
+    $options = !is_array($options) ? [] : $options;
+    $options['date'] = true;
+    $options = admin_default_data($options);
+
+    return view('components/form/elements/input', [
+        'options' => $options
+    ]);
+}
+
+function admin_datetime($options = [])
+{
+    if (isset($options[0]) && is_array($options[0])){
+        $datetime = '';
+        foreach ($options as $key => $value){
+            $datetime .= admin_datetime($value);
+        }
+        return $datetime;
+    }
+
+    $options = !is_array($options) ? [] : $options;
+    $options['datetime'] = true;
+    $options = admin_default_data($options);
+
+    return view('components/form/elements/input', [
+        'options' => $options
+    ]);
+}
+
+function admin_daterange($options = [])
+{
+    if (isset($options[0]) && is_array($options[0])){
+        $daterange = '';
+        foreach ($options as $key => $value){
+            $daterange .= admin_daterange($value);
+        }
+        return $daterange;
+    }
+
+    $options = !is_array($options) ? [] : $options;
+    $options['daterange'] = true;
+    $options = admin_default_data($options);
+
+    return view('components/form/elements/input', [
+        'options' => $options
+    ]);
+}
+
+function admin_switch($options = [])
+{
+    if (isset($options[0]) && is_array($options[0])){
+        $switch = '';
+        foreach ($options as $key => $value){
+            $switch .= admin_switch($value);
+        }
+        return $switch;
+    }
+
+    $options = !is_array($options) ? [] : $options;
+    $options = admin_default_data($options);
+
+    return view('components/form/elements/switch', [
+        'options' => $options
+    ]);
+}
+
+function admin_checkbox($options = [])
+{
+    if (isset($options[0]) && is_array($options[0])){
+        $checkbox = '';
+        foreach ($options as $key => $value){
+            $checkbox .= admin_checkbox($value);
+        }
+        return $checkbox;
+    }
+
+    $options = !is_array($options) ? [] : $options;
+    $options = admin_default_data($options);
+
+    return view('components/form/elements/checkbox', [
+        'options' => $options
+    ]);
+}
+
 function admin_form_group_row($options = [])
 {
     if (isset($options[0]) && is_array($options[0])){
@@ -159,15 +249,32 @@ function admin_form_group_row($options = [])
         $html = admin_tags($options['tags']);
     }
 
-    return view('components/form/form-group-row', [
+    if (array_key_exists('date', $options)){
+        $html = admin_date($options['date']);
+    }
+
+    if (array_key_exists('datetime', $options)){
+        $html = admin_datetime($options['datetime']);
+    }
+
+    if (array_key_exists('daterange', $options)){
+        $html = admin_daterange($options['daterange']);
+    }
+
+    if (array_key_exists('switch', $options)){
+        $html = admin_switch($options['switch']);
+    }
+
+    if (array_key_exists('checkbox', $options)){
+        $html = admin_checkbox($options['checkbox']);
+    }
+
+    return view('components/form/form_group_row', [
         'label' => $label,
         'html' => $html
     ]);
 }
 
-/**
- * Label üstte oluşturuluyor. Form grubu row olmadan oluşturuyor.
- */
 function admin_form_group($options = [])
 {
     if (isset($options[0]) && is_array($options[0])){
@@ -204,7 +311,27 @@ function admin_form_group($options = [])
         $html = admin_tags($options['tags']);
     }
 
-    return view('components/form/form-group', [
+    if (array_key_exists('date', $options)){
+        $html = admin_date($options['date']);
+    }
+
+    if (array_key_exists('datetime', $options)){
+        $html = admin_datetime($options['datetime']);
+    }
+
+    if (array_key_exists('daterange', $options)){
+        $html = admin_daterange($options['daterange']);
+    }
+
+    if (array_key_exists('switch', $options)){
+        $html = admin_switch($options['switch']);
+    }
+
+    if (array_key_exists('checkbox', $options)){
+        $html = admin_checkbox($options['checkbox']);
+    }
+
+    return view('components/form/form_group', [
         'label' => $label,
         'html' => $html
     ]);
@@ -217,14 +344,35 @@ function admin_default_data($options)
     $options['type'] = !isset($options['type']) ? 'text' : $options['type'];
     $options['value'] = !isset($options['value']) || empty($options['value']) ? old($options['name']) : $options['value'];
     $options['value'] = old($options['name']) ? old($options['name']) : $options['value'];
+    $options['value'] = is_string($options['value']) ? [$options['value']] : $options['value'];
+    $options['value'] = !isset($options['value']) ? [''] : $options['value'];
     $options['options'] = !isset($options['options']) ? [] : $options['options'];
     $options['multiple'] = isset($options['multiple']) && $options['multiple'] ? 'multiple' : '';
-    $options['format'] = !isset($options['format']) ? 'hex' : $options['format'];
-    $options['color'] = $options['color'] ?? false;
-    $options['tags'] = $options['tags'] ?? false;
+    $options['color'] = isset($options['color']) ? $options['color'] : false;
+    $options['tags'] = isset($options['tags']) ? $options['tags'] : false;
+    $options['daterange'] = isset($options['daterange']) ? $options['daterange'] : false;
+    $options['drops'] = isset($options['drops']) ? $options['drops'] : 'down';
+    $options['opens'] = isset($options['opens']) ? $options['opens'] : 'right';
+    $options['date'] = isset($options['date']) ? 'datepicker' : '';
+    $options['datetime'] = isset($options['datetime']) ? 'datetimepicker' : '';
+    $options['format'] = admin_default_format($options);
     $options['data'] = admin_data_attr($options);
     $options['extra'] = admin_extra_attr($options);
     return $options;
+}
+
+function admin_default_format($options)
+{
+    if($options['daterange']){
+        $options['time'] = isset($options['time']) && $options['time'] ? true : false;
+        $options['format'] = isset($options['format']) ? $options['format'] : 'DD-MM-YYYY';
+        $options['format'] = $options['time'] ? $options['format'] . ' HH:mm:ss' : $options['format'];
+    }elseif($options['color']){
+        $options['format'] = isset($options['format']) ? $options['format'] : 'hex';
+    }else{
+        $options['format'] = '';
+    }
+    return $options['format'];
 }
 
 function admin_extra_attr($options)
@@ -255,8 +403,10 @@ function admin_default_label_data($options)
         $label = $options['label'];
         $label['data'] = admin_data_attr($options['label']);
         $label['extra'] = admin_extra_attr($options['label']);
-    }else{
+    }elseif(isset($options['label']) && is_string($options['label'])){
         $label['title'] = $options['label'];
+    }else{
+        $label['title'] = '';
     }
     return $label;
 }

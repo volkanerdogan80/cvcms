@@ -56,7 +56,7 @@ class LanguageEntity extends Entity
 
     public function getFlag(): string
     {
-        return base_url('public/admin/flag/' . $this->attributes['flag'] . '.svg');
+        return base_url(PUBLIC_ADMIN_PATH . 'flag/' . $this->attributes['flag'] . '.svg');
     }
 
     public function getTitle(string $lang = null): string

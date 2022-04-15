@@ -1,7 +1,7 @@
 <?php $this->extend('admin/layout/main'); ?>
 
 <?php $this->section('style'); ?>
-<?= link_tag('public/admin/css/jqvmap.min.css') ?>
+<?= link_tag(PUBLIC_ADMIN_CSS_PATH . 'jqvmap.min.css') ?>
 <?php $this->endSection(); ?>
 
 
