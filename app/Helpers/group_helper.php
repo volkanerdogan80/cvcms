@@ -18,7 +18,6 @@ function get_group($params){
  * @return \CodeIgniter\Cache\CacheInterface|false|mixed
  */
 function get_groups($params){
-    $params = array_merge($params, ['status' => STATUS_ACTIVE]);
     $model = new \App\Models\GroupModel();
     return cve_cache(cve_cache_name('get_groups', $params), function () use ($model, $params){
         return $model->where($params)->findAll();

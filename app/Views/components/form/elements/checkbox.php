@@ -1,4 +1,4 @@
-<div class="selectgroup w-100" id="radio-<?= dot_array_search('name', $options); ?>">
+<div class="selectgroup selectgroup-pills" id="<?= dot_array_search('name', $options); ?>-checkbox">
     <?php if (isset($options['options']['object'])): ?>
 
         <?php
@@ -8,37 +8,31 @@
 
         <?php foreach ($options['options']['object'] as $key => $value): ?>
             <label class="selectgroup-item">
-                <input type="radio"
-                       id="<?= dot_array_search('id', $options['options']); ?>"
+                <input type="checkbox"
                        name="<?= dot_array_search('name', $options); ?>"
                        value="<?= $value->$opt_value ?? 'undefined'; ?>"
-                       class="selectgroup-input <?= dot_array_search('class', $options['options']); ?>"
-                       style="<?= dot_array_search('style', $options['options']); ?>"
-                    <?= dot_array_search('required', $options); ?>
+                       class="selectgroup-input"
                     <?= in_array($value->$opt_value, $options['value']) ? 'checked' : ''; ?>
                 >
-                <span class="selectgroup-button">
-                    <?= $value->$opt_title ?? 'undefined'; ?>
-                </span>
+                <span class="selectgroup-button"><?= $value->$opt_title ?? 'undefined'; ?></span>
             </label>
         <?php endforeach; ?>
+
 
     <?php elseif (isset($options['options']['ajax'])): ?>
 
     <?php else: ?>
+
         <?php foreach ($options['options'] as $key => $value): ?>
             <label class="selectgroup-item">
-                <input type="radio"
-                       id="<?= dot_array_search('id', $value); ?>"
+                <input type="checkbox"
                        name="<?= dot_array_search('name', $options); ?>"
-                       value="<?= $value['value'] ?? 'undefined'; ?>"
-                       class="selectgroup-input <?= dot_array_search('class', $value); ?>"
-                       style="<?= dot_array_search('style', $value); ?>"
-                    <?= dot_array_search('required', $options); ?>
+                       value="<?= dot_array_search('value', $value); ?>"
+                       class="selectgroup-input"
                     <?= in_array($value['value'], $options['value']) ? 'checked' : ''; ?>
                 >
                 <span class="selectgroup-button">
-                    <?= $value['title'] ?? 'undefined'; ?>
+                    <?= dot_array_search('title', $value); ?>
                 </span>
             </label>
         <?php endforeach; ?>
@@ -54,24 +48,20 @@
             success: function (response) {
                 let key = '<?= $options['options']['item']; ?>';
                 let value = <?= json_encode($options['value']); ?>;
+                let opt_name = '<?= dot_array_search('name', $options); ?>';
                 let opt_value = '<?= dot_array_search('value', $options['options']); ?>';
                 let opt_title = '<?= dot_array_search('title', $options['options']); ?>';
-                let opt_class = '<?= dot_array_search('class', $options['options']); ?>';
-                let opt_id = '<?= dot_array_search('id', $options['options']); ?>';
-                let opt_style = '<?= dot_array_search('style', $options['options']); ?>';
-                let opt_required = '<?= dot_array_search('required', $options); ?>';
-                let opt_name = '<?= dot_array_search('name', $options); ?>';
                 let items = response.data[key];
                 let options = '';
                 items.forEach(function (entry) {
                     let checked_control = value.filter(val_item => val_item === entry[opt_value] )
                     let opt_checked = checked_control.length > 0 ? 'checked' : '';
-                    options += '<label class="selectgroup-item">' +
-                    '<input type="radio" id="'+opt_id+'" name="'+opt_name+'" value="' + entry[opt_value] + '" style="' + opt_style + '" class="selectgroup-input ' + opt_class + '" '+opt_required+' '+opt_checked+'>'+
-                    '<span class="selectgroup-button">' + entry[opt_title] + '</span>'+
-                    '</label>';
+                    options += '<label class="selectgroup-item">'+
+                        '<input type="checkbox" name="'+opt_name+'" value="'+entry[opt_value]+'" class="selectgroup-input" '+opt_checked+'>'+
+                       '<span class="selectgroup-button">'+entry[opt_title]+'</span>'+
+                '</label>';
                 });
-                $('#radio-'+opt_name).html(options);
+                $('#<?= dot_array_search('name', $options); ?>-checkbox').html(options);
             },
             error: function (xhr, opt, error) {
                 console.log(error)

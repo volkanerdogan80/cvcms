@@ -11,12 +11,20 @@
 
             <div class="section-body">
                 <?= admin_form_group_row([
-                    'label' => 'test',
-                    'tags' => [
-                        'name' => 'status_1',
-                        'required' => true,
+                    [
+                        'checkbox' => [
+                            'name' => 'test',
+                            'value' => 'kayitli-kullanicilar',
+                            'options' => [
+                                'ajax' => base_url(route_to('admin_group_listing', null)),
+                                'item' => 'groups',
+                                'value' => 'slug',
+                                'title' => 'title'
+                            ]
+                        ]
                     ]
                 ]); ?>
+
             </div>
         </section>
     </div>

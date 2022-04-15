@@ -95,7 +95,7 @@ class UserEntity extends Entity
         $this->attributes['api_key'] = cve_api_key_creator();
     }
 
-    public function getGroupID(): int
+    public function getGroupID()
     {
         return $this->attributes['group_id'];
     }
